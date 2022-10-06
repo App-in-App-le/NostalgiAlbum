@@ -154,7 +154,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="INu-ib-KxC" secondAttribute="bottom" constant="193" id="9sY-3a-UPn"/>
                             <constraint firstItem="INu-ib-KxC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Cek-Jk-KBf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="INu-ib-KxC" secondAttribute="trailing" id="JcU-Sj-YFC"/>
-                            <constraint firstAttribute="trailing" secondItem="jg9-0D-r3d" secondAttribute="trailing" id="LVD-Ga-mRP"/>
                             <constraint firstItem="INu-ib-KxC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lcn-qS-Qog"/>
                             <constraint firstItem="jg9-0D-r3d" firstAttribute="top" secondItem="AJf-GQ-81Y" secondAttribute="bottom" id="Sy1-Zu-cZE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lwh-i1-Wmq" secondAttribute="trailing" id="X9u-Wg-HBE"/>
@@ -162,8 +161,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="lwh-i1-Wmq" secondAttribute="top" constant="6" id="hl5-Ma-XcM"/>
                             <constraint firstItem="FCk-00-G7W" firstAttribute="top" relation="lessThanOrEqual" secondItem="INu-ib-KxC" secondAttribute="bottom" constant="2" id="nVp-TY-FIY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FCk-00-G7W" secondAttribute="bottom" id="pAv-0j-AY1"/>
-                            <constraint firstItem="jg9-0D-r3d" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qpd-Uw-PNM"/>
-                            <constraint firstAttribute="bottom" secondItem="jg9-0D-r3d" secondAttribute="bottom" constant="609" id="rIe-rf-rYL"/>
                         </constraints>
                     </view>
                     <connections>
