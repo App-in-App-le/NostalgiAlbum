@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hiT-n4-Ish">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -9,16 +9,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home Screen View Controller-->
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="HomeScreenViewController" id="BYZ-38-t0r" customClass="HomeScreenViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="INu-ib-KxC">
-                                <rect key="frame" x="0.0" y="44" width="390" height="573"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="INu-ib-KxC">
+                                <rect key="frame" x="0.0" y="88" width="390" height="529"/>
                                 <color key="backgroundColor" red="0.40000003579999999" green="0.2901961207" blue="0.231372565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="390" id="DQn-zg-iMi"/>
@@ -38,8 +38,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="191"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj4-nZ-1DA">
-                                                    <rect key="frame" x="50" y="24" width="110" height="160"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj4-nZ-1DA">
+                                                    <rect key="frame" x="50" y="23" width="110" height="160"/>
                                                     <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="P43-Go-uzZ"/>
@@ -50,6 +50,10 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="+">
                                                         <fontDescription key="titleFontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="15"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="fmakeButton:" destination="Xdi-Mm-CLH" eventType="touchUpInside" id="Fh3-hf-ihn"/>
+                                                        <segue destination="SB1-ha-RU1" kind="show" id="ldg-om-yYh"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJf-GQ-81Y">
                                                     <rect key="frame" x="220" y="24" width="110" height="160"/>
@@ -63,6 +67,10 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="+">
                                                         <fontDescription key="titleFontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="15"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="makeButton:" destination="Xdi-Mm-CLH" eventType="touchUpInside" id="hLB-OP-jc2"/>
+                                                        <segue destination="SB1-ha-RU1" kind="show" id="k7G-w8-Wkv"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jg9-0D-r3d">
                                                     <rect key="frame" x="0.0" y="184" width="390" height="7"/>
@@ -120,10 +128,14 @@
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="390" height="191"/>
+                                        <connections>
+                                            <outlet property="firstButton" destination="pj4-nZ-1DA" id="wRg-Ek-gf4"/>
+                                            <outlet property="secondButton" destination="AJf-GQ-81Y" id="eBp-VH-uiK"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NostelgiAlbum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-00-G7W">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NostelgiAlbum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-00-G7W">
                                 <rect key="frame" x="0.0" y="617" width="390" height="193"/>
                                 <color key="backgroundColor" red="0.40000000000000002" green="0.2901960784" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -135,7 +147,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-i1-Wmq">
-                                <rect key="frame" x="0.0" y="38" width="390" height="7"/>
+                                <rect key="frame" x="0.0" y="82" width="390" height="7"/>
                                 <color key="backgroundColor" red="0.23497083760000001" green="0.17027528459999999" blue="0.1365594789" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="7" id="6hO-ES-XHi"/>
@@ -163,16 +175,58 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FCk-00-G7W" secondAttribute="bottom" id="pAv-0j-AY1"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Home" id="7aZ-DE-6Kg"/>
                     <connections>
-                        <outlet property="collectionView" destination="INu-ib-KxC" id="JDa-JO-F31"/>
+                        <outlet property="collectionView" destination="INu-ib-KxC" id="ZAT-a4-Yu7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33.846153846153847" y="93.838862559241704"/>
+            <point key="canvasLocation" x="534" y="94"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ulJ-yu-Wrh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hiT-n4-Ish" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kji-X1-zRU">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="w5J-Zl-EiP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yZ2-RU-Pxd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-422" y="94"/>
+        </scene>
+        <!--Album-->
+        <scene sceneID="b06-gP-nt2">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OpX-a6-xA8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController title="Album" id="SB1-ha-RU1" customClass="AlbumViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VRb-P6-i6I">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="kX2-ii-pi0"/>
+                        <color key="backgroundColor" red="0.72156864399999998" green="0.60392159219999997" blue="0.54509806630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mkh-YD-rWt"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1433.8461538461538" y="93.838862559241704"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ldg-om-yYh"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

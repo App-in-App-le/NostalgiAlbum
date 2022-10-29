@@ -7,10 +7,12 @@
 
 import UIKit
 
+protocol SendDataDelegate: AnyObject{
+    func send(data : String)
+}
 class HomeScreenViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     // UICollectionView가 인지하도록 해줘야 하는 요소
     // Data         : 어떤 데이터를 사용할지 정의
     // Presentation : 셀을 어떻게 표현할 것인지를 정의
@@ -18,12 +20,20 @@ class HomeScreenViewController: UIViewController {
     
     // dataSource, delegate : protocol 방식으로 작동
     // protocol     : 작동하기 위해 일정의 약속이나 제약을 충족할 시 사용할 수 있도록 설정해놓은 코드
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }
 
@@ -36,11 +46,18 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         // 보통은 동적으로 구성하기 위해 데이터의 개수로 정의한다.
         return 3
     }
+    
     // 셀을 어떻게 표현할 것인지 (Presentation)
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // 만들어 놓은 ReusableCell 중에 사용할 셀을 고르는 부분
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeScreenCollectionViewCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeScreenCollectionViewCell", for: indexPath) as! HomeScreenCollectionViewCell
+        cell.callback1={
+            print("button pressed",indexPath, "firstButton")
+        }
+        cell.callback2={
+            print("button pressed",indexPath, "secondButton")
+        }
         return cell
         
         // return UICollectionViewCell()

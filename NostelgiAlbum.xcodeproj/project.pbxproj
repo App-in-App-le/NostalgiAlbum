@@ -18,6 +18,7 @@
 		8094CA3B28EDC65900E70F76 /* NostelgiAlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA3A28EDC65900E70F76 /* NostelgiAlbumTests.swift */; };
 		8094CA4528EDC65900E70F76 /* NostelgiAlbumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */; };
 		8094CA4728EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */; };
+		8318AB58290044DC0082AD1F /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8318AB57290044DC0082AD1F /* AlbumViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		8094CA4028EDC65900E70F76 /* NostelgiAlbumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NostelgiAlbumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITests.swift; sourceTree = "<group>"; };
 		8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8318AB57290044DC0082AD1F /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
 				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
+				8318AB57290044DC0082AD1F /* AlbumViewController.swift */,
 			);
 			path = NostelgiAlbum;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8318AB58290044DC0082AD1F /* AlbumViewController.swift in Sources */,
 				8094CA2828EDC65500E70F76 /* ViewController.swift in Sources */,
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,
