@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65228EE905B00E9913D /* HomeScreenViewController.swift */; };
 		8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */; };
+		8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */; };
+		8087497D2913C1E000900C21 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087497C2913C1E000900C21 /* AlbumModel.swift */; };
 		8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2328EDC65500E70F76 /* AppDelegate.swift */; };
 		8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2528EDC65500E70F76 /* SceneDelegate.swift */; };
 		8094CA2828EDC65500E70F76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2728EDC65500E70F76 /* ViewController.swift */; };
@@ -18,6 +20,7 @@
 		8094CA3B28EDC65900E70F76 /* NostelgiAlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA3A28EDC65900E70F76 /* NostelgiAlbumTests.swift */; };
 		8094CA4528EDC65900E70F76 /* NostelgiAlbumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */; };
 		8094CA4728EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */; };
+		80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */; };
 		8318AB58290044DC0082AD1F /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8318AB57290044DC0082AD1F /* AlbumViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,8 @@
 /* Begin PBXFileReference section */
 		8002F65228EE905B00E9913D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCollectionViewCell.swift; sourceTree = "<group>"; };
+		8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenViewController.swift; sourceTree = "<group>"; };
+		8087497C2913C1E000900C21 /* AlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
 		8094CA2028EDC65500E70F76 /* NostelgiAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NostelgiAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8094CA2328EDC65500E70F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8094CA2528EDC65500E70F76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 		8094CA4028EDC65900E70F76 /* NostelgiAlbumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NostelgiAlbumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITests.swift; sourceTree = "<group>"; };
 		8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		8318AB57290044DC0082AD1F /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +116,10 @@
 				8094CA2728EDC65500E70F76 /* ViewController.swift */,
 				8094CA2928EDC65500E70F76 /* Main.storyboard */,
 				8002F65228EE905B00E9913D /* HomeScreenViewController.swift */,
+				8087497C2913C1E000900C21 /* AlbumModel.swift */,
+				8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */,
 				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
+				80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */,
 				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
 				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
@@ -268,10 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8318AB58290044DC0082AD1F /* AlbumViewController.swift in Sources */,
+				8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */,
 				8094CA2828EDC65500E70F76 /* ViewController.swift in Sources */,
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
+				8087497D2913C1E000900C21 /* AlbumModel.swift in Sources */,
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,
 				8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */,
+				80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */,
 				8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
