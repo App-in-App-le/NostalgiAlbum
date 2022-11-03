@@ -10,8 +10,10 @@ import UIKit
 protocol SendDataDelegate: AnyObject{
     func send(data : String)
 }
+
 class HomeScreenViewController: UIViewController {
     
+    // collectionView setting
     @IBOutlet weak var collectionView: UICollectionView!
     // UICollectionView가 인지하도록 해줘야 하는 요소
     // Data         : 어떤 데이터를 사용할지 정의
@@ -52,17 +54,24 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         
         // 만들어 놓은 ReusableCell 중에 사용할 셀을 고르는 부분
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeScreenCollectionViewCell", for: indexPath) as! HomeScreenCollectionViewCell
+        
         cell.callback1={
+            guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
+            pushVC.data = "hello!"
+            self.navigationController?.pushViewController(pushVC, animated: true)
             print("button pressed",indexPath, "firstButton")
         }
         cell.callback2={
+            guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
+            pushVC.data = "Good bye!"
+            self.navigationController?.pushViewController(pushVC, animated: true)
             print("button pressed",indexPath, "secondButton")
         }
         return cell
-        
-        // return UICollectionViewCell()
     }
 }
+
+
 
 extension HomeScreenViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -74,3 +83,4 @@ extension HomeScreenViewController: UICollectionViewDelegateFlowLayout{
         return 0
     }
 }
+
