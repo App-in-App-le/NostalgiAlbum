@@ -13,7 +13,8 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var pictureLabel: UILabel!
     
     
-    func configure(_ text : String){
-        pictureLabel.text = text
+    func configure(_ album : AlbumModel){
+        pictureImage.image = UIImage(named: album.pictureName)
+        pictureLabel.text = album.pictureLabel
     }
 }

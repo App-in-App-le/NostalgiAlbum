@@ -15,13 +15,7 @@ class HomeScreenViewController: UIViewController {
     
     // collectionView setting
     @IBOutlet weak var collectionView: UICollectionView!
-    // UICollectionView가 인지하도록 해줘야 하는 요소
-    // Data         : 어떤 데이터를 사용할지 정의
-    // Presentation : 셀을 어떻게 표현할 것인지를 정의
-    // Layout       : 셀을 어떻게 배치할 것인지를 정의
     
-    // dataSource, delegate : protocol 방식으로 작동
-    // protocol     : 작동하기 위해 일정의 약속이나 제약을 충족할 시 사용할 수 있도록 설정해놓은 코드
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,8 +38,6 @@ class HomeScreenViewController: UIViewController {
 extension HomeScreenViewController: UICollectionViewDataSource{
     // Collection View 안에 셀을 몇개로 구성할 것인지
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // 셀을 3개로 구성한다는 의미
-        // 보통은 동적으로 구성하기 위해 데이터의 개수로 정의한다.
         return 3
     }
     
@@ -57,15 +49,13 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         
         cell.callback1={
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
-            pushVC.data = "hello!"
+            pushVC.pageNum = 0
             self.navigationController?.pushViewController(pushVC, animated: true)
-            print("button pressed",indexPath, "firstButton")
         }
         cell.callback2={
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
-            pushVC.data = "Good bye!"
+            pushVC.pageNum = 0
             self.navigationController?.pushViewController(pushVC, animated: true)
-            print("button pressed",indexPath, "secondButton")
         }
         return cell
     }
@@ -75,8 +65,6 @@ extension HomeScreenViewController: UICollectionViewDataSource{
 
 extension HomeScreenViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // width == collectionView's width
-        // height == 190
         return CGSize(width: collectionView.bounds.width, height: 190)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

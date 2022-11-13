@@ -26,16 +26,12 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func makeButton(_ sender: Any) {
-        //chop?.row
-        //print("chop:",chop)
         secondButton.setImage(image, for: UIControl.State.normal)
         secondButton.setTitle("", for: UIControl.State.normal)
         callback2?()
     }
     
     @IBAction func fmakeButton(_ sender: Any) {
-        //chop?.row
-        //print("chop:",chop)
         firstButton.setImage(image, for:    UIControl.State.normal)
         firstButton.setTitle("", for: UIControl.State.normal)
         callback1?()
