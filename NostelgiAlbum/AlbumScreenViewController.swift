@@ -9,26 +9,93 @@ import UIKit
 
 class AlbumScreenViewController: UIViewController {
 
-    var data : String = ""
-    var image : UIImage?
+    @IBOutlet weak var pageNumLabel: UILabel!
+    
+    var data : [AlbumModel] = AlbumModel.list
+    var pageNum : Int = 0
+    // tool-bar item
     
     // collectionView setting
     @IBOutlet weak var collectionView: UICollectionView!
-    // UICollectionView가 인지하도록 해줘야 하는 요소
-    // Data         : 어떤 데이터를 사용할지 정의
-    // Presentation : 셀을 어떻게 표현할 것인지를 정의
-    // Layout       : 셀을 어떻게 배치할 것인지를 정의
-    
-    // dataSource, delegate : protocol 방식으로 작동
-    // protocol     : 작동하기 위해 일정의 약속이나 제약을 충족할 시 사용할 수 있도록 설정해놓은 코드
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(data)
         collectionView.dataSource = self
         collectionView.delegate = self
+        pageNumLabel.text = "[ \(pageNum + 1) 페이지 ]"
+        toolbarItems = makeToolbarItems()
+        navigationController?.toolbar.tintColor = UIColor.label
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AlbumScreenViewController.respondToSwipeGesture(_:)))
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(AlbumScreenViewController.respondToSwipeGesture(_:)))
+        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
+        self.view.addGestureRecognizer(swipeLeft)
+        
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isToolbarHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isToolbarHidden = true
+    }
+    
+    // Set toolBar
+    private func makeToolbarItems() -> [UIBarButtonItem]{
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
+        let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
+        let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
+        let informationButton = UIBarButtonItem(image: UIImage(systemName: "info.square")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.InfoButton))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        return [searchButton, flexibleSpace, shareButton, flexibleSpace, settingButton, flexibleSpace, informationButton]
+    }
+    
+    // 한 손가락으로 swipe 할 때 실행할 메서드
+    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer){
+        // 제스처가 존재하는 경우
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer{
+            print("data_count: \(data.count)")
+            print("pageNum = \(pageNum)!")
+            
+            if (pageNum >= 0) && (pageNum < (data.count / 2) + 1){
+                switch swipeGesture.direction{
+                    case UISwipeGestureRecognizer.Direction.right :
+                        if pageNum != 0 {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                        else{
+                            break
+                        }
+                    case UISwipeGestureRecognizer.Direction.left :
+                        if pageNum < data.count / 2{
+                            guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
+                            pushVC.pageNum = pageNum + 1
+                            self.navigationController?.pushViewController(pushVC, animated: true)
+                        }
+                        else{
+                            break
+                        }
+                    default:
+                        break
+                }
+            }
+        }
+    }
+    @objc func InfoButton(){
+        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "InfoToolViewController") as? InfoToolViewController else { return }
+        
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.modalPresentationStyle = .overCurrentContext
+        
+        self.present(nextVC, animated: true, completion: nil)
+    }
 }
 
 // DataSource, Delegate에 대한 extension을 정의
@@ -40,7 +107,18 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumScreenCollectionViewCell", for: indexPath) as! AlbumScreenCollectionViewCell
-        cell.configure(data);
+        
+        var picture: AlbumModel
+        // print("result: \(indexPath.item + pageNum * 2)")
+        
+        if (indexPath.item + pageNum * 2) < data.count {
+            picture = data[indexPath.item + pageNum * 2]
+        }
+        else{
+            picture = AlbumModel(pictureName: "지웅", pictureLabel: "none")
+        }
+        cell.configure(picture)
+        
         return cell
     }
 }
@@ -48,7 +126,7 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
 // layout에 관한 extension을 정의
 extension AlbumScreenViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 315)
+        return CGSize(width: collectionView.bounds.width, height: 357)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
