@@ -48,7 +48,7 @@ class AlbumScreenViewController: UIViewController {
     
     // Set toolBar
     private func makeToolbarItems() -> [UIBarButtonItem]{
-        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.searchButton))
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
         let informationButton = UIBarButtonItem(image: UIImage(systemName: "info.square")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.InfoButton))
@@ -96,6 +96,12 @@ class AlbumScreenViewController: UIViewController {
         
         self.present(nextVC, animated: true, completion: nil)
     }
+    @objc func searchButton(){
+        guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchToolViewController") as? SearchToolViewController else {return}
+        searchVC.modalPresentationStyle = .overCurrentContext
+        searchVC.delegate = self
+        self.present(searchVC, animated: false)
+    }
 }
 
 // DataSource, Delegate에 대한 extension을 정의
@@ -130,5 +136,35 @@ extension AlbumScreenViewController:UICollectionViewDelegateFlowLayout{
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension AlbumScreenViewController: DisDelegate{
+    func delegateString(text: String) {
+        print(text)
+        if let result = data.firstIndex(where: {$0.pictureName == text}){
+            //print(result)
+            guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
+            print("result",result/2)
+            print("pageNum",pageNum)
+            if(result/2 == pageNum){
+                print("currentPage")
+            } else if(result/2 > pageNum){
+                while pushVC.pageNum < result/2 {
+                    pushVC.pageNum = pageNum + 1
+                    self.navigationController?.pushViewController(pushVC, animated: true)
+                }
+            } else {
+                print("chop")
+                pushVC.pageNum = pageNum
+                while pushVC.pageNum > result/2 {
+                    pushVC.pageNum = pageNum - 1
+                    print("test")
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        } else {
+            print("none")
+        }
     }
 }
