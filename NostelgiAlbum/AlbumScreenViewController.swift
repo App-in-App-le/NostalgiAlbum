@@ -145,8 +145,6 @@ extension AlbumScreenViewController: DisDelegate{
         if let result = data.firstIndex(where: {$0.pictureName == text}){
             //print(result)
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
-            print("result",result/2)
-            print("pageNum",pageNum)
             if(result/2 == pageNum){
                 print("currentPage")
             } else if(result/2 > pageNum){
@@ -156,12 +154,9 @@ extension AlbumScreenViewController: DisDelegate{
                     self.navigationController?.pushViewController(pushVC, animated: false)
                 }
             } else {
-                print("chop")
-                pushVC.pageNum = pageNum
                 while pageNum > result/2 {
                     pageNum = pageNum - 1
                     pushVC.pageNum = pageNum
-                    print("test")
                     self.navigationController?.popViewController(animated: false)
                 }
             }
