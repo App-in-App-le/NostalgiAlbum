@@ -150,17 +150,19 @@ extension AlbumScreenViewController: DisDelegate{
             if(result/2 == pageNum){
                 print("currentPage")
             } else if(result/2 > pageNum){
-                while pushVC.pageNum < result/2 {
-                    pushVC.pageNum = pageNum + 1
-                    self.navigationController?.pushViewController(pushVC, animated: true)
+                while pageNum < result/2 {
+                    pageNum = pageNum + 1
+                    pushVC.pageNum = pageNum
+                    self.navigationController?.pushViewController(pushVC, animated: false)
                 }
             } else {
                 print("chop")
                 pushVC.pageNum = pageNum
-                while pushVC.pageNum > result/2 {
-                    pushVC.pageNum = pageNum - 1
+                while pageNum > result/2 {
+                    pageNum = pageNum - 1
+                    pushVC.pageNum = pageNum
                     print("test")
-                    self.navigationController?.popViewController(animated: true)
+                    self.navigationController?.popViewController(animated: false)
                 }
             }
         } else {
