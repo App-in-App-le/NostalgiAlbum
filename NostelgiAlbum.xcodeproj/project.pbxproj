@@ -21,6 +21,8 @@
 		8094CA4528EDC65900E70F76 /* NostelgiAlbumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */; };
 		8094CA4728EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */; };
 		80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */; };
+		8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D22921465600556BAE /* InfoToolViewController.swift */; };
+		8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D42921482A00556BAE /* SearchToolViewController.swift */; };
 		8318AB58290044DC0082AD1F /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8318AB57290044DC0082AD1F /* AlbumViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITests.swift; sourceTree = "<group>"; };
 		8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenCollectionViewCell.swift; sourceTree = "<group>"; };
+		8312C9D22921465600556BAE /* InfoToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToolViewController.swift; sourceTree = "<group>"; };
+		8312C9D42921482A00556BAE /* SearchToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchToolViewController.swift; sourceTree = "<group>"; };
 		8318AB57290044DC0082AD1F /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +128,8 @@
 				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
 				8318AB57290044DC0082AD1F /* AlbumViewController.swift */,
+				8312C9D22921465600556BAE /* InfoToolViewController.swift */,
+				8312C9D42921482A00556BAE /* SearchToolViewController.swift */,
 			);
 			path = NostelgiAlbum;
 			sourceTree = "<group>";
@@ -284,7 +290,9 @@
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,
 				8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */,
 				80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */,
+				8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */,
 				8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */,
+				8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
