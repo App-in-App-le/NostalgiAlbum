@@ -14,7 +14,6 @@
 		8087497D2913C1E000900C21 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8087497C2913C1E000900C21 /* AlbumModel.swift */; };
 		8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2328EDC65500E70F76 /* AppDelegate.swift */; };
 		8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2528EDC65500E70F76 /* SceneDelegate.swift */; };
-		8094CA2828EDC65500E70F76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2728EDC65500E70F76 /* ViewController.swift */; };
 		8094CA2B28EDC65500E70F76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8094CA2928EDC65500E70F76 /* Main.storyboard */; };
 		8094CA2D28EDC65900E70F76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8094CA2C28EDC65900E70F76 /* Assets.xcassets */; };
 		8094CA3028EDC65900E70F76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */; };
@@ -24,7 +23,6 @@
 		80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */; };
 		8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D22921465600556BAE /* InfoToolViewController.swift */; };
 		8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D42921482A00556BAE /* SearchToolViewController.swift */; };
-		8318AB58290044DC0082AD1F /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8318AB57290044DC0082AD1F /* AlbumViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +51,6 @@
 		8094CA2028EDC65500E70F76 /* NostelgiAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NostelgiAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8094CA2328EDC65500E70F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8094CA2528EDC65500E70F76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8094CA2728EDC65500E70F76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8094CA2A28EDC65500E70F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8094CA2C28EDC65900E70F76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8094CA2F28EDC65900E70F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -66,7 +63,6 @@
 		80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		8312C9D22921465600556BAE /* InfoToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToolViewController.swift; sourceTree = "<group>"; };
 		8312C9D42921482A00556BAE /* SearchToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchToolViewController.swift; sourceTree = "<group>"; };
-		8318AB57290044DC0082AD1F /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,22 +113,20 @@
 		8094CA2228EDC65500E70F76 /* NostelgiAlbum */ = {
 			isa = PBXGroup;
 			children = (
+				8094CA2928EDC65500E70F76 /* Main.storyboard */,
+				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
 				8094CA2328EDC65500E70F76 /* AppDelegate.swift */,
 				8094CA2528EDC65500E70F76 /* SceneDelegate.swift */,
-				8094CA2728EDC65500E70F76 /* ViewController.swift */,
-				8094CA2928EDC65500E70F76 /* Main.storyboard */,
 				8002F65228EE905B00E9913D /* HomeScreenViewController.swift */,
-				8087497C2913C1E000900C21 /* AlbumModel.swift */,
-				8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */,
 				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
+				8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */,
 				80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */,
-				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
-				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
-				8094CA3128EDC65900E70F76 /* Info.plist */,
-				8318AB57290044DC0082AD1F /* AlbumViewController.swift */,
-				8312C9D22921465600556BAE /* InfoToolViewController.swift */,
 				8312C9D42921482A00556BAE /* SearchToolViewController.swift */,
+				8312C9D22921465600556BAE /* InfoToolViewController.swift */,
 				807FF50029260656005D9884 /* InfoToolTableViewCell.swift */,
+				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
+				8094CA3128EDC65900E70F76 /* Info.plist */,
+				8087497C2913C1E000900C21 /* AlbumModel.swift */,
 			);
 			path = NostelgiAlbum;
 			sourceTree = "<group>";
@@ -285,9 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8318AB58290044DC0082AD1F /* AlbumViewController.swift in Sources */,
 				8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */,
-				8094CA2828EDC65500E70F76 /* ViewController.swift in Sources */,
 				807FF50129260656005D9884 /* InfoToolTableViewCell.swift in Sources */,
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
 				8087497D2913C1E000900C21 /* AlbumModel.swift in Sources */,
