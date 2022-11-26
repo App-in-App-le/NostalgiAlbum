@@ -6,12 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AlbumScreenViewController: UIViewController {
 
     @IBOutlet weak var pageNumLabel: UILabel!
-    
-    var data : [AlbumModel] = AlbumModel.list
+    let realm = try! Realm()
     var pageNum : Int = 0
     // tool-bar item
     
@@ -61,6 +61,7 @@ class AlbumScreenViewController: UIViewController {
     @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer){
         // 제스처가 존재하는 경우
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{
+            let data = realm.objects(album.self)
             print("data_count: \(data.count)")
             print("pageNum = \(pageNum)!")
             
@@ -106,25 +107,30 @@ class AlbumScreenViewController: UIViewController {
 
 // DataSource, Delegate에 대한 extension을 정의
 extension AlbumScreenViewController:UICollectionViewDataSource{
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let data = realm.objects(album.self)
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumScreenCollectionViewCell", for: indexPath) as! AlbumScreenCollectionViewCell
         
-        var picture: AlbumModel
+        var picture: album
         // print("result: \(indexPath.item + pageNum * 2)")
         
         if (indexPath.item + pageNum * 2) < data.count {
             picture = data[indexPath.item + pageNum * 2]
+            cell.configure(picture)
         }
         else{
-            picture = AlbumModel(pictureName: "지웅", pictureLabel: "none")
+            let noPicture = album()
+            noPicture.id = -1
+            noPicture.ImageName = "지웅"
+            noPicture.ImageText = "바닷가에서 폼 잡고 있는 지웅이"
+            cell.configure(noPicture)
         }
-        cell.configure(picture)
-        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         return cell
     }
 }
@@ -141,8 +147,9 @@ extension AlbumScreenViewController:UICollectionViewDelegateFlowLayout{
 
 extension AlbumScreenViewController: DisDelegate{
     func delegateString(text: String) {
+        let data = realm.objects(album.self)
         print(text)
-        if let result = data.firstIndex(where: {$0.pictureName == text}){
+        if let result = data.firstIndex(where: {$0.ImageName == text}){
             //print(result)
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
             if(result/2 == pageNum){
