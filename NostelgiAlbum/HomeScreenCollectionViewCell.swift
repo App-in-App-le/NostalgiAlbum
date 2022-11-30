@@ -21,19 +21,12 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     var callback2 : (()->Void)?
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var firstButton: UIButton!
-    var image: UIImage?{
-        return UIImage(named: "album.png")
-    }
     
     @IBAction func makeButton(_ sender: Any) {
-        secondButton.setImage(image, for: UIControl.State.normal)
-        secondButton.setTitle("", for: UIControl.State.normal)
         callback2?()
     }
     
     @IBAction func fmakeButton(_ sender: Any) {
-        firstButton.setImage(image, for:    UIControl.State.normal)
-        firstButton.setTitle("", for: UIControl.State.normal)
         callback1?()
     }
 }
