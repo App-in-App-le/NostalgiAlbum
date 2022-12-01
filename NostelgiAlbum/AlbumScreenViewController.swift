@@ -13,6 +13,7 @@ class AlbumScreenViewController: UIViewController {
     @IBOutlet weak var pageNumLabel: UILabel!
     let realm = try! Realm()
     var pageNum : Int = 0
+    var coverIndex : Int = 0
     // tool-bar item
     
     // collectionView setting
@@ -51,7 +52,7 @@ class AlbumScreenViewController: UIViewController {
         let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.searchButton))
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
-        let informationButton = UIBarButtonItem(image: UIImage(systemName: "info.square")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.InfoButton))
+        let informationButton = UIBarButtonItem(image: UIImage(systemName: "info.square")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.infoButton))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
         return [searchButton, flexibleSpace, shareButton, flexibleSpace, settingButton, flexibleSpace, informationButton]
@@ -61,9 +62,7 @@ class AlbumScreenViewController: UIViewController {
     @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer){
         // 제스처가 존재하는 경우
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{
-            let data = realm.objects(album.self)
-            print("data_count: \(data.count)")
-            print("pageNum = \(pageNum)!")
+            let data = realm.objects(album.self).filter("index = \(coverIndex)")
             
             if (pageNum >= 0) && (pageNum < (data.count / 2) + 1){
                 switch swipeGesture.direction{
@@ -89,13 +88,11 @@ class AlbumScreenViewController: UIViewController {
             }
         }
     }
-    @objc func InfoButton(){
-        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "InfoToolViewController") as? InfoToolViewController else { return }
-        
-        nextVC.modalTransitionStyle = .crossDissolve
-        nextVC.modalPresentationStyle = .overCurrentContext
-        
-        self.present(nextVC, animated: true, completion: nil)
+    @objc func infoButton(){
+        guard let infoVC = self.storyboard?.instantiateViewController(identifier: "InfoToolViewController") as? InfoToolViewController else { return }
+        infoVC.modalTransitionStyle = .crossDissolve
+        infoVC.modalPresentationStyle = .overCurrentContext
+        self.present(infoVC, animated: true, completion: nil)
     }
     @objc func searchButton(){
         guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchToolViewController") as? SearchToolViewController else {return}
@@ -112,12 +109,11 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let data = realm.objects(album.self)
+        let data = realm.objects(album.self).filter("index = \(coverIndex)")
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumScreenCollectionViewCell", for: indexPath) as! AlbumScreenCollectionViewCell
         
         var picture: album
-        // print("result: \(indexPath.item + pageNum * 2)")
         
         if (indexPath.item + pageNum * 2) < data.count {
             picture = data[indexPath.item + pageNum * 2]
@@ -125,12 +121,10 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
         }
         else{
             let noPicture = album()
-            noPicture.id = -1
             noPicture.ImageName = "지웅"
             noPicture.ImageText = "바닷가에서 폼 잡고 있는 지웅이"
             cell.configure(noPicture)
         }
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
         return cell
     }
 }
@@ -147,27 +141,29 @@ extension AlbumScreenViewController:UICollectionViewDelegateFlowLayout{
 
 extension AlbumScreenViewController: DisDelegate{
     func delegateString(text: String) {
-        let data = realm.objects(album.self)
-        print(text)
+        let data = realm.objects(album.self).filter("index = \(coverIndex)")
+        
         if let result = data.firstIndex(where: {$0.ImageName == text}){
-            //print(result)
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
             if(result/2 == pageNum){
                 print("currentPage")
-            } else if(result/2 > pageNum){
+            }
+            else if(result/2 > pageNum){
                 while pageNum < result/2 {
                     pageNum = pageNum + 1
                     pushVC.pageNum = pageNum
                     self.navigationController?.pushViewController(pushVC, animated: false)
                 }
-            } else {
+            }
+            else {
                 while pageNum > result/2 {
                     pageNum = pageNum - 1
                     pushVC.pageNum = pageNum
                     self.navigationController?.popViewController(animated: false)
                 }
             }
-        } else {
+        }
+        else {
             print("none")
         }
     }
