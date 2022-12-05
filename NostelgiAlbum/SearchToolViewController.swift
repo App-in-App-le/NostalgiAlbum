@@ -16,6 +16,8 @@ class SearchToolViewController: UIViewController {
     
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var searchText: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         popupView.layer.cornerRadius = 6
@@ -24,6 +26,7 @@ class SearchToolViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }

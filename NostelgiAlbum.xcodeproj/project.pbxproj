@@ -12,6 +12,7 @@
 		8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65228EE905B00E9913D /* HomeScreenViewController.swift */; };
 		8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */; };
 		8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */; };
+		806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A653D293873C80054FAEF /* HomeEditViewController.swift */; };
 		807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A193B29312CEE00BC434B /* RealmClassFunc.swift */; };
 		807FF50129260656005D9884 /* InfoToolTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FF50029260656005D9884 /* InfoToolTableViewCell.swift */; };
 		8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2328EDC65500E70F76 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		8002F65228EE905B00E9913D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenViewController.swift; sourceTree = "<group>"; };
+		806A653D293873C80054FAEF /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
 		807A193B29312CEE00BC434B /* RealmClassFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClassFunc.swift; sourceTree = "<group>"; };
 		807FF50029260656005D9884 /* InfoToolTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToolTableViewCell.swift; sourceTree = "<group>"; };
 		8094CA2028EDC65500E70F76 /* NostelgiAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NostelgiAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +151,7 @@
 				8094CA2528EDC65500E70F76 /* SceneDelegate.swift */,
 				8002F65228EE905B00E9913D /* HomeScreenViewController.swift */,
 				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
+				806A653D293873C80054FAEF /* HomeEditViewController.swift */,
 				8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */,
 				80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */,
 				8312C9D42921482A00556BAE /* SearchToolViewController.swift */,
@@ -434,6 +437,7 @@
 				8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */,
 				80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */,
 				8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */,
+				806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */,
 				8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */,
 				807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */,
 				8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */,

@@ -9,7 +9,6 @@ import Foundation
 import RealmSwift
 
 class album : Object{
-    @objc dynamic var id : Int = 0
     @objc dynamic var index : Int = 0
     @objc dynamic var ImageName : String = ""
     @objc dynamic var ImageText : String = ""
@@ -23,16 +22,6 @@ class album : Object{
     func setImageText(_ db : String){
         ImageText = db
     }
-    
-    override static func primaryKey() -> String? {
-          return "id"
-    }
-    
-    func incrementIndex(){
-        let realm = try! Realm()
-        id = (realm.objects(album.self).max(ofProperty: "id") as Int? ?? 0) + 1
-    }
-    
 }
 
 class albumCover : Object{
@@ -106,22 +95,18 @@ func setAlbum(){
         }
     }
 
-    Add_album1.incrementIndex()
     Add_album1.setIndex(0)
     Add_album1.setImageName("지웅")
     Add_album1.setImageText("바닷가에서 폼 잡고 있는 지웅이")
     Realm_write(Add_album1)
-    Add_album2.incrementIndex()
     Add_album2.setIndex(0)
     Add_album2.setImageName("경범")
     Add_album2.setImageText("폼 잡고 있는 경범이 형")
     Realm_write(Add_album2)
-    Add_album3.incrementIndex()
     Add_album3.setIndex(0)
     Add_album3.setImageName("민구")
     Add_album3.setImageText("그냥 민구")
     Realm_write(Add_album3)
-    Add_album4.incrementIndex()
     Add_album4.setIndex(0)
     Add_album4.setImageName("철수")
     Add_album4.setImageText("늠름한 고양이 철수")
