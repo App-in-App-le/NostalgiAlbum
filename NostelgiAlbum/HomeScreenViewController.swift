@@ -20,12 +20,12 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print("path",Realm.Configuration.defaultConfiguration.fileURL!)
 //        try! realm.write{
 //            realm.deleteAll()
 //        }
-//        setAlbum()
-//        setAlbumCover()
+        //setAlbum()
+        //setAlbumCover()
         collectionView.dataSource = self
         collectionView.delegate = self
     }

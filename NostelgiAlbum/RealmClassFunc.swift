@@ -9,10 +9,13 @@ import Foundation
 import RealmSwift
 
 class album : Object{
+    //@objc dynamic var id: Int = 0
     @objc dynamic var index : Int = 0
     @objc dynamic var ImageName : String = ""
     @objc dynamic var ImageText : String = ""
-    
+//    override static func primaryKey() -> String? {
+//        return "id"
+//    }
     func setIndex(_ db : Int){
         index = db
     }
