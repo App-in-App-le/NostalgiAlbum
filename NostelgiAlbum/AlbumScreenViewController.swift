@@ -26,7 +26,7 @@ class AlbumScreenViewController: UIViewController {
         pageNumLabel.text = "[ \(pageNum + 1) 페이지 ]"
         toolbarItems = makeToolbarItems()
         navigationController?.toolbar.tintColor = UIColor.label
-        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: self, action: #selector(popToHome))
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AlbumScreenViewController.respondToSwipeGesture(_:)))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
@@ -100,6 +100,9 @@ class AlbumScreenViewController: UIViewController {
         searchVC.delegate = self
         self.present(searchVC, animated: false)
     }
+    @objc func popToHome(){
+        self.navigationController?.popToRootViewController(animated: false)
+    }
 }
 
 // DataSource, Delegate에 대한 extension을 정의
@@ -142,25 +145,31 @@ extension AlbumScreenViewController:UICollectionViewDelegateFlowLayout{
 extension AlbumScreenViewController: DisDelegate{
     func delegateString(text: String) {
         let data = realm.objects(album.self).filter("index = \(coverIndex)")
+        var num : Int = 0
+        var checkcount : Int = pageNum
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
         
         if let result = data.firstIndex(where: {$0.ImageName == text}){
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
-            if(result/2 == pageNum){
+            if(result/2 == checkcount){
                 print("currentPage")
             }
-            else if(result/2 > pageNum){
-                while pageNum < result/2 {
-                    pageNum = pageNum + 1
-                    pushVC.pageNum = pageNum
+            else if(result/2 > checkcount){
+                while checkcount < result/2 {
+                    checkcount = checkcount + 1
+                    pushVC.pageNum = checkcount
                     self.navigationController?.pushViewController(pushVC, animated: false)
                 }
             }
             else {
-                while pageNum > result/2 {
-                    pageNum = pageNum - 1
-                    pushVC.pageNum = pageNum
-                    self.navigationController?.popViewController(animated: false)
+                while checkcount >= result/2 {
+                    checkcount = checkcount - 1
+                    //pushVC.pageNum = pageNum
+                    //self.navigationController?.popViewController(animated: false)
+                    num = num + 1
                 }
+                
+                self.navigationController!.popToViewController(viewControllers[viewControllers.count - num], animated: false)
             }
         }
         else {
