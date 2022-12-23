@@ -22,6 +22,12 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var firstButton: UIButton!
     
+    @IBOutlet weak var firstButtonSq: UILabel!
+    @IBOutlet weak var secondButtonSq: UILabel!
+    
+    @IBOutlet weak var firstButtonTitle: UILabel!
+    @IBOutlet weak var secondButtonTitle: UILabel!
+    
     @IBAction func makeButton(_ sender: Any) {
         callback2?()
     }
