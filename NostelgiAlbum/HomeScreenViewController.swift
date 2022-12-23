@@ -21,12 +21,14 @@ class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("####path",Realm.Configuration.defaultConfiguration.fileURL!)
+        // document 안에 복사된 사진을 제거
         var start = 1
         let count = realm.objects(albumCover.self).count
         while start <= count{
             deleteImageFromDocumentDirectory(imageName: "\(start).png")
             start += 1
         }
+        // Realm DB안에 있는 정보를 모두 제거
         try! realm.write{
             realm.deleteAll()
         }
@@ -181,7 +183,7 @@ func fixOrientation(image: UIImage) -> UIImage{
     if(image.imageOrientation == .up){
         return image
     }
-    
+    // 방향 돌아가는 이유랑 다시 돌리는 원리 다시 보기!!
     UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
     let rect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
     image.draw(in: rect)
