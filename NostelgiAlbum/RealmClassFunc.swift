@@ -9,22 +9,35 @@ import Foundation
 import RealmSwift
 
 class album : Object{
-    //@objc dynamic var id: Int = 0
+    // [index] : 몇 번째 앨범의 사진인지를 표시하기 위한 변수
     @objc dynamic var index : Int = 0
+    /*
+     [perAlbumIndex]
+     1. 앨범 별로 현재 몇 번째에 있는 사진인지를 표시해야 edit 또는 delete시 realm이나 도큐먼트에서 정보를 가져올 수 있다.
+     2. 만약 앨범 별로 카운트를 센다면 사진 저장 방식을 바꿔야 할 듯 함 (예를 들어, 첫 번째 앨범과 두 번째 앨범의 사진을 모두 1.jpg라고 저장하면 구분이 안되기 때문 -> 1_1, 2_1 이런 식으로 변경)
+     3. 만약 중간에 있는 사진이 삭제된다면 DB에 존재하는 정보 뿐만 아니라 document에 있는 사진들의 이름 정보도 바꿔줘야 한다. (예를 들어, 첫 번째 앨범의 사진 개수가 5개 이고 1-3이 삭제되는 상황을
+       가정해본다면 1_4 -> 1_3, 1_5 -> 1_4가 되어야 하기 때문!
+    */
+    @objc dynamic var perAlbumIndex : Int = 0
     @objc dynamic var ImageName : String = ""
     @objc dynamic var ImageText : String = ""
-//    override static func primaryKey() -> String? {
-//        return "id"
-//    }
+    
+    func setPerAlbumIndex(_ db : Int){
+        perAlbumIndex = db
+    }
+    
     func setIndex(_ db : Int){
         index = db
     }
+    
     func setImageName(_ db : String){
         ImageName = db
     }
+    
     func setImageText(_ db : String){
         ImageText = db
     }
+    
 }
 
 class albumCover : Object{
@@ -35,6 +48,7 @@ class albumCover : Object{
     func setcoverImageName(_ db : String){
         coverImageName = db
     }
+    
     func setalbumName(_ db : String){
         albumName = db
     }
@@ -50,34 +64,33 @@ class albumCover : Object{
     
 }
 
-func setAlbumCover(){
-    let realm = try! Realm()
-    let Add_albumCover1 = albumCover()
-    let Add_albumCover2 = albumCover()
-    Add_albumCover1.incrementIndex()
-    Add_albumCover1.setalbumName("가족 앨범")
-    Add_albumCover1.setcoverImageName("family.png")
-    func Realm_write(_ cover : albumCover){
-        do
-        {
-            try realm.write
-            {
-                realm.add(cover)
-            }
-        }
-        catch{
-            print("\(error)")
-        }
-    }
-    Realm_write(Add_albumCover1)
-    Add_albumCover2.incrementIndex()
-    Add_albumCover2.setalbumName("우정 앨범")
-    Add_albumCover2.setcoverImageName("friend.png")
-    Realm_write(Add_albumCover2)
+class albumsInfo : Object{
+    @objc dynamic var id : Int = 0
+    @objc dynamic var numberOfPictures : Int = 0
+    @objc dynamic var dateOfCreation : String = ""
     
-    print(Realm.Configuration.defaultConfiguration.fileURL!)
+    override static func primaryKey() -> String? {
+          return "id"
+    }
+    
+    func setNumberOfPictures(){
+        let realm = try! Realm()
+        numberOfPictures = realm.objects(album.self).filter("index = \(id)").count
+    }
+    
+    func setDateOfCreation(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        dateOfCreation = formatter.string(from:Date())
+    }
+    
+    func incrementIndex(){
+        let realm = try! Realm()
+        id = (realm.objects(albumsInfo.self).max(ofProperty: "id") as Int? ?? 0) + 1
+    }
 }
 
+// albumScreenView Edit 기능이 생기면 삭제
 func setAlbum(){
     let realm = try! Realm()
     let Add_album1 = album()

@@ -15,20 +15,20 @@ class HomeScreenViewController: UIViewController {
     // collectionView setting
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var image: UIImage?
+    var image:UIImage?
     var count:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("####path",Realm.Configuration.defaultConfiguration.fileURL!)
         // document 안에 복사된 사진을 제거
-        var start = 1
-        let count = realm.objects(albumCover.self).count
-        while start <= count{
-            deleteImageFromDocumentDirectory(imageName: "\(start).png")
-            start += 1
-        }
-        // Realm DB안에 있는 정보를 모두 제거
+//        var start = 1
+//        let count = realm.objects(albumCover.self).count
+//        while start <= count{
+//            deleteImageFromDocumentDirectory(imageName: "\(start).png")
+//            start += 1
+//        }
+//         Realm DB안에 있는 정보를 모두 제거
         try! realm.write{
             realm.deleteAll()
         }
@@ -48,7 +48,6 @@ class HomeScreenViewController: UIViewController {
 }
 
 // DataSource, Delegate에 대한 extension을 정의
-
 extension HomeScreenViewController: UICollectionViewDataSource{
     // Collection View 안에 셀을 몇개로 구성할 것인지
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -78,12 +77,12 @@ extension HomeScreenViewController: UICollectionViewDataSource{
             firstbuttonInfo = realm.objects(albumCover.self).filter("id = \(indexPath.row * 2 + 1)").first
             secondbuttonInfo = realm.objects(albumCover.self).filter("id = \(indexPath.row * 2 + 2)").first
             if firstbuttonInfo != nil{
-                image = loadImageFromDocumentDirectory(imageName: firstbuttonInfo!.coverImageName)
-                cell.firstButton.setImage(resizeingImage(image: self.image!, width: 120, height: 160), for: .normal)
+                image = UIImage(named: firstbuttonInfo!.coverImageName)
+                cell.firstButton.setImage(image, for: .normal)
             }
             if secondbuttonInfo != nil{
-                image = loadImageFromDocumentDirectory(imageName: secondbuttonInfo!.coverImageName)
-                cell.secondButton.setImage(resizeingImage(image: self.image!, width: 120, height: 160), for: .normal)
+                image = UIImage(named: secondbuttonInfo!.coverImageName)
+                cell.secondButton.setImage(image, for: .normal)
             }
         }
         else if (indexPath.row + 1) * 2 - 1 == cover_num{
@@ -135,60 +134,4 @@ extension HomeScreenViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-}
-
-func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
-    // 1. 도큐먼트 폴더 경로가져오기
-    let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
-    let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-    let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
-    
-    if let directoryPath = path.first {
-        // 2. 이미지 URL 찾기
-        let imageURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
-        // 3. UIImage로 불러오기
-        let loadImage = UIImage(contentsOfFile: imageURL.path)
-        return fixOrientation(image: loadImage!)
-    }
-    
-    return nil
-}
-
-func deleteImageFromDocumentDirectory(imageName: String) {
-    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-    
-    let imageURL = documentDirectory.appendingPathComponent(imageName)
-    
-    if FileManager.default.fileExists(atPath: imageURL.path) {
-        do {
-            try FileManager.default.removeItem(at: imageURL)
-            print("이미지 삭제 완료")
-        } catch {
-            print("이미지를 삭제하지 못했습니다.")
-        }
-    }
-}
-
-func resizeingImage(image: UIImage, width: Int, height: Int) -> UIImage? {
-    let customImage = image
-    let newImageRect = CGRect(x: 0, y: 0, width: width, height: height)
-    UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-    customImage.draw(in: newImageRect)
-    let newImage = UIGraphicsGetImageFromCurrentImageContext()?.withRenderingMode(.alwaysOriginal)
-    UIGraphicsEndImageContext()
-    return newImage
-}
-
-func fixOrientation(image: UIImage) -> UIImage{
-    if(image.imageOrientation == .up){
-        return image
-    }
-    // 방향 돌아가는 이유랑 다시 돌리는 원리 다시 보기!!
-    UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
-    let rect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
-    image.draw(in: rect)
-    let normailizedImage = UIGraphicsGetImageFromCurrentImageContext()!
-    UIGraphicsEndImageContext()
-    
-    return normailizedImage
 }
