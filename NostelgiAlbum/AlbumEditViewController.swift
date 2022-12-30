@@ -6,24 +6,76 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AlbumEditViewController: UIViewController {
 
+    @IBOutlet weak var editText: UITextView!
+    @IBOutlet weak var editTitle: UITextField!
+    @IBOutlet weak var editPicture: UIButton!
+    var collectionViewInAlbum : UICollectionView!
+    var index : Int!
+    let picker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        picker.delegate = self
+        editPicture.setImage(UIImage(systemName: "photo"), for: .normal)
+        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
+        swipeRecognizer.direction = .down
+        self.view.addGestureRecognizer(swipeRecognizer)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func addAlbumPicture(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in self.openLibrary()}
+        let camera = UIAlertAction(title: "카메라", style: .default){(action) in self.openCamera()}
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alert.addAction(library)
+        alert.addAction(camera)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
-    */
+ 
+    @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
+        if sender.direction == .down{
+            self.dismiss(animated: true)
+        }
+    }
+    func openLibrary(){
+        picker.sourceType = .photoLibrary
+        present(picker, animated: false, completion: nil)
+    }
+    
+    func openCamera(){
+        picker.sourceType = .camera
+        present(picker, animated: false, completion: nil)
+    }
+    
+    @IBAction func savePicture(_ sender: Any) {
+        let realm = try! Realm()
+        
+        let newPicture = album()
+        newPicture.ImageName = editTitle.text!
+        newPicture.ImageText = editText.text!
+        newPicture.index = index
+        try! realm.write {
+            realm.add(newPicture)
+        }
+        print("save imagename "+newPicture.ImageName)
+        saveImageToDocumentDirectory(imageName: newPicture.ImageName, image: (editPicture.imageView?.image!)!)
+        
+        collectionViewInAlbum.reloadData()
+        
+        dismiss(animated: false, completion: nil)
+    }
+}
 
+extension AlbumEditViewController : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{ editPicture.imageView?.image = image
+            editPicture.setTitle("", for: .normal)
+            editPicture.setImage(image.resize(newWidth: 312), for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }

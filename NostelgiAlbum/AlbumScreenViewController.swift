@@ -117,16 +117,13 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumScreenCollectionViewCell", for: indexPath) as! AlbumScreenCollectionViewCell
         
         var picture: album
-        
+        cell.albumSVC = self
         if (indexPath.item + pageNum * 2) < data.count {
             picture = data[indexPath.item + pageNum * 2]
             cell.configure(picture)
-        }
-        else{
-            let noPicture = album()
-            noPicture.ImageName = "지웅"
-            noPicture.ImageText = "바닷가에서 폼 잡고 있는 지웅이"
-            cell.configure(noPicture)
+            cell.albumInfo = picture
+        } else {
+            cell.albuminit()
         }
         return cell
     }

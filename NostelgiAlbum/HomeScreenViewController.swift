@@ -32,8 +32,8 @@ class HomeScreenViewController: UIViewController {
         try! realm.write{
             realm.deleteAll()
         }
-        setAlbum()
-//        setAlbumCover()
+        //setAlbum()
+        //setAlbumCover()
         collectionView.dataSource = self
         collectionView.delegate = self
     }
