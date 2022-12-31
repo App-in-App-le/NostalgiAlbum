@@ -27,6 +27,9 @@
 		80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */; };
 		8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D22921465600556BAE /* InfoToolViewController.swift */; };
 		8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D42921482A00556BAE /* SearchToolViewController.swift */; };
+		831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */; };
+		831A04DA295EC04C009D26A0 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A04D9295EC04C009D26A0 /* ImageViewController.swift */; };
+		8320291F295EA8E2001709E9 /* AlbumEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */; };
 		9637805CE99D7E121BEE0717 /* Pods_NostelgiAlbum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0A83F13AEEA742D0FD55A4 /* Pods_NostelgiAlbum.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +77,9 @@
 		80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		8312C9D22921465600556BAE /* InfoToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToolViewController.swift; sourceTree = "<group>"; };
 		8312C9D42921482A00556BAE /* SearchToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchToolViewController.swift; sourceTree = "<group>"; };
+		831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPicViewController.swift; sourceTree = "<group>"; };
+		831A04D9295EC04C009D26A0 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEditViewController.swift; sourceTree = "<group>"; };
 		884CF07808E0B766753C3292 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8FFC13E4AFBFFF078784A65D /* Pods-NostelgiAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.release.xcconfig"; sourceTree = "<group>"; };
 		A37BCC6121739C6133FF1DE6 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum_NostelgiAlbumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +169,9 @@
 				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
 				807A193B29312CEE00BC434B /* RealmClassFunc.swift */,
+				8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */,
+				831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */,
+				831A04D9295EC04C009D26A0 /* ImageViewController.swift */,
 			);
 			path = NostelgiAlbum;
 			sourceTree = "<group>";
@@ -434,14 +443,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */,
+				831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */,
 				804C7E8E295835D200C63880 /* ImageFunc.swift in Sources */,
 				807FF50129260656005D9884 /* InfoToolTableViewCell.swift in Sources */,
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,
 				8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */,
+				831A04DA295EC04C009D26A0 /* ImageViewController.swift in Sources */,
 				80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */,
 				8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */,
 				806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */,
+				8320291F295EA8E2001709E9 /* AlbumEditViewController.swift in Sources */,
 				8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */,
 				807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */,
 				8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */,

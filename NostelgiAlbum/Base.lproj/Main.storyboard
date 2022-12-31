@@ -13,12 +13,12 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="HomeScreenViewController" id="BYZ-38-t0r" customClass="HomeScreenViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="INu-ib-KxC">
-                                <rect key="frame" x="0.0" y="103" width="390" height="522"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="INu-ib-KxC">
+                                <rect key="frame" x="0.0" y="103" width="393" height="522"/>
                                 <color key="backgroundColor" red="0.40000003579999999" green="0.2901961207" blue="0.231372565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="390" id="DQn-zg-iMi"/>
@@ -32,7 +32,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeScreenCollectionViewCell" id="Xdi-Mm-CLH" customClass="HomeScreenCollectionViewCell" customModule="NostelgiAlbum" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="191"/>
+                                        <rect key="frame" x="1.6666666666666667" y="0.0" width="390" height="191"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="n9d-vr-h7a">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="191"/>
@@ -78,7 +78,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="on1-g1-KEb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="7" height="191"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="7" height="190"/>
                                                     <color key="backgroundColor" red="0.23497083760000001" green="0.17027528459999999" blue="0.1365594789" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="190" id="2Iq-Hj-n97"/>
@@ -129,8 +129,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NostelgiAlbum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-00-G7W">
-                                <rect key="frame" x="0.0" y="625" width="390" height="193"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NostelgiAlbum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-00-G7W">
+                                <rect key="frame" x="0.0" y="625" width="393" height="193"/>
                                 <color key="backgroundColor" red="0.40000000000000002" green="0.2901960784" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="193" id="QB1-rU-mDA"/>
@@ -141,7 +141,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-i1-Wmq">
-                                <rect key="frame" x="0.0" y="97" width="390" height="7"/>
+                                <rect key="frame" x="0.0" y="97" width="393" height="7"/>
                                 <color key="backgroundColor" red="0.23497083760000001" green="0.17027528459999999" blue="0.1365594789" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="7" id="6hO-ES-XHi"/>
@@ -203,12 +203,12 @@
         <scene sceneID="b06-gP-nt2">
             <objects>
                 <viewController storyboardIdentifier="AlbumScreenViewController" title="Album" id="SB1-ha-RU1" customClass="AlbumScreenViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VRb-P6-i6I">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="VRb-P6-i6I">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="arc-jP-fUr">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="arc-jP-fUr">
+                                <rect key="frame" x="0.0" y="59" width="390" height="759"/>
                                 <color key="backgroundColor" red="0.40000003579999999" green="0.2901961207" blue="0.231372565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="390" id="4UO-yB-Cs4"/>
@@ -222,19 +222,12 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumScreenCollectionViewCell" id="LeX-79-3Ln" customClass="AlbumScreenCollectionViewCell" customModule="NostelgiAlbum" customModuleProvider="target">
-                                        <rect key="frame" x="2" y="0.0" width="389" height="315"/>
+                                        <rect key="frame" x="0.66666666666666663" y="0.0" width="389" height="315"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xV3-Yn-Nql">
                                             <rect key="frame" x="0.0" y="0.0" width="389" height="315"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7o5-ed-PEb">
-                                                    <rect key="frame" x="14" y="35" width="168" height="244"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="244" id="9Bw-9O-Gqv"/>
-                                                        <constraint firstAttribute="width" constant="168" id="I5c-cj-xnc"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmy-Vn-jQS">
                                                     <rect key="frame" x="212" y="35" width="168" height="244"/>
                                                     <constraints>
@@ -245,26 +238,37 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkt-Du-O5R">
+                                                    <rect key="frame" x="14" y="35" width="168" height="244"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                    <connections>
+                                                        <action selector="addPicutre:" destination="LeX-79-3Ln" eventType="touchUpInside" id="BFE-qL-XxM"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="7o5-ed-PEb" secondAttribute="bottom" constant="36" id="5nF-G5-YpM"/>
-                                                <constraint firstItem="7o5-ed-PEb" firstAttribute="top" secondItem="xV3-Yn-Nql" secondAttribute="top" constant="35" id="9Un-zJ-ugU"/>
-                                                <constraint firstItem="qmy-Vn-jQS" firstAttribute="top" secondItem="7o5-ed-PEb" secondAttribute="bottom" constant="-244" id="GIU-4g-PBS"/>
-                                                <constraint firstItem="7o5-ed-PEb" firstAttribute="leading" secondItem="xV3-Yn-Nql" secondAttribute="leading" constant="14" id="LTk-pz-3ar"/>
-                                                <constraint firstItem="qmy-Vn-jQS" firstAttribute="top" secondItem="xV3-Yn-Nql" secondAttribute="top" constant="35" id="ZRq-EV-Ts6"/>
-                                                <constraint firstAttribute="trailing" secondItem="qmy-Vn-jQS" secondAttribute="trailing" constant="9" id="asY-95-LlL"/>
-                                                <constraint firstAttribute="bottom" secondItem="qmy-Vn-jQS" secondAttribute="bottom" constant="36" id="t3y-IU-MbQ"/>
+                                                <constraint firstItem="nkt-Du-O5R" firstAttribute="leading" secondItem="xV3-Yn-Nql" secondAttribute="leading" constant="14" id="06S-3w-W5R"/>
+                                                <constraint firstItem="qmy-Vn-jQS" firstAttribute="leading" secondItem="xV3-Yn-Nql" secondAttribute="leading" constant="212" id="25b-QG-Oxx"/>
+                                                <constraint firstItem="nkt-Du-O5R" firstAttribute="top" secondItem="qmy-Vn-jQS" secondAttribute="bottom" constant="-244" id="7Wu-ji-Bhc"/>
+                                                <constraint firstItem="nkt-Du-O5R" firstAttribute="top" secondItem="xV3-Yn-Nql" secondAttribute="top" constant="35" id="7ts-qd-kea"/>
+                                                <constraint firstAttribute="bottom" secondItem="nkt-Du-O5R" secondAttribute="bottom" constant="36" id="JNS-jg-NgL"/>
+                                                <constraint firstItem="qmy-Vn-jQS" firstAttribute="leading" secondItem="xV3-Yn-Nql" secondAttribute="leading" constant="212" id="fqt-Jf-Uqx"/>
+                                                <constraint firstItem="qmy-Vn-jQS" firstAttribute="leading" secondItem="nkt-Du-O5R" secondAttribute="trailing" constant="30" id="gDr-bQ-847"/>
+                                                <constraint firstAttribute="bottom" secondItem="qmy-Vn-jQS" secondAttribute="bottom" constant="36" id="gV7-Xt-xTa"/>
+                                                <constraint firstItem="qmy-Vn-jQS" firstAttribute="top" secondItem="xV3-Yn-Nql" secondAttribute="top" constant="35" id="qE6-Xa-n2B"/>
+                                                <constraint firstAttribute="trailing" secondItem="qmy-Vn-jQS" secondAttribute="trailing" constant="9" id="yiE-QL-vxU"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="389" height="315"/>
                                         <connections>
-                                            <outlet property="pictureImage" destination="7o5-ed-PEb" id="X3o-da-gBo"/>
+                                            <outlet property="pictureImgButton" destination="nkt-Du-O5R" id="jrS-vt-Kfy"/>
                                             <outlet property="pictureLabel" destination="qmy-Vn-jQS" id="lJw-qo-Dlu"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VSV-Zg-LAY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VSV-Zg-LAY">
                                 <rect key="frame" x="170" y="727" width="104" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -294,7 +298,149 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OpX-a6-xA8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1246" y="931"/>
+            <point key="canvasLocation" x="1245.0381679389313" y="930.98591549295782"/>
+        </scene>
+        <!--Album Edit View Controller-->
+        <scene sceneID="qA5-Yl-5L8">
+            <objects>
+                <viewController storyboardIdentifier="AlbumEditViewController" id="qGg-ET-l2z" customClass="AlbumEditViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="snJ-Kh-xcU">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x16-SJ-OeI">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDz-rf-7Ho">
+                                        <rect key="frame" x="282" y="35" width="66" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="SAVE"/>
+                                        <connections>
+                                            <action selector="savePicture:" destination="qGg-ET-l2z" eventType="touchUpInside" id="QGf-y4-Ye2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pul-iH-fuh">
+                                        <rect key="frame" x="40" y="99" width="312" height="363"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="addAlbumPicture:" destination="qGg-ET-l2z" eventType="touchUpInside" id="7Uo-YJ-iYr"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="사진제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="29r-LZ-69x">
+                                        <rect key="frame" x="40" y="485" width="253" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qd4-6a-Gz8">
+                                        <rect key="frame" x="40" y="527" width="312" height="188"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.40000003579999999" green="0.2901961207" blue="0.231372565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="3RP-Kc-9ts" appends="YES" id="x2D-Ig-U8m"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3Cf-Ao-r4Y"/>
+                        <color key="backgroundColor" red="0.72156864399999998" green="0.60392159219999997" blue="0.54509806630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <connections>
+                        <outlet property="editPicture" destination="pul-iH-fuh" id="xvV-8b-Emc"/>
+                        <outlet property="editText" destination="qd4-6a-Gz8" id="LcF-Vj-Iee"/>
+                        <outlet property="editTitle" destination="29r-LZ-69x" id="I9p-eu-dMN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UPA-Ui-UH1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="3RP-Kc-9ts"/>
+            </objects>
+            <point key="canvasLocation" x="2100" y="930.98591549295782"/>
+        </scene>
+        <!--Album Pic View Controller-->
+        <scene sceneID="7H8-TD-mm5">
+            <objects>
+                <viewController storyboardIdentifier="AlbumPicViewController" id="8u0-KJ-518" customClass="AlbumPicViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wrg-tO-7M3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blZ-Tc-pwX">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izs-d9-9Yf">
+                                        <rect key="frame" x="48" y="72" width="297" height="352"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="zoomImage:" destination="8u0-KJ-518" eventType="touchUpInside" id="NEl-Fa-G4V"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJL-vM-fOY">
+                                        <rect key="frame" x="175" y="485" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9I-5N-ooA">
+                                        <rect key="frame" x="40" y="533" width="297" height="181"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.40000003579999999" green="0.2901961207" blue="0.231372565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vZA-BX-owM"/>
+                        <color key="backgroundColor" red="0.72156864399999998" green="0.60392159219999997" blue="0.54509806630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <connections>
+                        <outlet property="picImage" destination="izs-d9-9Yf" id="kmD-oB-3BV"/>
+                        <outlet property="picName" destination="DJL-vM-fOY" id="7fy-cP-pgF"/>
+                        <outlet property="picText" destination="U9I-5N-ooA" id="6ca-or-Gvo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8qk-F2-BES" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2884.7328244274809" y="930.98591549295782"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="QKm-iT-ia9">
+            <objects>
+                <viewController storyboardIdentifier="ImageViewController" id="NcE-4x-cJB" customClass="ImageViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s0s-tL-iVr">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="se2-oU-f4c">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Lj2-bc-8fe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="se2-oU-f4c" id="9W4-cg-kAy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t13-Cp-Lf7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3701.5267175572517" y="930.98591549295782"/>
         </scene>
         <!--Search Tool View Controller-->
         <scene sceneID="qNM-Qk-sLk">
