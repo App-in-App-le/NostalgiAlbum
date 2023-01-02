@@ -157,11 +157,13 @@
 				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
 				8094CA2328EDC65500E70F76 /* AppDelegate.swift */,
 				8094CA2528EDC65500E70F76 /* SceneDelegate.swift */,
-				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
 				8002F65228EE905B00E9913D /* HomeScreenViewController.swift */,
+				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
 				806A653D293873C80054FAEF /* HomeEditViewController.swift */,
 				8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */,
 				80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */,
+				8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */,
+				831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */,
 				8312C9D42921482A00556BAE /* SearchToolViewController.swift */,
 				8312C9D22921465600556BAE /* InfoToolViewController.swift */,
 				807FF50029260656005D9884 /* InfoToolTableViewCell.swift */,
@@ -169,8 +171,6 @@
 				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
 				807A193B29312CEE00BC434B /* RealmClassFunc.swift */,
-				8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */,
-				831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */,
 				831A04D9295EC04C009D26A0 /* ImageViewController.swift */,
 			);
 			path = NostelgiAlbum;

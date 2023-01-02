@@ -16,24 +16,16 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var image:UIImage?
-    var count:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("####path",Realm.Configuration.defaultConfiguration.fileURL!)
-        // document 안에 복사된 사진을 제거
-//        var start = 1
-//        let count = realm.objects(albumCover.self).count
-//        while start <= count{
-//            deleteImageFromDocumentDirectory(imageName: "\(start).png")
-//            start += 1
-//        }
 //         Realm DB안에 있는 정보를 모두 제거
         try! realm.write{
             realm.deleteAll()
         }
-        //setAlbum()
-        //setAlbumCover()
+//        setAlbum()
+//        setAlbumCover()
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -45,18 +37,48 @@ class HomeScreenViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
+    @objc func didLongPressView(_ gesture: customLongPressGesture) {
+        let editCoverAlert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        let delete = UIAlertAction(title: "앨범 삭제", style: .default){
+            (action) in self.deleteAlbumCover(gesture.albumIndex, gesture.albumName)
+        }
+        // 앨범 삭제 버튼 text 색 Red로 변경
+        delete.setValue(UIColor.red, forKey: "titleTextColor")
+        editCoverAlert.addAction(delete)
+
+        present(editCoverAlert, animated: true){
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
+            editCoverAlert.view.superview?.isUserInteractionEnabled = true
+            editCoverAlert.view.superview?.addGestureRecognizer(tap)
+        }
+    }
+    
+    class customLongPressGesture : UILongPressGestureRecognizer{
+        var albumIndex : Int!
+        var albumName : String!
+    }
+    
+    private func deleteAlbumCover(_ albumIndex : Int, _ albumName : String){
+        // realmDB 에서 해당 내용을 삭제하는 코드 작성
+        print(realm.objects(albumCover.self).filter("id = \(albumIndex)"))
+        print(realm.objects(album.self).filter("index = \(albumIndex)"))
+        print(realm.objects(albumsInfo.self).filter("id = \(albumIndex)"))
+        
+        // document 에서 해당 내용을 삭제하는 코드를 작성 - FileManager 이용
+    }
+    
+    @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 // DataSource, Delegate에 대한 extension을 정의
 extension HomeScreenViewController: UICollectionViewDataSource{
     // Collection View 안에 셀을 몇개로 구성할 것인지
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let cover_num = realm.objects(albumCover.self).count + 1
-        // 앨범의 개수를 6개로 제한
-        if cover_num == 7{
-            return 3
-        }
-        return cover_num % 2 == 0 ? cover_num/2 : cover_num/2 + 1
+        // 책장을 고정해두기 위해 row를 3으로 고정
+        return 3
     }
     
     // 셀을 어떻게 표현할 것인지 (Presentation)
@@ -68,7 +90,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         cell.secondButton.setImage(UIImage(systemName: "plus"), for: .normal)
         
         let cover_num = realm.objects(albumCover.self).count + 1
-        print("####\(cover_num)")
+        
         if (indexPath.row + 1) * 2 <= cover_num{
             cell.firstButton.isHidden = false
             cell.secondButton.isHidden = false
@@ -79,10 +101,20 @@ extension HomeScreenViewController: UICollectionViewDataSource{
             if firstbuttonInfo != nil{
                 image = UIImage(named: firstbuttonInfo!.coverImageName)
                 cell.firstButton.setImage(image, for: .normal)
+                // 제스쳐 설정 (LongPressGesture)
+                let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
+                LongPressGestureRecognizer.albumIndex = indexPath.row + 1
+                LongPressGestureRecognizer.albumName = firstbuttonInfo!.albumName
+                cell.firstButton.addGestureRecognizer(LongPressGestureRecognizer)
             }
             if secondbuttonInfo != nil{
                 image = UIImage(named: secondbuttonInfo!.coverImageName)
                 cell.secondButton.setImage(image, for: .normal)
+                // 제스쳐 설정 (LongPressGesture)
+                let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
+                LongPressGestureRecognizer.albumIndex = indexPath.row + 1
+                LongPressGestureRecognizer.albumName = secondbuttonInfo!.albumName
+                cell.secondButton.addGestureRecognizer(LongPressGestureRecognizer)
             }
         }
         else if (indexPath.row + 1) * 2 - 1 == cover_num{
