@@ -88,6 +88,19 @@ class HomeEditViewController: UIViewController {
             realm.add(newAlbumsInfo)
         }
         
+        // document 폴더 안에 각 앨범에 관한 폴더를 만들어줘야 한다.
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+        
+        let dirPath = documentDirectory.appendingPathComponent(albumName.text!)
+        
+        if !FileManager.default.fileExists(atPath: dirPath.path){
+            do{
+                try FileManager.default.createDirectory(atPath: dirPath.path, withIntermediateDirectories: true, attributes: nil)
+            } catch{
+                NSLog("Couldn't create document directory") // print와 비슷한 출력 함수
+            }
+        }
+        
         // collection view에 새로운 정보가 저장됬으므로 다시 그려줘야한다.
         // Home Screen에 있는 collectionView의 data를 relaod
         collectionViewInHome.reloadData()
@@ -127,7 +140,11 @@ class HomeEditViewController: UIViewController {
         alert.addAction(Red)
         alert.addAction(Turquoise)
         
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true){
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
+            alert.view.superview?.isUserInteractionEnabled = true
+            alert.view.superview?.addGestureRecognizer(tap)
+        }
     }
     
     func setCoverImage(color: String){
