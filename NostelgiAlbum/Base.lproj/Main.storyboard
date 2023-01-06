@@ -13,18 +13,18 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="HomeScreenViewController" id="BYZ-38-t0r" customClass="HomeScreenViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="INu-ib-KxC">
-                                <rect key="frame" x="0.0" y="103" width="390" height="522"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="INu-ib-KxC">
+                                <rect key="frame" x="0.0" y="103" width="393" height="522"/>
                                 <color key="backgroundColor" red="0.40000003579999999" green="0.2901961207" blue="0.231372565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="390" id="DQn-zg-iMi"/>
                                     <constraint firstAttribute="height" constant="573" id="tfP-eQ-xpv"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Jsa-mu-Jfp">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Jsa-mu-Jfp">
                                     <size key="itemSize" width="390" height="191"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -32,14 +32,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeScreenCollectionViewCell" id="Xdi-Mm-CLH" customClass="HomeScreenCollectionViewCell" customModule="NostelgiAlbum" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="191"/>
+                                        <rect key="frame" x="1.6666666666666667" y="0.0" width="390" height="191"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="n9d-vr-h7a">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="191"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj4-nZ-1DA">
-                                                    <rect key="frame" x="50" y="24" width="120" height="160"/>
+                                                    <rect key="frame" x="50" y="23" width="120" height="160"/>
                                                     <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="P43-Go-uzZ"/>
@@ -53,7 +53,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJf-GQ-81Y">
-                                                    <rect key="frame" x="223" y="24" width="120" height="160"/>
+                                                    <rect key="frame" x="223" y="23" width="120" height="160"/>
                                                     <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="64f-7K-qDe"/>
@@ -67,7 +67,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jg9-0D-r3d">
-                                                    <rect key="frame" x="0.0" y="184" width="390" height="7"/>
+                                                    <rect key="frame" x="0.0" y="183" width="390" height="7"/>
                                                     <color key="backgroundColor" red="0.23497083756767678" green="0.17027528456762253" blue="0.13655947892950879" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="390" id="H53-Pc-WPH"/>
@@ -129,8 +129,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NostelgiAlbum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-00-G7W">
-                                <rect key="frame" x="0.0" y="625" width="390" height="193"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NostelgiAlbum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-00-G7W">
+                                <rect key="frame" x="0.0" y="624" width="393" height="193"/>
                                 <color key="backgroundColor" red="0.40000000000000002" green="0.2901960784" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="193" id="QB1-rU-mDA"/>
@@ -141,7 +141,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-i1-Wmq">
-                                <rect key="frame" x="0.0" y="97" width="390" height="7"/>
+                                <rect key="frame" x="0.0" y="97" width="393" height="7"/>
                                 <color key="backgroundColor" red="0.23497083760000001" green="0.17027528459999999" blue="0.1365594789" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="7" id="6hO-ES-XHi"/>
@@ -203,12 +203,12 @@
         <scene sceneID="b06-gP-nt2">
             <objects>
                 <viewController storyboardIdentifier="AlbumScreenViewController" title="Album" id="SB1-ha-RU1" customClass="AlbumScreenViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VRb-P6-i6I">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="VRb-P6-i6I">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="arc-jP-fUr">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="arc-jP-fUr">
+                                <rect key="frame" x="0.0" y="59" width="390" height="759"/>
                                 <color key="backgroundColor" red="0.40000003579999999" green="0.2901961207" blue="0.231372565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="390" id="4UO-yB-Cs4"/>
@@ -222,7 +222,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumScreenCollectionViewCell" id="LeX-79-3Ln" customClass="AlbumScreenCollectionViewCell" customModule="NostelgiAlbum" customModuleProvider="target">
-                                        <rect key="frame" x="2" y="0.0" width="389" height="315"/>
+                                        <rect key="frame" x="0.66666666666666663" y="0.0" width="389" height="315"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xV3-Yn-Nql">
                                             <rect key="frame" x="0.0" y="0.0" width="389" height="315"/>
@@ -268,7 +268,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VSV-Zg-LAY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VSV-Zg-LAY">
                                 <rect key="frame" x="170" y="727" width="104" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -430,11 +430,21 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEh-wv-ahH">
+                                <rect key="frame" x="311" y="68" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="closeAction:" destination="NcE-4x-cJB" eventType="touchUpInside" id="8Ww-DV-VPH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Lj2-bc-8fe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="PEh-wv-ahH" id="Bw4-cp-ofn"/>
                         <outlet property="imageView" destination="se2-oU-f4c" id="9W4-cg-kAy"/>
                     </connections>
                 </viewController>

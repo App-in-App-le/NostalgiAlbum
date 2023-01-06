@@ -8,13 +8,12 @@
 import Foundation
 import UIKit
 
-func saveImageToDocumentDirectory(imageName: String, image: UIImage) {
+func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverName: String) {
     // 1. 이미지를 저장할 경로를 설정해줘야함 - 도큐먼트 폴더,File 관련된건 Filemanager가 관리함(싱글톤 패턴)
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-
+    let imageURL = documentDirectory.appendingPathComponent(AlbumCoverName).appendingPathComponent(imageName)
     // 2. 이미지 파일 이름 & 최종 경로 설정
-    let imageURL = documentDirectory.appendingPathComponent(imageName)
-
+    NSLog(imageURL.path())
     // 돌아가는 방향 잡는 부분
     let changedImage = fixOrientation(image: image)
 
@@ -47,7 +46,7 @@ func saveImageToDocumentDirectory(imageName: String, image: UIImage) {
     }
 }
 
-func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
+func loadImageFromDocumentDirectory(imageName: String, albumTitle: String) -> UIImage? {
     // 1. 도큐먼트 폴더 경로가져오기
     let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
     let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
@@ -55,7 +54,7 @@ func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
 
     if let directoryPath = path.first {
         // 2. 이미지 URL 찾기
-        let imageURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
+        let imageURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(albumTitle).appendingPathComponent(imageName)
         // 3. UIImage로 불러오기
         let loadImage = UIImage(contentsOfFile: imageURL.path)
         return fixOrientation(image: loadImage!)
@@ -115,3 +114,4 @@ extension UIImage {
         return renderImage
     }
 }
+
