@@ -21,6 +21,7 @@ class album : Object{
     @objc dynamic var perAlbumIndex : Int = 0
     @objc dynamic var ImageName : String = ""
     @objc dynamic var ImageText : String = ""
+    @objc dynamic var AlbumTitle : String = ""
     
     func setPerAlbumIndex(_ db : Int){
         perAlbumIndex = db
@@ -38,6 +39,9 @@ class album : Object{
         ImageText = db
     }
     
+    func setAlbumTitle(_ db : String){
+        AlbumTitle = db
+    }
 }
 
 class albumCover : Object{
@@ -73,9 +77,10 @@ class albumsInfo : Object{
           return "id"
     }
     
-    func setNumberOfPictures(){
+    func setNumberOfPictures(_ num: Int){
         let realm = try! Realm()
-        numberOfPictures = realm.objects(album.self).filter("index = \(id)").count
+        numberOfPictures = realm.objects(album.self).filter("index = \(num)").count
+        print("num : ",numberOfPictures)
     }
     
     func setDateOfCreation(){

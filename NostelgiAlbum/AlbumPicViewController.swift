@@ -18,7 +18,8 @@ class AlbumPicViewController: UIViewController {
         picName.text = picture.ImageName
         picText.text = picture.ImageText
         picImage.setTitle("", for: .normal)
-        picImage.setImage(loadImageFromDocumentDirectory(imageName: picture.ImageName)?.resize(newWidth: 297), for: .normal)
+        let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex)"
+        picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: 297), for: .normal)
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
@@ -31,7 +32,9 @@ class AlbumPicViewController: UIViewController {
     
     @IBAction func zoomImage(_ sender: Any) {
         guard let zoomVC = self.storyboard?.instantiateViewController(withIdentifier: "ImageViewController") as? ImageViewController else { return }
-        zoomVC.imageName = self.picName.text
+        let totalPath = "\(self.picture.AlbumTitle)_\(self.picture.perAlbumIndex)"
+        zoomVC.imageName = totalPath
+        zoomVC.albumTitle = self.picture.AlbumTitle
         zoomVC.modalPresentationStyle = .overFullScreen
         self.present(zoomVC, animated: false)
     }
