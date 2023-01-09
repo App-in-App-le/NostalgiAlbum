@@ -1,10 +1,3 @@
-//
-//  AlbumScreenViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/10/31.
-//
-
 import UIKit
 import RealmSwift
 
@@ -14,6 +7,7 @@ class AlbumScreenViewController: UIViewController {
     let realm = try! Realm()
     var pageNum : Int = 0
     var coverIndex : Int = 0
+    var coverName : String!
     // tool-bar item
     
     // collectionView setting
@@ -113,17 +107,22 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let data = realm.objects(album.self).filter("index = \(coverIndex)")
-        
+        print("coverIndex : ",coverIndex)
+        let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex + 1)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumScreenCollectionViewCell", for: indexPath) as! AlbumScreenCollectionViewCell
-        
         var picture: album
+        var pictureCover: albumCover
+        pictureCover = coverData[0]
+        print("new test : "+pictureCover.albumName)
         cell.albumSVC = self
+        cell.albumCoverInfo = pictureCover
         if (indexPath.item + pageNum * 2) < data.count {
             picture = data[indexPath.item + pageNum * 2]
             cell.configure(picture)
             cell.albumInfo = picture
         } else {
             cell.albuminit()
+            
         }
         return cell
     }
@@ -132,7 +131,7 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
 // layout에 관한 extension을 정의
 extension AlbumScreenViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 357)
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 2)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0

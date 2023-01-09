@@ -1,10 +1,3 @@
-//
-//  InfoToolViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/11/13.
-//
-
 import UIKit
 
 class InfoToolViewController: UIViewController {

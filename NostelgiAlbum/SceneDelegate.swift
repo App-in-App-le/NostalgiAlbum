@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/10/05.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

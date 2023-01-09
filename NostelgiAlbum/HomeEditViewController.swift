@@ -1,10 +1,3 @@
-//
-//  HomeEditViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/12/01.
-//
-
 import UIKit
 import RealmSwift
 
@@ -31,7 +24,6 @@ class HomeEditViewController: UIViewController {
         let newAlbumCover = albumCover()
         newAlbumCover.incrementIndex()
         newAlbumCover.albumName = albumName.text!
-        
         if albumName.text == "" {
             let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
             present(textAlert, animated: true){
@@ -79,7 +71,7 @@ class HomeEditViewController: UIViewController {
         let newAlbumsInfo = albumsInfo()
         newAlbumsInfo.incrementIndex()
         newAlbumsInfo.setDateOfCreation()
-        newAlbumsInfo.setNumberOfPictures()
+        newAlbumsInfo.setNumberOfPictures(newAlbumsInfo.id - 1)
         
         // 앨범 커버 정보와 앨범 정보(앨범 생성 시간, 앨범의 사진 개수)를 저장
         try! realm.write

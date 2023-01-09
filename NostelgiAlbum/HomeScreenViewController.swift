@@ -1,10 +1,3 @@
-//
-//  HomeScreenViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/10/06.
-//
-
 import UIKit
 import RealmSwift
 
@@ -21,9 +14,9 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
         print("####path",Realm.Configuration.defaultConfiguration.fileURL!)
 //         Realm DB안에 있는 정보를 모두 제거
-        try! realm.write{
-            realm.deleteAll()
-        }
+//        try! realm.write{
+//            realm.deleteAll()
+//        }
 //        setAlbum()
 //        setAlbumCover()
         collectionView.dataSource = self
@@ -161,7 +154,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
 
 extension HomeScreenViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 190)
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 3)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
