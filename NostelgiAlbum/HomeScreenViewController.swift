@@ -53,14 +53,14 @@ class HomeScreenViewController: UIViewController {
     private func deleteAlbumCover(_ albumIndex : Int, _ albumName : String){
         // realmDB 에서 해당 내용을 삭제하는 코드 작성
         // albumCover
-        let albumCoverData = realm.objects(albumCover.self).filter("id = \(albumIndex)")
+        //let albumCoverData = realm.objects(albumCover.self).filter("id = \(albumIndex)")
         // album
-        let albumData = realm.objects(album.self).filter("index = \(albumIndex)")
+        //let albumData = realm.objects(album.self).filter("index = \(albumIndex)")
         // albumsinfo
-        let albumsInfoData = realm.objects(albumsInfo.self).filter("id = \(albumIndex)")
-        try! realm.write{
+        //let albumsInfoData = realm.objects(albumsInfo.self).filter("id = \(albumIndex)")
+        //try! realm.write{
             
-        }
+        //}
         
         
         // document 에서 해당 내용을 삭제하는 코드를 작성 - FileManager 이용

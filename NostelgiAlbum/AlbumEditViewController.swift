@@ -49,7 +49,7 @@ class AlbumEditViewController: UIViewController {
         let realm = try! Realm()
         let newPicture = album()
         print("#####\(String(index))")
-        let data = (realm.objects(albumsInfo.self).filter("id = \(String(index))"))
+        let data = (realm.objects(albumsInfo.self).filter("id = \(index + 0)"))
         print("#####\(data.first!)")
         newPicture.ImageName = editTitle.text!
         newPicture.ImageText = editText.text!
