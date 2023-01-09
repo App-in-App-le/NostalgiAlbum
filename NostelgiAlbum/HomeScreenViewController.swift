@@ -1,10 +1,3 @@
-//
-//  HomeScreenViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/10/06.
-//
-
 import UIKit
 import RealmSwift
 
@@ -24,8 +17,6 @@ class HomeScreenViewController: UIViewController {
         try! realm.write{
             realm.deleteAll()
         }
-//        setAlbum()
-//        setAlbumCover()
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -61,11 +52,19 @@ class HomeScreenViewController: UIViewController {
     
     private func deleteAlbumCover(_ albumIndex : Int, _ albumName : String){
         // realmDB 에서 해당 내용을 삭제하는 코드 작성
-        print(realm.objects(albumCover.self).filter("id = \(albumIndex)"))
-        print(realm.objects(album.self).filter("index = \(albumIndex)"))
-        print(realm.objects(albumsInfo.self).filter("id = \(albumIndex)"))
+        // albumCover
+        //let albumCoverData = realm.objects(albumCover.self).filter("id = \(albumIndex)")
+        // album
+        //let albumData = realm.objects(album.self).filter("index = \(albumIndex)")
+        // albumsinfo
+        //let albumsInfoData = realm.objects(albumsInfo.self).filter("id = \(albumIndex)")
+        //try! realm.write{
+            
+        //}
+        
         
         // document 에서 해당 내용을 삭제하는 코드를 작성 - FileManager 이용
+        
     }
     
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){
@@ -136,7 +135,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
             else{
                 guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
                 pushVC.pageNum = 0
-                pushVC.coverIndex = indexPath.row * 2
+                pushVC.coverIndex = indexPath.row * 2 + 1
                 self.navigationController?.pushViewController(pushVC, animated: false)
             }
         }
@@ -151,7 +150,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
             else{
                 guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
                 pushVC.pageNum = 0
-                pushVC.coverIndex = indexPath.row * 2 + 1
+                pushVC.coverIndex = indexPath.row * 2 + 2
                 self.navigationController?.pushViewController(pushVC, animated: false)
             }
         }
@@ -161,7 +160,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
 
 extension HomeScreenViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 190)
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 3)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0

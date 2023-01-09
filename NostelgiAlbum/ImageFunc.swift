@@ -1,10 +1,3 @@
-//
-//  ImageFunc.swift
-//  NostelgiAlbum
-//
-//  Created by mingu on 2022/12/25.
-//
-
 import Foundation
 import UIKit
 

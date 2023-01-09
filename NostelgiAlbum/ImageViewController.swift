@@ -1,10 +1,3 @@
-//
-//  ImageViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 황지웅 on 2022/12/30.
-//
-
 import UIKit
 
 class ImageViewController: UIViewController {

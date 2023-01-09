@@ -1,10 +1,3 @@
-//
-//  HomeEditViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/12/01.
-//
-
 import UIKit
 import RealmSwift
 

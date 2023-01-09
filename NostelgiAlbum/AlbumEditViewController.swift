@@ -1,10 +1,3 @@
-//
-//  AlbumEditViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 황지웅 on 2022/12/30.
-//
-
 import UIKit
 import RealmSwift
 
@@ -36,7 +29,7 @@ class AlbumEditViewController: UIViewController {
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
- 
+
     @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
         if sender.direction == .down{
             self.dismiss(animated: true)
@@ -55,18 +48,20 @@ class AlbumEditViewController: UIViewController {
     @IBAction func savePicture(_ sender: Any) {
         let realm = try! Realm()
         let newPicture = album()
-        let data = (realm.objects(albumsInfo.self).filter("id = \(index + 1)"))
-        let updInfo = data[0]
+        print("#####\(String(index))")
+        let data = (realm.objects(albumsInfo.self).filter("id = \(index + 0)"))
+        print("#####\(data.first!)")
         newPicture.ImageName = editTitle.text!
         newPicture.ImageText = editText.text!
         newPicture.index = index
-        newPicture.AlbumTitle = albumCoverName;
-        newPicture.perAlbumIndex = updInfo.numberOfPictures + 1
+        newPicture.AlbumTitle = albumCoverName
+        newPicture.perAlbumIndex = data.first!.numberOfPictures + 1
         try! realm.write {
             realm.add(newPicture)
-            updInfo.setNumberOfPictures(index)
+            data.first!.setNumberOfPictures(index)
         }
         let totalPath = "\(newPicture.AlbumTitle)_\(newPicture.perAlbumIndex)"
+        print(totalPath)
         saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: albumCoverName)
         
         collectionViewInAlbum.reloadData()
