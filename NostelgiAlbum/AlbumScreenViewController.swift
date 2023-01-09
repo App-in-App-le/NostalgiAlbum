@@ -7,7 +7,6 @@ class AlbumScreenViewController: UIViewController {
     let realm = try! Realm()
     var pageNum : Int = 0
     var coverIndex : Int = 0
-    var coverName : String!
     // tool-bar item
     
     // collectionView setting
@@ -71,6 +70,7 @@ class AlbumScreenViewController: UIViewController {
                         if pageNum < data.count / 2{
                             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
                             pushVC.pageNum = pageNum + 1
+                            pushVC.coverIndex = coverIndex
                             self.navigationController?.pushViewController(pushVC, animated: true)
                         }
                         else{
@@ -108,7 +108,7 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let data = realm.objects(album.self).filter("index = \(coverIndex)")
         print("coverIndex : ",coverIndex)
-        let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex + 1)")
+        let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumScreenCollectionViewCell", for: indexPath) as! AlbumScreenCollectionViewCell
         var picture: album
         var pictureCover: albumCover
