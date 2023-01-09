@@ -1,10 +1,3 @@
-//
-//  SearchToolViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 황지웅 on 2022/11/14.
-//
-
 import UIKit
 
 protocol DisDelegate{

@@ -1,10 +1,3 @@
-//
-//  AlbumScreenViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/10/31.
-//
-
 import UIKit
 import RealmSwift
 
@@ -138,7 +131,7 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
 // layout에 관한 extension을 정의
 extension AlbumScreenViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 357)
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 2)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
