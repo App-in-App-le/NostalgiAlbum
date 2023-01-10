@@ -23,7 +23,6 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     }
     func configure(_ albumInfo : album){
         pictureImgButton.setTitle("", for: .normal)
-        print("imagename: "+albumInfo.ImageName)
         let totalPath = "\(albumInfo.AlbumTitle)_\(albumInfo.perAlbumIndex)"
         image = loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: albumInfo.AlbumTitle)
         pictureImgButton.setImage(image!.resize(newWidth: 168), for: .normal)

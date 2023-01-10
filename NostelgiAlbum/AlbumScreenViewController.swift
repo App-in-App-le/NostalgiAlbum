@@ -107,13 +107,11 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let data = realm.objects(album.self).filter("index = \(coverIndex)")
-        print("coverIndex : ",coverIndex)
         let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumScreenCollectionViewCell", for: indexPath) as! AlbumScreenCollectionViewCell
         var picture: album
         var pictureCover: albumCover
         pictureCover = coverData[0]
-        print("new test : "+pictureCover.albumName)
         cell.albumSVC = self
         cell.albumCoverInfo = pictureCover
         if (indexPath.item + pageNum * 2) < data.count {
@@ -147,10 +145,7 @@ extension AlbumScreenViewController: DisDelegate{
         
         if let result = data.firstIndex(where: {$0.ImageName == text}){
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
-            if(result/2 == checkcount){
-                print("currentPage")
-            }
-            else if(result/2 > checkcount){
+            if(result/2 > checkcount){
                 while checkcount < result/2 {
                     checkcount = checkcount + 1
                     pushVC.pageNum = checkcount

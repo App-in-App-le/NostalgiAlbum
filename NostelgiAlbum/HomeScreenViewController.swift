@@ -52,19 +52,58 @@ class HomeScreenViewController: UIViewController {
     
     private func deleteAlbumCover(_ albumIndex : Int, _ albumName : String){
         // realmDB 에서 해당 내용을 삭제하는 코드 작성
+        // Album의 개수
+        let albumCoverNum = realm.objects(albumCover.self).count
         // albumCover
-        //let albumCoverData = realm.objects(albumCover.self).filter("id = \(albumIndex)")
+        let albumCoverData = realm.objects(albumCover.self).filter("id = \(albumIndex)")
         // album
-        //let albumData = realm.objects(album.self).filter("index = \(albumIndex)")
+        let albumData = realm.objects(album.self).filter("index = \(albumIndex)")
         // albumsinfo
-        //let albumsInfoData = realm.objects(albumsInfo.self).filter("id = \(albumIndex)")
-        //try! realm.write{
-            
-        //}
-        
+        let albumsInfoData = realm.objects(albumsInfo.self).filter("id = \(albumIndex)")
+        try! realm.write{
+            realm.delete(albumCoverData)
+            realm.delete(albumData)
+            realm.delete(albumsInfoData)
+        }
         
         // document 에서 해당 내용을 삭제하는 코드를 작성 - FileManager 이용
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+
+        let albumDirectory = documentDirectory.appendingPathComponent(albumName)
+
+        if FileManager.default.fileExists(atPath: albumDirectory.path) {
+            do {
+                try FileManager.default.removeItem(at: albumDirectory)
+            } catch {
+                print("폴더를 삭제하지 못했습니다.")
+            }
+        }
         
+        // DB의 index값들 당겨오기
+        if albumCoverNum != albumIndex{
+            for index in (albumIndex + 1)...albumCoverNum{
+                // albumCover
+                let albumCoverData = realm.objects(albumCover.self).filter("id = \(index)")
+                // albumsinfo
+                let albumsInfoData = realm.objects(albumsInfo.self).filter("id = \(index)")
+                // album
+                let albumData = realm.objects(album.self).filter("index = \(index)")
+                // index 처리
+                try! realm.write{
+                    albumCoverData.first!.id -= 1
+                    albumsInfoData.first!.id -= 1
+                    if albumData.count != 0{
+                        for data in albumData{
+                            data.index -= 1
+                        }
+                    }
+                    realm.add(albumCoverData)
+                    realm.add(albumsInfoData)
+                    realm.add(albumData)
+                }
+            }
+        }
+        collectionView.reloadData()
     }
     
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){
@@ -87,6 +126,9 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         // 초기 이미지 설정
         cell.firstButton.setImage(UIImage(systemName: "plus"), for: .normal)
         cell.secondButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        // 초기 제스처 설정
+        cell.firstButton.gestureRecognizers = nil
+        cell.secondButton.gestureRecognizers = nil
         
         let cover_num = realm.objects(albumCover.self).count + 1
         
@@ -102,7 +144,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 cell.firstButton.setImage(image, for: .normal)
                 // 제스쳐 설정 (LongPressGesture)
                 let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
-                LongPressGestureRecognizer.albumIndex = indexPath.row + 1
+                LongPressGestureRecognizer.albumIndex = indexPath.row * 2 + 1
                 LongPressGestureRecognizer.albumName = firstbuttonInfo!.albumName
                 cell.firstButton.addGestureRecognizer(LongPressGestureRecognizer)
             }
@@ -111,7 +153,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 cell.secondButton.setImage(image, for: .normal)
                 // 제스쳐 설정 (LongPressGesture)
                 let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
-                LongPressGestureRecognizer.albumIndex = indexPath.row + 1
+                LongPressGestureRecognizer.albumIndex = indexPath.row * 2 + 2
                 LongPressGestureRecognizer.albumName = secondbuttonInfo!.albumName
                 cell.secondButton.addGestureRecognizer(LongPressGestureRecognizer)
             }
