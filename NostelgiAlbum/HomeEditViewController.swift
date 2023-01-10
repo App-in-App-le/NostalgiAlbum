@@ -71,7 +71,7 @@ class HomeEditViewController: UIViewController {
         let newAlbumsInfo = albumsInfo()
         newAlbumsInfo.incrementIndex()
         newAlbumsInfo.setDateOfCreation()
-        newAlbumsInfo.setNumberOfPictures(newAlbumsInfo.id - 1)
+        newAlbumsInfo.numberOfPictures = 0
         
         // 앨범 커버 정보와 앨범 정보(앨범 생성 시간, 앨범의 사진 개수)를 저장
         try! realm.write

@@ -2,7 +2,6 @@ import Foundation
 import RealmSwift
 
 class album : Object{
-    // [index] : 몇 번째 앨범의 사진인지를 표시하기 위한 변수
     @objc dynamic var index : Int = 0
     @objc dynamic var perAlbumIndex : Int = 0
     @objc dynamic var ImageName : String = ""
@@ -43,25 +42,16 @@ class albumCover : Object{
         albumName = db
     }
     
-    override static func primaryKey() -> String? {
-          return "id"
-    }
-    
     func incrementIndex(){
         let realm = try! Realm()
         id = (realm.objects(albumCover.self).max(ofProperty: "id") as Int? ?? 0) + 1
     }
-    
 }
 
 class albumsInfo : Object{
     @objc dynamic var id : Int = 0
     @objc dynamic var numberOfPictures : Int = 0
     @objc dynamic var dateOfCreation : String = ""
-    
-    override static func primaryKey() -> String? {
-          return "id"
-    }
     
     func setNumberOfPictures(_ num: Int){
         let realm = try! Realm()

@@ -48,9 +48,7 @@ class AlbumEditViewController: UIViewController {
     @IBAction func savePicture(_ sender: Any) {
         let realm = try! Realm()
         let newPicture = album()
-        print("#####\(String(index))")
-        let data = (realm.objects(albumsInfo.self).filter("id = \(index + 0)"))
-        print("#####\(data.first!)")
+        let data = (realm.objects(albumsInfo.self).filter("id = \(index!)"))
         newPicture.ImageName = editTitle.text!
         newPicture.ImageText = editText.text!
         newPicture.index = index
@@ -61,7 +59,6 @@ class AlbumEditViewController: UIViewController {
             data.first!.setNumberOfPictures(index)
         }
         let totalPath = "\(newPicture.AlbumTitle)_\(newPicture.perAlbumIndex)"
-        print(totalPath)
         saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: albumCoverName)
         
         collectionViewInAlbum.reloadData()
