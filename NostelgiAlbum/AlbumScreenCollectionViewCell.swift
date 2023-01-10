@@ -1,10 +1,3 @@
-//
-//  AlbumScreenCollectionViewCell.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/10/31.
-//
-
 import UIKit
 
 class AlbumScreenCollectionViewCell: UICollectionViewCell {
@@ -14,11 +7,12 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     var albumSVC: AlbumScreenViewController!
     var image: UIImage?
     var albumInfo : album!
-    
+    var albumCoverInfo : albumCover!
     @IBAction func addPicutre(_ sender: Any) {
         if pictureImgButton.imageView?.image == UIImage(systemName: "plus"){
             guard let editVC = self.albumSVC.storyboard?.instantiateViewController(withIdentifier: "AlbumEditViewController") as? AlbumEditViewController else { return }
             editVC.index = self.albumSVC.coverIndex
+            editVC.albumCoverName = self.albumCoverInfo.albumName
             editVC.collectionViewInAlbum = self.albumSVC.collectionView
             editVC.modalPresentationStyle = .overFullScreen
             editVC.navigationController?.pushViewController(editVC, animated: false)
@@ -29,8 +23,8 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     }
     func configure(_ albumInfo : album){
         pictureImgButton.setTitle("", for: .normal)
-        print("imagename: "+albumInfo.ImageName)
-        image = loadImageFromDocumentDirectory(imageName: albumInfo.ImageName)
+        let totalPath = "\(albumInfo.AlbumTitle)_\(albumInfo.perAlbumIndex)"
+        image = loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: albumInfo.AlbumTitle)
         pictureImgButton.setImage(image!.resize(newWidth: 168), for: .normal)
         pictureLabel.text = albumInfo.ImageText
     }
@@ -41,9 +35,6 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     }
     func picConfigure(_ albumInfo : album){
         guard let picVC = self.albumSVC.storyboard?.instantiateViewController(withIdentifier: "AlbumPicViewController") as? AlbumPicViewController else { return }
-//        picVC.picImage.setImage(UIImage(named: albumInfo.ImageName), for: .normal)
-//        picVC.picName.text = albumInfo.ImageName
-//        picVC.picText.text = albumInfo.ImageText
         picVC.picture = albumInfo
         picVC.modalPresentationStyle = .overFullScreen
         albumSVC.present(picVC, animated: false)

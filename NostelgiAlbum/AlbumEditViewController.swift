@@ -1,10 +1,3 @@
-//
-//  AlbumEditViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 황지웅 on 2022/12/30.
-//
-
 import UIKit
 import RealmSwift
 
@@ -15,6 +8,7 @@ class AlbumEditViewController: UIViewController {
     @IBOutlet weak var editPicture: UIButton!
     var collectionViewInAlbum : UICollectionView!
     var index : Int!
+    var albumCoverName : String!
     let picker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +29,7 @@ class AlbumEditViewController: UIViewController {
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
- 
+
     @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
         if sender.direction == .down{
             self.dismiss(animated: true)
@@ -53,16 +47,19 @@ class AlbumEditViewController: UIViewController {
     
     @IBAction func savePicture(_ sender: Any) {
         let realm = try! Realm()
-        
         let newPicture = album()
+        let data = (realm.objects(albumsInfo.self).filter("id = \(index!)"))
         newPicture.ImageName = editTitle.text!
         newPicture.ImageText = editText.text!
         newPicture.index = index
+        newPicture.AlbumTitle = albumCoverName
+        newPicture.perAlbumIndex = data.first!.numberOfPictures + 1
         try! realm.write {
             realm.add(newPicture)
+            data.first!.setNumberOfPictures(index)
         }
-        print("save imagename "+newPicture.ImageName)
-        saveImageToDocumentDirectory(imageName: newPicture.ImageName, image: (editPicture.imageView?.image!)!)
+        let totalPath = "\(newPicture.AlbumTitle)_\(newPicture.perAlbumIndex)"
+        saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: albumCoverName)
         
         collectionViewInAlbum.reloadData()
         

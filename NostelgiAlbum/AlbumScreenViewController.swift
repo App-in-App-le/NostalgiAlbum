@@ -1,10 +1,3 @@
-//
-//  AlbumScreenViewController.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/10/31.
-//
-
 import UIKit
 import RealmSwift
 
@@ -77,6 +70,7 @@ class AlbumScreenViewController: UIViewController {
                         if pageNum < data.count / 2{
                             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
                             pushVC.pageNum = pageNum + 1
+                            pushVC.coverIndex = coverIndex
                             self.navigationController?.pushViewController(pushVC, animated: true)
                         }
                         else{
@@ -113,17 +107,20 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let data = realm.objects(album.self).filter("index = \(coverIndex)")
-        
+        let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumScreenCollectionViewCell", for: indexPath) as! AlbumScreenCollectionViewCell
-        
         var picture: album
+        var pictureCover: albumCover
+        pictureCover = coverData[0]
         cell.albumSVC = self
+        cell.albumCoverInfo = pictureCover
         if (indexPath.item + pageNum * 2) < data.count {
             picture = data[indexPath.item + pageNum * 2]
             cell.configure(picture)
             cell.albumInfo = picture
         } else {
             cell.albuminit()
+            
         }
         return cell
     }
@@ -132,7 +129,7 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
 // layout에 관한 extension을 정의
 extension AlbumScreenViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 357)
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 2)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
@@ -148,10 +145,7 @@ extension AlbumScreenViewController: DisDelegate{
         
         if let result = data.firstIndex(where: {$0.ImageName == text}){
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
-            if(result/2 == checkcount){
-                print("currentPage")
-            }
-            else if(result/2 > checkcount){
+            if(result/2 > checkcount){
                 while checkcount < result/2 {
                     checkcount = checkcount + 1
                     pushVC.pageNum = checkcount

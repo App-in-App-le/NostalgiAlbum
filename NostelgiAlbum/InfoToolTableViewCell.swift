@@ -1,10 +1,3 @@
-//
-//  InfoToolTableViewCell.swift
-//  NostelgiAlbum
-//
-//  Created by 전민구 on 2022/11/17.
-//
-
 import UIKit
 
 class InfoToolTableViewCell: UITableViewCell {
