@@ -23,7 +23,7 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     }
     func configure(_ albumInfo : album){
         pictureImgButton.setTitle("", for: .normal)
-        let totalPath = "\(albumInfo.AlbumTitle)_\(albumInfo.perAlbumIndex)"
+        let totalPath = "\(albumInfo.AlbumTitle)_\(albumInfo.perAlbumIndex).png"
         image = loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: albumInfo.AlbumTitle)
         pictureImgButton.setImage(image!.resize(newWidth: 168), for: .normal)
         pictureLabel.text = albumInfo.ImageText
@@ -31,12 +31,17 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     func albuminit() {
         pictureImgButton.setImage(UIImage(systemName: "plus"), for: .normal)
         pictureImgButton.setTitle("", for: .normal)
+        pictureImgButton.isHidden = false
         pictureLabel.text = ""
+        
     }
     func picConfigure(_ albumInfo : album){
         guard let picVC = self.albumSVC.storyboard?.instantiateViewController(withIdentifier: "AlbumPicViewController") as? AlbumPicViewController else { return }
         picVC.picture = albumInfo
+        picVC.collectionViewInAlbum = albumSVC.collectionView
         picVC.modalPresentationStyle = .overFullScreen
         albumSVC.present(picVC, animated: false)
     }
+    
+    
 }
