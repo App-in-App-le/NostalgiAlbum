@@ -548,23 +548,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7s-TT-gLd">
-                                <rect key="frame" x="117" y="61" width="162" height="32"/>
+                                <rect key="frame" x="117" y="79" width="162" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33K-Bl-YlN">
-                                <rect key="frame" x="0.0" y="63.000000000000007" width="57" height="30.333333333333336"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.backward" catalog="system">
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="backButton:" destination="Lfu-wu-8ao" eventType="touchUpInside" id="XQF-zJ-l6f"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jVO-JZ-nFN">
-                                <rect key="frame" x="20" y="101" width="353" height="717"/>
+                                <rect key="frame" x="20" y="145" width="353" height="673"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InfoToolTableViewCell" id="R6e-ZQ-THE" customClass="InfoToolTableViewCell" customModule="NostelgiAlbum" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="353" height="43.666667938232422"/>
@@ -574,14 +564,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCQ-gu-VyH">
-                                                    <rect key="frame" x="20" y="11" width="140" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="102" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opI-LF-VRP">
-                                                    <rect key="frame" x="220" y="9" width="170" height="22"/>
+                                                    <rect key="frame" x="184" y="10" width="169" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -596,20 +586,32 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33K-Bl-YlN">
+                                <rect key="frame" x="20" y="79" width="62" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="back"/>
+                                <buttonConfiguration key="configuration" style="plain" title="back">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="backButton:" destination="Lfu-wu-8ao" eventType="touchUpInside" id="XQF-zJ-l6f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mmh-m9-eG7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="mmh-m9-eG7" firstAttribute="bottom" secondItem="33K-Bl-YlN" secondAttribute="bottom" constant="724.66666666666663" id="BGy-yt-7dv"/>
                             <constraint firstItem="mmh-m9-eG7" firstAttribute="bottom" secondItem="jVO-JZ-nFN" secondAttribute="bottom" id="DR1-xK-V77"/>
-                            <constraint firstItem="mmh-m9-eG7" firstAttribute="bottom" secondItem="X7s-TT-gLd" secondAttribute="bottom" constant="725" id="ERp-yX-WRO"/>
                             <constraint firstItem="mmh-m9-eG7" firstAttribute="trailing" secondItem="jVO-JZ-nFN" secondAttribute="trailing" constant="20" id="LAH-5I-Jiv"/>
-                            <constraint firstItem="33K-Bl-YlN" firstAttribute="top" secondItem="mmh-m9-eG7" secondAttribute="top" constant="4" id="Rvx-fL-50v"/>
+                            <constraint firstItem="33K-Bl-YlN" firstAttribute="top" secondItem="mmh-m9-eG7" secondAttribute="top" constant="20" id="Rvx-fL-50v"/>
                             <constraint firstItem="jVO-JZ-nFN" firstAttribute="leading" secondItem="mmh-m9-eG7" secondAttribute="leading" constant="20" id="idQ-CK-DHX"/>
-                            <constraint firstItem="jVO-JZ-nFN" firstAttribute="top" secondItem="X7s-TT-gLd" secondAttribute="bottom" constant="8" symbolic="YES" id="kAl-KP-iG3"/>
-                            <constraint firstItem="X7s-TT-gLd" firstAttribute="leading" secondItem="33K-Bl-YlN" secondAttribute="trailing" constant="60" id="l4e-je-thP"/>
-                            <constraint firstItem="33K-Bl-YlN" firstAttribute="leading" secondItem="mmh-m9-eG7" secondAttribute="leading" id="p9U-oO-50p"/>
-                            <constraint firstItem="X7s-TT-gLd" firstAttribute="top" secondItem="mmh-m9-eG7" secondAttribute="top" constant="2" id="ywt-CU-Nk3"/>
+                            <constraint firstItem="jVO-JZ-nFN" firstAttribute="top" secondItem="X7s-TT-gLd" secondAttribute="bottom" constant="30" id="kAl-KP-iG3"/>
+                            <constraint firstItem="X7s-TT-gLd" firstAttribute="leading" secondItem="33K-Bl-YlN" secondAttribute="trailing" constant="35" id="l4e-je-thP"/>
+                            <constraint firstItem="33K-Bl-YlN" firstAttribute="leading" secondItem="mmh-m9-eG7" secondAttribute="leading" constant="20" id="p9U-oO-50p"/>
+                            <constraint firstItem="jVO-JZ-nFN" firstAttribute="top" secondItem="33K-Bl-YlN" secondAttribute="bottom" constant="30" id="wpd-Ex-SRT"/>
+                            <constraint firstItem="X7s-TT-gLd" firstAttribute="top" secondItem="mmh-m9-eG7" secondAttribute="top" constant="20" id="ywt-CU-Nk3"/>
                             <constraint firstItem="mmh-m9-eG7" firstAttribute="trailing" secondItem="X7s-TT-gLd" secondAttribute="trailing" constant="114" id="yyc-yd-J7M"/>
                         </constraints>
                     </view>
@@ -619,7 +621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNF-3u-l0V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244.6153846153845" y="1638.6255924170616"/>
+            <point key="canvasLocation" x="1243.5114503816794" y="1638.0281690140846"/>
         </scene>
         <!--Home Edit View Controller-->
         <scene sceneID="0aW-w8-X60">
@@ -737,7 +739,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrowshape.backward" catalog="system" width="128" height="104"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

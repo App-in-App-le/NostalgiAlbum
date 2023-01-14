@@ -3,27 +3,28 @@ import RealmSwift
 
 
 class HomeScreenViewController: UIViewController {
-    let realm = try! Realm()
-    
     // collectionView setting
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var image:UIImage?
+    let realm = try! Realm()
+    var image : UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("####path",Realm.Configuration.defaultConfiguration.fileURL!)
 //         Realm DB안에 있는 정보를 모두 제거
-        try! realm.write{
-            realm.deleteAll()
-        }
+//        try! realm.write{
+//            realm.deleteAll()
+//        }
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)

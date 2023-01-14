@@ -84,6 +84,7 @@ class AlbumScreenViewController: UIViewController {
     }
     @objc func infoButton(){
         guard let infoVC = self.storyboard?.instantiateViewController(identifier: "InfoToolViewController") as? InfoToolViewController else { return }
+        infoVC.index = coverIndex
         infoVC.modalTransitionStyle = .crossDissolve
         infoVC.modalPresentationStyle = .overCurrentContext
         self.present(infoVC, animated: true, completion: nil)
