@@ -1,32 +1,58 @@
 import UIKit
+import RealmSwift
 
 class InfoToolViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    let albumInfo: [[String]] = [["앨범 명", "first_album"], ["앨범 생성 날짜", "2022-10-10"], ["앨범 만든 사람", "Mr.Chop"],[ "앨범 단계", "Baby"]]
-    let pictureInfo: [[String]] = [["총 사진 수", "10"], ["저장 가능한 사진 수", "10/50"], ["총 페이지 수", "5"]]
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    let realm = try! Realm()
+    var index : Int!
+    // 현재 앨범 명, 앨범 생성 날짜 표시 가능
+    var albumInfo: [[String]] = []
+    // 현재 총 사진 수, 총 페이지 수 표시 가능
+    var pictureInfo: [[String]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         self.view.backgroundColor = .systemGray6
         tableView.backgroundColor = .systemGray6
-    }
-    @IBAction func backButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        // 정보 불러오기
+        // Album Info .
+        let albumCoverData = realm.objects(albumCover.self).filter("id = \(index!)")
+        let albumsInfoData = realm.objects(albumsInfo.self).filter("id = \(index!)")
+        let albumTitle = albumCoverData.first!.albumName
+        let dateOfCreation = albumsInfoData.first!.dateOfCreation
+        // Picture Info .
+        let numberOfPicture = albumsInfoData.first!.numberOfPictures
+        let numberOfPage = numberOfPicture / 2 + 1
+        albumInfo.append(["앨범 명", albumTitle])
+        albumInfo.append(["앨범 생성 날짜", dateOfCreation])
+        pictureInfo.append(["사진", "\(String(numberOfPicture)) 장"])
+        pictureInfo.append(["페이지", "\(String(numberOfPage)) 쪽"])
     }
 }
 
 extension InfoToolViewController: UITableViewDataSource{
+    // 섹션의 개수를 정함
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     // 한 섹션에 몇개의 row를 넣을 것인지
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
         case 0:
-            return 4
+            return 2
         case 1:
-            return 3
+            return 2
         default:
             return 0
         }
     }
+    
     // reuseable cell을 반환
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "InfoToolTableViewCell", for: indexPath) as? InfoToolTableViewCell else {
@@ -36,10 +62,7 @@ extension InfoToolViewController: UITableViewDataSource{
         cell.configure(info)
         return cell
     }
-    // 섹션의 개수를 정함
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
+    
     // table header를 정함
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
