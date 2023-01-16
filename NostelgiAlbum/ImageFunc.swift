@@ -98,7 +98,7 @@ func fixOrientation(image: UIImage) -> UIImage{
 extension UIImage {
     func resize(newWidth: CGFloat, newHeight: CGFloat) -> UIImage {
         print("size \(self.size.width), \(self.size.height)")
-        let nnewWidth = newWidth
+        let nnewWidth = newWidth - 20
         let nnewHeight = newHeight - 20
         if self.size.width >= self.size.height {
             let scale = nnewWidth / self.size.width
