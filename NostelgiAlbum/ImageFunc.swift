@@ -96,15 +96,26 @@ func fixOrientation(image: UIImage) -> UIImage{
 }
 
 extension UIImage {
-    func resize(newWidth: CGFloat) -> UIImage {
-        let scale = newWidth / self.size.width
-        let newHeight = self.size.height * scale
-        
-        let size = CGSize(width: newWidth, height: newHeight)
-        let render = UIGraphicsImageRenderer(size: size)
-        let renderImage = render.image { context in self.draw(in: CGRect(origin: .zero, size: size))}
-        
-        return renderImage
+    func resize(newWidth: CGFloat, newHeight: CGFloat) -> UIImage {
+        print("size \(self.size.width), \(self.size.height)")
+        let nnewWidth = newWidth
+        let nnewHeight = newHeight - 20
+        if self.size.width >= self.size.height {
+            let scale = nnewWidth / self.size.width
+            let nHeight = self.size.height * scale
+            let size = CGSize(width: nnewWidth, height: nHeight)
+            let render = UIGraphicsImageRenderer(size: size)
+            let renderImage = render.image { context in self.draw(in: CGRect(origin: .zero, size: size))}
+            return renderImage
+        } else {
+            let scale = nnewHeight / self.size.height
+            let nWidth = self.size.width * scale
+            let size = CGSize(width: nWidth, height: nnewHeight)
+            let render = UIGraphicsImageRenderer(size: size)
+            let renderImage = render.image { context in self.draw(in: CGRect(origin: .zero, size: size))}
+            return renderImage
+
+        }
     }
 }
 

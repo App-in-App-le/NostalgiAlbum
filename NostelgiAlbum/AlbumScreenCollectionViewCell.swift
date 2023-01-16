@@ -25,7 +25,7 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
         pictureImgButton.setTitle("", for: .normal)
         let totalPath = "\(albumInfo.AlbumTitle)_\(albumInfo.perAlbumIndex).png"
         image = loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: albumInfo.AlbumTitle)
-        pictureImgButton.setImage(image!.resize(newWidth: 168), for: .normal)
+        pictureImgButton.setImage(image!.resize(newWidth: pictureImgButton.frame.width, newHeight: pictureImgButton.frame.height), for: .normal)
         pictureLabel.text = albumInfo.ImageText
     }
     func albuminit() {

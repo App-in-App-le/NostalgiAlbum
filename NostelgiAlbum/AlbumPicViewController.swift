@@ -14,7 +14,7 @@ class AlbumPicViewController: UIViewController {
         picText.text = picture.ImageText
         picImage.setTitle("", for: .normal)
         let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex)"
-        picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: 297), for: .normal)
+        picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: picImage.frame.width, newHeight: (picImage.frame.height)), for: .normal)
         settingBtn.setTitle("", for: .normal)
         settingBtn.setImage(UIImage(systemName: "gearshape"), for: .normal)
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
