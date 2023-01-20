@@ -153,25 +153,17 @@
 		8094CA2228EDC65500E70F76 /* NostelgiAlbum */ = {
 			isa = PBXGroup;
 			children = (
+				831A051F297A9B6E009D26A0 /* Model */,
 				8094CA2928EDC65500E70F76 /* Main.storyboard */,
 				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
 				8094CA2328EDC65500E70F76 /* AppDelegate.swift */,
 				8094CA2528EDC65500E70F76 /* SceneDelegate.swift */,
-				8002F65228EE905B00E9913D /* HomeScreenViewController.swift */,
-				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
-				806A653D293873C80054FAEF /* HomeEditViewController.swift */,
-				8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */,
-				80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */,
-				8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */,
-				831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */,
-				831A04D9295EC04C009D26A0 /* ImageViewController.swift */,
-				8312C9D42921482A00556BAE /* SearchToolViewController.swift */,
-				8312C9D22921465600556BAE /* InfoToolViewController.swift */,
-				807FF50029260656005D9884 /* InfoToolTableViewCell.swift */,
-				804C7E8D295835D200C63880 /* ImageFunc.swift */,
+				831A0520297A9B7A009D26A0 /* HomeScreenViewController */,
+				831A0522297A9BD7009D26A0 /* AlbumScreenViewController */,
+				831A0524297A9BF3009D26A0 /* ToolBarController */,
+				831A0525297A9BFE009D26A0 /* ImageFunc */,
 				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
-				807A193B29312CEE00BC434B /* RealmClassFunc.swift */,
 			);
 			path = NostelgiAlbum;
 			sourceTree = "<group>";
@@ -191,6 +183,70 @@
 				8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */,
 			);
 			path = NostelgiAlbumUITests;
+			sourceTree = "<group>";
+		};
+		831A051F297A9B6E009D26A0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				807A193B29312CEE00BC434B /* RealmClassFunc.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		831A0520297A9B7A009D26A0 /* HomeScreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8002F65228EE905B00E9913D /* HomeScreenViewController.swift */,
+				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
+				831A0521297A9BCA009D26A0 /* HomeDetailController */,
+			);
+			path = HomeScreenViewController;
+			sourceTree = "<group>";
+		};
+		831A0521297A9BCA009D26A0 /* HomeDetailController */ = {
+			isa = PBXGroup;
+			children = (
+				806A653D293873C80054FAEF /* HomeEditViewController.swift */,
+			);
+			path = HomeDetailController;
+			sourceTree = "<group>";
+		};
+		831A0522297A9BD7009D26A0 /* AlbumScreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */,
+				80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */,
+				831A0523297A9BE7009D26A0 /* AlbumDetailController */,
+			);
+			path = AlbumScreenViewController;
+			sourceTree = "<group>";
+		};
+		831A0523297A9BE7009D26A0 /* AlbumDetailController */ = {
+			isa = PBXGroup;
+			children = (
+				8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */,
+				831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */,
+				831A04D9295EC04C009D26A0 /* ImageViewController.swift */,
+			);
+			path = AlbumDetailController;
+			sourceTree = "<group>";
+		};
+		831A0524297A9BF3009D26A0 /* ToolBarController */ = {
+			isa = PBXGroup;
+			children = (
+				8312C9D42921482A00556BAE /* SearchToolViewController.swift */,
+				8312C9D22921465600556BAE /* InfoToolViewController.swift */,
+				807FF50029260656005D9884 /* InfoToolTableViewCell.swift */,
+			);
+			path = ToolBarController;
+			sourceTree = "<group>";
+		};
+		831A0525297A9BFE009D26A0 /* ImageFunc */ = {
+			isa = PBXGroup;
+			children = (
+				804C7E8D295835D200C63880 /* ImageFunc.swift */,
+			);
+			path = ImageFunc;
 			sourceTree = "<group>";
 		};
 		BC1760A270AA912477243107 /* Frameworks */ = {

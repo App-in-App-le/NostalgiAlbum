@@ -54,7 +54,7 @@ class AlbumEditViewController: UIViewController {
     
     func transPic(_ picture : album) {
         let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex).png"
-        editPicture.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: 312), for: .normal)
+        editPicture.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: editPicture.frame.size.width, newHeight: editPicture.frame.size.height), for: .normal)
         editPicture.setTitle("", for: .normal)
         editTitle.text = picture.AlbumTitle
         editText.text = picture.ImageText
@@ -122,7 +122,7 @@ extension AlbumEditViewController : UINavigationControllerDelegate, UIImagePicke
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{ editPicture.imageView?.image = image
             editPicture.setTitle("", for: .normal)
-            editPicture.setImage(image.resize(newWidth: 312), for: .normal)
+            editPicture.setImage(image.resize(newWidth: editPicture.frame.size.width, newHeight: editPicture.frame.size.height), for: .normal)
         }
         dismiss(animated: true, completion: nil)
     }
