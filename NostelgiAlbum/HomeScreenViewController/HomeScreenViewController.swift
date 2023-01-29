@@ -12,10 +12,6 @@ class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("####path",Realm.Configuration.defaultConfiguration.fileURL!)
-//         Realm DB안에 있는 정보를 모두 제거
-//        try! realm.write{
-//            realm.deleteAll()
-//        }
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -31,14 +27,20 @@ class HomeScreenViewController: UIViewController {
     }
     
     @objc func didLongPressView(_ gesture: customLongPressGesture) {
-        let editCoverAlert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        let editCoverAlert = UIAlertController(title: (gesture.albumName), message: .none, preferredStyle: .alert)
         let delete = UIAlertAction(title: "앨범 삭제", style: .default){
             (action) in self.deleteAlbumCover(gesture.albumIndex, gesture.albumName)
         }
+        let modify = UIAlertAction(title: "앨범 수정", style: .default){
+            (action) in self.modifyAlbumCover(gesture.albumIndex, gesture.albumName)
+        }
         // 앨범 삭제 버튼 text 색 Red로 변경
         delete.setValue(UIColor.red, forKey: "titleTextColor")
+        // 앨범 삭제 버튼 추가
         editCoverAlert.addAction(delete)
-
+        // 앨범 수정 버튼 추가
+        editCoverAlert.addAction(modify)
+        
         present(editCoverAlert, animated: true){
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
             editCoverAlert.view.superview?.isUserInteractionEnabled = true
@@ -105,6 +107,21 @@ class HomeScreenViewController: UIViewController {
             }
         }
         collectionView.reloadData()
+    }
+    
+    private func modifyAlbumCover(_ albumIndex : Int, _ albumName : String){
+        // 1. modify VC를 만들어서 push -> albumTitle, imageName 변경
+        // modify VC안에서 바뀐 정보를 바탕으로 RealmDB 정보와 document photo 정보를 변경
+        guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeEditViewController") as? HomeEditViewController else{ return }
+        editVC.modalPresentationStyle = .overCurrentContext
+        editVC.collectionViewInHome = self.collectionView
+        editVC.IsModifyingView = true
+        editVC.albumNameBeforeModify = albumName
+        editVC.id = albumIndex
+        // albumCover
+        let albumCoverData = realm.objects(albumCover.self).filter("id = \(albumIndex)")
+        editVC.coverImageBeforeModify = albumCoverData.first!.coverImageName
+        self.present(editVC, animated: false)
     }
     
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){

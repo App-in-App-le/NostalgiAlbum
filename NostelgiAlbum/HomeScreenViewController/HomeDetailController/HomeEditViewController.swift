@@ -3,13 +3,29 @@ import RealmSwift
 
 class HomeEditViewController: UIViewController {
     
+    @IBOutlet weak var editTitle: UILabel!
     @IBOutlet weak var albumName: UITextField!
     @IBOutlet weak var coverImage: UIImageView!
     var collectionViewInHome : UICollectionView!
     
+    var IsModifyingView : Bool = false
+    var albumNameBeforeModify : String = ""
+    var coverImageBeforeModify : String = ""
+    var id : Int = 0
+    
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         coverImage.image = UIImage(systemName: "photo")
+        if IsModifyingView {
+            editTitle.text = "앨범 수정"
+        }
+        if !albumNameBeforeModify.isEmpty {
+            albumName.text = albumNameBeforeModify
+        }
+        if !coverImageBeforeModify.isEmpty {
+            setCoverImage(color: coverImageBeforeModify)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -20,78 +36,150 @@ class HomeEditViewController: UIViewController {
         // save album info in realm DB
         let realm = try! Realm()
         
-        // make new albumCover
-        let newAlbumCover = albumCover()
-        newAlbumCover.incrementIndex()
-        newAlbumCover.albumName = albumName.text!
-        if albumName.text == "" {
-            let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
-            present(textAlert, animated: true){
-                let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
-                textAlert.view.superview?.isUserInteractionEnabled = true
-                textAlert.view.superview?.addGestureRecognizer(tap)
+        // save new album
+        if !IsModifyingView {
+            // make new albumCover
+            let newAlbumCover = albumCover()
+            newAlbumCover.incrementIndex()
+            newAlbumCover.albumName = albumName.text!
+            if albumName.text == "" {
+                let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+                present(textAlert, animated: true){
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
+                    textAlert.view.superview?.isUserInteractionEnabled = true
+                    textAlert.view.superview?.addGestureRecognizer(tap)
+                }
+                return
             }
-            return
-        }
-        
-        if coverImage.image == UIImage(systemName: "photo"){
-            let imageAlert = UIAlertController(title: "빈 이미지", message: "이미지를 선택해주세요", preferredStyle: UIAlertController.Style.alert)
-            present(imageAlert, animated: true){
-                let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
-                imageAlert.view.superview?.isUserInteractionEnabled = true
-                imageAlert.view.superview?.addGestureRecognizer(tap)
+            
+            if coverImage.image == UIImage(systemName: "photo"){
+                let imageAlert = UIAlertController(title: "빈 이미지", message: "이미지를 선택해주세요", preferredStyle: UIAlertController.Style.alert)
+                present(imageAlert, animated: true){
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
+                    imageAlert.view.superview?.isUserInteractionEnabled = true
+                    imageAlert.view.superview?.addGestureRecognizer(tap)
+                }
+                return
             }
-            return
-        }
-        
-        if coverImage.image == UIImage(named: "Blue"){
-            newAlbumCover.coverImageName = "Blue"
-        }
-        else if coverImage.image == UIImage(named: "Brown"){
-            newAlbumCover.coverImageName = "Brown"
-        }
-        else if coverImage.image == UIImage(named: "Green"){
-            newAlbumCover.coverImageName = "Green"
-        }
-        else if coverImage.image == UIImage(named: "Pupple"){
-            newAlbumCover.coverImageName = "Pupple"
-        }
-        else if coverImage.image == UIImage(named: "Red"){
-            newAlbumCover.coverImageName = "Red"
-        }
-        else if coverImage.image == UIImage(named: "Turquoise"){
-            newAlbumCover.coverImageName = "Turquoise"
-        }
-        else{
-            print("error!")
-            return
-        }
-        
-        // 해당 앨범 정보를 DB에 저장
-        let newAlbumsInfo = albumsInfo()
-        newAlbumsInfo.incrementIndex()
-        newAlbumsInfo.setDateOfCreation()
-        newAlbumsInfo.numberOfPictures = 0
-        
-        // 앨범 커버 정보와 앨범 정보(앨범 생성 시간, 앨범의 사진 개수)를 저장
-        try! realm.write
-        {
-            realm.add(newAlbumCover)
-            realm.add(newAlbumsInfo)
-        }
-        
-        // document 폴더 안에 각 앨범에 관한 폴더를 만들어줘야 한다.
-        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-        
-        let dirPath = documentDirectory.appendingPathComponent(albumName.text!)
-        
-        if !FileManager.default.fileExists(atPath: dirPath.path){
-            do{
-                try FileManager.default.createDirectory(atPath: dirPath.path, withIntermediateDirectories: true, attributes: nil)
-            } catch{
-                NSLog("Couldn't create document directory") // print와 비슷한 출력 함수
+            
+            if coverImage.image == UIImage(named: "Blue"){
+                newAlbumCover.coverImageName = "Blue"
+            }
+            else if coverImage.image == UIImage(named: "Brown"){
+                newAlbumCover.coverImageName = "Brown"
+            }
+            else if coverImage.image == UIImage(named: "Green"){
+                newAlbumCover.coverImageName = "Green"
+            }
+            else if coverImage.image == UIImage(named: "Pupple"){
+                newAlbumCover.coverImageName = "Pupple"
+            }
+            else if coverImage.image == UIImage(named: "Red"){
+                newAlbumCover.coverImageName = "Red"
+            }
+            else if coverImage.image == UIImage(named: "Turquoise"){
+                newAlbumCover.coverImageName = "Turquoise"
+            }
+            else{
+                print("error!")
+                return
+            }
+            
+            // 해당 앨범 정보를 DB에 저장
+            let newAlbumsInfo = albumsInfo()
+            newAlbumsInfo.incrementIndex()
+            newAlbumsInfo.setDateOfCreation()
+            newAlbumsInfo.numberOfPictures = 0
+            
+            // 앨범 커버 정보와 앨범 정보(앨범 생성 시간, 앨범의 사진 개수)를 저장
+            try! realm.write
+            {
+                realm.add(newAlbumCover)
+                realm.add(newAlbumsInfo)
+            }
+            
+            // document 폴더 안에 각 앨범에 관한 폴더를 만들어줘야 한다.
+            guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+            
+            let dirPath = documentDirectory.appendingPathComponent(albumName.text!)
+            
+            if !FileManager.default.fileExists(atPath: dirPath.path){
+                do{
+                    try FileManager.default.createDirectory(atPath: dirPath.path, withIntermediateDirectories: true, attributes: nil)
+                } catch{
+                    NSLog("Couldn't create document directory") // print와 비슷한 출력 함수
+                }
             }
         }
+        
+        // modify album
+        else {
+            if albumName.text == "" {
+                let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+                present(textAlert, animated: true){
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
+                    textAlert.view.superview?.isUserInteractionEnabled = true
+                    textAlert.view.superview?.addGestureRecognizer(tap)
+                }
+                return
+            }
+            // albumCover
+            let albumCoverData = realm.objects(albumCover.self).filter("id = \(id)")
+            // album
+            let albumData = realm.objects(album.self).filter("index = \(id)")
+            
+            guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+            let albumDirectoryPath = documentDirectory.appendingPathComponent(albumNameBeforeModify)
+            let modifyAlbumDirectoryPath = documentDirectory.appendingPathComponent(albumName.text!)
+            
+            let fileManager = FileManager.default
+            if((try? fileManager.moveItem(at: albumDirectoryPath, to: modifyAlbumDirectoryPath)) != nil) {
+                print("Move succcessful")
+            } else {
+                print("Move failed")
+            }
+            
+            for album in albumData {
+                let OldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(album.AlbumTitle)_\(album.perAlbumIndex).png")
+                let NewPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_\(album.perAlbumIndex).png")
+                if((try? fileManager.moveItem(at: OldPicturePath, to: NewPicturePath)) != nil) {
+                    print("Move succcessful")
+                } else {
+                    print("Move failed")
+                }
+            }
+            
+            // Change albumCover Data
+            try! realm.write{
+                albumCoverData.first?.albumName = String(albumName.text!)
+                
+                if coverImage.image == UIImage(named: "Blue"){
+                    albumCoverData.first?.coverImageName = "Blue"
+                }
+                else if coverImage.image == UIImage(named: "Brown"){
+                    albumCoverData.first?.coverImageName = "Brown"
+                }
+                else if coverImage.image == UIImage(named: "Green"){
+                    albumCoverData.first?.coverImageName = "Green"
+                }
+                else if coverImage.image == UIImage(named: "Pupple"){
+                    albumCoverData.first?.coverImageName = "Pupple"
+                }
+                else if coverImage.image == UIImage(named: "Red"){
+                    albumCoverData.first?.coverImageName = "Red"
+                }
+                else if coverImage.image == UIImage(named: "Turquoise"){
+                    albumCoverData.first?.coverImageName = "Turquoise"
+                }
+                else{
+                    print("error!")
+                    return
+                }
+                // change album Data
+                for album in albumData { album.setAlbumTitle(albumName.text!) }
+            }
+        }
+        
         
         // collection view에 새로운 정보가 저장됬으므로 다시 그려줘야한다.
         // Home Screen에 있는 collectionView의 data를 relaod
