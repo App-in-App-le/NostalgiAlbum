@@ -26,6 +26,10 @@ class AlbumEditViewController: UIViewController {
         self.view.addGestureRecognizer(swipeRecognizer)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
+    }
+    
     @IBAction func addAlbumPicture(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in self.openLibrary()}

@@ -334,9 +334,6 @@
                                     <constraint firstItem="qd4-6a-Gz8" firstAttribute="top" secondItem="29r-LZ-69x" secondAttribute="bottom" constant="20" id="v58-rc-sKD"/>
                                     <constraint firstAttribute="trailing" secondItem="29r-LZ-69x" secondAttribute="trailing" constant="20" id="x6H-qL-LYX"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="3RP-Kc-9ts" appends="YES" id="x2D-Ig-U8m"/>
-                                </connections>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Cf-Ao-r4Y"/>
@@ -355,7 +352,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPA-Ui-UH1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="3RP-Kc-9ts"/>
             </objects>
             <point key="canvasLocation" x="2100" y="930.98591549295782"/>
         </scene>
@@ -482,6 +478,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t13-Cp-Lf7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3701.5267175572517" y="930.98591549295782"/>
+        </scene>
+        <!--Share View Controller-->
+        <scene sceneID="7HD-nO-WPm">
+            <objects>
+                <viewController id="0TT-Up-5Uc" customClass="ShareViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SF3-as-Dv6">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCt-Vc-6G7">
+                                <rect key="frame" x="159" y="453" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="openInButtonTapped:" destination="0TT-Up-5Uc" eventType="touchUpInside" id="bkx-Cb-LQT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="caf-Pt-DJ6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4aB-xR-WZd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4458.7786259541981" y="937.32394366197184"/>
         </scene>
         <!--Search Tool View Controller-->
         <scene sceneID="qNM-Qk-sLk">

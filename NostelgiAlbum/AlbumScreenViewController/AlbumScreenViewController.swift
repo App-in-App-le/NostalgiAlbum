@@ -1,6 +1,6 @@
 import UIKit
 import RealmSwift
-
+import Zip
 class AlbumScreenViewController: UIViewController {
     
     @IBOutlet weak var pageNumLabel: UILabel!
@@ -43,11 +43,10 @@ class AlbumScreenViewController: UIViewController {
     // Set toolBar
     private func makeToolbarItems() -> [UIBarButtonItem]{
         let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.searchButton))
-        let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
+        let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.shareButton))
         let settingButton = UIBarButtonItem(image: UIImage(systemName: "gearshape")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: nil)
         let informationButton = UIBarButtonItem(image: UIImage(systemName: "info.square")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.infoButton))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        
         return [searchButton, flexibleSpace, shareButton, flexibleSpace, settingButton, flexibleSpace, informationButton]
     }
     
@@ -82,6 +81,37 @@ class AlbumScreenViewController: UIViewController {
             }
         }
     }
+    
+    @objc func shareButton() {
+        //let items = ["chopmojji"]
+        //let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex)")
+        let shareText: String = "share text test!"
+        var shareObject = [Any]()
+        //let filePath = Bundle.main.url(forResource: "찹모찌", withExtension: "zip")!
+        //let filePath = "/찹모찌"
+        //print("test filepath :",filePath)
+        let fileURL = zipAlbumDirectory(AlbumCoverName: coverData.first!.albumName)
+        do {
+            let attributes = try FileManager.default.attributesOfItem(atPath: fileURL!.path)
+            let permissions = attributes[.posixPermissions] as! Int
+            let newPermissions = permissions | Int(0o777)
+            try FileManager.default.setAttributes([.posixPermissions: newPermissions], ofItemAtPath: fileURL!.path)
+        } catch {
+            print("Error setting file permissions: \(error)")
+        }
+        print("coverData",coverData.first!.albumName)
+        shareObject.append(shareText)
+        shareObject.append(fileURL!)
+        let ac = UIActivityViewController(activityItems: shareObject, applicationActivities: nil)
+        ac.popoverPresentationController?.sourceView = self.view
+        self.present(ac, animated: true, completion: nil)
+    }
+    
+    class customShareButton : UIBarButtonItem {
+        var test : String!
+    }
+    
     @objc func infoButton(){
         guard let infoVC = self.storyboard?.instantiateViewController(identifier: "InfoToolViewController") as? InfoToolViewController else { return }
         infoVC.index = coverIndex

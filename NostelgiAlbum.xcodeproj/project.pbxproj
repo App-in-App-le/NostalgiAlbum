@@ -30,6 +30,8 @@
 		831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */; };
 		831A04DA295EC04C009D26A0 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A04D9295EC04C009D26A0 /* ImageViewController.swift */; };
 		8320291F295EA8E2001709E9 /* AlbumEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */; };
+		83C615C8298B978D0018BBAF /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615C7298B978D0018BBAF /* ShareViewController.swift */; };
+		83C615CA298BA3C90018BBAF /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615C9298BA3C90018BBAF /* UTI.swift */; };
 		9637805CE99D7E121BEE0717 /* Pods_NostelgiAlbum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0A83F13AEEA742D0FD55A4 /* Pods_NostelgiAlbum.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,8 @@
 		831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPicViewController.swift; sourceTree = "<group>"; };
 		831A04D9295EC04C009D26A0 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEditViewController.swift; sourceTree = "<group>"; };
+		83C615C7298B978D0018BBAF /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		83C615C9298BA3C90018BBAF /* UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTI.swift; sourceTree = "<group>"; };
 		884CF07808E0B766753C3292 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8FFC13E4AFBFFF078784A65D /* Pods-NostelgiAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.release.xcconfig"; sourceTree = "<group>"; };
 		A37BCC6121739C6133FF1DE6 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum_NostelgiAlbumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +157,7 @@
 		8094CA2228EDC65500E70F76 /* NostelgiAlbum */ = {
 			isa = PBXGroup;
 			children = (
+				83C615C7298B978D0018BBAF /* ShareViewController.swift */,
 				831A051F297A9B6E009D26A0 /* Model */,
 				8094CA2928EDC65500E70F76 /* Main.storyboard */,
 				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
@@ -164,6 +169,7 @@
 				831A0525297A9BFE009D26A0 /* ImageFunc */,
 				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
+				83C615C9298BA3C90018BBAF /* UTI.swift */,
 			);
 			path = NostelgiAlbum;
 			sourceTree = "<group>";
@@ -498,12 +504,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83C615CA298BA3C90018BBAF /* UTI.swift in Sources */,
 				8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */,
 				831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */,
 				804C7E8E295835D200C63880 /* ImageFunc.swift in Sources */,
 				807FF50129260656005D9884 /* InfoToolTableViewCell.swift in Sources */,
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,
+				83C615C8298B978D0018BBAF /* ShareViewController.swift in Sources */,
 				8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */,
 				831A04DA295EC04C009D26A0 /* ImageViewController.swift in Sources */,
 				80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */,
@@ -690,9 +698,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A6XY8WY2J;
+				DEVELOPMENT_TEAM = N7AA7Y5KM6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = test;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = test;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -703,7 +713,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mingu.NostelgiAlbum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chopmozzi.NostelgiAlbum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -719,9 +729,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A6XY8WY2J;
+				DEVELOPMENT_TEAM = N7AA7Y5KM6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = test;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = test;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -732,7 +744,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mingu.NostelgiAlbum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chopmozzi.NostelgiAlbum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

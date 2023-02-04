@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Zip
 
 func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverName: String) {
     // 1. 이미지를 저장할 경로를 설정해줘야함 - 도큐먼트 폴더,File 관련된건 Filemanager가 관리함(싱글톤 패턴)
@@ -68,6 +69,55 @@ func deleteImageFromDocumentDirectory(imageName: String) {
         } catch {
             print("이미지를 삭제하지 못했습니다.")
         }
+    }
+}
+
+func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
+    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil}
+    let dirURL = documentDirectory.appendingPathComponent(AlbumCoverName)
+    print("dirURL",dirURL.path)
+    let nostURL = documentDirectory.appendingPathComponent("\(AlbumCoverName).nost")
+    let fileManager = FileManager.default
+    do {
+        let zipfilePath = try Zip.quickZipFiles([dirURL], fileName: AlbumCoverName)
+        do {
+            if FileManager.default.fileExists(atPath: nostURL.path) {
+                do {
+                    try FileManager.default.removeItem(at: nostURL)
+                    print("nost파일 삭제 완료")
+                } catch {
+                    print("nost파일을 삭제하지 못했습니다.")
+                }
+            }
+            //try fileManager.moveItem(atPath: zipfilePath.path, toPath: nostURL.path)
+            if let data = try? Data(contentsOf: zipfilePath) {
+                let newURL = URL(filePath: nostURL.path)
+                try? data.write(to: newURL)
+            } else {
+                print("Error rewrite file")
+            }
+        }
+    } catch {
+        print("Something went wrong")
+    }
+    return nostURL
+    
+}
+
+func unzipAlbumDirectory(AlbumCoverName: String) {
+    
+}
+
+func exportNost() {
+    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+    let data: Data = "chopmojji".data(using: .utf8)!
+    let fileName = "chopmozzi"
+    let fileURL = documentDirectory.appendingPathComponent(fileName)
+    
+    do {
+        try data.write(to: fileURL)
+    } catch {
+        print("Error")
     }
 }
 
