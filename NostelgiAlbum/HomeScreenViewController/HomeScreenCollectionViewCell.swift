@@ -1,5 +1,6 @@
 import UIKit
 
+// HomeScreenCollectionViewCell
 class HomeScreenCollectionViewCell: UICollectionViewCell {
     
     class var identifier: String{
@@ -8,13 +9,12 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     class var nib: UINib{
         return UINib(nibName: identifier, bundle: nil)
     }
-    var callback1 : (()->Void)?
-    var callback2 : (()->Void)?
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var firstButton: UIButton!
-    
     @IBOutlet weak var firstButtonTitle: UILabel!
     @IBOutlet weak var secondButtonTitle: UILabel!
+    var callback1 : (()->Void)?
+    var callback2 : (()->Void)?
     
     @IBAction func makeButton(_ sender: Any) {
         callback2?()
@@ -23,9 +23,11 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     @IBAction func fmakeButton(_ sender: Any) {
         callback1?()
     }
+    
 }
 
-extension UICollectionViewCell{
+extension UICollectionViewCell {
+    
     func setGradient(color1: CGColor, color2: CGColor){
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [color1, color2]
@@ -35,4 +37,5 @@ extension UICollectionViewCell{
         gradient.frame = self.bounds
         layer.insertSublayer(gradient, at: 0)
     }
+    
 }

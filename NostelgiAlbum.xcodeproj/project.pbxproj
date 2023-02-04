@@ -16,6 +16,8 @@
 		806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A653D293873C80054FAEF /* HomeEditViewController.swift */; };
 		807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A193B29312CEE00BC434B /* RealmClassFunc.swift */; };
 		807FF50129260656005D9884 /* InfoToolTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FF50029260656005D9884 /* InfoToolTableViewCell.swift */; };
+		8092C3A3298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8092C3A2298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift */; };
+		8092C3A5298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */; };
 		8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2328EDC65500E70F76 /* AppDelegate.swift */; };
 		8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2528EDC65500E70F76 /* SceneDelegate.swift */; };
 		8094CA2B28EDC65500E70F76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8094CA2928EDC65500E70F76 /* Main.storyboard */; };
@@ -24,6 +26,7 @@
 		8094CA3B28EDC65900E70F76 /* NostelgiAlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA3A28EDC65900E70F76 /* NostelgiAlbumTests.swift */; };
 		8094CA4528EDC65900E70F76 /* NostelgiAlbumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */; };
 		8094CA4728EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */; };
+		80C56D18298CE5360063688F /* HomeScreenViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */; };
 		80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */; };
 		8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D22921465600556BAE /* InfoToolViewController.swift */; };
 		8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D42921482A00556BAE /* SearchToolViewController.swift */; };
@@ -64,6 +67,8 @@
 		806A653D293873C80054FAEF /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
 		807A193B29312CEE00BC434B /* RealmClassFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClassFunc.swift; sourceTree = "<group>"; };
 		807FF50029260656005D9884 /* InfoToolTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToolTableViewCell.swift; sourceTree = "<group>"; };
+		8092C3A2298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeEditViewController+ButtonAction.swift"; sourceTree = "<group>"; };
+		8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+ButtonAction.swift"; sourceTree = "<group>"; };
 		8094CA2028EDC65500E70F76 /* NostelgiAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NostelgiAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8094CA2328EDC65500E70F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8094CA2528EDC65500E70F76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 		8094CA4028EDC65900E70F76 /* NostelgiAlbumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NostelgiAlbumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITests.swift; sourceTree = "<group>"; };
 		8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreenViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		8312C9D22921465600556BAE /* InfoToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToolViewController.swift; sourceTree = "<group>"; };
 		8312C9D42921482A00556BAE /* SearchToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchToolViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				8002F65228EE905B00E9913D /* HomeScreenViewController.swift */,
+				80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */,
+				8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */,
 				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
 				831A0521297A9BCA009D26A0 /* HomeDetailController */,
 			);
@@ -213,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				806A653D293873C80054FAEF /* HomeEditViewController.swift */,
+				8092C3A2298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift */,
 			);
 			path = HomeDetailController;
 			sourceTree = "<group>";
@@ -507,17 +516,20 @@
 				83C615CA298BA3C90018BBAF /* UTI.swift in Sources */,
 				8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */,
 				831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */,
+				80C56D18298CE5360063688F /* HomeScreenViewController+CollectionView.swift in Sources */,
 				804C7E8E295835D200C63880 /* ImageFunc.swift in Sources */,
 				807FF50129260656005D9884 /* InfoToolTableViewCell.swift in Sources */,
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,
 				83C615C8298B978D0018BBAF /* ShareViewController.swift in Sources */,
 				8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */,
+				8092C3A5298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift in Sources */,
 				831A04DA295EC04C009D26A0 /* ImageViewController.swift in Sources */,
 				80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */,
 				8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */,
 				806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */,
 				8320291F295EA8E2001709E9 /* AlbumEditViewController.swift in Sources */,
+				8092C3A3298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift in Sources */,
 				8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */,
 				807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */,
 				8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */,

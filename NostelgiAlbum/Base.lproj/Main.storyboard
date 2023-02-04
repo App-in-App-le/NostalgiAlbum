@@ -768,6 +768,7 @@
                     <connections>
                         <outlet property="albumName" destination="JHW-5g-6Ba" id="pF0-0T-KRf"/>
                         <outlet property="coverImage" destination="SgP-uG-7mx" id="tHP-im-e3V"/>
+                        <outlet property="editTitle" destination="GMa-bZ-V1a" id="Yxx-ve-SNC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82C-Jj-OyW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
