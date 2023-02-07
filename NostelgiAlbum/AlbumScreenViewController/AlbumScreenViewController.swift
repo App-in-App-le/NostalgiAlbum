@@ -192,7 +192,7 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
             LongPressGestureRecognizer.picture = picture
             cell.pictureImgButton.addGestureRecognizer(LongPressGestureRecognizer)
         } else {
-            cell.albuminit()
+            cell.albumInit()
             //print("indexPath : ",indexPath.item)
             //print("count : ",data.count)
             if (indexPath.item + pageNum * 2) > data.count {

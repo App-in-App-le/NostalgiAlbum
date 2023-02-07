@@ -208,40 +208,8 @@
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xV3-Yn-Nql">
                                             <rect key="frame" x="0.0" y="0.0" width="389" height="315"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmy-Vn-jQS">
-                                                    <rect key="frame" x="239" y="0.0" width="150" height="315"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="sbV-X1-ZX1"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkt-Du-O5R">
-                                                    <rect key="frame" x="0.0" y="0.0" width="239" height="315"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                                    <connections>
-                                                        <action selector="addPicutre:" destination="LeX-79-3Ln" eventType="touchUpInside" id="BFE-qL-XxM"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="qmy-Vn-jQS" firstAttribute="top" secondItem="xV3-Yn-Nql" secondAttribute="top" id="0mu-R6-7je"/>
-                                                <constraint firstAttribute="trailing" secondItem="qmy-Vn-jQS" secondAttribute="trailing" id="5j5-Xk-jMk"/>
-                                                <constraint firstItem="qmy-Vn-jQS" firstAttribute="leading" secondItem="nkt-Du-O5R" secondAttribute="trailing" id="HUr-7J-TJs"/>
-                                                <constraint firstItem="nkt-Du-O5R" firstAttribute="leading" secondItem="xV3-Yn-Nql" secondAttribute="leading" id="Pbx-bu-ht8"/>
-                                                <constraint firstAttribute="bottom" secondItem="qmy-Vn-jQS" secondAttribute="bottom" id="XDE-Uy-aht"/>
-                                                <constraint firstItem="nkt-Du-O5R" firstAttribute="top" secondItem="xV3-Yn-Nql" secondAttribute="top" id="fan-ie-Hke"/>
-                                                <constraint firstAttribute="bottom" secondItem="nkt-Du-O5R" secondAttribute="bottom" id="gp0-Cu-dR0"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="389" height="315"/>
-                                        <connections>
-                                            <outlet property="pictureImgButton" destination="nkt-Du-O5R" id="jrS-vt-Kfy"/>
-                                            <outlet property="pictureLabel" destination="qmy-Vn-jQS" id="lJw-qo-Dlu"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
