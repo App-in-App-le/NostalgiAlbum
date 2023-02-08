@@ -83,28 +83,40 @@ class AlbumScreenViewController: UIViewController {
     }
     
     @objc func shareButton() {
-        //let items = ["chopmojji"]
-        //let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex)")
-        let shareText: String = "share text test!"
         var shareObject = [Any]()
-        //let filePath = Bundle.main.url(forResource: "찹모찌", withExtension: "zip")!
-        //let filePath = "/찹모찌"
-        //print("test filepath :",filePath)
         let fileURL = zipAlbumDirectory(AlbumCoverName: coverData.first!.albumName)
         do {
             let attributes = try FileManager.default.attributesOfItem(atPath: fileURL!.path)
-            let permissions = attributes[.posixPermissions] as! Int
+            let permissions =
+            attributes[.posixPermissions] as! Int
             let newPermissions = permissions | Int(0o777)
             try FileManager.default.setAttributes([.posixPermissions: newPermissions], ofItemAtPath: fileURL!.path)
         } catch {
             print("Error setting file permissions: \(error)")
         }
         print("coverData",coverData.first!.albumName)
-        shareObject.append(shareText)
         shareObject.append(fileURL!)
         let ac = UIActivityViewController(activityItems: shareObject, applicationActivities: nil)
-        ac.popoverPresentationController?.sourceView = self.view
+        ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            if completed {
+                print("true")
+                do {
+                    try FileManager.default.removeItem(at: fileURL!)
+                } catch {
+                    print("Error removing file")
+                }
+            } else {
+                print("false")
+                do {
+                    try FileManager.default.removeItem(at: fileURL!)
+                } catch {
+                    print("Error removing file")
+                }
+            }
+        }
+        
+        //ac.popoverPresentationController?.sourceView = self.view
         self.present(ac, animated: true, completion: nil)
     }
     

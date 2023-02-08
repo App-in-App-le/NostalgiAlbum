@@ -35,6 +35,7 @@
 		8320291F295EA8E2001709E9 /* AlbumEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */; };
 		83C615C8298B978D0018BBAF /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615C7298B978D0018BBAF /* ShareViewController.swift */; };
 		83C615CA298BA3C90018BBAF /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615C9298BA3C90018BBAF /* UTI.swift */; };
+		83C615F1298EBB010018BBAF /* SharingAlbumPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615F0298EBB010018BBAF /* SharingAlbumPush.swift */; };
 		9637805CE99D7E121BEE0717 /* Pods_NostelgiAlbum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0A83F13AEEA742D0FD55A4 /* Pods_NostelgiAlbum.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEditViewController.swift; sourceTree = "<group>"; };
 		83C615C7298B978D0018BBAF /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		83C615C9298BA3C90018BBAF /* UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTI.swift; sourceTree = "<group>"; };
+		83C615F0298EBB010018BBAF /* SharingAlbumPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingAlbumPush.swift; sourceTree = "<group>"; };
 		884CF07808E0B766753C3292 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8FFC13E4AFBFFF078784A65D /* Pods-NostelgiAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.release.xcconfig"; sourceTree = "<group>"; };
 		A37BCC6121739C6133FF1DE6 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum_NostelgiAlbumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +215,7 @@
 				8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */,
 				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
 				831A0521297A9BCA009D26A0 /* HomeDetailController */,
+				83C615F0298EBB010018BBAF /* SharingAlbumPush.swift */,
 			);
 			path = HomeScreenViewController;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83C615F1298EBB010018BBAF /* SharingAlbumPush.swift in Sources */,
 				83C615CA298BA3C90018BBAF /* UTI.swift in Sources */,
 				8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */,
 				831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */,

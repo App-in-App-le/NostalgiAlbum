@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Zip
+import RealmSwift
 
 func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverName: String) {
     // 1. 이미지를 저장할 경로를 설정해줘야함 - 도큐먼트 폴더,File 관련된건 Filemanager가 관리함(싱글톤 패턴)
@@ -77,7 +78,8 @@ func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
     let dirURL = documentDirectory.appendingPathComponent(AlbumCoverName)
     print("dirURL",dirURL.path)
     let nostURL = documentDirectory.appendingPathComponent("\(AlbumCoverName).nost")
-    let fileManager = FileManager.default
+    _ = FileManager.default
+    addAlbumInfo(coverData: AlbumCoverName)
     do {
         let zipfilePath = try Zip.quickZipFiles([dirURL], fileName: AlbumCoverName)
         do {
@@ -93,6 +95,7 @@ func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
             if let data = try? Data(contentsOf: zipfilePath) {
                 let newURL = URL(filePath: nostURL.path)
                 try? data.write(to: newURL)
+                try FileManager.default.removeItem(at: zipfilePath)
             } else {
                 print("Error rewrite file")
             }
@@ -100,25 +103,13 @@ func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
     } catch {
         print("Something went wrong")
     }
+    
     return nostURL
     
 }
 
 func unzipAlbumDirectory(AlbumCoverName: String) {
     
-}
-
-func exportNost() {
-    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-    let data: Data = "chopmojji".data(using: .utf8)!
-    let fileName = "chopmozzi"
-    let fileURL = documentDirectory.appendingPathComponent(fileName)
-    
-    do {
-        try data.write(to: fileURL)
-    } catch {
-        print("Error")
-    }
 }
 
 func resizeingImage(image: UIImage, width: Int, height: Int) -> UIImage? {
@@ -169,3 +160,40 @@ extension UIImage {
     }
 }
 
+func addAlbumInfo(coverData: String) {
+    let realm = try! Realm()
+    let albumData = realm.objects(album.self).filter("AlbumTitle = '\(coverData)'")
+    let albumInfo = realm.objects(albumsInfo.self).filter("id = \(albumData.first!.index)")
+    var arrImageName = [String]()
+    var arrImageText = [String]()
+    var arrAlbumInfo = [String]()
+    
+    for i in 1...albumInfo.first!.numberOfPictures {
+        let albumImageName = albumData[i - 1].ImageName
+        let albumImageText = albumData[i - 1].ImageText
+        arrImageText.append("\(albumImageText)")
+        arrImageName.append("\(albumImageName)")
+    }
+    
+    arrAlbumInfo.append(String(albumInfo.first!.numberOfPictures))
+    arrAlbumInfo.append(albumInfo.first!.dateOfCreation)
+    
+    let imageNameInfo = arrImageName.joined(separator: "\n")
+    let imageTextInfo = arrImageText.joined(separator: "\n")
+    let albumInfoText = arrAlbumInfo.joined(separator: "\n")
+    
+    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+    let dirURL = documentDirectory.appendingPathComponent(coverData)
+    let nameInfoURL = dirURL.appendingPathComponent("\(coverData)imageNameInfo.txt")
+    let textInfoURL = dirURL.appendingPathComponent("\(coverData)imageTextInfo.txt")
+    let albumInfoURL = dirURL.appendingPathComponent("\(coverData)Info.txt")
+    
+    do {
+        try imageNameInfo.write(to: nameInfoURL, atomically: true, encoding: .utf8)
+        try imageTextInfo.write(to: textInfoURL, atomically: true, encoding: .utf8)
+        try albumInfoText.write(to: albumInfoURL, atomically: true, encoding: .utf8)
+    } catch {
+        print("Error writing file")
+    }
+    
+}

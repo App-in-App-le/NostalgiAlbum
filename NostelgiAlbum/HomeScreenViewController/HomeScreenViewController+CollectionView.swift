@@ -69,6 +69,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 self.present(editVC, animated: false)
             }
             else {
+                print("chop")
                 let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as! AlbumScreenViewController
                 pushVC.pageNum = 0
                 pushVC.coverIndex = indexPath.row * 2 + 1

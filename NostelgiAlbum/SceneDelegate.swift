@@ -8,13 +8,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let _ = (scene as? UIWindowScene) else { return }
+//        let window = UIWindow(frame: UIScreen.main.bounds)
+//        let viewController = HomeScreenViewController()
+//        window.rootViewController = viewController
+//        //window.makeKeyAndVisible()
     }
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        if let url = URLContexts.first?.url, url.scheme == "file" && url.pathExtension == "nost", let data = try? Data(contentsOf: url) {
-            (window?.rootViewController as? ShareViewController)?.filePath = url.path
-            print("urlpath",url.path)
+        //window?.rootViewController = HomeScreenViewController()
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc : UIViewController = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController") as UIViewController
+//        window?.rootViewController = vc
+//        let url = URLContexts.first?.url
+//        if(url?.scheme == "file" && url?.pathExtension == "nost")
+//        {
+//            print("urlpath",url!.path)
+//            guard let homeScreenViewController = window?.rootViewController as? HomeScreenViewController else { return }
+//            homeScreenViewController.pushShareView(path: url!)
+//        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController")
+        let navigationController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = vc
+        window?.rootViewController = navigationController
+        let url = URLContexts.first?.url
+        if(url?.scheme == "file" && url?.pathExtension == "nost")
+        {
+            print("urlpath",url!.path)
+            guard let homeScreenViewController = navigationController.viewControllers.first as? HomeScreenViewController else { return }
+            homeScreenViewController.pushShareView(path: url!)
         }
+
+
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
