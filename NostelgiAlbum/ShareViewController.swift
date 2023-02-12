@@ -19,7 +19,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
         let AlbumCoverName = filePath?.deletingPathExtension().lastPathComponent
         unzipAlbumDirectory(AlbumCoverName: AlbumCoverName!, shareFilePath: filePath!)
         //realm에 공유받은 album정보 write
-        addShareAlbum(albumURL: filePath!)
+        importAlbumInfo(albumURL: filePath!)
         //album reload
         collectionViewInHome.reloadData()
         self.navigationController?.popViewController(animated: true)
