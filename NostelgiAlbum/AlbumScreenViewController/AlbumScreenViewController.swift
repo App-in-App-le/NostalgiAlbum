@@ -1,6 +1,6 @@
 import UIKit
 import RealmSwift
-import Zip
+
 class AlbumScreenViewController: UIViewController {
     
     @IBOutlet weak var pageNumLabel: UILabel!
@@ -82,65 +82,10 @@ class AlbumScreenViewController: UIViewController {
         }
     }
     
-    @objc func shareButton() {
-        let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex)")
-        var shareObject = [Any]()
-        let fileURL = zipAlbumDirectory(AlbumCoverName: coverData.first!.albumName)
-        do {
-            let attributes = try FileManager.default.attributesOfItem(atPath: fileURL!.path)
-            let permissions =
-            attributes[.posixPermissions] as! Int
-            let newPermissions = permissions | Int(0o777)
-            try FileManager.default.setAttributes([.posixPermissions: newPermissions], ofItemAtPath: fileURL!.path)
-        } catch {
-            print("Error setting file permissions: \(error)")
-        }
-        print("coverData",coverData.first!.albumName)
-        shareObject.append(fileURL!)
-        let ac = UIActivityViewController(activityItems: shareObject, applicationActivities: nil)
-        ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-            if completed {
-                print("true")
-                do {
-                    try FileManager.default.removeItem(at: fileURL!)
-                } catch {
-                    print("Error removing file")
-                }
-            } else {
-                print("false")
-                do {
-                    try FileManager.default.removeItem(at: fileURL!)
-                } catch {
-                    print("Error removing file")
-                }
-            }
-        }
-        
-        //ac.popoverPresentationController?.sourceView = self.view
-        self.present(ac, animated: true, completion: nil)
-    }
-    
-    class customShareButton : UIBarButtonItem {
-        var test : String!
-    }
-    
-    @objc func infoButton(){
-        guard let infoVC = self.storyboard?.instantiateViewController(identifier: "InfoToolViewController") as? InfoToolViewController else { return }
-        infoVC.index = coverIndex
-        infoVC.modalTransitionStyle = .crossDissolve
-        infoVC.modalPresentationStyle = .overCurrentContext
-        self.present(infoVC, animated: true, completion: nil)
-    }
-    @objc func searchButton(){
-        guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchToolViewController") as? SearchToolViewController else {return}
-        searchVC.modalPresentationStyle = .overCurrentContext
-        searchVC.delegate = self
-        self.present(searchVC, animated: false)
-    }
     @objc func popToHome(){
         self.navigationController?.popToRootViewController(animated: false)
     }
-    
+
     @objc func didLongPressView(_ gesture: customLongPressGesture) {
         let editPicAlert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         let delete = UIAlertAction(title: "사진 삭제", style: .default){(action) in self.deletePicture(gesture.picture)}
@@ -160,8 +105,6 @@ class AlbumScreenViewController: UIViewController {
     private func deletePicture(_ picture : album) {
         let pictures = realm.objects(album.self).filter("index = \(picture.index)")
         let picturesInfo = realm.objects(albumsInfo.self).filter("id = \(picture.index)")
-        print("ccccount 1: ",pictures.count)
-
         let num = picture.perAlbumIndex
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
         let filePath = "\(picture.AlbumTitle)/\(picture.AlbumTitle)_\(picture.perAlbumIndex).png"
@@ -182,7 +125,6 @@ class AlbumScreenViewController: UIViewController {
                 picturesInfo.first!.numberOfPictures = 0
             }
         }
-        print("ccccount 2: ",pictures.count)
         if num <= pictures.count {
             for index in num...pictures.count {
                 print("num : ",index)
@@ -235,8 +177,6 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
             cell.pictureImgButton.addGestureRecognizer(LongPressGestureRecognizer)
         } else {
             cell.albuminit()
-            //print("indexPath : ",indexPath.item)
-            //print("count : ",data.count)
             if (indexPath.item + pageNum * 2) > data.count {
                 cell.pictureImgButton.isHidden = true
             }
@@ -252,38 +192,5 @@ extension AlbumScreenViewController:UICollectionViewDelegateFlowLayout{
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-}
-
-extension AlbumScreenViewController: DisDelegate{
-    func delegateString(text: String) {
-        let data = realm.objects(album.self).filter("index = \(coverIndex)")
-        var num : Int = 0
-        var checkcount : Int = pageNum
-        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-        
-        if let result = data.firstIndex(where: {$0.ImageName == text}){
-            guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
-            if(result/2 > checkcount){
-                while checkcount < result/2 {
-                    checkcount = checkcount + 1
-                    pushVC.pageNum = checkcount
-                    self.navigationController?.pushViewController(pushVC, animated: false)
-                }
-            }
-            else {
-                while checkcount >= result/2 {
-                    checkcount = checkcount - 1
-                    //pushVC.pageNum = pageNum
-                    //self.navigationController?.popViewController(animated: false)
-                    num = num + 1
-                }
-                
-                self.navigationController!.popToViewController(viewControllers[viewControllers.count - num], animated: false)
-            }
-        }
-        else {
-            print("none")
-        }
     }
 }

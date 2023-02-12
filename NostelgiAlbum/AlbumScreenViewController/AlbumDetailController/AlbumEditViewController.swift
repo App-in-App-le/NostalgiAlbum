@@ -4,7 +4,7 @@ import RealmSwift
 class AlbumEditViewController: UIViewController {
 
     @IBOutlet weak var editText: UITextView!
-    @IBOutlet weak var editTitle: UITextField!
+    @IBOutlet weak var editName: UITextField!
     @IBOutlet weak var editPicture: UIButton!
     var collectionViewInAlbum : UICollectionView!
     var index : Int!
@@ -15,7 +15,6 @@ class AlbumEditViewController: UIViewController {
         super.viewDidLoad()
         if picture != nil
         {
-            print("choppicture:",picture.ImageName)
             transPic(picture)
         } else {
             editPicture.setImage(UIImage(systemName: "photo"), for: .normal)
@@ -60,7 +59,7 @@ class AlbumEditViewController: UIViewController {
         let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex).png"
         editPicture.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: editPicture.frame.size.width, newHeight: editPicture.frame.size.height), for: .normal)
         editPicture.setTitle("", for: .normal)
-        editTitle.text = picture.AlbumTitle
+        editName.text = picture.ImageName
         editText.text = picture.ImageText
     }
     
@@ -68,7 +67,7 @@ class AlbumEditViewController: UIViewController {
         let realm = try! Realm()
         let updPicture = (realm.objects(album.self).filter("index = \(picture.index)"))
         try! realm.write {
-            updPicture[picture.perAlbumIndex - 1].ImageName = editTitle.text!
+            updPicture[picture.perAlbumIndex - 1].ImageName = editName.text!
             updPicture[picture.perAlbumIndex - 1].ImageText = editText.text!
         }
         let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex).png"
@@ -78,7 +77,7 @@ class AlbumEditViewController: UIViewController {
         let realm = try! Realm()
         let newPicture = album()
         let data = (realm.objects(albumsInfo.self).filter("id = \(index!)"))
-        newPicture.ImageName = editTitle.text!
+        newPicture.ImageName = editName.text!
         newPicture.ImageText = editText.text!
         newPicture.index = index
         newPicture.AlbumTitle = albumCoverName
@@ -104,7 +103,7 @@ class AlbumEditViewController: UIViewController {
                 imageAlert.view.superview?.addGestureRecognizer(tap)
             }
             return
-        } else if editTitle.text == "" {
+        } else if editName.text == "" {
             let imageAlert = UIAlertController(title: "빈 제목", message: "사진 제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
             present(imageAlert, animated: true){
                 let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))

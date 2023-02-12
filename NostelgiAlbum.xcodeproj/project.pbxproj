@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		44989FA2FA524E8EEEBA60C5 /* Pods_NostelgiAlbumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401EAAE9DE0F626378A73BD5 /* Pods_NostelgiAlbumTests.framework */; };
-		542A5706277B9EFA322C469D /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37BCC6121739C6133FF1DE6 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */; };
+		6E40494444D284B57AB22A17 /* Pods_NostelgiAlbumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD45D2E351EE192C1D87DB8D /* Pods_NostelgiAlbumTests.framework */; };
 		8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65228EE905B00E9913D /* HomeScreenViewController.swift */; };
 		8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */; };
 		8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */; };
@@ -36,7 +35,10 @@
 		83C615C8298B978D0018BBAF /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615C7298B978D0018BBAF /* ShareViewController.swift */; };
 		83C615CA298BA3C90018BBAF /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615C9298BA3C90018BBAF /* UTI.swift */; };
 		83C615F1298EBB010018BBAF /* SharingAlbumPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615F0298EBB010018BBAF /* SharingAlbumPush.swift */; };
-		9637805CE99D7E121BEE0717 /* Pods_NostelgiAlbum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0A83F13AEEA742D0FD55A4 /* Pods_NostelgiAlbum.framework */; };
+		83C615F4299942FD0018BBAF /* ShareFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615F3299942FD0018BBAF /* ShareFunc.swift */; };
+		83C615F629994CE30018BBAF /* ToolBarButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615F529994CE30018BBAF /* ToolBarButtonAction.swift */; };
+		C0F3ECE166A7DAA34C483BBF /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9012CEB3A508CA15AB036C93 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */; };
+		C674A76DE71B2D6B321B1C1E /* Pods_NostelgiAlbum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333B1EB0131BF7D37399E3F7 /* Pods_NostelgiAlbum.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +59,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3799B6D3405FAB35D79C7103 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3A0A83F13AEEA742D0FD55A4 /* Pods_NostelgiAlbum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		401EAAE9DE0F626378A73BD5 /* Pods_NostelgiAlbumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66A42BFB3D9C5A9D8D866E41 /* Pods-NostelgiAlbum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.debug.xcconfig"; sourceTree = "<group>"; };
+		09E86ACB70C1454B76E222B5 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		333B1EB0131BF7D37399E3F7 /* Pods_NostelgiAlbum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C8290A5F6ED840AD5B917C9 /* Pods-NostelgiAlbum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.debug.xcconfig"; sourceTree = "<group>"; };
+		6601033F99ABB4CE0338C61C /* Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6E5DCC93F7BDA1B362378A7C /* Pods-NostelgiAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.release.xcconfig"; sourceTree = "<group>"; };
 		8002F65228EE905B00E9913D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenViewController.swift; sourceTree = "<group>"; };
@@ -92,11 +95,12 @@
 		83C615C7298B978D0018BBAF /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		83C615C9298BA3C90018BBAF /* UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTI.swift; sourceTree = "<group>"; };
 		83C615F0298EBB010018BBAF /* SharingAlbumPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingAlbumPush.swift; sourceTree = "<group>"; };
-		884CF07808E0B766753C3292 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		8FFC13E4AFBFFF078784A65D /* Pods-NostelgiAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.release.xcconfig"; sourceTree = "<group>"; };
-		A37BCC6121739C6133FF1DE6 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum_NostelgiAlbumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3EC5C868D5280CF9D73AB4D /* Pods-NostelgiAlbumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbumTests.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbumTests/Pods-NostelgiAlbumTests.release.xcconfig"; sourceTree = "<group>"; };
-		F00B25CE38D4EB515594CCC9 /* Pods-NostelgiAlbumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbumTests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbumTests/Pods-NostelgiAlbumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		83C615F3299942FD0018BBAF /* ShareFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShareFunc.swift; path = ../../../ShareFunc.swift; sourceTree = "<group>"; };
+		83C615F529994CE30018BBAF /* ToolBarButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarButtonAction.swift; sourceTree = "<group>"; };
+		9012CEB3A508CA15AB036C93 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum_NostelgiAlbumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91F58AEC0D6B332A167C129D /* Pods-NostelgiAlbumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbumTests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbumTests/Pods-NostelgiAlbumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D8BEDED1B5046A84DA5ED8E9 /* Pods-NostelgiAlbumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbumTests.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbumTests/Pods-NostelgiAlbumTests.release.xcconfig"; sourceTree = "<group>"; };
+		DD45D2E351EE192C1D87DB8D /* Pods_NostelgiAlbumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9637805CE99D7E121BEE0717 /* Pods_NostelgiAlbum.framework in Frameworks */,
+				C674A76DE71B2D6B321B1C1E /* Pods_NostelgiAlbum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44989FA2FA524E8EEEBA60C5 /* Pods_NostelgiAlbumTests.framework in Frameworks */,
+				6E40494444D284B57AB22A17 /* Pods_NostelgiAlbumTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				542A5706277B9EFA322C469D /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework in Frameworks */,
+				C0F3ECE166A7DAA34C483BBF /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,12 +134,12 @@
 		6C221F8D594D7C5B1A9DAF84 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				66A42BFB3D9C5A9D8D866E41 /* Pods-NostelgiAlbum.debug.xcconfig */,
-				8FFC13E4AFBFFF078784A65D /* Pods-NostelgiAlbum.release.xcconfig */,
-				884CF07808E0B766753C3292 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */,
-				3799B6D3405FAB35D79C7103 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig */,
-				F00B25CE38D4EB515594CCC9 /* Pods-NostelgiAlbumTests.debug.xcconfig */,
-				C3EC5C868D5280CF9D73AB4D /* Pods-NostelgiAlbumTests.release.xcconfig */,
+				4C8290A5F6ED840AD5B917C9 /* Pods-NostelgiAlbum.debug.xcconfig */,
+				6E5DCC93F7BDA1B362378A7C /* Pods-NostelgiAlbum.release.xcconfig */,
+				09E86ACB70C1454B76E222B5 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */,
+				6601033F99ABB4CE0338C61C /* Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig */,
+				91F58AEC0D6B332A167C129D /* Pods-NostelgiAlbumTests.debug.xcconfig */,
+				D8BEDED1B5046A84DA5ED8E9 /* Pods-NostelgiAlbumTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -148,7 +152,7 @@
 				8094CA4328EDC65900E70F76 /* NostelgiAlbumUITests */,
 				8094CA2128EDC65500E70F76 /* Products */,
 				6C221F8D594D7C5B1A9DAF84 /* Pods */,
-				BC1760A270AA912477243107 /* Frameworks */,
+				FECECB9A8ECAB2BAC00F6319 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,6 +178,7 @@
 				831A0520297A9B7A009D26A0 /* HomeScreenViewController */,
 				831A0522297A9BD7009D26A0 /* AlbumScreenViewController */,
 				831A0524297A9BF3009D26A0 /* ToolBarController */,
+				83C615F2299942BE0018BBAF /* ShareFunc */,
 				831A0525297A9BFE009D26A0 /* ImageFunc */,
 				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
@@ -214,8 +219,8 @@
 				80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */,
 				8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */,
 				8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */,
-				831A0521297A9BCA009D26A0 /* HomeDetailController */,
 				83C615F0298EBB010018BBAF /* SharingAlbumPush.swift */,
+				831A0521297A9BCA009D26A0 /* HomeDetailController */,
 			);
 			path = HomeScreenViewController;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 			children = (
 				8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */,
 				80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */,
+				83C615F529994CE30018BBAF /* ToolBarButtonAction.swift */,
 				831A0523297A9BE7009D26A0 /* AlbumDetailController */,
 			);
 			path = AlbumScreenViewController;
@@ -267,12 +273,20 @@
 			path = ImageFunc;
 			sourceTree = "<group>";
 		};
-		BC1760A270AA912477243107 /* Frameworks */ = {
+		83C615F2299942BE0018BBAF /* ShareFunc */ = {
 			isa = PBXGroup;
 			children = (
-				3A0A83F13AEEA742D0FD55A4 /* Pods_NostelgiAlbum.framework */,
-				A37BCC6121739C6133FF1DE6 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */,
-				401EAAE9DE0F626378A73BD5 /* Pods_NostelgiAlbumTests.framework */,
+				83C615F3299942FD0018BBAF /* ShareFunc.swift */,
+			);
+			path = ShareFunc;
+			sourceTree = "<group>";
+		};
+		FECECB9A8ECAB2BAC00F6319 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				333B1EB0131BF7D37399E3F7 /* Pods_NostelgiAlbum.framework */,
+				9012CEB3A508CA15AB036C93 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */,
+				DD45D2E351EE192C1D87DB8D /* Pods_NostelgiAlbumTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -284,11 +298,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8094CA4A28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostelgiAlbum" */;
 			buildPhases = (
-				0C1D3E204F137C9DAD707FC0 /* [CP] Check Pods Manifest.lock */,
+				E28A8C0DE1DF1C1F91F8B84A /* [CP] Check Pods Manifest.lock */,
 				8094CA1C28EDC65500E70F76 /* Sources */,
 				8094CA1D28EDC65500E70F76 /* Frameworks */,
 				8094CA1E28EDC65500E70F76 /* Resources */,
-				AF0FC730FDFF0EA6954C6804 /* [CP] Embed Pods Frameworks */,
+				1CD8F48525C514C013D1C903 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -303,7 +317,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8094CA4D28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostelgiAlbumTests" */;
 			buildPhases = (
-				1A2695FEED75E88CF2021763 /* [CP] Check Pods Manifest.lock */,
+				A48282DD6F50277915745ADE /* [CP] Check Pods Manifest.lock */,
 				8094CA3228EDC65900E70F76 /* Sources */,
 				8094CA3328EDC65900E70F76 /* Frameworks */,
 				8094CA3428EDC65900E70F76 /* Resources */,
@@ -322,11 +336,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8094CA5028EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostelgiAlbumUITests" */;
 			buildPhases = (
-				20250F3BB5A97ABDA4FF558A /* [CP] Check Pods Manifest.lock */,
+				A52AF3AC3F19CDEA0795F10D /* [CP] Check Pods Manifest.lock */,
 				8094CA3C28EDC65900E70F76 /* Sources */,
 				8094CA3D28EDC65900E70F76 /* Frameworks */,
 				8094CA3E28EDC65900E70F76 /* Resources */,
-				5111E9E2C4073E03F647D7EC /* [CP] Embed Pods Frameworks */,
+				EB227F7EB62AD22DD1C38D29 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -409,29 +423,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C1D3E204F137C9DAD707FC0 /* [CP] Check Pods Manifest.lock */ = {
+		1CD8F48525C514C013D1C903 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NostelgiAlbum-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1A2695FEED75E88CF2021763 /* [CP] Check Pods Manifest.lock */ = {
+		A48282DD6F50277915745ADE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -453,7 +462,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		20250F3BB5A97ABDA4FF558A /* [CP] Check Pods Manifest.lock */ = {
+		A52AF3AC3F19CDEA0795F10D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -475,7 +484,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5111E9E2C4073E03F647D7EC /* [CP] Embed Pods Frameworks */ = {
+		E28A8C0DE1DF1C1F91F8B84A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NostelgiAlbum-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB227F7EB62AD22DD1C38D29 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -490,23 +521,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AF0FC730FDFF0EA6954C6804 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -531,9 +545,11 @@
 				831A04DA295EC04C009D26A0 /* ImageViewController.swift in Sources */,
 				80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */,
 				8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */,
+				83C615F4299942FD0018BBAF /* ShareFunc.swift in Sources */,
 				806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */,
 				8320291F295EA8E2001709E9 /* AlbumEditViewController.swift in Sources */,
 				8092C3A3298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift in Sources */,
+				83C615F629994CE30018BBAF /* ToolBarButtonAction.swift in Sources */,
 				8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */,
 				807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */,
 				8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */,
@@ -708,7 +724,7 @@
 		};
 		8094CA4B28EDC65900E70F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 66A42BFB3D9C5A9D8D866E41 /* Pods-NostelgiAlbum.debug.xcconfig */;
+			baseConfigurationReference = 4C8290A5F6ED840AD5B917C9 /* Pods-NostelgiAlbum.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -739,7 +755,7 @@
 		};
 		8094CA4C28EDC65900E70F76 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FFC13E4AFBFFF078784A65D /* Pods-NostelgiAlbum.release.xcconfig */;
+			baseConfigurationReference = 6E5DCC93F7BDA1B362378A7C /* Pods-NostelgiAlbum.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -770,7 +786,7 @@
 		};
 		8094CA4E28EDC65900E70F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F00B25CE38D4EB515594CCC9 /* Pods-NostelgiAlbumTests.debug.xcconfig */;
+			baseConfigurationReference = 91F58AEC0D6B332A167C129D /* Pods-NostelgiAlbumTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -791,7 +807,7 @@
 		};
 		8094CA4F28EDC65900E70F76 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3EC5C868D5280CF9D73AB4D /* Pods-NostelgiAlbumTests.release.xcconfig */;
+			baseConfigurationReference = D8BEDED1B5046A84DA5ED8E9 /* Pods-NostelgiAlbumTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -812,7 +828,7 @@
 		};
 		8094CA5128EDC65900E70F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 884CF07808E0B766753C3292 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */;
+			baseConfigurationReference = 09E86ACB70C1454B76E222B5 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -831,7 +847,7 @@
 		};
 		8094CA5228EDC65900E70F76 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3799B6D3405FAB35D79C7103 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig */;
+			baseConfigurationReference = 6601033F99ABB4CE0338C61C /* Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
