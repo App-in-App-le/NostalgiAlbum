@@ -32,8 +32,6 @@ class AlbumPicViewController: UIViewController {
         guard let picVC = self.presentingViewController else { return }
         editVC.picture = picture
         editVC.collectionViewInAlbum = collectionViewInAlbum
-        //editVC.editPicture.setImage(UIImage(named: self.picture.ImageName)?.resize(newWidth: 312), for: .normal)
-        //editVC.editPicture.setTitle("", for: .normal)
         editVC.modalPresentationStyle = .overFullScreen
         self.dismiss(animated: false) {
             picVC.present(editVC, animated: false)

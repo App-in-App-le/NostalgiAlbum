@@ -6,12 +6,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
+    /*
+     .nost파일을 통해 앱을 열 때 호출되는 함수
+     */
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        //Main.storyboard set
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //Main.storyboard의 HomeScreenViewController객체를 가져옴
+        let vc = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController")
+        //UINavigationController의 rootViewController를 HomeScreenViewController로 지정
+        let navigationController = UINavigationController(rootViewController: vc)
+        //rootViewControlelr에 객체 값 할당
+        window?.rootViewController = vc
+        window?.rootViewController = navigationController
+        //NostelgiAlbum을 여는 경로가 .nost file일 때
+        let url = URLContexts.first?.url
+        if(url?.scheme == "file" && url?.pathExtension == "nost")
+        {
+            //navigationController.viewControllers.first == HomeScreenViewController
+            guard let homeScreenViewController = navigationController.viewControllers.first as? HomeScreenViewController else { return }
+            //HomeScreenViewController의 pushShareView 동작(파일 URL을 같이 넣어줌)
+            homeScreenViewController.pushShareView(path: url!)
+        }
 
+
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
