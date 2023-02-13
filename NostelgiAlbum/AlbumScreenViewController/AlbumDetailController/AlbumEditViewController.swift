@@ -109,8 +109,8 @@ class AlbumEditViewController: UIViewController {
             }
             return
         }
+
         collectionViewInAlbum.reloadData()
-        
         dismiss(animated: false, completion: nil)
     }
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){

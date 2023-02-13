@@ -7,7 +7,6 @@ class AlbumScreenViewController: UIViewController {
     let realm = try! Realm()
     var pageNum : Int = 0
     var coverIndex : Int = 0
-    // tool-bar item
     
     // collectionView setting
     @IBOutlet weak var collectionView: UICollectionView!
@@ -190,13 +189,13 @@ extension AlbumScreenViewController:UICollectionViewDataSource{
             cell.albumInfo = picture
             let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
             LongPressGestureRecognizer.picture = picture
-            cell.pictureImgButton.addGestureRecognizer(LongPressGestureRecognizer)
+            cell.pictureImgButton!.addGestureRecognizer(LongPressGestureRecognizer)
         } else {
             cell.albumInit()
             //print("indexPath : ",indexPath.item)
             //print("count : ",data.count)
             if (indexPath.item + pageNum * 2) > data.count {
-                cell.pictureImgButton.isHidden = true
+                cell.pictureImgButton!.isHidden = true
             }
         }
         return cell
