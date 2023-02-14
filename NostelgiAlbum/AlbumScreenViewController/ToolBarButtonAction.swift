@@ -73,10 +73,10 @@ extension AlbumScreenViewController: DisDelegate{
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
         //검색한 내용이 있을 경우
         if let result = data.firstIndex(where: {$0.ImageName == text}){
-            guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
             if(result/2 > checkcount){
                 //한 개씩 push
                 while checkcount < result/2 {
+                    guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
                     checkcount = checkcount + 1
                     pushVC.pageNum = checkcount
                     pushVC.coverIndex = self.coverIndex
