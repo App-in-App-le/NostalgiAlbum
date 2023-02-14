@@ -1,6 +1,8 @@
 import UIKit
+import RealmSwift
 
 extension AlbumScreenViewController {
+    
     // 한 손가락으로 swipe 할 때 실행할 메서드
     @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer){
         // 제스처가 존재하는 경우
@@ -32,15 +34,18 @@ extension AlbumScreenViewController {
             }
         }
     }
+    
     //back button을 눌렀을 때 Home으로 이동
     @objc func popToHome(){
         self.navigationController?.popToRootViewController(animated: false)
     }
+    
     //Long Gesture에 album Data를 넣기 위함
     class customLongPressGesture : UILongPressGestureRecognizer{
         var picture : album!
     }
-    //
+    
+    //앨범 내 사진을 눌렀을 때 삭제 기능 동작
     @objc func didLongPressView(_ gesture: customLongPressGesture) {
         let editPicAlert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         let delete = UIAlertAction(title: "사진 삭제", style: .default){(action) in self.deletePicture(gesture.picture)}
@@ -53,7 +58,8 @@ extension AlbumScreenViewController {
             editPicAlert.view.superview?.addGestureRecognizer(tap)
         }
     }
-    //사진을 꾹 눌렀을 때 동작
+    
+    //삭제 기능 동작 시 필요한 function
     private func deletePicture(_ picture : album) {
         let pictures = realm.objects(album.self).filter("index = \(picture.index)")
         let picturesInfo = realm.objects(albumsInfo.self).filter("id = \(picture.index)")
@@ -85,8 +91,10 @@ extension AlbumScreenViewController {
                 let originPath = "\(pictures[index-1].AlbumTitle)/\(pictures[index-1].AlbumTitle)_\(index + 1).png"
                 let originDirectory = documentDirectory.appending(path: originPath)
                 let updateDirectory = documentDirectory.appending(path: updatePath)
+                print("origin",originDirectory.path)
+                print("update",updateDirectory.path)
                 do {
-                    try FileManager.default.moveItem(atPath: originDirectory.path(), toPath: updateDirectory.path())
+                    try FileManager.default.moveItem(atPath: originDirectory.path, toPath: updateDirectory.path)
                 } catch {
                     print("경로가 없습니다.")
                 }
