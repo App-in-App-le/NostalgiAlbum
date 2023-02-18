@@ -245,8 +245,8 @@
 				80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */,
 				83C615F529994CE30018BBAF /* ToolBarButtonAction.swift */,
 				831E7443299A724900D48D5C /* AlbumScreenViewGesture.swift */,
-				831A0523297A9BE7009D26A0 /* AlbumDetailController */,
 				831E7445299A7BDF00D48D5C /* AlbumDelegate+Layout.swift */,
+				831A0523297A9BE7009D26A0 /* AlbumDetailController */,
 			);
 			path = AlbumScreenViewController;
 			sourceTree = "<group>";
@@ -730,7 +730,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N7AA7Y5KM6;
+				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = test;
@@ -761,7 +761,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N7AA7Y5KM6;
+				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = test;

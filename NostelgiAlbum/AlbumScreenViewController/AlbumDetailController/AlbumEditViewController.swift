@@ -2,31 +2,56 @@ import UIKit
 import RealmSwift
 
 class AlbumEditViewController: UIViewController {
-
+    
     @IBOutlet weak var editText: UITextView!
     @IBOutlet weak var editName: UITextField!
     @IBOutlet weak var editPicture: UIButton!
     var collectionViewInAlbum : UICollectionView!
     var index : Int!
     var albumCoverName : String!
-    let picker = UIImagePickerController()
-    var picture: album!
+    var picture: album? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         if picture != nil
         {
-            transPic(picture)
+            transPic(picture!)
         } else {
             editPicture.setImage(UIImage(systemName: "photo"), for: .normal)
         }
-        picker.delegate = self
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
     }
     
+    // - MARK: 키보드가 올라가고 내려가는데에 observer를 생성하여 action을 설정
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardUp(notification:NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            UIView.animate(
+                withDuration: 0.3
+                , animations: {
+                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
+                }
+            )
+        }
+    }
+    
+    @objc func keyboardDown() {
+        self.view.transform = .identity
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-          self.view.endEditing(true)
+        self.view.endEditing(true)
     }
     
     @IBAction func addAlbumPicture(_ sender: Any) {
@@ -39,18 +64,25 @@ class AlbumEditViewController: UIViewController {
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
-
+    
     @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
         if sender.direction == .down{
             self.dismiss(animated: true)
         }
     }
+    
     func openLibrary(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        //        picker.allowsEditing = true
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
     }
     
     func openCamera(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        //        picker.allowsEditing = true
         picker.sourceType = .camera
         present(picker, animated: false, completion: nil)
     }
@@ -65,13 +97,13 @@ class AlbumEditViewController: UIViewController {
     
     func modifyPic() {
         let realm = try! Realm()
-        let updPicture = (realm.objects(album.self).filter("index = \(picture.index)"))
+        let updPicture = (realm.objects(album.self).filter("index = \(picture!.index)"))
         try! realm.write {
-            updPicture[picture.perAlbumIndex - 1].ImageName = editName.text!
-            updPicture[picture.perAlbumIndex - 1].ImageText = editText.text!
+            updPicture[picture!.perAlbumIndex - 1].ImageName = editName.text!
+            updPicture[picture!.perAlbumIndex - 1].ImageText = editText.text!
         }
-        let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex).png"
-        saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: picture.AlbumTitle)
+        let totalPath = "\(picture!.AlbumTitle)_\(picture!.perAlbumIndex).png"
+        saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: picture!.AlbumTitle)
     }
     func addPic() {
         let realm = try! Realm()
@@ -112,7 +144,7 @@ class AlbumEditViewController: UIViewController {
             }
             return
         }
-
+        
         collectionViewInAlbum.reloadData()
         dismiss(animated: false, completion: nil)
     }
@@ -126,7 +158,7 @@ extension AlbumEditViewController : UINavigationControllerDelegate, UIImagePicke
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{ editPicture.imageView?.image = image
             editPicture.setTitle("", for: .normal)
             editPicture.setImage(image.resize(newWidth: editPicture.frame.size.width, newHeight: editPicture.frame.size.height), for: .normal)
+            dismiss(animated: true, completion: nil)
         }
-        dismiss(animated: true, completion: nil)
     }
 }
