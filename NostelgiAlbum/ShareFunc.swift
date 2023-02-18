@@ -32,7 +32,14 @@ func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
     } catch {
         print("Something went wrong")
     }
-    return nostURL
+    do {
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)imageNameInfo.txt"))
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)imageTextInfo.txt"))
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)Info.txt"))
+    } catch {
+        print("Error remove txt file")
+    }
+        return nostURL
 }
 
 func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) {
@@ -166,5 +173,15 @@ func importAlbumInfo(albumURL: URL) {
         try FileManager.default.removeItem(at: albumInfoURL)
     } catch {
         print("Error removing txt")
+    }
+}
+
+func checkExistedAlbum(albumCoverName: String) -> Bool {
+    let realm = try! Realm()
+    let album = realm.objects(albumCover.self).filter("albumName == '\(albumCoverName)'")
+    if album.isEmpty {
+        return true
+    } else {
+        return false
     }
 }

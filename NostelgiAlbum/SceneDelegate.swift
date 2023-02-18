@@ -11,6 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     /*
      .nost파일을 통해 앱을 열 때 호출되는 함수
+     iOS 13이상 적용
      */
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         //Main.storyboard set

@@ -112,7 +112,7 @@ class AlbumEditViewController: UIViewController {
             }
             return
         }
-
+        deleteTmpPicture()
         collectionViewInAlbum.reloadData()
         dismiss(animated: false, completion: nil)
     }
