@@ -408,44 +408,62 @@
             <point key="canvasLocation" x="2884.7328244274809" y="930.98591549295782"/>
         </scene>
         <!--Image View Controller-->
-        <scene sceneID="QKm-iT-ia9">
+        <scene sceneID="9n1-LX-hOn">
             <objects>
-                <viewController storyboardIdentifier="ImageViewController" id="NcE-4x-cJB" customClass="ImageViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="s0s-tL-iVr">
+                <viewController storyboardIdentifier="ImageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EyQ-G8-u6i" customClass="ImageViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yRj-Hy-QZk">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="se2-oU-f4c">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEh-wv-ahH">
-                                <rect key="frame" x="298" y="79" width="75" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="closeAction:" destination="NcE-4x-cJB" eventType="touchUpInside" id="8Ww-DV-VPH"/>
-                                </connections>
-                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="9EG-c4-JCK">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qlc-uo-vHS">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DiD-Yh-0z4">
+                                        <rect key="frame" x="26" y="67" width="75" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="button"/>
+                                        <connections>
+                                            <action selector="closeAction:" destination="EyQ-G8-u6i" eventType="touchUpInside" id="gh6-1k-t4W"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qlc-uo-vHS" firstAttribute="top" secondItem="dgz-h1-cQk" secondAttribute="top" id="8Z7-ow-yXh"/>
+                                    <constraint firstItem="qlc-uo-vHS" firstAttribute="height" secondItem="27H-sg-Iq8" secondAttribute="height" id="HpE-Um-Yn2"/>
+                                    <constraint firstItem="qlc-uo-vHS" firstAttribute="trailing" secondItem="dgz-h1-cQk" secondAttribute="trailing" id="MAb-H6-iKD"/>
+                                    <constraint firstItem="qlc-uo-vHS" firstAttribute="leading" secondItem="dgz-h1-cQk" secondAttribute="leading" id="O9K-BF-KdJ"/>
+                                    <constraint firstItem="qlc-uo-vHS" firstAttribute="width" secondItem="27H-sg-Iq8" secondAttribute="width" id="cGH-Vt-sKh"/>
+                                    <constraint firstItem="qlc-uo-vHS" firstAttribute="bottom" secondItem="dgz-h1-cQk" secondAttribute="bottom" id="vrg-Os-CVd"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="dgz-h1-cQk"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="27H-sg-Iq8"/>
+                            </scrollView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="Lj2-bc-8fe"/>
+                        <viewLayoutGuide key="safeArea" id="JkI-f5-TyR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Lj2-bc-8fe" firstAttribute="trailing" secondItem="PEh-wv-ahH" secondAttribute="trailing" constant="20" id="05y-5t-Vdp"/>
-                            <constraint firstItem="Lj2-bc-8fe" firstAttribute="trailing" secondItem="se2-oU-f4c" secondAttribute="trailing" id="4jv-U1-lYd"/>
-                            <constraint firstItem="se2-oU-f4c" firstAttribute="top" secondItem="Lj2-bc-8fe" secondAttribute="top" id="Ikj-Bq-cYj"/>
-                            <constraint firstItem="se2-oU-f4c" firstAttribute="leading" secondItem="Lj2-bc-8fe" secondAttribute="leading" id="LAF-eB-ycb"/>
-                            <constraint firstItem="Lj2-bc-8fe" firstAttribute="bottom" secondItem="se2-oU-f4c" secondAttribute="bottom" id="VGd-BF-1l9"/>
-                            <constraint firstItem="PEh-wv-ahH" firstAttribute="top" secondItem="Lj2-bc-8fe" secondAttribute="top" constant="20" id="VeK-cG-V2J"/>
+                            <constraint firstItem="JkI-f5-TyR" firstAttribute="trailing" secondItem="DiD-Yh-0z4" secondAttribute="trailing" constant="292" id="4UI-JO-arL"/>
+                            <constraint firstItem="DiD-Yh-0z4" firstAttribute="top" secondItem="JkI-f5-TyR" secondAttribute="top" constant="8" id="8OY-NH-71O"/>
+                            <constraint firstItem="9EG-c4-JCK" firstAttribute="top" secondItem="yRj-Hy-QZk" secondAttribute="top" id="ATZ-m8-qTn"/>
+                            <constraint firstItem="JkI-f5-TyR" firstAttribute="bottom" secondItem="DiD-Yh-0z4" secondAttribute="bottom" constant="716" id="CFN-kN-Wn7"/>
+                            <constraint firstAttribute="bottom" secondItem="9EG-c4-JCK" secondAttribute="bottom" id="HC7-TN-yWq"/>
+                            <constraint firstItem="9EG-c4-JCK" firstAttribute="leading" secondItem="JkI-f5-TyR" secondAttribute="leading" id="JOm-kq-zKm"/>
+                            <constraint firstItem="DiD-Yh-0z4" firstAttribute="leading" secondItem="JkI-f5-TyR" secondAttribute="leading" constant="26" id="fDk-d7-Wdj"/>
+                            <constraint firstItem="9EG-c4-JCK" firstAttribute="trailing" secondItem="JkI-f5-TyR" secondAttribute="trailing" id="lWM-eP-qcq"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="closeButton" destination="PEh-wv-ahH" id="Bw4-cp-ofn"/>
-                        <outlet property="imageView" destination="se2-oU-f4c" id="9W4-cg-kAy"/>
+                        <outlet property="closeButton" destination="DiD-Yh-0z4" id="tyU-TA-EjR"/>
+                        <outlet property="imageView" destination="qlc-uo-vHS" id="qze-hp-E8O"/>
+                        <outlet property="scrollView" destination="9EG-c4-JCK" id="a5n-Eh-62n"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t13-Cp-Lf7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8nh-3i-Afa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3701.5267175572517" y="930.98591549295782"/>
+            <point key="canvasLocation" x="3681.679389312977" y="936.61971830985919"/>
         </scene>
         <!--Share View Controller-->
         <scene sceneID="7HD-nO-WPm">
