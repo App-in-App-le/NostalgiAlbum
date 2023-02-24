@@ -7,13 +7,13 @@ extension HomeEditViewController {
     // - MARK: "save" 버튼 Action
     @IBAction func saveAlbum(_ sender: Any) {
         
-        // [1] realm 객체 생성
+        // realm 객체 생성
         let realm = try! Realm()
         
-        // [2-1] 새로운 앨범을 생성하는 경우
+        // 새로운 앨범을 생성하는 경우
         if !IsModifyingView {
             
-            // [1] 앨범의 제목이나 이미지를 설정하지 않은 경우 Alert을 띄움
+            // 앨범의 제목이나 이미지를 설정하지 않은 경우 Alert을 띄움
             if albumName.text == "" {
                 let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
                 present(textAlert, animated: true){
@@ -33,7 +33,7 @@ extension HomeEditViewController {
                 return
             }
             
-            // [2] 새로운 albumCover realm 객체를 생성
+            // 새로운 albumCover realm 객체를 생성
             let newAlbumCover = albumCover()
             newAlbumCover.incrementIndex()
             newAlbumCover.albumName = albumName.text!
@@ -60,20 +60,20 @@ extension HomeEditViewController {
                 return
             }
             
-            // [3] 새로운 albumsInfo realm 객체를 생성
+            // 새로운 albumsInfo realm 객체를 생성
             let newAlbumsInfo = albumsInfo()
             newAlbumsInfo.incrementIndex()
             newAlbumsInfo.setDateOfCreation()
             newAlbumsInfo.numberOfPictures = 0
             
-            // [4] 위의 새로운 정보들을 realm 객체에 저장
+            // 위의 새로운 정보들을 realm 객체에 저장
             try! realm.write
             {
                 realm.add(newAlbumCover)
                 realm.add(newAlbumsInfo)
             }
             
-            // [5] 새로운 앨범에 대한 폴더를 document 파일에 생성 :: 폴더 이름 == "albumName.text"
+            // 새로운 앨범에 대한 폴더를 document 파일에 생성 :: 폴더 이름 == "albumName.text"
             guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
             
             let dirPath = documentDirectory.appendingPathComponent(albumName.text!)
@@ -86,9 +86,9 @@ extension HomeEditViewController {
             }
         }
         
-        // [2-2] 기존의 앨범을 수정하는 경우
+        // 기존의 앨범을 수정하는 경우
         else {
-            // [1] 앨범의 제목을 설정하지 않은 경우 Alert을 띄움
+            // 앨범의 제목을 설정하지 않은 경우 Alert을 띄움
             if albumName.text == "" {
                 let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
                 present(textAlert, animated: true){
@@ -99,7 +99,7 @@ extension HomeEditViewController {
                 return
             }
             
-            // [2] Document 폴더에서 수정된 앨범의 앨범 폴더 이름을 변경
+            // Document 폴더에서 수정된 앨범의 앨범 폴더 이름을 변경
             guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
             let albumDirectoryPath = documentDirectory.appendingPathComponent(albumNameBeforeModify)
             let modifyAlbumDirectoryPath = documentDirectory.appendingPathComponent(albumName.text!)
@@ -110,11 +110,11 @@ extension HomeEditViewController {
                 print("Move failed")
             }
             
-            // [3] RealmDB에서 해당 앨범에 관련된 albumCover, album 객체를 찾음
+            // RealmDB에서 해당 앨범에 관련된 albumCover, album 객체를 찾음
             let albumCoverData = realm.objects(albumCover.self).filter("id = \(id)")
             let albumData = realm.objects(album.self).filter("index = \(id)")
             
-            // [4] 앨범 폴더 내의 사진 이름을 모두 변경
+            // 앨범 폴더 내의 사진 이름을 모두 변경
             for album in albumData {
                 let OldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(album.AlbumTitle)_\(album.perAlbumIndex).png")
                 let NewPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_\(album.perAlbumIndex).png")
@@ -126,7 +126,7 @@ extension HomeEditViewController {
                 }
             }
             
-            // [5] RealmDB의 객체 정보들을 수정 :: album -> [albumTitle], albumCover -> [albumName, CoverImageName]
+            // RealmDB의 객체 정보들을 수정 :: album -> [albumTitle], albumCover -> [albumName, CoverImageName]
             try! realm.write{
                 // Modify "albumCover" instance in RealmDB
                 albumCoverData.first?.albumName = String(albumName.text!)
@@ -157,10 +157,10 @@ extension HomeEditViewController {
             }
         }
         
-        // [3] HomeScreenView의 collectionView를 reload
+        // HomeScreenView의 collectionView를 reload
         collectionViewInHome.reloadData()
         
-        // [4] EditViewController modal을 dismiss
+        // EditViewController modal을 dismiss
         dismiss(animated: false, completion: nil)
         
     }
@@ -176,10 +176,10 @@ extension HomeEditViewController {
     // - MARK: "Image" 버튼 Action
     @IBAction func addImage(_ sender: Any) {
         
-        // [1] 색을 지정
+        // 색을 지정
         let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"]
         
-        // [2] Alert을 생성하고 Action을 지정
+        // Alert을 생성하고 Action을 지정
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         colors.forEach { color in
             alert.addAction(UIAlertAction(title: color.key, style: .default) { action in
@@ -187,7 +187,7 @@ extension HomeEditViewController {
             })
         }
         
-        // [3] Alert을 띄움
+        // Alert을 띄움
         present(alert, animated: true) {
             alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
         }

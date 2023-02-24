@@ -12,19 +12,19 @@ extension HomeScreenViewController: UICollectionViewDataSource{
     // - MARK: CollectionView :: cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        // [1] Cell을 Reuseidenfier를 이용해 생성
+        // Cell을 Reuseidenfier를 이용해 생성
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeScreenCollectionViewCell", for: indexPath) as! HomeScreenCollectionViewCell
         
-        // [2] Cell의 프로퍼티들을 초기화 :: DataReload() 사용 시, cell에 reference로 연결된 객체들을 해제시키기 위함.
+        // Cell의 프로퍼티들을 초기화 :: DataReload() 사용 시, cell에 reference로 연결된 객체들을 해제시키기 위함.
         cell.firstButton.setImage(UIImage(systemName: "plus"), for: .normal)
         cell.secondButton.setImage(UIImage(systemName: "plus"), for: .normal)
         cell.firstButton.gestureRecognizers = nil
         cell.secondButton.gestureRecognizers = nil
         
-        // [3] CollectionView에 표시되어야 하는 버튼의 개수를 Cover_num 변수에 저장 :: (총 앨범의 개수 + 1)
+        // CollectionView에 표시되어야 하는 버튼의 개수를 Cover_num 변수에 저장 :: (총 앨범의 개수 + 1)
         let cover_num = realm.objects(albumCover.self).count + 1
         
-        // [4] 각 열별로 Case를 나누어 각 열에 존재하는 button들의 isHidden Option을 설정
+        // 각 열별로 Case를 나누어 각 열에 존재하는 button들의 isHidden Option을 설정
         // FIRST CASE :: (cover_num / 2)개 까지의 열을 처리 -> cover_num이 홀수 개인 경우 따로 처리해줘야 함.
         if (indexPath.row + 1) * 2 <= cover_num {
             cell.firstButton.isHidden = false
@@ -61,7 +61,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
             cell.secondButton.isHidden = true
         }
         
-        // [5] 각 Cell의 firstButton / SecondButton Action을 지정
+        // 각 Cell의 firstButton / SecondButton Action을 지정
         // Callback1 :: First button Action
         cell.callback1 = {
             if cell.firstButton.imageView?.image == UIImage(systemName: "plus"){
