@@ -1,33 +1,32 @@
 import UIKit
 
-// HomeScreenCollectionViewCell
+// - MARK: HomeScreenCollectionViewCell
 class HomeScreenCollectionViewCell: UICollectionViewCell {
     
-    class var identifier: String{
-        return String(describing: self)
-    }
-    class var nib: UINib{
-        return UINib(nibName: identifier, bundle: nil)
-    }
-    @IBOutlet weak var secondButton: UIButton!
+    // - MARK: Cell의 Subviews 관련 변수 설정
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var firstButtonTitle: UILabel!
+    @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var secondButtonTitle: UILabel!
+    
+    // - MARK: 각 버튼에 대한 Callback 함수 설정
     var callback1 : (()->Void)?
     var callback2 : (()->Void)?
     
+    // - MARK: 각 버튼에 대한 Action 설정
+    @IBAction func fmakeButton(_ sender: Any) {
+        callback1?()
+    }
     @IBAction func makeButton(_ sender: Any) {
         callback2?()
     }
     
-    @IBAction func fmakeButton(_ sender: Any) {
-        callback1?()
-    }
-    
 }
 
+// - MARK: UICollectionViewCell의 UI 설정에 관련된 extension
 extension UICollectionViewCell {
     
+    // - MARK: 그라데이션을 설정하는 함수
     func setGradient(color1: CGColor, color2: CGColor){
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [color1, color2]
