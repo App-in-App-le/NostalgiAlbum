@@ -10,7 +10,9 @@ func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
     let nostURL = documentDirectory.appendingPathComponent("\(AlbumCoverName).nost")
     exportAlbumInfo(coverData: AlbumCoverName)
     do {
-        let zipfilePath = try Zip.quickZipFiles([dirURL], fileName: AlbumCoverName)
+        let files = try FileManager.default.contentsOfDirectory(at: dirURL, includingPropertiesForKeys: nil)
+        let zipFilePath = documentDirectory.appendingPathComponent("\(AlbumCoverName).zip")
+        try Zip.zipFiles(paths: files, zipFilePath: zipFilePath, password: nil, progress: nil)
         do {
             if FileManager.default.fileExists(atPath: nostURL.path) {
                 do {
@@ -21,10 +23,10 @@ func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
                 }
             }
             //zip -> nost write
-            if let data = try? Data(contentsOf: zipfilePath) {
+            if let data = try? Data(contentsOf: zipFilePath) {
                 let newURL = URL(filePath: nostURL.path)
                 try? data.write(to: newURL)
-                try FileManager.default.removeItem(at: zipfilePath)
+                try FileManager.default.removeItem(at: zipFilePath)
             } else {
                 print("Error rewrite file")
             }
@@ -46,10 +48,13 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) {
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
     //(앨범 이름).zip file을 만들 경로
     let zipURL = documentDirectory.appendingPathComponent("\(AlbumCoverName).zip")
+    print("sharepath",shareFilePath.path)
+    print("zipURL",zipURL.path)
     if let data = try? Data(contentsOf: shareFilePath) {
         try? data.write(to: zipURL)
         do {
-            try Zip.unzipFile(zipURL, destination: zipURL.deletingLastPathComponent(), overwrite: true, password: nil)
+            try Zip.unzipFile(zipURL, destination: zipURL.deletingPathExtension(), overwrite: true, password: nil)
+            checkModifyName(albumCoverName: AlbumCoverName)
             //zipURL == sandbox에서 documents내 zip
             try FileManager.default.removeItem(at: zipURL)
             //filePath == simulator의 경우 tmp/com....NostelgiAlbum-Inbox
@@ -61,6 +66,7 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) {
     } else {
         print("Error rewrite zip")
     }
+    
     
 }
 
@@ -79,16 +85,15 @@ func exportAlbumInfo(coverData: String) {
     
     arrAlbumInfo.append(String(albumInfo.first!.numberOfPictures))
     arrAlbumInfo.append(albumInfo.first!.dateOfCreation)
-    
     let imageNameInfo = arrImageName.joined(separator: "\n")
     let imageTextInfo = arrImageText.joined(separator: "\n")
     let albumInfoText = arrAlbumInfo.joined(separator: "\n")
     
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
     let dirURL = documentDirectory.appendingPathComponent(coverData)
-    let nameInfoURL = dirURL.appendingPathComponent("\(coverData)imageNameInfo.txt")
-    let textInfoURL = dirURL.appendingPathComponent("\(coverData)imageTextInfo.txt")
-    let albumInfoURL = dirURL.appendingPathComponent("\(coverData)Info.txt")
+    let nameInfoURL = dirURL.appendingPathComponent("\(coverData)_imageNameInfo.txt")
+    let textInfoURL = dirURL.appendingPathComponent("\(coverData)_imageTextInfo.txt")
+    let albumInfoURL = dirURL.appendingPathComponent("\(coverData)_Info.txt")
     
     do {
         try imageNameInfo.write(to: nameInfoURL, atomically: true, encoding: .utf8)
@@ -101,20 +106,18 @@ func exportAlbumInfo(coverData: String) {
 }
 
 //공유받은 album realm에 write
-func importAlbumInfo(albumURL: URL) {
+func importAlbumInfo(albumCoverName: String) {
     let realm = try! Realm()
     
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-    
-    let albumCoverName = albumURL.deletingPathExtension().lastPathComponent
-    //albumName
-    let nameInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)imageNameInfo.txt")
+        //albumName
+    let nameInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)_imageNameInfo.txt")
     //albumText
-    let textInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)imageTextInfo.txt")
+    let textInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)_imageTextInfo.txt")
     //albumInfo
     //numberofPictures
     //dateOfCreation
-    let albumInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)Info.txt")
+    let albumInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)_Info.txt")
     
     var arrImageName = [String]()
     var arrImageText = [String]()
@@ -175,13 +178,34 @@ func importAlbumInfo(albumURL: URL) {
         print("Error removing txt")
     }
 }
-
+/*
+ */
 func checkExistedAlbum(albumCoverName: String) -> Bool {
     let realm = try! Realm()
-    let album = realm.objects(albumCover.self).filter("albumName == '\(albumCoverName)'")
-    if album.isEmpty {
-        return true
-    } else {
-        return false
+    let album = realm.objects(album.self)
+    for data in album {
+        if data.AlbumTitle == albumCoverName {
+            return true
+        }
+    }
+    return false
+}
+
+func checkModifyName(albumCoverName: String) {
+    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+    let albumDir = documentDirectory.appendingPathComponent(albumCoverName)
+    let files: [URL]
+    do {
+        files = try FileManager.default.contentsOfDirectory(at: albumDir, includingPropertiesForKeys: nil)
+        let filesStr = try FileManager.default.contentsOfDirectory(atPath: albumDir.path)
+        let originName = filesStr.first!.split(separator: "_")
+        if (originName.first)! != albumCoverName {
+            for i in 0...files.count - 1 {
+                let replaceStr = filesStr[i].replacingOccurrences(of: originName.first!, with: albumCoverName)
+                try FileManager.default.moveItem(atPath: files[i].path, toPath: albumDir.appendingPathComponent(replaceStr).path)
+            }
+        }
+    } catch {
+        print("files error")
     }
 }

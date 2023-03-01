@@ -34,6 +34,7 @@
 		831A04DA295EC04C009D26A0 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A04D9295EC04C009D26A0 /* ImageViewController.swift */; };
 		831E7444299A724900D48D5C /* AlbumScreenViewGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E7443299A724900D48D5C /* AlbumScreenViewGesture.swift */; };
 		831E7446299A7BDF00D48D5C /* AlbumDelegate+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E7445299A7BDF00D48D5C /* AlbumDelegate+Layout.swift */; };
+		831E744829A5286400D48D5C /* AlbumRenameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E744729A5286400D48D5C /* AlbumRenameViewController.swift */; };
 		8320291F295EA8E2001709E9 /* AlbumEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */; };
 		83C615C8298B978D0018BBAF /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615C7298B978D0018BBAF /* ShareViewController.swift */; };
 		83C615CA298BA3C90018BBAF /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615C9298BA3C90018BBAF /* UTI.swift */; };
@@ -96,6 +97,7 @@
 		831A04D9295EC04C009D26A0 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		831E7443299A724900D48D5C /* AlbumScreenViewGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenViewGesture.swift; sourceTree = "<group>"; };
 		831E7445299A7BDF00D48D5C /* AlbumDelegate+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumDelegate+Layout.swift"; sourceTree = "<group>"; };
+		831E744729A5286400D48D5C /* AlbumRenameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRenameViewController.swift; sourceTree = "<group>"; };
 		8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEditViewController.swift; sourceTree = "<group>"; };
 		83C615C7298B978D0018BBAF /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		83C615C9298BA3C90018BBAF /* UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTI.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				83C615C7298B978D0018BBAF /* ShareViewController.swift */,
 				80A6D644299A0BE600B2D657 /* ShareFunc.swift */,
+				831E744729A5286400D48D5C /* AlbumRenameViewController.swift */,
 				831A051F297A9B6E009D26A0 /* Model */,
 				8094CA2928EDC65500E70F76 /* Main.storyboard */,
 				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
@@ -528,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831E744829A5286400D48D5C /* AlbumRenameViewController.swift in Sources */,
 				83C615F1298EBB010018BBAF /* SharingAlbumPush.swift in Sources */,
 				83C615CA298BA3C90018BBAF /* UTI.swift in Sources */,
 				831E7444299A724900D48D5C /* AlbumScreenViewGesture.swift in Sources */,
