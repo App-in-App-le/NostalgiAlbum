@@ -116,3 +116,23 @@ extension UIImage {
         }
     }
 }
+
+func deleteTmpPicture() {
+    let tmpDir = NSTemporaryDirectory()
+    var fileList : Array<String>! = nil
+    
+    do {
+        fileList = try FileManager.default.contentsOfDirectory(atPath: tmpDir)
+    } catch {
+        print("Error read tmp file")
+    }
+    do {
+        for file in fileList {
+            let resultDir = tmpDir+file
+            print("result",resultDir)
+            try FileManager.default.removeItem(atPath: resultDir)
+        }
+    } catch {
+        print("Error remove tmp file")
+    }
+}
