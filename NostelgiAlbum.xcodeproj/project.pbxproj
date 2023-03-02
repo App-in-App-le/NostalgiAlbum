@@ -28,6 +28,7 @@
 		80A6D645299A0BE600B2D657 /* ShareFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D644299A0BE600B2D657 /* ShareFunc.swift */; };
 		80C56D18298CE5360063688F /* HomeScreenViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */; };
 		80DF50AE290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */; };
+		80FE482729B0832000FD0D6A /* HomeEditViewController+AlbumNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE482629B0832000FD0D6A /* HomeEditViewController+AlbumNameTextField.swift */; };
 		8312C9D32921465600556BAE /* InfoToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D22921465600556BAE /* InfoToolViewController.swift */; };
 		8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312C9D42921482A00556BAE /* SearchToolViewController.swift */; };
 		831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */; };
@@ -91,6 +92,7 @@
 		80A6D644299A0BE600B2D657 /* ShareFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareFunc.swift; sourceTree = "<group>"; };
 		80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreenViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenCollectionViewCell.swift; sourceTree = "<group>"; };
+		80FE482629B0832000FD0D6A /* HomeEditViewController+AlbumNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeEditViewController+AlbumNameTextField.swift"; sourceTree = "<group>"; };
 		8312C9D22921465600556BAE /* InfoToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToolViewController.swift; sourceTree = "<group>"; };
 		8312C9D42921482A00556BAE /* SearchToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchToolViewController.swift; sourceTree = "<group>"; };
 		831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPicViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			children = (
 				806A653D293873C80054FAEF /* HomeEditViewController.swift */,
 				8092C3A2298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift */,
+				80FE482629B0832000FD0D6A /* HomeEditViewController+AlbumNameTextField.swift */,
 			);
 			path = HomeDetailController;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				83C615CA298BA3C90018BBAF /* UTI.swift in Sources */,
 				831E7444299A724900D48D5C /* AlbumScreenViewGesture.swift in Sources */,
 				8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */,
+				80FE482729B0832000FD0D6A /* HomeEditViewController+AlbumNameTextField.swift in Sources */,
 				831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */,
 				80C56D18298CE5360063688F /* HomeScreenViewController+CollectionView.swift in Sources */,
 				804C7E8E295835D200C63880 /* ImageFunc.swift in Sources */,

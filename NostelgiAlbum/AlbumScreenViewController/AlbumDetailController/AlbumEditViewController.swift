@@ -155,7 +155,8 @@ class AlbumEditViewController: UIViewController {
 
 extension AlbumEditViewController : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{ editPicture.imageView?.image = image
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            editPicture.imageView?.image = image
             editPicture.setTitle("", for: .normal)
             editPicture.setImage(image.resize(newWidth: editPicture.frame.size.width, newHeight: editPicture.frame.size.height), for: .normal)
             dismiss(animated: true, completion: nil)
