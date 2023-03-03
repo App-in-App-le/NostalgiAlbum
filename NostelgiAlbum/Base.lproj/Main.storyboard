@@ -793,11 +793,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBP-fR-9mu">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRN-Fp-mgI" userLabel="PopUpView">
-                                <rect key="frame" x="30" y="224" width="333" height="380"/>
+                                <rect key="frame" x="30" y="236" width="333" height="380"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="앨범 명" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6f-sn-2kD">
                                         <rect key="frame" x="38" y="80" width="45" height="23"/>
@@ -818,7 +818,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JHW-5g-6Ba">
-                                        <rect key="frame" x="93" y="74" width="159" height="34"/>
+                                        <rect key="frame" x="93" y="74" width="149" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -914,11 +914,11 @@
                         <viewLayoutGuide key="safeArea" id="5O0-EV-K1R"/>
                         <constraints>
                             <constraint firstItem="kBP-fR-9mu" firstAttribute="leading" secondItem="5O0-EV-K1R" secondAttribute="leading" id="Ad3-gd-wg8"/>
-                            <constraint firstItem="5O0-EV-K1R" firstAttribute="bottom" secondItem="kBP-fR-9mu" secondAttribute="bottom" id="BKN-5m-S3l"/>
+                            <constraint firstAttribute="bottom" secondItem="kBP-fR-9mu" secondAttribute="bottom" id="BKN-5m-S3l"/>
                             <constraint firstItem="sRN-Fp-mgI" firstAttribute="centerX" secondItem="kBP-fR-9mu" secondAttribute="centerX" id="J6w-Pa-mI8"/>
                             <constraint firstItem="5O0-EV-K1R" firstAttribute="trailing" secondItem="kBP-fR-9mu" secondAttribute="trailing" id="L4W-dU-UKf"/>
                             <constraint firstItem="sRN-Fp-mgI" firstAttribute="centerY" secondItem="kBP-fR-9mu" secondAttribute="centerY" id="i37-3g-2Py"/>
-                            <constraint firstItem="kBP-fR-9mu" firstAttribute="top" secondItem="5O0-EV-K1R" secondAttribute="top" id="x2G-21-2W4"/>
+                            <constraint firstItem="kBP-fR-9mu" firstAttribute="top" secondItem="W9P-Ih-jmQ" secondAttribute="top" id="x2G-21-2W4"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -936,6 +936,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82C-Jj-OyW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-579.38931297709917" y="1637.323943661972"/>
+        </scene>
+        <!--Set Album Name View Controller-->
+        <scene sceneID="GmR-nm-71E">
+            <objects>
+                <viewController storyboardIdentifier="SetAlbumNameViewController" id="Rzf-IO-wp0" customClass="SetAlbumNameViewController" customModule="NostelgiAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4TR-t7-g3l">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRQ-Pv-sdi">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6CA-pi-86C">
+                                        <rect key="frame" x="0.0" y="59" width="53.666666666666664" height="34.333333333333343"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="취소">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="cancleButton:" destination="Rzf-IO-wp0" eventType="touchUpInside" id="bCf-yb-Ixa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrx-s2-Epd">
+                                        <rect key="frame" x="339.33333333333331" y="59" width="53.666666666666686" height="33.333333333333343"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="확인">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="confirmButton:" destination="Rzf-IO-wp0" eventType="touchUpInside" id="lhC-Fv-2xe"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zF8-78-9Q7" userLabel="앨범 이름">
+                                        <rect key="frame" x="20" y="292.33333333333331" width="353" height="34"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zF8-78-9Q7" secondAttribute="trailing" constant="20" id="LHC-YA-xIO"/>
+                                    <constraint firstItem="zF8-78-9Q7" firstAttribute="top" secondItem="Lrx-s2-Epd" secondAttribute="bottom" constant="200" id="Zmr-q1-iqv"/>
+                                    <constraint firstItem="zF8-78-9Q7" firstAttribute="leading" secondItem="GRQ-Pv-sdi" secondAttribute="leading" constant="20" id="xzl-pO-KDO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DNz-aZ-V7m"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="GRQ-Pv-sdi" secondAttribute="bottom" id="1Jv-rT-K71"/>
+                            <constraint firstItem="DNz-aZ-V7m" firstAttribute="top" secondItem="Lrx-s2-Epd" secondAttribute="top" id="5ZI-ph-VUb"/>
+                            <constraint firstItem="GRQ-Pv-sdi" firstAttribute="top" secondItem="4TR-t7-g3l" secondAttribute="top" id="FMn-Dk-94e"/>
+                            <constraint firstItem="DNz-aZ-V7m" firstAttribute="top" secondItem="6CA-pi-86C" secondAttribute="top" id="Nh5-pY-Lbf"/>
+                            <constraint firstItem="GRQ-Pv-sdi" firstAttribute="leading" secondItem="DNz-aZ-V7m" secondAttribute="leading" id="OWY-23-ctN"/>
+                            <constraint firstItem="DNz-aZ-V7m" firstAttribute="trailing" secondItem="GRQ-Pv-sdi" secondAttribute="trailing" id="SMl-Za-UHn"/>
+                            <constraint firstItem="DNz-aZ-V7m" firstAttribute="trailing" secondItem="Lrx-s2-Epd" secondAttribute="trailing" id="hw4-9u-MaY"/>
+                            <constraint firstItem="6CA-pi-86C" firstAttribute="leading" secondItem="DNz-aZ-V7m" secondAttribute="leading" id="oWi-H9-aWw"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="albumName" destination="zF8-78-9Q7" id="s66-Vi-1zk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gOn-L5-VYb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-579.38931297709917" y="2384.5070422535214"/>
         </scene>
     </scenes>
     <resources>

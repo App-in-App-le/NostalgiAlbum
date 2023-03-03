@@ -27,6 +27,7 @@ class HomeEditViewController: UIViewController {
         // 초기 subview 설정 :: 새로 앨범을 만드는 경우
         coverImage.image = UIImage(systemName: "photo")
         albumName.placeholder = " 앨범 명을 입력하세요"
+        albumName.delegate = self
         coverImage.layer.cornerRadius = 10
         createButton.layer.cornerRadius = 10
         cancleButton.layer.cornerRadius = 10
