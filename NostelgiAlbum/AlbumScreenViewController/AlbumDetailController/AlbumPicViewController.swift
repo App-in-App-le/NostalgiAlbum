@@ -13,7 +13,7 @@ class AlbumPicViewController: UIViewController {
         picName.text = picture.ImageName
         picText.text = picture.ImageText
         picImage.setTitle("", for: .normal)
-        let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex)"
+        let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex).jpeg"
         picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: picImage.frame.width, newHeight: (picImage.frame.height)), for: .normal)
         settingBtn.setTitle("", for: .normal)
         settingBtn.setImage(UIImage(systemName: "gearshape"), for: .normal)
@@ -39,7 +39,7 @@ class AlbumPicViewController: UIViewController {
     }
     @IBAction func zoomImage(_ sender: Any) {
         guard let zoomVC = self.storyboard?.instantiateViewController(withIdentifier: "ImageViewController") as? ImageViewController else { return }
-        let totalPath = "\(self.picture.AlbumTitle)_\(self.picture.perAlbumIndex)"
+        let totalPath = "\(self.picture.AlbumTitle)_\(self.picture.perAlbumIndex).jpeg"
         zoomVC.imageName = totalPath
         zoomVC.albumTitle = self.picture.AlbumTitle
         zoomVC.modalPresentationStyle = .overFullScreen
