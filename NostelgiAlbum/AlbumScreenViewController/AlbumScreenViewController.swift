@@ -34,11 +34,6 @@ class AlbumScreenViewController: UIViewController {
         navigationController?.isToolbarHidden = false
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.isToolbarHidden = true
-    }
-    
     // Set toolBar
     private func makeToolbarItems() -> [UIBarButtonItem]{
         let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(AlbumScreenViewController.searchButton))

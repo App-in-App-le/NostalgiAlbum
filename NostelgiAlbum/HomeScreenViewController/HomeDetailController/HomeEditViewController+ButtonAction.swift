@@ -175,26 +175,60 @@ extension HomeEditViewController {
     
     // - MARK: "Image" 버튼 Action
     @IBAction func addImage(_ sender: Any) {
+        // 기본 커버 or 커스텀 커버 중 택하는 Alert 생성
+        let selectCoverTypeAlert = UIAlertController(title: "커버 타입", message: .none, preferredStyle: .alert)
         
-        // 색을 지정
-        let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"]
+        // 해당 Alert의 Action을 설정
+        selectCoverTypeAlert.addAction(UIAlertAction(title: "기본 커버", style: .default) { action in
+            // 색을 지정
+            let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"]
+            
+            // Alert을 생성하고 Action을 지정
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+            
+            // 색 별로 Action을 Alert에 등록
+            colors.forEach { color in
+                alert.addAction(UIAlertAction(title: color.key, style: .default) { action in
+                    self.setCoverImage(color: color.value)
+                })
+            }
+            
+            // Alert을 띄움
+            self.present(alert, animated: true) {
+                alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
+            }
+        })
         
-        // Alert을 생성하고 Action을 지정
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        colors.forEach { color in
-            alert.addAction(UIAlertAction(title: color.key, style: .default) { action in
-                self.setCoverImage(color: color.value)
-            })
-        }
+        selectCoverTypeAlert.addAction(UIAlertAction(title: "커버 만들기", style: .default) { action in
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.allowsEditing = true
+                picker.sourceType = .photoLibrary
+                self.present(picker, animated: false, completion: nil)
+            }
+            let camera = UIAlertAction(title: "카메라", style: .default){(action) in
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.allowsEditing = true
+                picker.sourceType = .camera
+                self.present(picker, animated: false, completion: nil)
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            alert.addAction(library)
+            alert.addAction(camera)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
+        })
         
-        // Alert을 띄움
-        present(alert, animated: true) {
-            alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
+        present(selectCoverTypeAlert, animated: true) {
+            selectCoverTypeAlert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
         }
         
     }
     
-    // - MARK: "setCoverImage" 버튼 Action
+    // - MARK: "setCoverImage" 함수
     func setCoverImage(color: String) {
         
         switch color {
@@ -223,4 +257,30 @@ extension HomeEditViewController {
         
     }
     
+}
+
+// - MARK: HomeEditViewController + pickerControllerDelegate
+extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            coverImage.image = image.resize(newWidth: coverImage.frame.size.width, newHeight: coverImage.frame.size.height)
+            dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
+// - MARK: HomeEditViewController + UITextFieldDelegate
+extension HomeEditViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // 새로운 HomeEditViewController 생성
+        guard let editAlbumNameVC = self.storyboard?.instantiateViewController(withIdentifier: "SetAlbumNameViewController") as? SetAlbumNameViewController else{ return }
+        // 이런 부분들 전부 동기적 or 비동기적 처리(Combine or Rxswift)로 바꿔야 될 것 같음 -> 공부 + 논의 필요
+        // 1. 모달로 뜬 부분에 입력을 받음
+        // 2. 모달의 확인 버튼을 누르거나 취소 버튼을 누를 때 까지 동작 정지
+        // 3. 모달의 확인 버튼을 누르거나 취소 버튼을 누르면 동작이 다시 시작되도록 함.
+        editAlbumNameVC.editVC = self
+        editAlbumNameVC.modalPresentationStyle = .currentContext
+        editAlbumNameVC.modalTransitionStyle = .crossDissolve
+        self.present(editAlbumNameVC, animated: true)
+    }
 }

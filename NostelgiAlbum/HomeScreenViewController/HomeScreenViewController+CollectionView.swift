@@ -66,8 +66,8 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         cell.callback1 = {
             if cell.firstButton.imageView?.image == UIImage(systemName: "plus"){
                 let editVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeEditViewController") as! HomeEditViewController
-                editVC.modalPresentationStyle = .overCurrentContext
                 editVC.collectionViewInHome = self.collectionView
+                editVC.modalPresentationStyle = .overCurrentContext
                 self.present(editVC, animated: false)
             }
             else {
@@ -81,8 +81,8 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         cell.callback2 = {
             if cell.secondButton.imageView?.image == UIImage(systemName: "plus"){
                 let editVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeEditViewController") as! HomeEditViewController
-                editVC.modalPresentationStyle = .overCurrentContext
                 editVC.collectionViewInHome = self.collectionView
+                editVC.modalPresentationStyle = .overCurrentContext
                 self.present(editVC, animated: false)
             }
             else{

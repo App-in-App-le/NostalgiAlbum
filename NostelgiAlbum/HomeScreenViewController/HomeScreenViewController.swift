@@ -21,6 +21,7 @@ class HomeScreenViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.isToolbarHidden = true
     }
     
     // - MARK: viewWillDisappear :: view가 사라질 때

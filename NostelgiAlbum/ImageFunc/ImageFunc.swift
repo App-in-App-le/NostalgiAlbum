@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverName: String) {
