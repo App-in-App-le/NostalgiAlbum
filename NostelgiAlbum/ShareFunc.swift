@@ -54,7 +54,7 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) {
         try? data.write(to: zipURL)
         do {
             try Zip.unzipFile(zipURL, destination: zipURL.deletingPathExtension(), overwrite: true, password: nil)
-            checkModifyName(albumCoverName: AlbumCoverName)
+            changeIfModifyName(albumCoverName: AlbumCoverName)
             //zipURL == sandbox에서 documents내 zip
             try FileManager.default.removeItem(at: zipURL)
             //filePath == simulator의 경우 tmp/com....NostelgiAlbum-Inbox
@@ -191,7 +191,7 @@ func checkExistedAlbum(albumCoverName: String) -> Bool {
     return false
 }
 
-func checkModifyName(albumCoverName: String) {
+func changeIfModifyName(albumCoverName: String) {
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
     let albumDir = documentDirectory.appendingPathComponent(albumCoverName)
     let files: [URL]
@@ -209,3 +209,4 @@ func checkModifyName(albumCoverName: String) {
         print("files error")
     }
 }
+
