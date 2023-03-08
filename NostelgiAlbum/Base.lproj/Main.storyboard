@@ -501,67 +501,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCt-Vc-6G7">
-                                <rect key="frame" x="216" y="523" width="54" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="확인">
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="openInButtonTapped:" destination="0TT-Up-5Uc" eventType="touchUpInside" id="bkx-Cb-LQT"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앨범을 추가할까요?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejy-85-G61">
-                                <rect key="frame" x="16" y="371" width="353" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhb-jk-2xB">
-                                <rect key="frame" x="120" y="523" width="54" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="취소">
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="closeInButtonTapped:" destination="0TT-Up-5Uc" eventType="touchUpInside" id="yct-Ef-0vD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bx-Gb-lg4">
-                                <rect key="frame" x="129" y="303" width="127" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button">
-                                    <color key="baseBackgroundColor" red="0.40000003579999999" green="0.2941176593" blue="0.22745099660000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="changeAlbumName:" destination="0TT-Up-5Uc" eventType="touchUpInside" id="1Lq-N1-8Vz"/>
-                                </connections>
-                            </button>
+                            <view alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UAo-bT-CIS">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NVM-H7-2sQ" userLabel="PopUpView">
+                                <rect key="frame" x="76" y="268" width="240" height="272"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xgd-QY-Y0J">
+                                        <rect key="frame" x="45" y="56" width="150" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhb-jk-2xB">
+                                        <rect key="frame" x="45" y="207" width="54" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="취소">
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="closeInButtonTapped:" destination="0TT-Up-5Uc" eventType="touchUpInside" id="yct-Ef-0vD"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앨범을 추가할까요?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejy-85-G61">
+                                        <rect key="frame" x="8" y="146.33333333333331" width="224" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCt-Vc-6G7">
+                                        <rect key="frame" x="141" y="207" width="54" height="35"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="확인">
+                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="openInButtonTapped:" destination="0TT-Up-5Uc" eventType="touchUpInside" id="bkx-Cb-LQT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Xgd-QY-Y0J" secondAttribute="trailing" constant="45" id="0LQ-vI-nKn"/>
+                                    <constraint firstItem="HCt-Vc-6G7" firstAttribute="leading" secondItem="Jhb-jk-2xB" secondAttribute="trailing" constant="42" id="1Sg-k5-NPM"/>
+                                    <constraint firstItem="Xgd-QY-Y0J" firstAttribute="leading" secondItem="NVM-H7-2sQ" secondAttribute="leading" constant="45" id="5La-Cf-iYV"/>
+                                    <constraint firstAttribute="bottom" secondItem="HCt-Vc-6G7" secondAttribute="bottom" constant="30" id="6wB-Sa-4aM"/>
+                                    <constraint firstItem="ejy-85-G61" firstAttribute="leading" secondItem="NVM-H7-2sQ" secondAttribute="leading" constant="8" id="JUH-f7-xVd"/>
+                                    <constraint firstItem="ejy-85-G61" firstAttribute="top" secondItem="Xgd-QY-Y0J" secondAttribute="bottom" constant="56.333333333333314" id="Lhv-1x-Ln8"/>
+                                    <constraint firstAttribute="trailing" secondItem="ejy-85-G61" secondAttribute="trailing" constant="8" id="RZ9-u2-vld"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jhb-jk-2xB" secondAttribute="bottom" constant="30" id="SJF-qv-v0U"/>
+                                    <constraint firstItem="Xgd-QY-Y0J" firstAttribute="top" secondItem="NVM-H7-2sQ" secondAttribute="top" constant="56" id="WaC-9s-uGN"/>
+                                    <constraint firstItem="Jhb-jk-2xB" firstAttribute="leading" secondItem="NVM-H7-2sQ" secondAttribute="leading" constant="45" id="gCO-iy-TC6"/>
+                                    <constraint firstAttribute="trailing" secondItem="HCt-Vc-6G7" secondAttribute="trailing" constant="45" id="jlH-Hz-mzr"/>
+                                    <constraint firstItem="Jhb-jk-2xB" firstAttribute="top" secondItem="ejy-85-G61" secondAttribute="bottom" constant="40.666666666666742" id="tqV-XX-2Ke"/>
+                                    <constraint firstItem="HCt-Vc-6G7" firstAttribute="top" secondItem="ejy-85-G61" secondAttribute="bottom" constant="40.666666666666742" id="zlj-mc-2Z4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="caf-Pt-DJ6"/>
-                        <color key="backgroundColor" red="0.72156864399999998" green="0.60784316059999999" blue="0.54509806630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="ejy-85-G61" firstAttribute="top" secondItem="5bx-Gb-lg4" secondAttribute="bottom" constant="33" id="1ru-me-Pk0"/>
-                            <constraint firstItem="HCt-Vc-6G7" firstAttribute="top" secondItem="ejy-85-G61" secondAttribute="bottom" constant="131.66666666666669" id="3He-Oq-BLl"/>
-                            <constraint firstItem="caf-Pt-DJ6" firstAttribute="trailing" secondItem="5bx-Gb-lg4" secondAttribute="trailing" constant="137" id="8kq-5a-Tae"/>
-                            <constraint firstItem="Jhb-jk-2xB" firstAttribute="leading" secondItem="caf-Pt-DJ6" secondAttribute="leading" constant="120" id="96x-q6-kLx"/>
-                            <constraint firstItem="caf-Pt-DJ6" firstAttribute="trailing" secondItem="ejy-85-G61" secondAttribute="trailing" constant="24" id="Ald-zs-lzQ"/>
-                            <constraint firstItem="Jhb-jk-2xB" firstAttribute="top" secondItem="ejy-85-G61" secondAttribute="bottom" constant="131.66666666666669" id="Deh-0B-PFq"/>
-                            <constraint firstItem="caf-Pt-DJ6" firstAttribute="bottom" secondItem="Jhb-jk-2xB" secondAttribute="bottom" constant="260" id="Eco-1R-IvF"/>
-                            <constraint firstItem="caf-Pt-DJ6" firstAttribute="trailing" secondItem="HCt-Vc-6G7" secondAttribute="trailing" constant="123" id="UcS-uc-Fcl"/>
-                            <constraint firstItem="Jhb-jk-2xB" firstAttribute="width" secondItem="HCt-Vc-6G7" secondAttribute="width" id="XNc-Ih-1tH"/>
-                            <constraint firstItem="5bx-Gb-lg4" firstAttribute="top" secondItem="caf-Pt-DJ6" secondAttribute="top" constant="244" id="chm-2T-2sC"/>
-                            <constraint firstItem="Jhb-jk-2xB" firstAttribute="height" secondItem="HCt-Vc-6G7" secondAttribute="height" id="eaH-qW-CKi"/>
-                            <constraint firstItem="5bx-Gb-lg4" firstAttribute="leading" secondItem="caf-Pt-DJ6" secondAttribute="leading" constant="129" id="fVL-AN-Q5h"/>
-                            <constraint firstItem="ejy-85-G61" firstAttribute="leading" secondItem="caf-Pt-DJ6" secondAttribute="leading" constant="16" id="kNv-1C-aaK"/>
-                            <constraint firstItem="caf-Pt-DJ6" firstAttribute="trailing" secondItem="HCt-Vc-6G7" secondAttribute="trailing" constant="123" id="pYX-DV-bI8"/>
-                            <constraint firstItem="caf-Pt-DJ6" firstAttribute="bottom" secondItem="HCt-Vc-6G7" secondAttribute="bottom" constant="260" id="sok-nu-O3i"/>
-                            <constraint firstItem="HCt-Vc-6G7" firstAttribute="leading" secondItem="Jhb-jk-2xB" secondAttribute="trailing" constant="42" id="uN0-S3-dYP"/>
-                            <constraint firstItem="Jhb-jk-2xB" firstAttribute="centerY" secondItem="HCt-Vc-6G7" secondAttribute="centerY" id="xMt-r8-D9U"/>
+                            <constraint firstItem="caf-Pt-DJ6" firstAttribute="bottom" secondItem="NVM-H7-2sQ" secondAttribute="bottom" constant="278" id="12G-HU-M7l"/>
+                            <constraint firstItem="NVM-H7-2sQ" firstAttribute="top" secondItem="caf-Pt-DJ6" secondAttribute="top" constant="209" id="XuI-b8-iOm"/>
+                            <constraint firstItem="caf-Pt-DJ6" firstAttribute="trailing" secondItem="NVM-H7-2sQ" secondAttribute="trailing" constant="77" id="iOV-1m-Ute"/>
+                            <constraint firstItem="NVM-H7-2sQ" firstAttribute="leading" secondItem="caf-Pt-DJ6" secondAttribute="leading" constant="76" id="ox3-3i-999"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="albumButton" destination="5bx-Gb-lg4" id="Kuh-fP-mrm"/>
+                        <outlet property="albumCoverText" destination="Xgd-QY-Y0J" id="3vS-hT-hcb"/>
                         <outlet property="albumShareButton" destination="HCt-Vc-6G7" id="gfi-iQ-hOQ"/>
                     </connections>
                 </viewController>
@@ -577,47 +584,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUv-pR-TM5">
-                                <rect key="frame" x="31" y="59" width="54" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="취소">
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="closeButton:" destination="DqS-xC-Mew" eventType="touchUpInside" id="y81-ll-fXW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmM-Qi-fhw">
-                                <rect key="frame" x="313" y="59" width="54" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="확인">
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="checkButton:" destination="DqS-xC-Mew" eventType="touchUpInside" id="lxn-k7-trO"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uxA-3j-XTz">
-                                <rect key="frame" x="109" y="331" width="175" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <view alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t05-bA-DsL">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmM-Qi-fhw">
+                                        <rect key="frame" x="312" y="67" width="54" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="확인">
+                                            <color key="baseForegroundColor" systemColor="opaqueSeparatorColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="checkButton:" destination="DqS-xC-Mew" eventType="touchUpInside" id="lxn-k7-trO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUv-pR-TM5">
+                                        <rect key="frame" x="28" y="67" width="54" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="취소">
+                                            <color key="baseForegroundColor" systemColor="opaqueSeparatorColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="closeButton:" destination="DqS-xC-Mew" eventType="touchUpInside" id="y81-ll-fXW"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uxA-3j-XTz">
+                                        <rect key="frame" x="109" y="233" width="175" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gxA-5D-bXz"/>
-                        <color key="backgroundColor" red="0.72156864399999998" green="0.60784316059999999" blue="0.54509806630000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="gxA-5D-bXz" firstAttribute="bottom" secondItem="uxA-3j-XTz" secondAttribute="bottom" constant="453" id="Ate-vp-JW0"/>
-                            <constraint firstItem="gxA-5D-bXz" firstAttribute="bottom" secondItem="LUv-pR-TM5" secondAttribute="bottom" constant="724" id="Jmg-cc-2k1"/>
-                            <constraint firstItem="gxA-5D-bXz" firstAttribute="trailing" secondItem="GmM-Qi-fhw" secondAttribute="trailing" constant="26" id="SeL-X9-kZE"/>
-                            <constraint firstItem="uxA-3j-XTz" firstAttribute="leading" secondItem="gxA-5D-bXz" secondAttribute="leading" constant="109" id="SrX-A9-grP"/>
-                            <constraint firstItem="LUv-pR-TM5" firstAttribute="leading" secondItem="gxA-5D-bXz" secondAttribute="leading" constant="31" id="eZC-gd-Y8X"/>
-                            <constraint firstItem="uxA-3j-XTz" firstAttribute="top" secondItem="gxA-5D-bXz" secondAttribute="top" constant="272" id="ggz-Tg-dUj"/>
-                            <constraint firstItem="LUv-pR-TM5" firstAttribute="top" secondItem="gxA-5D-bXz" secondAttribute="top" id="hpC-ol-VTo"/>
-                            <constraint firstItem="GmM-Qi-fhw" firstAttribute="top" secondItem="gxA-5D-bXz" secondAttribute="top" id="hyQ-F1-Xtd"/>
-                            <constraint firstItem="gxA-5D-bXz" firstAttribute="trailing" secondItem="uxA-3j-XTz" secondAttribute="trailing" constant="109" id="kgz-nb-6Yl"/>
-                            <constraint firstItem="GmM-Qi-fhw" firstAttribute="leading" secondItem="LUv-pR-TM5" secondAttribute="trailing" constant="228" id="sN6-JA-rAL"/>
-                            <constraint firstItem="gxA-5D-bXz" firstAttribute="bottom" secondItem="GmM-Qi-fhw" secondAttribute="bottom" constant="724" id="t2L-kT-1U6"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="albumTextField" destination="uxA-3j-XTz" id="yFO-EY-BSv"/>

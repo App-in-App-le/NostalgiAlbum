@@ -16,7 +16,9 @@ extension HomeScreenViewController {
         shareVC.collectionViewInHome = collectionView
         
         // shareVC를 push
-        self.navigationController?.pushViewController(shareVC, animated: true)
+        //self.navigationController?.pushViewController(shareVC, animated: true)
+        shareVC.modalPresentationStyle = .overFullScreen
+        self.present(shareVC, animated: true)
     }
     
 }
