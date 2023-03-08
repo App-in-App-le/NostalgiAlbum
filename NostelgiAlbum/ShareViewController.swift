@@ -7,12 +7,13 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     var collectionViewInHome : UICollectionView!
     var existedAlbum : Bool!
     var albumCoverName : String!
+    // 기존 button이었던 object를 Textfield로 변경
     @IBOutlet weak var albumCoverText: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         albumCoverName = filePath?.deletingPathExtension().lastPathComponent
         albumCoverText.text = albumCoverName
-        albumCoverText.delegate = self
+        albumCoverText.delegate = self //textfield 클릭 시 다른 뷰로 전환되는 delegate 추가
         loadingAlbumInfo()
     }
     
@@ -62,7 +63,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     }
     
 }
-
+// -MARK: shareView에서 textfield 클릭 시 앨범 이름을 변경하는 AlbumRenameViewController를 present
 extension ShareViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         guard let renameVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumRenameViewController") as? AlbumRenameViewController else { return }

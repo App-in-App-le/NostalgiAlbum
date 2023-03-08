@@ -191,6 +191,7 @@ func checkExistedAlbum(albumCoverName: String) -> Bool {
     return false
 }
 
+// - MARK: 앨범이름이 중복되었는지 확인하고 중복되었을 경우 앨범 디렉토리내 파일들 이름 변경
 func changeIfModifyName(albumCoverName: String) {
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
     let albumDir = documentDirectory.appendingPathComponent(albumCoverName)

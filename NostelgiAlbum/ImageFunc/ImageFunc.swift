@@ -11,6 +11,7 @@ func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverN
 
     // 3. 이미지 압축(image.pngData())
     // 압축할거면 jpegData로~(0~1 사이 값)
+    // 2023/03/08 pngData -> jpegData
     guard let data = changedImage.jpegData(compressionQuality: 1) else {
         print("압축이 실패했습니다.")
         return
