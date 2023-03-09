@@ -35,9 +35,9 @@ func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
         print("Something went wrong")
     }
     do {
-        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)imageNameInfo.txt"))
-        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)imageTextInfo.txt"))
-        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)Info.txt"))
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_imageNameInfo.txt"))
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_imageTextInfo.txt"))
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_Info.txt"))
     } catch {
         print("Error remove txt file")
     }
