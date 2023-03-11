@@ -88,7 +88,7 @@ class AlbumEditViewController: UIViewController {
     }
     
     func transPic(_ picture : album) {
-        let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex).png"
+        let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex).jpeg"
         editPicture.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: editPicture.frame.size.width, newHeight: editPicture.frame.size.height), for: .normal)
         editPicture.setTitle("", for: .normal)
         editName.text = picture.ImageName
@@ -102,7 +102,7 @@ class AlbumEditViewController: UIViewController {
             updPicture[picture!.perAlbumIndex - 1].ImageName = editName.text!
             updPicture[picture!.perAlbumIndex - 1].ImageText = editText.text!
         }
-        let totalPath = "\(picture!.AlbumTitle)_\(picture!.perAlbumIndex).png"
+        let totalPath = "\(picture!.AlbumTitle)_\(picture!.perAlbumIndex).jpeg"
         saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: picture!.AlbumTitle)
     }
     func addPic() {
@@ -118,7 +118,7 @@ class AlbumEditViewController: UIViewController {
             realm.add(newPicture)
             data.first!.setNumberOfPictures(index)
         }
-        let totalPath = "\(newPicture.AlbumTitle)_\(newPicture.perAlbumIndex).png"
+        let totalPath = "\(newPicture.AlbumTitle)_\(newPicture.perAlbumIndex).jpeg"
         saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: albumCoverName)
     }
     @IBAction func savePicture(_ sender: Any) {

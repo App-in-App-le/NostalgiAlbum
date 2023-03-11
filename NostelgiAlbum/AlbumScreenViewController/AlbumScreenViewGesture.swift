@@ -65,7 +65,7 @@ extension AlbumScreenViewController {
         let picturesInfo = realm.objects(albumsInfo.self).filter("id = \(picture.index)")
         let num = picture.perAlbumIndex
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-        let filePath = "\(picture.AlbumTitle)/\(picture.AlbumTitle)_\(picture.perAlbumIndex).png"
+        let filePath = "\(picture.AlbumTitle)/\(picture.AlbumTitle)_\(picture.perAlbumIndex).jpeg"
         let pictureDirectory = documentDirectory.appending(path: filePath)
         if FileManager.default.fileExists(atPath: pictureDirectory.path) {
             do {
@@ -87,8 +87,8 @@ extension AlbumScreenViewController {
                 try! realm.write{
                     pictures[index-1].perAlbumIndex -= 1
                 }
-                let updatePath = "\(pictures[index-1].AlbumTitle)/\(pictures[index-1].AlbumTitle)_\(index).png"
-                let originPath = "\(pictures[index-1].AlbumTitle)/\(pictures[index-1].AlbumTitle)_\(index + 1).png"
+                let updatePath = "\(pictures[index-1].AlbumTitle)/\(pictures[index-1].AlbumTitle)_\(index).jpeg"
+                let originPath = "\(pictures[index-1].AlbumTitle)/\(pictures[index-1].AlbumTitle)_\(index + 1).jpeg"
                 let originDirectory = documentDirectory.appending(path: originPath)
                 let updateDirectory = documentDirectory.appending(path: updatePath)
                 print("origin",originDirectory.path)

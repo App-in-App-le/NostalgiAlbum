@@ -76,7 +76,7 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     
     // - MARK: When the cell has picture data, configure func is called.
     func configure(_ albumInfo : album){
-        let totalPath = "\(albumInfo.AlbumTitle)_\(albumInfo.perAlbumIndex).png"
+        let totalPath = "\(albumInfo.AlbumTitle)_\(albumInfo.perAlbumIndex).jpeg"
         let image = loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: albumInfo.AlbumTitle)
         // Reset cell's subview to reload the data of collection view in albumScreenViewController.
         reset()

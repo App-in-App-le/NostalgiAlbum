@@ -35,9 +35,9 @@ func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
         print("Something went wrong")
     }
     do {
-        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)imageNameInfo.txt"))
-        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)imageTextInfo.txt"))
-        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)Info.txt"))
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_imageNameInfo.txt"))
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_imageTextInfo.txt"))
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_Info.txt"))
     } catch {
         print("Error remove txt file")
     }
@@ -54,7 +54,7 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) {
         try? data.write(to: zipURL)
         do {
             try Zip.unzipFile(zipURL, destination: zipURL.deletingPathExtension(), overwrite: true, password: nil)
-            checkModifyName(albumCoverName: AlbumCoverName)
+            changeIfModifyName(albumCoverName: AlbumCoverName)
             //zipURL == sandbox에서 documents내 zip
             try FileManager.default.removeItem(at: zipURL)
             //filePath == simulator의 경우 tmp/com....NostelgiAlbum-Inbox
@@ -191,7 +191,8 @@ func checkExistedAlbum(albumCoverName: String) -> Bool {
     return false
 }
 
-func checkModifyName(albumCoverName: String) {
+// - MARK: 앨범이름이 중복되었는지 확인하고 중복되었을 경우 앨범 디렉토리내 파일들 이름 변경
+func changeIfModifyName(albumCoverName: String) {
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
     let albumDir = documentDirectory.appendingPathComponent(albumCoverName)
     let files: [URL]
@@ -209,3 +210,4 @@ func checkModifyName(albumCoverName: String) {
         print("files error")
     }
 }
+

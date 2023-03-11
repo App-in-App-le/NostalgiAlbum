@@ -116,8 +116,8 @@ extension HomeEditViewController {
             
             // 앨범 폴더 내의 사진 이름을 모두 변경
             for album in albumData {
-                let OldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(album.AlbumTitle)_\(album.perAlbumIndex).png")
-                let NewPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_\(album.perAlbumIndex).png")
+                let OldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(album.AlbumTitle)_\(album.perAlbumIndex).jpeg")
+                let NewPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_\(album.perAlbumIndex).jpeg")
                 do {
                     try FileManager.default.moveItem(at: OldPicturePath, to: NewPicturePath)
                     print("Move succcessful")

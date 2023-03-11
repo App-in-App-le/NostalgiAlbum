@@ -13,6 +13,7 @@ class AlbumRenameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         albumTextField.text = albumCoverName
+        albumTextField.becomeFirstResponder()
     }
 
     @IBAction func checkButton(_ sender: Any) {
@@ -21,6 +22,7 @@ class AlbumRenameViewController: UIViewController {
         } else {
             //guard let shareVC = storyboard?.instantiateViewController(withIdentifier: "ShareViewController") as? ShareViewController else { return }
             shareVC.albumCoverName = albumTextField.text
+            shareVC.albumCoverText.text = albumTextField.text
             shareVC.loadingAlbumInfo()
             self.dismiss(animated: true)
         }
