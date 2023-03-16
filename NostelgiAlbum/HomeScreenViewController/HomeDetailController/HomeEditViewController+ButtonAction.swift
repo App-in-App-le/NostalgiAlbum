@@ -122,21 +122,23 @@ extension HomeEditViewController {
             
             // 앨범 폴더 내의 사진 이름을 모두 변경
             // 앨범 커버 사진 이름 수정
-            let OldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumCoverData.first!.albumName)_CoverImage.jpeg")
-            let NewPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_CoverImage.jpeg")
-            do {
-                try FileManager.default.moveItem(at: OldPicturePath, to: NewPicturePath)
-                print("Move succcessful")
-            } catch {
-                print("Move failed")
+            if albumCoverData.first?.isCustomCover == true {
+                let oldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumCoverData.first!.albumName)_CoverImage.jpeg")
+                let newPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_CoverImage.jpeg")
+                do {
+                    try FileManager.default.moveItem(at: oldPicturePath, to: newPicturePath)
+                    print("Move succcessful")
+                } catch {
+                    print("Move failed")
+                }
             }
             
             // 앨범 내 사진 이름 수정
             for album in albumData {
-                let OldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(album.AlbumTitle)_\(album.perAlbumIndex).jpeg")
-                let NewPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_\(album.perAlbumIndex).jpeg")
+                let oldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(album.AlbumTitle)_\(album.perAlbumIndex).jpeg")
+                let newPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_\(album.perAlbumIndex).jpeg")
                 do {
-                    try FileManager.default.moveItem(at: OldPicturePath, to: NewPicturePath)
+                    try FileManager.default.moveItem(at: oldPicturePath, to: newPicturePath)
                     print("Move succcessful")
                 } catch {
                     print("Move failed")
@@ -149,33 +151,45 @@ extension HomeEditViewController {
                 albumCoverData.first?.albumName = String(albumName.text!)
                 if coverImage.image == UIImage(named: "Blue"){
                     albumCoverData.first?.coverImageName = "Blue"
+                    if albumCoverData.first?.isCustomCover == true {
+                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    }
                     albumCoverData.first?.isCustomCover = false
-                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Brown"){
                     albumCoverData.first?.coverImageName = "Brown"
+                    if albumCoverData.first?.isCustomCover == true {
+                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    }
                     albumCoverData.first?.isCustomCover = false
-                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Green"){
                     albumCoverData.first?.coverImageName = "Green"
+                    if albumCoverData.first?.isCustomCover == true {
+                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    }
                     albumCoverData.first?.isCustomCover = false
-                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Pupple"){
                     albumCoverData.first?.coverImageName = "Pupple"
+                    if albumCoverData.first?.isCustomCover == true {
+                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    }
                     albumCoverData.first?.isCustomCover = false
-                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Red"){
                     albumCoverData.first?.coverImageName = "Red"
+                    if albumCoverData.first?.isCustomCover == true {
+                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    }
                     albumCoverData.first?.isCustomCover = false
-                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Turquoise"){
                     albumCoverData.first?.coverImageName = "Turquoise"
+                    if albumCoverData.first?.isCustomCover == true {
+                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    }
                     albumCoverData.first?.isCustomCover = false
-                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else{
                     // Custom Image를 추가한 경우

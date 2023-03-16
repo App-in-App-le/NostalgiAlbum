@@ -3,7 +3,6 @@ import RealmSwift
 
 class AlbumScreenViewController: UIViewController {
     
-    @IBOutlet weak var pageNumLabel: UILabel!
     let realm = try! Realm()
     var pageNum : Int = 0
     var coverIndex : Int = 0
@@ -15,10 +14,26 @@ class AlbumScreenViewController: UIViewController {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-        pageNumLabel.text = "[ \(pageNum + 1) 페이지 ]"
+//        pageNumLabel.text = "[ \(pageNum + 1) 페이지 ]"
         toolbarItems = makeToolbarItems()
         navigationController?.toolbar.tintColor = UIColor.label
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: self, action: #selector(popToHome))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: self, action: #selector(popToHome))
+        let pageNumLabel = UILabel()
+        pageNumLabel.text = "\(pageNum + 1) Page"
+        pageNumLabel.font = UIFont(name: "Bradley Hand", size: 20)
+        pageNumLabel.textColor = .black
+        pageNumLabel.sizeToFit()
+        
+        let titleName = UILabel()
+        let albumName = realm.objects(albumCover.self).filter("id = \(coverIndex)").first?.albumName
+        titleName.text = albumName
+        titleName.font = UIFont(name: "Bradley Hand", size: 18)
+        titleName.textColor = .black
+        titleName.sizeToFit()
+        
+        navigationItem.titleView = titleName
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left.square"), style: .plain, target: self, action: #selector(popToHome))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: pageNumLabel)
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AlbumScreenViewController.respondToSwipeGesture(_:)))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)

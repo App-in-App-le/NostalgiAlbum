@@ -17,7 +17,7 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
         pictureImgButton!.setImage(UIImage(systemName: "plus"), for: .normal)
         pictureImgButton!.setTitle("", for: .normal)
         pictureImgButton!.isHidden = false
-        pictureImgButton!.addTarget(self, action: #selector(addPicutre), for: .touchUpInside)
+        pictureImgButton!.addTarget(self, action: #selector(addPicture), for: .touchUpInside)
         self.addSubview(pictureImgButton!)
     }
     
@@ -94,7 +94,7 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     }
     
     // - MARK: The target action of pictureImgButton.
-    @objc func addPicutre() {
+    @objc func addPicture() {
         // When the pictureImageButton doesn't have a picture, go to the view where you can add the picture.
         if pictureImgButton!.imageView?.image == UIImage(systemName: "plus"){
             guard let editVC = self.albumSVC.storyboard?.instantiateViewController(withIdentifier: "AlbumEditViewController") as? AlbumEditViewController else { return }

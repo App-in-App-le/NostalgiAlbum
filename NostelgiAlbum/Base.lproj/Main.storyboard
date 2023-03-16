@@ -215,13 +215,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VSV-Zg-LAY">
-                                <rect key="frame" x="170" y="727" width="95" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQr-3D-tCb" userLabel="Top">
                                 <rect key="frame" x="0.0" y="59" width="393" height="5"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -264,7 +257,6 @@
                     <navigationItem key="navigationItem" id="Mkh-YD-rWt"/>
                     <connections>
                         <outlet property="collectionView" destination="arc-jP-fUr" id="j6z-HW-HbV"/>
-                        <outlet property="pageNumLabel" destination="VSV-Zg-LAY" id="HWV-1E-Hie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OpX-a6-xA8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1026,7 +1018,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrx-s2-Epd">
-                                        <rect key="frame" x="339.33333333333331" y="59" width="53.666666666666686" height="33.333333333333343"/>
+                                        <rect key="frame" x="339.33333333333331" y="59" width="53.666666666666686" height="34.333333333333343"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="확인">
@@ -1037,7 +1029,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zF8-78-9Q7" userLabel="앨범 이름">
-                                        <rect key="frame" x="20" y="292.33333333333331" width="353" height="34"/>
+                                        <rect key="frame" x="20" y="293.33333333333331" width="353" height="34"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
