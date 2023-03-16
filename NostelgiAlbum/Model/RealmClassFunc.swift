@@ -30,9 +30,10 @@ class album : Object{
 }
 
 class albumCover : Object{
-    @objc dynamic var id : Int = 0
-    @objc dynamic var coverImageName : String = ""
-    @objc dynamic var albumName : String = ""
+    @objc dynamic var id: Int = 0
+    @objc dynamic var coverImageName: String = ""
+    @objc dynamic var albumName: String = ""
+    @objc dynamic var isCustomCover: Bool = false
     
     func setcoverImageName(_ db : String){
         coverImageName = db

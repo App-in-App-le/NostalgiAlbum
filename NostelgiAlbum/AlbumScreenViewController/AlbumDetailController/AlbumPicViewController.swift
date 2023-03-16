@@ -8,6 +8,7 @@ class AlbumPicViewController: UIViewController {
     @IBOutlet weak var settingBtn: UIButton!
     var picture: album!
     var collectionViewInAlbum : UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         picName.text = picture.ImageName
@@ -21,6 +22,7 @@ class AlbumPicViewController: UIViewController {
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
     }
+    
     @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
         if sender.direction == .down{
             self.dismiss(animated: true)
@@ -29,14 +31,16 @@ class AlbumPicViewController: UIViewController {
     
     @IBAction func settingPicture(_ sender: Any) {
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumEditViewController") as? AlbumEditViewController else { return }
-        guard let picVC = self.presentingViewController else { return }
+//        guard let picVC = self.presentingViewController else { return }
         editVC.picture = picture
         editVC.collectionViewInAlbum = collectionViewInAlbum
         editVC.modalPresentationStyle = .overFullScreen
-        self.dismiss(animated: false) {
-            picVC.present(editVC, animated: false)
-        }
+        self.present(editVC, animated: false)
+//        self.dismiss(animated: false) {
+//            picVC.present(editVC, animated: false)
+//        }
     }
+    
     @IBAction func zoomImage(_ sender: Any) {
         guard let zoomVC = self.storyboard?.instantiateViewController(withIdentifier: "ImageViewController") as? ImageViewController else { return }
         let totalPath = "\(self.picture.AlbumTitle)_\(self.picture.perAlbumIndex).jpeg"

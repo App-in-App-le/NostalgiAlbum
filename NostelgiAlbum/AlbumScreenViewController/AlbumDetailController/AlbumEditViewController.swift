@@ -10,6 +10,7 @@ class AlbumEditViewController: UIViewController {
     var index : Int!
     var albumCoverName : String!
     var picture: album? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if picture != nil
@@ -71,7 +72,7 @@ class AlbumEditViewController: UIViewController {
         }
     }
     
-    func openLibrary(){
+    func openLibrary() {
         let picker = UIImagePickerController()
         picker.delegate = self
         //        picker.allowsEditing = true
@@ -79,7 +80,7 @@ class AlbumEditViewController: UIViewController {
         present(picker, animated: false, completion: nil)
     }
     
-    func openCamera(){
+    func openCamera() {
         let picker = UIImagePickerController()
         picker.delegate = self
         //        picker.allowsEditing = true
@@ -105,6 +106,7 @@ class AlbumEditViewController: UIViewController {
         let totalPath = "\(picture!.AlbumTitle)_\(picture!.perAlbumIndex).jpeg"
         saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: picture!.AlbumTitle)
     }
+    
     func addPic() {
         let realm = try! Realm()
         let newPicture = album()
@@ -121,6 +123,7 @@ class AlbumEditViewController: UIViewController {
         let totalPath = "\(newPicture.AlbumTitle)_\(newPicture.perAlbumIndex).jpeg"
         saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: albumCoverName)
     }
+    
     @IBAction func savePicture(_ sender: Any) {
         if picture != nil {
             modifyPic()
@@ -148,6 +151,7 @@ class AlbumEditViewController: UIViewController {
         collectionViewInAlbum.reloadData()
         dismiss(animated: false, completion: nil)
     }
+    
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){
         dismiss(animated: true, completion: nil)
     }

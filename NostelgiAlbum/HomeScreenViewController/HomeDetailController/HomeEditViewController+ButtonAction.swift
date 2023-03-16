@@ -1,12 +1,12 @@
 import UIKit
 import RealmSwift
+import Mantis
 
 // - MARK: HomeEditViewController + ButtonAction
 extension HomeEditViewController {
     
     // - MARK: "save" 버튼 Action
     @IBAction func saveAlbum(_ sender: Any) {
-        
         // realm 객체 생성
         let realm = try! Realm()
         
@@ -33,6 +33,18 @@ extension HomeEditViewController {
                 return
             }
             
+            // 새로운 앨범에 대한 폴더를 document 파일에 생성 :: 폴더 이름 == "albumName.text"
+            guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+            
+            let dirPath = documentDirectory.appendingPathComponent(albumName.text!)
+            if !FileManager.default.fileExists(atPath: dirPath.path){
+                do{
+                    try FileManager.default.createDirectory(atPath: dirPath.path, withIntermediateDirectories: true, attributes: nil)
+                } catch{
+                    NSLog("Couldn't create document directory")
+                }
+            }
+            
             // 새로운 albumCover realm 객체를 생성
             let newAlbumCover = albumCover()
             newAlbumCover.incrementIndex()
@@ -56,8 +68,14 @@ extension HomeEditViewController {
                 newAlbumCover.coverImageName = "Turquoise"
             }
             else{
-                print("error!")
-                return
+                // Custom Image를 추가한 경우
+                // Realm 정보 입력
+                newAlbumCover.coverImageName = "Custom"
+                newAlbumCover.isCustomCover = true
+                
+                // Document 사진 추가
+                let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
+                saveImageToDocumentDirectory(imageName: customCoverImagePath, image: coverImage.image!, AlbumCoverName: albumName.text!)
             }
             
             // 새로운 albumsInfo realm 객체를 생성
@@ -71,18 +89,6 @@ extension HomeEditViewController {
             {
                 realm.add(newAlbumCover)
                 realm.add(newAlbumsInfo)
-            }
-            
-            // 새로운 앨범에 대한 폴더를 document 파일에 생성 :: 폴더 이름 == "albumName.text"
-            guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-            
-            let dirPath = documentDirectory.appendingPathComponent(albumName.text!)
-            if !FileManager.default.fileExists(atPath: dirPath.path){
-                do{
-                    try FileManager.default.createDirectory(atPath: dirPath.path, withIntermediateDirectories: true, attributes: nil)
-                } catch{
-                    NSLog("Couldn't create document directory")
-                }
             }
         }
         
@@ -115,6 +121,17 @@ extension HomeEditViewController {
             let albumData = realm.objects(album.self).filter("index = \(id)")
             
             // 앨범 폴더 내의 사진 이름을 모두 변경
+            // 앨범 커버 사진 이름 수정
+            let OldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumCoverData.first!.albumName)_CoverImage.jpeg")
+            let NewPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_CoverImage.jpeg")
+            do {
+                try FileManager.default.moveItem(at: OldPicturePath, to: NewPicturePath)
+                print("Move succcessful")
+            } catch {
+                print("Move failed")
+            }
+            
+            // 앨범 내 사진 이름 수정
             for album in albumData {
                 let OldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(album.AlbumTitle)_\(album.perAlbumIndex).jpeg")
                 let NewPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_\(album.perAlbumIndex).jpeg")
@@ -132,25 +149,43 @@ extension HomeEditViewController {
                 albumCoverData.first?.albumName = String(albumName.text!)
                 if coverImage.image == UIImage(named: "Blue"){
                     albumCoverData.first?.coverImageName = "Blue"
+                    albumCoverData.first?.isCustomCover = false
+                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Brown"){
                     albumCoverData.first?.coverImageName = "Brown"
+                    albumCoverData.first?.isCustomCover = false
+                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Green"){
                     albumCoverData.first?.coverImageName = "Green"
+                    albumCoverData.first?.isCustomCover = false
+                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Pupple"){
                     albumCoverData.first?.coverImageName = "Pupple"
+                    albumCoverData.first?.isCustomCover = false
+                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Red"){
                     albumCoverData.first?.coverImageName = "Red"
+                    albumCoverData.first?.isCustomCover = false
+                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else if coverImage.image == UIImage(named: "Turquoise"){
                     albumCoverData.first?.coverImageName = "Turquoise"
+                    albumCoverData.first?.isCustomCover = false
+                    deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                 }
                 else{
-                    print("error!")
-                    return
+                    // Custom Image를 추가한 경우
+                    // Realm 정보 입력
+                    albumCoverData.first?.coverImageName = "Custom"
+                    albumCoverData.first?.isCustomCover = true
+                    
+                    // Document 사진 추가
+                    let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
+                    saveImageToDocumentDirectory(imageName: customCoverImagePath, image: coverImage.image!, AlbumCoverName: albumName.text!)
                 }
                 // Modify "album" instance in RealmDB
                 for album in albumData { album.setAlbumTitle(albumName.text!) }
@@ -167,7 +202,6 @@ extension HomeEditViewController {
     
     // - MARK: "close" 버튼 Action
     @IBAction func closeButton(_ sender: Any) {
-        
         // EditView를 dismiss 하도록 함
         dismiss(animated: false, completion: nil)
         
@@ -204,14 +238,12 @@ extension HomeEditViewController {
             let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in
                 let picker = UIImagePickerController()
                 picker.delegate = self
-                picker.allowsEditing = true
                 picker.sourceType = .photoLibrary
                 self.present(picker, animated: false, completion: nil)
             }
             let camera = UIAlertAction(title: "카메라", style: .default){(action) in
                 let picker = UIImagePickerController()
                 picker.delegate = self
-                picker.allowsEditing = true
                 picker.sourceType = .camera
                 self.present(picker, animated: false, completion: nil)
             }
@@ -219,6 +251,7 @@ extension HomeEditViewController {
             alert.addAction(library)
             alert.addAction(camera)
             alert.addAction(cancel)
+            
             self.present(alert, animated: true, completion: nil)
         })
         
@@ -230,7 +263,6 @@ extension HomeEditViewController {
     
     // - MARK: "setCoverImage" 함수
     func setCoverImage(color: String) {
-        
         switch color {
         case "Blue" :
             coverImage.image = UIImage(named: "Blue")
@@ -252,21 +284,9 @@ extension HomeEditViewController {
     
     // - MARK: 해당 view 바깥을 tap하면 dismiss 되도록하는 함수
     @objc func didTappedOutside(_ sender: UITapGestureRecognizer) {
-        
         dismiss(animated: true, completion: nil)
-        
     }
     
-}
-
-// - MARK: HomeEditViewController + pickerControllerDelegate
-extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            coverImage.image = image.resize(newWidth: coverImage.frame.size.width, newHeight: coverImage.frame.size.height)
-            dismiss(animated: true, completion: nil)
-        }
-    }
 }
 
 // - MARK: HomeEditViewController + UITextFieldDelegate
@@ -282,5 +302,39 @@ extension HomeEditViewController: UITextFieldDelegate {
         editAlbumNameVC.modalPresentationStyle = .currentContext
         editAlbumNameVC.modalTransitionStyle = .crossDissolve
         self.present(editAlbumNameVC, animated: true)
+    }
+}
+
+// - MARK: HomeEditViewController + pickerControllerDelegate
+extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[.originalImage] as? UIImage {
+            dismiss(animated: true) {
+                self.openCropVC(image: image)
+            }
+        }
+    }
+}
+
+extension HomeEditViewController: CropViewControllerDelegate {
+    func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Mantis.Transformation, cropInfo: Mantis.CropInfo) {
+        
+        self.coverImage.image = resizeingImage(image: cropped, width: 120, height: 160)
+        cropViewController.dismiss(animated: true)
+    }
+    
+    func cropViewControllerDidCancel(_ cropViewController: Mantis.CropViewController, original: UIImage) {
+        
+        cropViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    private func openCropVC(image: UIImage) {
+        let cropViewController = Mantis.cropViewController(image: image)
+        cropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 3.0 / 4.0)
+        
+        cropViewController.delegate = self
+        cropViewController.modalPresentationStyle = .fullScreen
+        self.present(cropViewController, animated: true)
     }
 }

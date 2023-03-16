@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 // - MARK: HomeEditViewController
 class HomeEditViewController: UIViewController {
@@ -41,7 +42,15 @@ class HomeEditViewController: UIViewController {
             albumName.text = albumNameBeforeModify
         }
         if !coverImageBeforeModify.isEmpty {
-            setCoverImage(color: coverImageBeforeModify)
+            let realm = try! Realm()
+            let coverImageData = realm.objects(albumCover.self).filter("id = \(id)")
+            if coverImageData.first?.isCustomCover == false {
+                setCoverImage(color: coverImageBeforeModify)
+            } else {
+                let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(albumName.text!)_CoverImage.jpeg", albumTitle: albumName.text!)
+                coverImage.image = customCoverImage
+            }
+            
         }
         
         // EditView 기본 설정
