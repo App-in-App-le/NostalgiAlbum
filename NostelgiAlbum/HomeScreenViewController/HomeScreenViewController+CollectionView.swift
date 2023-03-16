@@ -32,7 +32,12 @@ extension HomeScreenViewController: UICollectionViewDataSource{
             
             // First Button :: 무조건 존재 함 -> Set button
             if let firstbuttonInfo = realm.objects(albumCover.self).filter("id = \(indexPath.row * 2 + 1)").first {
-                cell.firstButton.setImage(UIImage(named: firstbuttonInfo.coverImageName), for: .normal)
+                if firstbuttonInfo.isCustomCover == false {
+                    cell.firstButton.setImage(UIImage(named: firstbuttonInfo.coverImageName), for: .normal)
+                } else {
+                    let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(firstbuttonInfo.albumName)_CoverImage.jpeg", albumTitle: firstbuttonInfo.albumName)
+                    cell.firstButton.setImage(customCoverImage, for: .normal)
+                }
                 let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
                 LongPressGestureRecognizer.albumIndex = indexPath.row * 2 + 1
                 LongPressGestureRecognizer.albumName = firstbuttonInfo.albumName
@@ -43,7 +48,14 @@ extension HomeScreenViewController: UICollectionViewDataSource{
             // Second Button :: case1. 존재하는 경우 -> Set button
             // Second Button :: case2. 존재하지 않는 경우 -> Doesn't Set button
             if let secondbuttonInfo = realm.objects(albumCover.self).filter("id = \(indexPath.row * 2 + 2)").first {
-                cell.secondButton.setImage(UIImage(named: secondbuttonInfo.coverImageName), for: .normal)
+                
+                if secondbuttonInfo.isCustomCover == false {
+                    cell.secondButton.setImage(UIImage(named: secondbuttonInfo.coverImageName), for: .normal)
+                } else {
+                    let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(secondbuttonInfo.albumName)_CoverImage.jpeg", albumTitle: secondbuttonInfo.albumName)
+                    cell.secondButton.setImage(customCoverImage, for: .normal)
+                }
+                
                 let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
                 LongPressGestureRecognizer.albumIndex = indexPath.row * 2 + 2
                 LongPressGestureRecognizer.albumName = secondbuttonInfo.albumName
