@@ -1,23 +1,35 @@
 import UIKit
 import RealmSwift
+import Mantis
 
 class AlbumEditViewController: UIViewController {
     
-    @IBOutlet weak var editText: UITextView!
-    @IBOutlet weak var editName: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var editPicture: UIButton!
+    @IBOutlet weak var editName: UITextField!
+    @IBOutlet weak var editText: UITextView!
+    
     var collectionViewInAlbum : UICollectionView!
     var index : Int!
     var albumCoverName : String!
     var picture: album? = nil
     
+    var width: CGFloat?
+    var height: CGFloat?
+    
+    var isHeightLonger: Bool = true
+    var consArray: [NSLayoutConstraint]?
+    var newConsArray: [NSLayoutConstraint]?
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //        super.viewDidLoad()
+        setSubViews()
         if picture != nil
         {
             transPic(picture!)
         } else {
-            editPicture.setImage(UIImage(systemName: "photo"), for: .normal)
+            editPicture.setImage(UIImage(systemName: "plus.square"), for: .normal)
+            editPicture.setTitle("", for: .normal)
         }
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
@@ -55,6 +67,61 @@ class AlbumEditViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
+        if sender.direction == .down{
+            self.dismiss(animated: true)
+        }
+    }
+    
+    func setSubViews() {
+        // saveButton
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.backgroundColor = .systemBlue
+        saveButton.layer.cornerRadius = 10.0
+        
+        // editPicture
+        editPicture.translatesAutoresizingMaskIntoConstraints = false
+        editPicture.backgroundColor = .systemGray6
+        editPicture.layer.cornerRadius = 10.0
+        width = UIScreen.main.bounds.width - 30
+        let remainder = Int(width!) % 3
+        if remainder != 0 {
+            width = width! - CGFloat(remainder)
+        }
+        height = width! / 3 * 4
+        
+        // editName
+        editName.translatesAutoresizingMaskIntoConstraints = false
+        
+        // editText
+        editText.translatesAutoresizingMaskIntoConstraints = false
+        editText.layer.cornerRadius = 5
+        
+        // set Layout
+        consArray = [
+            saveButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            saveButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            saveButton.heightAnchor.constraint(equalToConstant: 30),
+            saveButton.widthAnchor.constraint(equalToConstant: 50),
+            
+            editPicture.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 10),
+            editPicture.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            editPicture.widthAnchor.constraint(equalToConstant: width!),
+            editPicture.heightAnchor.constraint(equalToConstant: height!),
+            
+            editName.topAnchor.constraint(equalTo: editPicture.bottomAnchor, constant: 10),
+            editName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            editName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            editName.heightAnchor.constraint(equalToConstant: 35),
+            
+            editText.topAnchor.constraint(equalTo: editName.bottomAnchor, constant: 10),
+            editText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            editText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            editText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+        ]
+        NSLayoutConstraint.activate(consArray!)
+    }
+    
     @IBAction func addAlbumPicture(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in self.openLibrary()}
@@ -66,16 +133,9 @@ class AlbumEditViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
-        if sender.direction == .down{
-            self.dismiss(animated: true)
-        }
-    }
-    
     func openLibrary() {
         let picker = UIImagePickerController()
         picker.delegate = self
-        //        picker.allowsEditing = true
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
     }
@@ -83,14 +143,58 @@ class AlbumEditViewController: UIViewController {
     func openCamera() {
         let picker = UIImagePickerController()
         picker.delegate = self
-        //        picker.allowsEditing = true
         picker.sourceType = .camera
         present(picker, animated: false, completion: nil)
     }
     
     func transPic(_ picture : album) {
         let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex).jpeg"
-        editPicture.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: editPicture.frame.size.width, newHeight: editPicture.frame.size.height), for: .normal)
+        
+        if let image = loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle) {
+            if image.size.height > image.size.width {
+                width = UIScreen.main.bounds.width - 30
+                let remainder = Int(width!) % 3
+                if remainder != 0 {
+                    width = width! - CGFloat(remainder)
+                }
+                height = width! / 3 * 4
+            } else {
+                width = UIScreen.main.bounds.width - 40
+                let remainder = Int(width!) % 4
+                if remainder != 0 {
+                    width = width! - CGFloat(remainder)
+                }
+                height = width! / 4 * 3
+            }
+            editPicture.setImage(resizeingImage(image: loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)!, width: Int(width!), height: Int(height!)), for: .normal)
+        }
+        
+        if height! < width! {
+            NSLayoutConstraint.deactivate(consArray!)
+            newConsArray = [
+                saveButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+                saveButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+                saveButton.heightAnchor.constraint(equalToConstant: 30),
+                saveButton.widthAnchor.constraint(equalToConstant: 50),
+                
+                editPicture.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 50),
+                editPicture.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                editPicture.widthAnchor.constraint(equalToConstant: width!),
+                editPicture.heightAnchor.constraint(equalToConstant: height!),
+                
+                editName.topAnchor.constraint(equalTo: editPicture.bottomAnchor, constant: 10),
+                editName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                editName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                editName.heightAnchor.constraint(equalToConstant: 35),
+                
+                editText.topAnchor.constraint(equalTo: editName.bottomAnchor, constant: 10),
+                editText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                editText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                editText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
+            ]
+            NSLayoutConstraint.activate(newConsArray!)
+            isHeightLonger = false
+        }
         editPicture.setTitle("", for: .normal)
         editName.text = picture.ImageName
         editText.text = picture.ImageText
@@ -159,11 +263,83 @@ class AlbumEditViewController: UIViewController {
 
 extension AlbumEditViewController : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            editPicture.imageView?.image = image
-            editPicture.setTitle("", for: .normal)
-            editPicture.setImage(image.resize(newWidth: editPicture.frame.size.width, newHeight: editPicture.frame.size.height), for: .normal)
-            dismiss(animated: true, completion: nil)
+        if let image = info[.originalImage] as? UIImage {
+            dismiss(animated: true) {
+                self.openCropVC(image: image)
+            }
         }
+    }
+}
+
+extension AlbumEditViewController: CropViewControllerDelegate {
+    func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Mantis.Transformation, cropInfo: Mantis.CropInfo) {
+        if cropInfo.cropSize.width > cropInfo.cropSize.height {
+            print("가로")
+            if isHeightLonger == true {
+                width = UIScreen.main.bounds.width - 40
+                let remainder = Int(width!) % 4
+                if remainder != 0 {
+                    width = width! - CGFloat(remainder)
+                }
+                height = width! / 4 * 3
+                NSLayoutConstraint.deactivate(consArray!)
+                newConsArray = [
+                    saveButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+                    saveButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+                    saveButton.heightAnchor.constraint(equalToConstant: 30),
+                    saveButton.widthAnchor.constraint(equalToConstant: 50),
+                    
+                    editPicture.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 50),
+                    editPicture.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    editPicture.widthAnchor.constraint(equalToConstant: width!),
+                    editPicture.heightAnchor.constraint(equalToConstant: height!),
+                    
+                    editName.topAnchor.constraint(equalTo: editPicture.bottomAnchor, constant: 10),
+                    editName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                    editName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                    editName.heightAnchor.constraint(equalToConstant: 35),
+                    
+                    editText.topAnchor.constraint(equalTo: editName.bottomAnchor, constant: 10),
+                    editText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                    editText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                    editText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
+                ]
+                NSLayoutConstraint.activate(newConsArray!)
+                isHeightLonger = false
+            }
+        } else {
+            print("세로")
+            if isHeightLonger == false {
+                width = UIScreen.main.bounds.width - 30
+                let remainder = Int(width!) % 3
+                if remainder != 0 {
+                    width = width! - CGFloat(remainder)
+                }
+                height = width! / 3 * 4
+                NSLayoutConstraint.deactivate(newConsArray!)
+                NSLayoutConstraint.activate(consArray!)
+                isHeightLonger = true
+            }
+        }
+        
+        self.editPicture.setImage(resizeingImage(image: cropped, width: Int(width!) - 25, height: Int(height!) - 25), for: .normal)
+        self.editPicture.setTitle("", for: .normal)
+        cropViewController.dismiss(animated: true)
+    }
+    
+    func cropViewControllerDidCancel(_ cropViewController: Mantis.CropViewController, original: UIImage) {
+        cropViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    private func openCropVC(image: UIImage) {
+        var config = Mantis.Config()
+        config.ratioOptions = [.custom]
+        config.addCustomRatio(byVerticalWidth: 3, andVerticalHeight: 4)
+        config.addCustomRatio(byVerticalWidth: 4, andVerticalHeight: 3)
+        let cropViewController = Mantis.cropViewController(image: image, config: config)
+        //        cropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 3.0 / 4.0)
+        cropViewController.delegate = self
+        cropViewController.modalPresentationStyle = .fullScreen
+        self.present(cropViewController, animated: true)
     }
 }
