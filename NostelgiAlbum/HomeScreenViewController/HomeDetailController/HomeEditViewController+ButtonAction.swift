@@ -5,6 +5,81 @@ import Mantis
 // - MARK: HomeEditViewController + ButtonAction
 extension HomeEditViewController {
     
+    // - MARK: "Image" 버튼 Action
+    @IBAction func addImage(_ sender: Any) {
+        // 기본 커버 or 커스텀 커버 중 택하는 Alert 생성
+        let selectCoverTypeAlert = UIAlertController(title: "커버 타입", message: .none, preferredStyle: .alert)
+        
+        // 해당 Alert의 Action을 설정
+        selectCoverTypeAlert.addAction(UIAlertAction(title: "기본 커버", style: .default) { action in
+            // 색을 지정
+            let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"]
+            
+            // Alert을 생성하고 Action을 지정
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+            
+            // 색 별로 Action을 Alert에 등록
+            colors.forEach { color in
+                alert.addAction(UIAlertAction(title: color.key, style: .default) { action in
+                    self.setCoverImage(color: color.value)
+                })
+            }
+            
+            // Alert을 띄움
+            self.present(alert, animated: true) {
+                alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
+            }
+        })
+        
+        selectCoverTypeAlert.addAction(UIAlertAction(title: "커버 만들기", style: .default) { action in
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.sourceType = .photoLibrary
+                self.present(picker, animated: false, completion: nil)
+            }
+            let camera = UIAlertAction(title: "카메라", style: .default){(action) in
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.sourceType = .camera
+                self.present(picker, animated: false, completion: nil)
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            alert.addAction(library)
+            alert.addAction(camera)
+            alert.addAction(cancel)
+            
+            self.present(alert, animated: true, completion: nil)
+        })
+        
+        present(selectCoverTypeAlert, animated: true) {
+            selectCoverTypeAlert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
+        }
+        
+    }
+    
+    // - MARK: "setCoverImage" 함수
+    func setCoverImage(color: String) {
+        switch color {
+        case "Blue" :
+            coverImage.image = UIImage(named: "Blue")
+        case "Brown" :
+            coverImage.image = UIImage(named: "Brown")
+        case "Green":
+            coverImage.image = UIImage(named: "Green")
+        case "Pupple":
+            coverImage.image = UIImage(named: "Pupple")
+        case "Red":
+            coverImage.image = UIImage(named: "Red")
+        case "Turquoise":
+            coverImage.image = UIImage(named: "Turquoise")
+        default:
+            coverImage.image = nil
+        }
+        
+    }
+    
     // - MARK: "save" 버튼 Action
     @IBAction func saveAlbum(_ sender: Any) {
         // realm 객체 생성
@@ -218,82 +293,6 @@ extension HomeEditViewController {
     @IBAction func closeButton(_ sender: Any) {
         // EditView를 dismiss 하도록 함
         dismiss(animated: false, completion: nil)
-        
-    }
-    
-    // - MARK: "Image" 버튼 Action
-    @IBAction func addImage(_ sender: Any) {
-        // 기본 커버 or 커스텀 커버 중 택하는 Alert 생성
-        let selectCoverTypeAlert = UIAlertController(title: "커버 타입", message: .none, preferredStyle: .alert)
-        
-        // 해당 Alert의 Action을 설정
-        selectCoverTypeAlert.addAction(UIAlertAction(title: "기본 커버", style: .default) { action in
-            // 색을 지정
-            let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"]
-            
-            // Alert을 생성하고 Action을 지정
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-            
-            // 색 별로 Action을 Alert에 등록
-            colors.forEach { color in
-                alert.addAction(UIAlertAction(title: color.key, style: .default) { action in
-                    self.setCoverImage(color: color.value)
-                })
-            }
-            
-            // Alert을 띄움
-            self.present(alert, animated: true) {
-                alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
-            }
-        })
-        
-        selectCoverTypeAlert.addAction(UIAlertAction(title: "커버 만들기", style: .default) { action in
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in
-                let picker = UIImagePickerController()
-                picker.delegate = self
-                picker.sourceType = .photoLibrary
-                self.present(picker, animated: false, completion: nil)
-            }
-            let camera = UIAlertAction(title: "카메라", style: .default){(action) in
-                let picker = UIImagePickerController()
-                picker.delegate = self
-                picker.sourceType = .camera
-                self.present(picker, animated: false, completion: nil)
-            }
-            let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-            alert.addAction(library)
-            alert.addAction(camera)
-            alert.addAction(cancel)
-            
-            self.present(alert, animated: true, completion: nil)
-        })
-        
-        present(selectCoverTypeAlert, animated: true) {
-            selectCoverTypeAlert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
-        }
-        
-    }
-    
-    // - MARK: "setCoverImage" 함수
-    func setCoverImage(color: String) {
-        switch color {
-        case "Blue" :
-            coverImage.image = UIImage(named: "Blue")
-        case "Brown" :
-            coverImage.image = UIImage(named: "Brown")
-        case "Green":
-            coverImage.image = UIImage(named: "Green")
-        case "Pupple":
-            coverImage.image = UIImage(named: "Pupple")
-        case "Red":
-            coverImage.image = UIImage(named: "Red")
-        case "Turquoise":
-            coverImage.image = UIImage(named: "Turquoise")
-        default:
-            coverImage.image = nil
-        }
-        
     }
     
     // - MARK: 해당 view 바깥을 tap하면 dismiss 되도록하는 함수
@@ -322,7 +321,6 @@ extension HomeEditViewController: UITextFieldDelegate {
 // - MARK: HomeEditViewController + pickerControllerDelegate
 extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         if let image = info[.originalImage] as? UIImage {
             dismiss(animated: true) {
                 self.openCropVC(image: image)
@@ -331,6 +329,7 @@ extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerC
     }
 }
 
+// - MARK: HomeEditViewController + CropViewControllerDelegate
 extension HomeEditViewController: CropViewControllerDelegate {
     func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Mantis.Transformation, cropInfo: Mantis.CropInfo) {
         

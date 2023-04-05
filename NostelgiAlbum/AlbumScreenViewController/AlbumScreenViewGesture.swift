@@ -2,11 +2,10 @@ import UIKit
 import RealmSwift
 
 extension AlbumScreenViewController {
-    
     // 한 손가락으로 swipe 할 때 실행할 메서드
-    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer){
+    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
         // 제스처가 존재하는 경우
-        if let swipeGesture = gesture as? UISwipeGestureRecognizer{
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             let data = realm.objects(album.self).filter("index = \(coverIndex)")
             
             if (pageNum >= 0) && (pageNum < (data.count / 2) + 1){
@@ -40,15 +39,12 @@ extension AlbumScreenViewController {
         self.navigationController?.popToRootViewController(animated: false)
     }
     
-    //Long Gesture에 album Data를 넣기 위함
-    class customLongPressGesture : UILongPressGestureRecognizer{
-        var picture : album!
-    }
-    
     //앨범 내 사진을 눌렀을 때 삭제 기능 동작
     @objc func didLongPressView(_ gesture: customLongPressGesture) {
         let editPicAlert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        let delete = UIAlertAction(title: "사진 삭제", style: .default){(action) in self.deletePicture(gesture.picture)}
+        let delete = UIAlertAction(title: "사진 삭제", style: .default){(action) in
+            self.deletePicture(gesture.picture)
+        }
         delete.setValue(UIColor.red, forKey: "titleTextColor")
         editPicAlert.addAction(delete)
         
@@ -102,8 +98,14 @@ extension AlbumScreenViewController {
         }
         collectionView.reloadData()
     }
+    
     //사진 삭제 중 바깥 부분을 눌렀을 때
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    //Long Gesture에 album Data를 넣기 위함
+    class customLongPressGesture : UILongPressGestureRecognizer{
+        var picture : album!
     }
 }

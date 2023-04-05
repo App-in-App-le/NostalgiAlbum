@@ -1,6 +1,6 @@
 import UIKit
 
-// - MARK: shareView push에 관련된 함수를 선언한 Extension
+// - MARK: shareView Push
 extension HomeScreenViewController {
     
     // - MARK: ShareViewController를 만들어 navigationController에 push하는 함수

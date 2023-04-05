@@ -21,6 +21,16 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         cell.firstButton.gestureRecognizers = nil
         cell.secondButton.gestureRecognizers = nil
         
+        // Button 모양 지정
+        cell.firstButton.layer.cornerRadius = 10
+        cell.secondButton.layer.cornerRadius = 10
+        
+        // Bottom Label 색 설정
+        cell.bottomLabel.backgroundColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)
+        
+        // Cell 배경 색 지정
+        cell.backgroundColor = UIColor(red: 0.80, green: 0.82, blue: 0.93, alpha: 1.00)
+        
         // CollectionView에 표시되어야 하는 버튼의 개수를 Cover_num 변수에 저장 :: (총 앨범의 개수 + 1)
         let cover_num = realm.objects(albumCover.self).count + 1
         
@@ -29,7 +39,6 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         if (indexPath.row + 1) * 2 <= cover_num {
             cell.firstButton.isHidden = false
             cell.secondButton.isHidden = false
-            
             // First Button :: 무조건 존재 함 -> Set button
             if let firstbuttonInfo = realm.objects(albumCover.self).filter("id = \(indexPath.row * 2 + 1)").first {
                 if firstbuttonInfo.isCustomCover == false {
@@ -55,7 +64,6 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                     let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(secondbuttonInfo.albumName)_CoverImage.jpeg", albumTitle: secondbuttonInfo.albumName)
                     cell.secondButton.setImage(customCoverImage, for: .normal)
                 }
-                
                 let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
                 LongPressGestureRecognizer.albumIndex = indexPath.row * 2 + 2
                 LongPressGestureRecognizer.albumName = secondbuttonInfo.albumName
@@ -86,6 +94,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as! AlbumScreenViewController
                 pushVC.pageNum = 0
                 pushVC.coverIndex = indexPath.row * 2 + 1
+                self.navigationController?.fade()
                 self.navigationController?.pushViewController(pushVC, animated: false)
             }
         }
@@ -101,6 +110,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as! AlbumScreenViewController
                 pushVC.pageNum = 0
                 pushVC.coverIndex = indexPath.row * 2 + 2
+                self.navigationController?.fade()
                 self.navigationController?.pushViewController(pushVC, animated: false)
             }
         }
@@ -122,4 +132,14 @@ extension HomeScreenViewController: UICollectionViewDelegateFlowLayout{
         return 0
     }
     
+}
+
+extension UINavigationController {
+    func fade() {
+        let transition = CATransition()
+        transition.duration = 1
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        transition.type = CATransitionType.fade
+        self.view.layer.add(transition, forKey: nil)
+    }
 }

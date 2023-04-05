@@ -14,10 +14,8 @@ class AlbumScreenViewController: UIViewController {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-//        pageNumLabel.text = "[ \(pageNum + 1) 페이지 ]"
         toolbarItems = makeToolbarItems()
         navigationController?.toolbar.tintColor = UIColor.label
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: self, action: #selector(popToHome))
         let pageNumLabel = UILabel()
         pageNumLabel.text = "\(pageNum + 1) Page"
         pageNumLabel.font = UIFont(name: "Bradley Hand", size: 20)

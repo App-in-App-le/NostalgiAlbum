@@ -64,6 +64,7 @@ class AlbumPicViewController: UIViewController {
         
         // set picText
         picText.translatesAutoresizingMaskIntoConstraints = false
+        picText.numberOfLines = 0
         picText.text = picture.ImageText
         
         consArray = [
@@ -128,6 +129,7 @@ class AlbumPicViewController: UIViewController {
 //        guard let picVC = self.presentingViewController else { return }
         editVC.picture = picture
         editVC.collectionViewInAlbum = collectionViewInAlbum
+        editVC.picVC = self
         editVC.modalPresentationStyle = .overFullScreen
         self.present(editVC, animated: false)
 //        self.dismiss(animated: false) {

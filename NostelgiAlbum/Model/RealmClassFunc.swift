@@ -2,11 +2,11 @@ import Foundation
 import RealmSwift
 
 class album : Object{
-    @objc dynamic var index : Int = 0
-    @objc dynamic var perAlbumIndex : Int = 0
-    @objc dynamic var ImageName : String = ""
-    @objc dynamic var ImageText : String = ""
-    @objc dynamic var AlbumTitle : String = ""
+    @objc dynamic var index: Int = 0
+    @objc dynamic var perAlbumIndex: Int = 0
+    @objc dynamic var ImageName: String = ""
+    @objc dynamic var ImageText: String = ""
+    @objc dynamic var AlbumTitle: String = ""
     
     func setPerAlbumIndex(_ db : Int){
         perAlbumIndex = db

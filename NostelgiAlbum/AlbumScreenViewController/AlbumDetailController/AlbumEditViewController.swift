@@ -10,6 +10,7 @@ class AlbumEditViewController: UIViewController {
     @IBOutlet weak var editText: UITextView!
     
     var collectionViewInAlbum : UICollectionView!
+    var picVC : AlbumPicViewController?
     var index : Int!
     var albumCoverName : String!
     var picture: album? = nil
@@ -92,9 +93,11 @@ class AlbumEditViewController: UIViewController {
         
         // editName
         editName.translatesAutoresizingMaskIntoConstraints = false
+        editName.textAlignment = .center
         
         // editText
         editText.translatesAutoresizingMaskIntoConstraints = false
+        editText.textAlignment = .center
         editText.layer.cornerRadius = 5
         
         // set Layout
@@ -253,7 +256,10 @@ class AlbumEditViewController: UIViewController {
         }
         deleteTmpPicture()
         collectionViewInAlbum.reloadData()
-        dismiss(animated: false, completion: nil)
+        
+        dismiss(animated: false) {
+            self.picVC?.dismiss(animated: false)
+        }
     }
     
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){
