@@ -2,12 +2,9 @@ import UIKit
 import RealmSwift
 
 extension AlbumScreenViewController {
-    // 한 손가락으로 swipe 할 때 실행할 메서드
     @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
-        // 제스처가 존재하는 경우
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             let data = realm.objects(album.self).filter("index = \(coverIndex)")
-            
             if (pageNum >= 0) && (pageNum < (data.count / 2) + 1){
                 switch swipeGesture.direction{
                 case UISwipeGestureRecognizer.Direction.right :
@@ -34,20 +31,20 @@ extension AlbumScreenViewController {
         }
     }
     
-    //back button을 눌렀을 때 Home으로 이동
-    @objc func popToHome(){
+    @objc func popToHome() {
         self.navigationController?.popToRootViewController(animated: false)
     }
     
-    //앨범 내 사진을 눌렀을 때 삭제 기능 동작
     @objc func didLongPressView(_ gesture: customLongPressGesture) {
+        // editPicAlert
         let editPicAlert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        // editPicAlert "사진 삭제" action
         let delete = UIAlertAction(title: "사진 삭제", style: .default){(action) in
             self.deletePicture(gesture.picture)
         }
         delete.setValue(UIColor.red, forKey: "titleTextColor")
         editPicAlert.addAction(delete)
-        
+        // Present editPicAlert
         self.present(editPicAlert, animated: true){
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
             editPicAlert.view.superview?.isUserInteractionEnabled = true
@@ -55,7 +52,6 @@ extension AlbumScreenViewController {
         }
     }
     
-    //삭제 기능 동작 시 필요한 function
     private func deletePicture(_ picture : album) {
         let pictures = realm.objects(album.self).filter("index = \(picture.index)")
         let picturesInfo = realm.objects(albumsInfo.self).filter("id = \(picture.index)")
@@ -99,13 +95,11 @@ extension AlbumScreenViewController {
         collectionView.reloadData()
     }
     
-    //사진 삭제 중 바깥 부분을 눌렀을 때
-    @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){
+    @objc private func didTappedOutside(_ sender: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    //Long Gesture에 album Data를 넣기 위함
-    class customLongPressGesture : UILongPressGestureRecognizer{
+    class customLongPressGesture : UILongPressGestureRecognizer {
         var picture : album!
     }
 }

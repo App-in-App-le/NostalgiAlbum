@@ -28,11 +28,9 @@ extension AlbumScreenViewController: UICollectionViewDataSource{
             if indexPath.item + pageNum * 2 == data.count {
                 cell.albumInit()
             }
-//            // 애초에 init을 해줄 필요가 있나? 바꿔도 실행 상의 문제는 없는 듯 함
-//            cell.albumInit()
-//            if (indexPath.item + pageNum * 2) > data.count {
-//                cell.pictureImgButton!.isHidden = true
-//            }
+            if (indexPath.item + pageNum * 2) > data.count {
+                cell.reset()
+            }
         }
         return cell
     }

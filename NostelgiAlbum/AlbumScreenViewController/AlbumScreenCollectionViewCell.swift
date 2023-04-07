@@ -118,17 +118,12 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
             albumSVC.present(editVC, animated: false)
             // When the pictureImageButton has a picture, go to the albumPicView.
         } else {
-            picConfigure(albumInfo)
+            guard let picVC = self.albumSVC.storyboard?.instantiateViewController(withIdentifier: "AlbumPicViewController") as? AlbumPicViewController else { return }
+            picVC.picture = albumInfo
+            picVC.collectionViewInAlbum = albumSVC.collectionView
+            picVC.modalPresentationStyle = .overFullScreen
+            albumSVC.present(picVC, animated: false)
         }
-    }
-    
-    // - MARK: When you touch a picture, go to the view where you can see the picture in detail.
-    func picConfigure(_ albumInfo : album){
-        guard let picVC = self.albumSVC.storyboard?.instantiateViewController(withIdentifier: "AlbumPicViewController") as? AlbumPicViewController else { return }
-        picVC.picture = albumInfo
-        picVC.collectionViewInAlbum = albumSVC.collectionView
-        picVC.modalPresentationStyle = .overFullScreen
-        albumSVC.present(picVC, animated: false)
     }
     
     // - MARK: Reset the properties of the subviews in cell and subviews.

@@ -1,55 +1,49 @@
 import UIKit
 
-// - MARK: CollectionView + ButtonAction
 extension HomeScreenViewController {
     
-    // - MARK: custom LongPressGuesture Reconizer :: 인자 전달을 위해 선언
     class customLongPressGesture : UILongPressGestureRecognizer {
+        // MARK: - Properties
         var albumIndex : Int!
         var albumName : String!
     }
     
-     // - MARK: didLongPressView gesture :: 꾹 누르는 제스처 동작 설정
     @objc func didLongPressView(_ gesture: customLongPressGesture) {
-        
-        // Alert 생성
+        // Alert
         let longPressAlert = UIAlertController(title: (gesture.albumName), message: .none, preferredStyle: .alert)
         
-        // Alert Action 설정 :: "앨범 삭제", "앨범 수정"
-        // 앨범 삭제 :: RealmDB & Documents 에서 정보 삭제
+        // Delete action
         let delete = UIAlertAction(title: "앨범 삭제", style: .default) {
             (action) in self.deleteAlbumCover(gesture.albumIndex, gesture.albumName)
         }
         delete.setValue(UIColor.blue, forKey: "titleTextColor")
-        // 앨범 수정 :: RealmDB & Documents 에서 albumCover 관련 정보 변경
+        
+        // Modify action
         let modify = UIAlertAction(title: "앨범 수정", style: .default) {
             (action) in self.modifyAlbumCover(gesture.albumIndex, gesture.albumName)
         }
         modify.setValue(UIColor.blue, forKey: "titleTextColor")
         
-        // Alert Action을 longPressAlert에 추가
+        // Set Action in Alert
         longPressAlert.addAction(delete)
         longPressAlert.addAction(modify)
         
-        // Alert을 화면에 표시
+        // Print Alert
         present(longPressAlert, animated: true){
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
             longPressAlert.view.superview?.isUserInteractionEnabled = true
             longPressAlert.view.superview?.addGestureRecognizer(tap)
         }
-        
     }
     
-    // - MARK: deleteAlbumCover :: LongPressAlert Action 중 앨범 삭제 버튼에 대한 Action
     private func deleteAlbumCover(_ albumIndex : Int, _ albumName : String) {
-        
-        // RealmDB에서 삭제에 필요한 정보 불러옴
+        // Realm Data
         let albumCoverNum = realm.objects(albumCover.self).count
         let albumCoverData = realm.objects(albumCover.self).filter("id = \(albumIndex)")
         let albumData = realm.objects(album.self).filter("index = \(albumIndex)")
         let albumsInfoData = realm.objects(albumsInfo.self).filter("id = \(albumIndex)")
         
-        // RealmDB에서 불러온 정보들을 모두 삭제
+        // Delete All Data in RealmDB
         do {
             try realm.write{
                 realm.delete(albumCoverData)
@@ -60,7 +54,7 @@ extension HomeScreenViewController {
             print("RealmDB에서 파일을 삭제하지 못했습니다.")
         }
         
-        // Documents에서 관련 정보 및 파일을 삭제
+        // Delete All Data in Documents
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
         let albumDirectory = documentDirectory.appendingPathComponent(albumName)
         if FileManager.default.fileExists(atPath: albumDirectory.path) {
@@ -71,7 +65,7 @@ extension HomeScreenViewController {
             }
         }
         
-        // Documents 폴더안의 각 Album 폴더의 사진들의 index를 재설정 :: 앞의 사진이 지워진 경우 뒤의 사진들의 index를 다 당겨줘야 함
+        // Modify Album pictures' Index
         if albumCoverNum != albumIndex{
             for index in (albumIndex + 1)...albumCoverNum{
                 let albumCoverData = realm.objects(albumCover.self).filter("id = \(index)")
@@ -94,18 +88,13 @@ extension HomeScreenViewController {
             print("You delete Last album!")
         }
         
-        // HomeScreenView의 collectionView의 정보를 reload
+        // Reload CollectionView
         collectionView.reloadData()
-        
     }
     
-    // - MARK: modifyAlbumCover :: LongPressAlert Action 중 앨범 수정 버튼에 대한 Action
     private func modifyAlbumCover(_ albumIndex : Int, _ albumName : String) {
-        
-        // 새로운 HomeEditViewController 생성
+        // editVC
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeEditViewController") as? HomeEditViewController else{ return }
-        
-        // HomeEditViewController 기본 설정
         editVC.modalPresentationStyle = .overCurrentContext
         editVC.collectionViewInHome = self.collectionView
         editVC.IsModifyingView = true
@@ -113,15 +102,11 @@ extension HomeScreenViewController {
         editVC.coverImageBeforeModify = realm.objects(albumCover.self).filter("id = \(albumIndex)").first!.coverImageName
         editVC.id = albumIndex
         
-        // HomeEditViewController Modal로 띄우기
+        // Present editVC
         self.present(editVC, animated: false)
-        
     }
     
-    // - MARK: didTappedOutside :: Alert 바깥을 Tap 하면 Alert이 사라지도록 함
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer) {
-        
         dismiss(animated: true, completion: nil)
-        
     }
 }

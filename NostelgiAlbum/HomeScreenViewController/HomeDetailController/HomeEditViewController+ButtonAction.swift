@@ -2,35 +2,24 @@ import UIKit
 import RealmSwift
 import Mantis
 
-// - MARK: HomeEditViewController + ButtonAction
 extension HomeEditViewController {
-    
-    // - MARK: "Image" 버튼 Action
     @IBAction func addImage(_ sender: Any) {
-        // 기본 커버 or 커스텀 커버 중 택하는 Alert 생성
+        // selectCoverTypeAlert
         let selectCoverTypeAlert = UIAlertController(title: "커버 타입", message: .none, preferredStyle: .alert)
-        
-        // 해당 Alert의 Action을 설정
+        // selectCoverTypeAlert "기본 커버" Action
         selectCoverTypeAlert.addAction(UIAlertAction(title: "기본 커버", style: .default) { action in
-            // 색을 지정
             let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"]
-            
-            // Alert을 생성하고 Action을 지정
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-            
-            // 색 별로 Action을 Alert에 등록
             colors.forEach { color in
                 alert.addAction(UIAlertAction(title: color.key, style: .default) { action in
                     self.setCoverImage(color: color.value)
                 })
             }
-            
-            // Alert을 띄움
             self.present(alert, animated: true) {
                 alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
             }
         })
-        
+        // selectCoverTypeAlert "커버 만들기" Action
         selectCoverTypeAlert.addAction(UIAlertAction(title: "커버 만들기", style: .default) { action in
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in
@@ -49,17 +38,14 @@ extension HomeEditViewController {
             alert.addAction(library)
             alert.addAction(camera)
             alert.addAction(cancel)
-            
             self.present(alert, animated: true, completion: nil)
         })
         
         present(selectCoverTypeAlert, animated: true) {
             selectCoverTypeAlert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))
         }
-        
     }
     
-    // - MARK: "setCoverImage" 함수
     func setCoverImage(color: String) {
         switch color {
         case "Blue" :
@@ -80,15 +66,12 @@ extension HomeEditViewController {
         
     }
     
-    // - MARK: "save" 버튼 Action
     @IBAction func saveAlbum(_ sender: Any) {
-        // realm 객체 생성
+        // Load realm instance
         let realm = try! Realm()
-        
-        // 새로운 앨범을 생성하는 경우
+        // Create new Album
         if !IsModifyingView {
-            
-            // 앨범의 제목이나 이미지를 설정하지 않은 경우 Alert을 띄움
+            // Warning Alert
             if albumName.text == "" {
                 let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
                 present(textAlert, animated: true){
@@ -107,10 +90,8 @@ extension HomeEditViewController {
                 }
                 return
             }
-            
-            // 새로운 앨범에 대한 폴더를 document 파일에 생성 :: 폴더 이름 == "albumName.text"
+            // Make Album Folder in Document
             guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-            
             let dirPath = documentDirectory.appendingPathComponent(albumName.text!)
             if !FileManager.default.fileExists(atPath: dirPath.path){
                 do{
@@ -119,8 +100,7 @@ extension HomeEditViewController {
                     NSLog("Couldn't create document directory")
                 }
             }
-            
-            // 새로운 albumCover realm 객체를 생성
+            // Create new albumCover Realm Model Class
             let newAlbumCover = albumCover()
             newAlbumCover.incrementIndex()
             newAlbumCover.albumName = albumName.text!
@@ -143,33 +123,28 @@ extension HomeEditViewController {
                 newAlbumCover.coverImageName = "Turquoise"
             }
             else{
-                // Custom Image를 추가한 경우
-                // Realm 정보 입력
+                // Custom Cover Image
                 newAlbumCover.coverImageName = "Custom"
                 newAlbumCover.isCustomCover = true
-                
-                // Document 사진 추가
+                // Save Custom Image in Album Folder
                 let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
                 saveImageToDocumentDirectory(imageName: customCoverImagePath, image: coverImage.image!, AlbumCoverName: albumName.text!)
             }
-            
-            // 새로운 albumsInfo realm 객체를 생성
+            // Create new Realm albumdsInfo Model Class
             let newAlbumsInfo = albumsInfo()
             newAlbumsInfo.incrementIndex()
             newAlbumsInfo.setDateOfCreation()
             newAlbumsInfo.numberOfPictures = 0
-            
-            // 위의 새로운 정보들을 realm 객체에 저장
+            // Save New Models in Realm
             try! realm.write
             {
                 realm.add(newAlbumCover)
                 realm.add(newAlbumsInfo)
             }
         }
-        
-        // 기존의 앨범을 수정하는 경우
+        // Modify exist Album
         else {
-            // 앨범의 제목을 설정하지 않은 경우 Alert을 띄움
+            // Waring Alert
             if albumName.text == "" {
                 let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
                 present(textAlert, animated: true){
@@ -179,8 +154,7 @@ extension HomeEditViewController {
                 }
                 return
             }
-            
-            // Document 폴더에서 수정된 앨범의 앨범 폴더 이름을 변경
+            // Modify Album Folder's Name
             guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
             let albumDirectoryPath = documentDirectory.appendingPathComponent(albumNameBeforeModify)
             let modifyAlbumDirectoryPath = documentDirectory.appendingPathComponent(albumName.text!)
@@ -190,13 +164,12 @@ extension HomeEditViewController {
             } catch {
                 print("Move failed")
             }
-            
-            // RealmDB에서 해당 앨범에 관련된 albumCover, album 객체를 찾음
+            // Find Realm Data that should be modified
             let albumCoverData = realm.objects(albumCover.self).filter("id = \(id)")
             let albumData = realm.objects(album.self).filter("index = \(id)")
             
-            // 앨범 폴더 내의 사진 이름을 모두 변경
-            // 앨범 커버 사진 이름 수정
+            // Modify Album Pictures' Name
+            // CoverImage
             if albumCoverData.first?.isCustomCover == true {
                 let oldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumCoverData.first!.albumName)_CoverImage.jpeg")
                 let newPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_CoverImage.jpeg")
@@ -207,8 +180,7 @@ extension HomeEditViewController {
                     print("Move failed")
                 }
             }
-            
-            // 앨범 내 사진 이름 수정
+            // Albume Pictures' Image
             for album in albumData {
                 let oldPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(album.AlbumTitle)_\(album.perAlbumIndex).jpeg")
                 let newPicturePath = documentDirectory.appendingPathComponent(albumName.text!).appendingPathComponent("\(albumName.text!)_\(album.perAlbumIndex).jpeg")
@@ -219,8 +191,7 @@ extension HomeEditViewController {
                     print("Move failed")
                 }
             }
-            
-            // RealmDB의 객체 정보들을 수정 :: album -> [albumTitle], albumCover -> [albumName, CoverImageName]
+            // Modify RealmDB :: album -> [albumTitle], albumCover -> [albumName, CoverImageName]
             try! realm.write{
                 // Modify "albumCover" instance in RealmDB
                 albumCoverData.first?.albumName = String(albumName.text!)
@@ -267,12 +238,10 @@ extension HomeEditViewController {
                     albumCoverData.first?.isCustomCover = false
                 }
                 else{
-                    // Custom Image를 추가한 경우
-                    // Realm 정보 입력
+                    // Modify to Custom Image
                     albumCoverData.first?.coverImageName = "Custom"
                     albumCoverData.first?.isCustomCover = true
-                    
-                    // Document 사진 추가
+                    // Add custom image in album folder
                     let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
                     saveImageToDocumentDirectory(imageName: customCoverImagePath, image: coverImage.image!, AlbumCoverName: albumName.text!)
                 }
@@ -281,44 +250,36 @@ extension HomeEditViewController {
             }
         }
         
-        // HomeScreenView의 collectionView를 reload
+        // Reload HomeScreenView's collectionView
         collectionViewInHome.reloadData()
         
-        // EditViewController modal을 dismiss
+        // Dismiss EditViewController
         dismiss(animated: false, completion: nil)
         
     }
     
-    // - MARK: "close" 버튼 Action
     @IBAction func closeButton(_ sender: Any) {
-        // EditView를 dismiss 하도록 함
+        // Dismiss EditView
         dismiss(animated: false, completion: nil)
     }
     
-    // - MARK: 해당 view 바깥을 tap하면 dismiss 되도록하는 함수
     @objc func didTappedOutside(_ sender: UITapGestureRecognizer) {
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
-// - MARK: HomeEditViewController + UITextFieldDelegate
 extension HomeEditViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        // 새로운 HomeEditViewController 생성
+        // editAlbumNameViewController
         guard let editAlbumNameVC = self.storyboard?.instantiateViewController(withIdentifier: "SetAlbumNameViewController") as? SetAlbumNameViewController else{ return }
-        // 이런 부분들 전부 동기적 or 비동기적 처리(Combine or Rxswift)로 바꿔야 될 것 같음 -> 공부 + 논의 필요
-        // 1. 모달로 뜬 부분에 입력을 받음
-        // 2. 모달의 확인 버튼을 누르거나 취소 버튼을 누를 때 까지 동작 정지
-        // 3. 모달의 확인 버튼을 누르거나 취소 버튼을 누르면 동작이 다시 시작되도록 함.
         editAlbumNameVC.editVC = self
         editAlbumNameVC.modalPresentationStyle = .currentContext
         editAlbumNameVC.modalTransitionStyle = .crossDissolve
+        // Present modal
         self.present(editAlbumNameVC, animated: true)
     }
 }
 
-// - MARK: HomeEditViewController + pickerControllerDelegate
 extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
@@ -329,25 +290,22 @@ extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerC
     }
 }
 
-// - MARK: HomeEditViewController + CropViewControllerDelegate
 extension HomeEditViewController: CropViewControllerDelegate {
     func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Mantis.Transformation, cropInfo: Mantis.CropInfo) {
-        
         self.coverImage.image = resizeingImage(image: cropped, width: 120, height: 160)
         cropViewController.dismiss(animated: true)
     }
     
     func cropViewControllerDidCancel(_ cropViewController: Mantis.CropViewController, original: UIImage) {
-        
         cropViewController.dismiss(animated: true, completion: nil)
     }
     
     private func openCropVC(image: UIImage) {
         let cropViewController = Mantis.cropViewController(image: image)
         cropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 3.0 / 4.0)
-        
         cropViewController.delegate = self
         cropViewController.modalPresentationStyle = .fullScreen
+        
         self.present(cropViewController, animated: true)
     }
 }

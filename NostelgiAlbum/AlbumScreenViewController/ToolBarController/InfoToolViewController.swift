@@ -2,6 +2,7 @@ import UIKit
 import RealmSwift
 
 class InfoToolViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
