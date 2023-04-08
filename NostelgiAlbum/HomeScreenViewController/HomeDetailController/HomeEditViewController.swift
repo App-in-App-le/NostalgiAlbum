@@ -37,7 +37,7 @@ class HomeEditViewController: UIViewController {
             if coverImageData.first?.isCustomCover == false {
                 setCoverImage(color: coverImageBeforeModify)
             } else {
-                let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(albumName.text!)_CoverImage.jpeg", albumTitle: albumName.text!)
+                let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(albumNameBeforeModify)_CoverImage.jpeg", albumTitle: albumNameBeforeModify)
                 coverImage.image = customCoverImage
             }
         }
