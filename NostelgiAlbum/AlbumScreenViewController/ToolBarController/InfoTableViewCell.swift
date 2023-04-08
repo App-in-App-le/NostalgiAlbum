@@ -1,9 +1,11 @@
 import UIKit
 
 class InfoTableCell: UITableViewCell {
+    // MARK: - Properties
     var cellTitle: UILabel! = nil
     var cellDescription: UILabel! = nil
     
+    // MARK: - Methods
     func setSubviews(title: String, description: String) {
         cellTitle = UILabel()
         cellTitle.text = title
