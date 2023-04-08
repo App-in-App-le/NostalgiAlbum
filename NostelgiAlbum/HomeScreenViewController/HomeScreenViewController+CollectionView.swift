@@ -83,7 +83,6 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as! AlbumScreenViewController
                 pushVC.pageNum = 0
                 pushVC.coverIndex = indexPath.row * 2 + 1
-                self.navigationController?.fade()
                 self.navigationController?.pushViewController(pushVC, animated: false)
             }
         }
@@ -98,11 +97,9 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as! AlbumScreenViewController
                 pushVC.pageNum = 0
                 pushVC.coverIndex = indexPath.row * 2 + 2
-                self.navigationController?.fade()
                 self.navigationController?.pushViewController(pushVC, animated: false)
             }
         }
-        // return cell
         return cell
     }
 }
@@ -114,15 +111,5 @@ extension HomeScreenViewController: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-}
-
-extension UINavigationController {
-    func fade() {
-        let transition = CATransition()
-        transition.duration = 1
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        transition.type = CATransitionType.fade
-        self.view.layer.add(transition, forKey: nil)
     }
 }
