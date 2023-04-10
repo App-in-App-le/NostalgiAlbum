@@ -16,6 +16,8 @@
 		807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A193B29312CEE00BC434B /* RealmClassFunc.swift */; };
 		807FF50129260656005D9884 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FF50029260656005D9884 /* InfoTableViewCell.swift */; };
 		8080200E29E18B9700CECCB8 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8080200D29E18B9700CECCB8 /* InfoTableViewController.swift */; };
+		8080201029E3F4C800CECCB8 /* SetPictureNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8080200F29E3F4C800CECCB8 /* SetPictureNameViewController.swift */; };
+		8080201229E3F4D300CECCB8 /* SetPictureDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8080201129E3F4D300CECCB8 /* SetPictureDescriptionViewController.swift */; };
 		8092C3A3298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8092C3A2298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift */; };
 		8092C3A5298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */; };
 		8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2328EDC65500E70F76 /* AppDelegate.swift */; };
@@ -77,6 +79,8 @@
 		807A193B29312CEE00BC434B /* RealmClassFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClassFunc.swift; sourceTree = "<group>"; };
 		807FF50029260656005D9884 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		8080200D29E18B9700CECCB8 /* InfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
+		8080200F29E3F4C800CECCB8 /* SetPictureNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPictureNameViewController.swift; sourceTree = "<group>"; };
+		8080201129E3F4D300CECCB8 /* SetPictureDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPictureDescriptionViewController.swift; sourceTree = "<group>"; };
 		8092C3A2298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeEditViewController+ButtonAction.swift"; sourceTree = "<group>"; };
 		8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+ButtonAction.swift"; sourceTree = "<group>"; };
 		8094CA2028EDC65500E70F76 /* NostelgiAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NostelgiAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -267,6 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				8320291E295EA8E2001709E9 /* AlbumEditViewController.swift */,
+				8080200F29E3F4C800CECCB8 /* SetPictureNameViewController.swift */,
+				8080201129E3F4D300CECCB8 /* SetPictureDescriptionViewController.swift */,
 				80C8C86B29DE92C300A9F01F /* AlbumEditViewController+ButtonAction.swift */,
 				80C8C86D29DE935700A9F01F /* PickerImageController+CropViewController.swift */,
 				831A04D7295EBDCA009D26A0 /* AlbumPicViewController.swift */,
@@ -555,7 +561,9 @@
 				831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */,
 				80C56D18298CE5360063688F /* HomeScreenViewController+CollectionView.swift in Sources */,
 				804C7E8E295835D200C63880 /* ImageFunc.swift in Sources */,
+				8080201029E3F4C800CECCB8 /* SetPictureNameViewController.swift in Sources */,
 				807FF50129260656005D9884 /* InfoTableViewCell.swift in Sources */,
+				8080201229E3F4D300CECCB8 /* SetPictureDescriptionViewController.swift in Sources */,
 				831E7446299A7BDF00D48D5C /* AlbumDelegate+Layout.swift in Sources */,
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,

@@ -22,6 +22,8 @@ class AlbumEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        editName.delegate = self
+        editText.delegate = self
         setSubViews()
         if picture != nil
         {
@@ -35,34 +37,8 @@ class AlbumEditViewController: UIViewController {
         self.view.addGestureRecognizer(swipeRecognizer)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
-    }
-    
-    @objc func keyboardUp(notification:NSNotification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            UIView.animate(
-                withDuration: 0.3
-                , animations: {
-                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height)
-                }
-            )
-        }
-    }
-    
-    @objc func keyboardDown() {
-        self.view.transform = .identity
     }
     
     @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
@@ -94,8 +70,7 @@ class AlbumEditViewController: UIViewController {
         
         // editText
         editText.translatesAutoresizingMaskIntoConstraints = false
-        editText.textAlignment = .center
-        editText.layer.cornerRadius = 5
+        editText.layer.cornerRadius = 10
         
         // set Layout
         consArray = [
@@ -112,7 +87,7 @@ class AlbumEditViewController: UIViewController {
             editName.topAnchor.constraint(equalTo: editPicture.bottomAnchor, constant: 10),
             editName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             editName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            editName.heightAnchor.constraint(equalToConstant: 35),
+            editName.heightAnchor.constraint(equalToConstant: 34),
             
             editText.topAnchor.constraint(equalTo: editName.bottomAnchor, constant: 10),
             editText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -160,7 +135,7 @@ class AlbumEditViewController: UIViewController {
                 editName.topAnchor.constraint(equalTo: editPicture.bottomAnchor, constant: 10),
                 editName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
                 editName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-                editName.heightAnchor.constraint(equalToConstant: 35),
+                editName.heightAnchor.constraint(equalToConstant: 34),
                 
                 editText.topAnchor.constraint(equalTo: editName.bottomAnchor, constant: 10),
                 editText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -173,5 +148,30 @@ class AlbumEditViewController: UIViewController {
         editPicture.setTitle("", for: .normal)
         editName.text = picture.ImageName
         editText.text = picture.ImageText
+    }
+}
+
+extension AlbumEditViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // editPictureNameVC
+        guard let editPictureNameVC = self.storyboard?.instantiateViewController(withIdentifier: "SetPictureNameViewController") as? SetPictureNameViewController else{ return }
+        editPictureNameVC.editVC = self
+        editPictureNameVC.modalPresentationStyle = .overCurrentContext
+        editPictureNameVC.modalTransitionStyle = .crossDissolve
+        // Present modal
+        self.present(editPictureNameVC, animated: true)
+    }
+}
+
+extension AlbumEditViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        // editPictureDescriptionVC
+        guard let editPictureDescriptionVC = self.storyboard?.instantiateViewController(withIdentifier: "SetPictureDescriptionViewController") as? SetPictureDescriptionViewController else{ return }
+        editPictureDescriptionVC.editVC = self
+        editPictureDescriptionVC.modalPresentationStyle = .overCurrentContext
+        editPictureDescriptionVC.modalTransitionStyle = .crossDissolve
+        // Present modal
+        self.present(editPictureDescriptionVC, animated: true)
+        
     }
 }

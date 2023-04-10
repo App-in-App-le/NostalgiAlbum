@@ -273,7 +273,7 @@ extension HomeEditViewController: UITextFieldDelegate {
         // editAlbumNameViewController
         guard let editAlbumNameVC = self.storyboard?.instantiateViewController(withIdentifier: "SetAlbumNameViewController") as? SetAlbumNameViewController else{ return }
         editAlbumNameVC.editVC = self
-        editAlbumNameVC.modalPresentationStyle = .currentContext
+        editAlbumNameVC.modalPresentationStyle = .overCurrentContext
         editAlbumNameVC.modalTransitionStyle = .crossDissolve
         // Present modal
         self.present(editAlbumNameVC, animated: true)

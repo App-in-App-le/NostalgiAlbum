@@ -76,6 +76,7 @@ extension AlbumEditViewController: CropViewControllerDelegate {
         config.ratioOptions = [.custom]
         config.addCustomRatio(byVerticalWidth: 3, andVerticalHeight: 4)
         config.addCustomRatio(byVerticalWidth: 4, andVerticalHeight: 3)
+        config.presetFixedRatioType = .canUseMultiplePresetFixedRatio(defaultRatio: 3 / 4)
         let cropViewController = Mantis.cropViewController(image: image, config: config)
         cropViewController.delegate = self
         cropViewController.modalPresentationStyle = .fullScreen
