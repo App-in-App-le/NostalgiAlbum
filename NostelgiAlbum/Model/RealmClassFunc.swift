@@ -2,12 +2,14 @@ import Foundation
 import RealmSwift
 
 class album : Object{
-    @objc dynamic var index : Int = 0
-    @objc dynamic var perAlbumIndex : Int = 0
-    @objc dynamic var ImageName : String = ""
-    @objc dynamic var ImageText : String = ""
-    @objc dynamic var AlbumTitle : String = ""
+    // MARK: - Properties
+    @objc dynamic var index: Int = 0
+    @objc dynamic var perAlbumIndex: Int = 0
+    @objc dynamic var ImageName: String = ""
+    @objc dynamic var ImageText: String = ""
+    @objc dynamic var AlbumTitle: String = ""
     
+    // MARK: - Methods
     func setPerAlbumIndex(_ db : Int){
         perAlbumIndex = db
     }
@@ -30,11 +32,13 @@ class album : Object{
 }
 
 class albumCover : Object{
+    // MARK: - Properties
     @objc dynamic var id: Int = 0
     @objc dynamic var coverImageName: String = ""
     @objc dynamic var albumName: String = ""
     @objc dynamic var isCustomCover: Bool = false
     
+    // MARK: - Methods
     func setcoverImageName(_ db : String){
         coverImageName = db
     }
@@ -50,10 +54,12 @@ class albumCover : Object{
 }
 
 class albumsInfo : Object{
+    // MARK: - Properties
     @objc dynamic var id : Int = 0
     @objc dynamic var numberOfPictures : Int = 0
     @objc dynamic var dateOfCreation : String = ""
     
+    // MARK: - Methods
     func setNumberOfPictures(_ num: Int){
         let realm = try! Realm()
         numberOfPictures = realm.objects(album.self).filter("index = \(num)").count

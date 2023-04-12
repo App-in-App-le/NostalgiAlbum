@@ -3,7 +3,7 @@ import UIKit
 class AlbumPicViewController: UIViewController {
 
     @IBOutlet weak var picName: UILabel!
-    @IBOutlet weak var picText: UILabel!
+    @IBOutlet weak var picText: UITextView!
     @IBOutlet weak var picImage: UIButton!
     @IBOutlet weak var settingBtn: UIButton!
     var picture: album!
@@ -61,10 +61,13 @@ class AlbumPicViewController: UIViewController {
         // set picName
         picName.translatesAutoresizingMaskIntoConstraints = false
         picName.text = picture.ImageName
+        picName.clipsToBounds = true
+        picName.layer.cornerRadius = 5.0
         
         // set picText
         picText.translatesAutoresizingMaskIntoConstraints = false
         picText.text = picture.ImageText
+        picText.layer.cornerRadius = 10.0
         
         consArray = [
             settingBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -80,7 +83,7 @@ class AlbumPicViewController: UIViewController {
             picName.topAnchor.constraint(equalTo: picImage.bottomAnchor, constant: 10),
             picName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             picName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            picName.heightAnchor.constraint(equalToConstant: 35),
+            picName.heightAnchor.constraint(equalToConstant: 34),
             
             picText.topAnchor.constraint(equalTo: picName.bottomAnchor, constant: 10),
             picText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -101,7 +104,7 @@ class AlbumPicViewController: UIViewController {
             picName.topAnchor.constraint(equalTo: picImage.bottomAnchor, constant: 10),
             picName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             picName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            picName.heightAnchor.constraint(equalToConstant: 35),
+            picName.heightAnchor.constraint(equalToConstant: 34),
             
             picText.topAnchor.constraint(equalTo: picName.bottomAnchor, constant: 10),
             picText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -128,6 +131,7 @@ class AlbumPicViewController: UIViewController {
 //        guard let picVC = self.presentingViewController else { return }
         editVC.picture = picture
         editVC.collectionViewInAlbum = collectionViewInAlbum
+        editVC.picVC = self
         editVC.modalPresentationStyle = .overFullScreen
         self.present(editVC, animated: false)
 //        self.dismiss(animated: false) {

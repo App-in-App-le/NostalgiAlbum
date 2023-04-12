@@ -52,7 +52,7 @@ extension AlbumScreenViewController {
     
     //info button을 누를 시 동작
     @objc func infoButton(){
-        guard let infoVC = self.storyboard?.instantiateViewController(identifier: "InfoToolViewController") as? InfoToolViewController else { return }
+        let infoVC = InfoTableViewController()
         infoVC.index = coverIndex
         infoVC.modalTransitionStyle = .crossDissolve
         infoVC.modalPresentationStyle = .overCurrentContext
