@@ -171,6 +171,7 @@ extension AlbumEditViewController: UITextViewDelegate {
         editPictureDescriptionVC.modalPresentationStyle = .overCurrentContext
         editPictureDescriptionVC.modalTransitionStyle = .crossDissolve
         // Present modal
+        textView.endEditing(true)
         self.present(editPictureDescriptionVC, animated: true)
         
     }
