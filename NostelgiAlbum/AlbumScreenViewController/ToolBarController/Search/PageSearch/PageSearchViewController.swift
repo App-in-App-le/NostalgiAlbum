@@ -8,7 +8,7 @@ protocol PageDelegate {
 class PageSearchViewController: UIViewController {
     // MARK: - Properties
     var pageCount: Int = 0 // 전체 페이지 개수
-    var didScroll: Bool = false // 버튼 누르기 전 스크롤을 수행했는지
+    var didScroll: Bool = true // 버튼 누르기 전 스크롤을 수행했는지
     var previousButton: Int = -1
     var currentPageNum: Int = -1
     var delegate: SearchDelegate! = nil
@@ -16,6 +16,8 @@ class PageSearchViewController: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
     var collectionView: UICollectionView! = nil
     var uiView: UIView! = nil
+    static let sectionBackgroundDecorationElementKind = "section-background-element-kind"
+
     // For CollectionView DataSource section(임시)
     enum Section {
         case main
@@ -79,10 +81,15 @@ extension PageSearchViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 300, leading: 0, bottom: 300, trailing: 0)
         
+        let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: PageSearchViewController.sectionBackgroundDecorationElementKind)
+        sectionBackgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 300, leading: 0, bottom: 380, trailing: 0)
+        section.decorationItems = [sectionBackgroundDecoration]
+        
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.scrollDirection = .horizontal
     
         let layout = UICollectionViewCompositionalLayout(section: section, configuration: config)
+        layout.register(PageSearchSectionDecorationView.self, forDecorationViewOfKind: PageSearchViewController.sectionBackgroundDecorationElementKind)
         
         return layout
     }
@@ -100,8 +107,8 @@ extension PageSearchViewController {
         
         uiView = UIView(frame: view.bounds)
         uiView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        uiView.backgroundColor = UIColor.black
-        uiView.alpha = 0.75
+        uiView.backgroundColor = UIColor.white
+        uiView.alpha = 0.5
         view.addSubview(uiView)
         view.addSubview(collectionView)
     }
@@ -110,8 +117,8 @@ extension PageSearchViewController {
         let cellRegistration = UICollectionView.CellRegistration<PageCell, Int> { [self] (cell, indexPath, item) in
             cell.button.setTitle("\(item)", for: .normal)
             cell.button.pageNum = item - 1
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.borderWidth = 1
+//            cell.layer.borderWidth = 1
+            cell.button.layer.cornerRadius = 0.5 * cell.button.bounds.size.width
             cell.button.titleLabel?.textAlignment = .center
             cell.button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
             cell.button.indexPath = indexPath

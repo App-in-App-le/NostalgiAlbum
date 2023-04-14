@@ -24,7 +24,8 @@ extension PageCell {
         button.adjustsImageSizeForAccessibilityContentSizeCategory = true
         contentView.addSubview(button)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
-        button.backgroundColor = UIColor.black
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.backgroundColor = UIColor.clear
         let inset = CGFloat(10)
         NSLayoutConstraint.activate([
             button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),

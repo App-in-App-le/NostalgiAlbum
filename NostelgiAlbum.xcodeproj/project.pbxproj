@@ -44,11 +44,12 @@
 		83C615C8298B978D0018BBAF /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615C7298B978D0018BBAF /* ShareViewController.swift */; };
 		83C615F1298EBB010018BBAF /* SharingAlbumPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615F0298EBB010018BBAF /* SharingAlbumPush.swift */; };
 		83C615F629994CE30018BBAF /* ToolBarButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C615F529994CE30018BBAF /* ToolBarButtonAction.swift */; };
-		83E5D27E29CC3AED001C7DE0 /* PageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D27D29CC3AED001C7DE0 /* PageSearchViewController.swift */; };
-		83E5D2A629DE89FE001C7DE0 /* ContentsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2A529DE89FE001C7DE0 /* ContentsSearchViewController.swift */; };
-		83E5D2A829DE8B5E001C7DE0 /* ContentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2A729DE8B5E001C7DE0 /* ContentsController.swift */; };
-		83E5D2AA29DE8B7C001C7DE0 /* ContentsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2A929DE8B7C001C7DE0 /* ContentsCells.swift */; };
-		83E5D2AC29E78F50001C7DE0 /* PageCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2AB29E78F50001C7DE0 /* PageCells.swift */; };
+		83E5D2B229E80410001C7DE0 /* ContentsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2AD29E80410001C7DE0 /* ContentsSearchViewController.swift */; };
+		83E5D2B329E80410001C7DE0 /* ContentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2AE29E80410001C7DE0 /* ContentsController.swift */; };
+		83E5D2B429E80410001C7DE0 /* ContentsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2AF29E80410001C7DE0 /* ContentsCells.swift */; };
+		83E5D2B529E80410001C7DE0 /* PageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2B029E80410001C7DE0 /* PageSearchViewController.swift */; };
+		83E5D2B629E80410001C7DE0 /* PageCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2B129E80410001C7DE0 /* PageCells.swift */; };
+		83E5D2BB29E8E6AD001C7DE0 /* PageSearchViewSectionDeco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2BA29E8E6AD001C7DE0 /* PageSearchViewSectionDeco.swift */; };
 		C0F3ECE166A7DAA34C483BBF /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9012CEB3A508CA15AB036C93 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */; };
 		C674A76DE71B2D6B321B1C1E /* Pods_NostelgiAlbum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333B1EB0131BF7D37399E3F7 /* Pods_NostelgiAlbum.framework */; };
 /* End PBXBuildFile section */
@@ -116,11 +117,12 @@
 		83C615C7298B978D0018BBAF /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		83C615F0298EBB010018BBAF /* SharingAlbumPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingAlbumPush.swift; sourceTree = "<group>"; };
 		83C615F529994CE30018BBAF /* ToolBarButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarButtonAction.swift; sourceTree = "<group>"; };
-		83E5D27D29CC3AED001C7DE0 /* PageSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSearchViewController.swift; sourceTree = "<group>"; };
-		83E5D2A529DE89FE001C7DE0 /* ContentsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsSearchViewController.swift; sourceTree = "<group>"; };
-		83E5D2A729DE8B5E001C7DE0 /* ContentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsController.swift; sourceTree = "<group>"; };
-		83E5D2A929DE8B7C001C7DE0 /* ContentsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCells.swift; sourceTree = "<group>"; };
-		83E5D2AB29E78F50001C7DE0 /* PageCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCells.swift; sourceTree = "<group>"; };
+		83E5D2AD29E80410001C7DE0 /* ContentsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsSearchViewController.swift; sourceTree = "<group>"; };
+		83E5D2AE29E80410001C7DE0 /* ContentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsController.swift; sourceTree = "<group>"; };
+		83E5D2AF29E80410001C7DE0 /* ContentsCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsCells.swift; sourceTree = "<group>"; };
+		83E5D2B029E80410001C7DE0 /* PageSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageSearchViewController.swift; sourceTree = "<group>"; };
+		83E5D2B129E80410001C7DE0 /* PageCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCells.swift; sourceTree = "<group>"; };
+		83E5D2BA29E8E6AD001C7DE0 /* PageSearchViewSectionDeco.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSearchViewSectionDeco.swift; sourceTree = "<group>"; };
 		9012CEB3A508CA15AB036C93 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum_NostelgiAlbumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F58AEC0D6B332A167C129D /* Pods-NostelgiAlbumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbumTests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbumTests/Pods-NostelgiAlbumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D8BEDED1B5046A84DA5ED8E9 /* Pods-NostelgiAlbumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbumTests.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbumTests/Pods-NostelgiAlbumTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,12 +201,6 @@
 				831A0522297A9BD7009D26A0 /* AlbumScreenViewController */,
 				831A0525297A9BFE009D26A0 /* ImageFunc */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
-				83C615C9298BA3C90018BBAF /* UTI.swift */,
-				83E5D2A529DE89FE001C7DE0 /* ContentsSearchViewController.swift */,
-				83E5D2A729DE8B5E001C7DE0 /* ContentsController.swift */,
-				83E5D2A929DE8B7C001C7DE0 /* ContentsCells.swift */,
-				83E5D2AB29E78F50001C7DE0 /* PageCells.swift */,
-				83E5D27D29CC3AED001C7DE0 /* PageSearchViewController.swift */,
 			);
 			path = NostelgiAlbum;
 			sourceTree = "<group>";
@@ -300,6 +296,7 @@
 		831A0524297A9BF3009D26A0 /* ToolBarController */ = {
 			isa = PBXGroup;
 			children = (
+				83E5D2B729E85709001C7DE0 /* Search */,
 				8312C9D42921482A00556BAE /* SearchToolViewController.swift */,
 				83C615C7298B978D0018BBAF /* ShareViewController.swift */,
 				80A6D644299A0BE600B2D657 /* ShareFunc.swift */,
@@ -316,6 +313,35 @@
 				804C7E8D295835D200C63880 /* ImageFunc.swift */,
 			);
 			path = ImageFunc;
+			sourceTree = "<group>";
+		};
+		83E5D2B729E85709001C7DE0 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				83E5D2B929E858F2001C7DE0 /* ContentsSearch */,
+				83E5D2B829E8573F001C7DE0 /* PageSearch */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		83E5D2B829E8573F001C7DE0 /* PageSearch */ = {
+			isa = PBXGroup;
+			children = (
+				83E5D2B129E80410001C7DE0 /* PageCells.swift */,
+				83E5D2B029E80410001C7DE0 /* PageSearchViewController.swift */,
+				83E5D2BA29E8E6AD001C7DE0 /* PageSearchViewSectionDeco.swift */,
+			);
+			path = PageSearch;
+			sourceTree = "<group>";
+		};
+		83E5D2B929E858F2001C7DE0 /* ContentsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				83E5D2AD29E80410001C7DE0 /* ContentsSearchViewController.swift */,
+				83E5D2AE29E80410001C7DE0 /* ContentsController.swift */,
+				83E5D2AF29E80410001C7DE0 /* ContentsCells.swift */,
+			);
+			path = ContentsSearch;
 			sourceTree = "<group>";
 		};
 		FECECB9A8ECAB2BAC00F6319 /* Frameworks */ = {
@@ -570,22 +596,24 @@
 				831E744829A5286400D48D5C /* AlbumRenameViewController.swift in Sources */,
 				83C615F1298EBB010018BBAF /* SharingAlbumPush.swift in Sources */,
 				831E7444299A724900D48D5C /* AlbumScreenViewGesture.swift in Sources */,
+				83E5D2B529E80410001C7DE0 /* PageSearchViewController.swift in Sources */,
 				80C8C86C29DE92C300A9F01F /* AlbumEditViewController+ButtonAction.swift in Sources */,
 				80C8C86E29DE935700A9F01F /* PickerImageController+CropViewController.swift in Sources */,
+				83E5D2B329E80410001C7DE0 /* ContentsController.swift in Sources */,
 				8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */,
 				80FE482729B0832000FD0D6A /* SetAlbumNameViewController.swift in Sources */,
 				831A04D8295EBDCA009D26A0 /* AlbumPicViewController.swift in Sources */,
-				83E5D2A829DE8B5E001C7DE0 /* ContentsController.swift in Sources */,
 				80C56D18298CE5360063688F /* HomeScreenViewController+CollectionView.swift in Sources */,
 				804C7E8E295835D200C63880 /* ImageFunc.swift in Sources */,
 				8080201029E3F4C800CECCB8 /* SetPictureNameViewController.swift in Sources */,
+				83E5D2B429E80410001C7DE0 /* ContentsCells.swift in Sources */,
 				807FF50129260656005D9884 /* InfoTableViewCell.swift in Sources */,
 				8080201229E3F4D300CECCB8 /* SetPictureDescriptionViewController.swift in Sources */,
-				83E5D2A629DE89FE001C7DE0 /* ContentsSearchViewController.swift in Sources */,
+				83E5D2B229E80410001C7DE0 /* ContentsSearchViewController.swift in Sources */,
 				831E7446299A7BDF00D48D5C /* AlbumDelegate+Layout.swift in Sources */,
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
-				83E5D2AA29DE8B7C001C7DE0 /* ContentsCells.swift in Sources */,
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,
+				83E5D2BB29E8E6AD001C7DE0 /* PageSearchViewSectionDeco.swift in Sources */,
 				80A6D645299A0BE600B2D657 /* ShareFunc.swift in Sources */,
 				83C615C8298B978D0018BBAF /* ShareViewController.swift in Sources */,
 				8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */,
@@ -595,12 +623,11 @@
 				806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */,
 				8320291F295EA8E2001709E9 /* AlbumEditViewController.swift in Sources */,
 				8092C3A3298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift in Sources */,
-				83E5D2AC29E78F50001C7DE0 /* PageCells.swift in Sources */,
-				83E5D27E29CC3AED001C7DE0 /* PageSearchViewController.swift in Sources */,
 				83C615F629994CE30018BBAF /* ToolBarButtonAction.swift in Sources */,
 				8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */,
 				807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */,
 				8312C9D52921482A00556BAE /* SearchToolViewController.swift in Sources */,
+				83E5D2B629E80410001C7DE0 /* PageCells.swift in Sources */,
 				8080200E29E18B9700CECCB8 /* InfoTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -779,7 +806,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N7AA7Y5KM6;
+				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = test;
@@ -810,7 +837,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N7AA7Y5KM6;
+				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = test;
