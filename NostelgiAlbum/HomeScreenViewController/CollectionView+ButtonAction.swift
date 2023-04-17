@@ -106,6 +106,14 @@ extension HomeScreenViewController {
         self.present(editVC, animated: false)
     }
     
+    @IBAction func homeSettingButtonAction(_ sender: Any) {
+        guard let homeSettingVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeSettingViewController") as? HomeSettingViewController else { return }
+        
+        // Present homeSettingVC
+        homeSettingVC.modalPresentationStyle = .overCurrentContext
+        self.present(homeSettingVC, animated: false)
+    }
+    
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer) {
         dismiss(animated: true, completion: nil)
     }

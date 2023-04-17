@@ -10,6 +10,7 @@
 		6E40494444D284B57AB22A17 /* Pods_NostelgiAlbumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD45D2E351EE192C1D87DB8D /* Pods_NostelgiAlbumTests.framework */; };
 		8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65228EE905B00E9913D /* HomeScreenViewController.swift */; };
 		8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */; };
+		8006D02229ED528300389292 /* HomeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8006D02129ED528300389292 /* HomeSettingViewController.swift */; };
 		8020034B290FBB9200FCD54F /* AlbumScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */; };
 		804C7E8E295835D200C63880 /* ImageFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C7E8D295835D200C63880 /* ImageFunc.swift */; };
 		806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A653D293873C80054FAEF /* HomeEditViewController.swift */; };
@@ -79,6 +80,7 @@
 		6E5DCC93F7BDA1B362378A7C /* Pods-NostelgiAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.release.xcconfig"; sourceTree = "<group>"; };
 		8002F65228EE905B00E9913D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCollectionViewCell.swift; sourceTree = "<group>"; };
+		8006D02129ED528300389292 /* HomeSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSettingViewController.swift; sourceTree = "<group>"; };
 		8020034A290FBB9200FCD54F /* AlbumScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenViewController.swift; sourceTree = "<group>"; };
 		804C7E8D295835D200C63880 /* ImageFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFunc.swift; sourceTree = "<group>"; };
 		806A653D293873C80054FAEF /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				806A653D293873C80054FAEF /* HomeEditViewController.swift */,
 				8092C3A2298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift */,
 				80FE482629B0832000FD0D6A /* SetAlbumNameViewController.swift */,
+				8006D02129ED528300389292 /* HomeSettingViewController.swift */,
 			);
 			path = HomeDetailController;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,
 				83E5D2BB29E8E6AD001C7DE0 /* PageSearchViewSectionDeco.swift in Sources */,
+				8006D02229ED528300389292 /* HomeSettingViewController.swift in Sources */,
 				80A6D645299A0BE600B2D657 /* ShareFunc.swift in Sources */,
 				83C615C8298B978D0018BBAF /* ShareViewController.swift in Sources */,
 				8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */,
@@ -809,7 +813,8 @@
 				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = test;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = test;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -821,7 +826,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.chopmozzi.NostelgiAlbum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeonmmingu.NostelgiAlbum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -840,7 +845,8 @@
 				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = test;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = test;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -852,7 +858,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.chopmozzi.NostelgiAlbum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jeonmmingu.NostelgiAlbum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

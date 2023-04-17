@@ -5,6 +5,7 @@ class HomeScreenViewController: UIViewController {
     // MARK: - Properties
     let realm = try! Realm()
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var homeSettingButton: UIButton!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
