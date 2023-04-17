@@ -1,11 +1,13 @@
 import UIKit
 
-protocol DisDelegate{
+protocol SearchDelegate{
     func delegateString(text: String)
+    func pushPage(currentPageNum: Int, targetPageNum: Int)
+    func popPage(difBetCurTar: Int)
 }
 
 class SearchToolViewController: UIViewController {
-    var delegate: DisDelegate?
+    var delegate: SearchDelegate?
     
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var searchText: UITextField!
