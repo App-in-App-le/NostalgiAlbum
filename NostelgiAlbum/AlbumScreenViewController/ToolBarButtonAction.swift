@@ -79,35 +79,4 @@ extension AlbumScreenViewController: SearchDelegate{
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
         self.navigationController!.popToViewController(viewControllers[viewControllers.count-difBetCurTar], animated: true)
     }
-    
-    //text는 검색 시 입력한 내용
-    func delegateString(text: String) {
-        let data = realm.objects(album.self).filter("index = \(coverIndex)")
-        var num : Int = 0
-        var checkcount : Int = pageNum
-        //Album내 페이지 viewControllers목록(NavigationController를 통해 관리)
-        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-        //검색한 내용이 있을 경우
-        if let result = data.firstIndex(where: {$0.ImageName == text}){
-            if(result/2 > checkcount){
-                //한 개씩 push
-                while checkcount < result/2 {
-                    guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else{ return }
-                    checkcount = checkcount + 1
-                    pushVC.pageNum = checkcount
-                    pushVC.coverIndex = self.coverIndex
-                    self.navigationController?.pushViewController(pushVC, animated: false)
-                }
-            } else { //pop해서 이동할 viewcontrollers까지의 count 찾기
-                while checkcount >= result/2 {
-                    checkcount = checkcount - 1
-                    num = num + 1
-                }
-                //해당 count만큼 pop
-                self.navigationController!.popToViewController(viewControllers[viewControllers.count - num], animated: false)
-            }
-        } else {
-            print("none")
-        }
-    }
 }
