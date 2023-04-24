@@ -47,6 +47,18 @@ class ContentsSearchViewController: UIViewController {
             self.dismiss(animated: true)
         }
     }
+    
+    func targetColoring(nameLabel: UILabel, contentsLabel: UILabel, target: String) {
+        guard let name = nameLabel.text else { return }
+        guard let contents = contentsLabel.text else { return }
+        let attributedName = NSMutableAttributedString(string: name)
+        let attributedContents = NSMutableAttributedString(string: contents)
+        let nameRange = (name as NSString).range(of: target)
+        let contentsRange = (contents as NSString).range(of: target)
+        attributedName.addAttribute(.backgroundColor, value: UIColor.red, range: nameRange)
+        attributedContents.addAttribute(.backgroundColor, value: UIColor.blue, range: contentsRange)
+        nameLabel.attributedText
+    }
 }
 // ContentsSearchViewController - Manage DataSource & Reload Data
 extension ContentsSearchViewController {

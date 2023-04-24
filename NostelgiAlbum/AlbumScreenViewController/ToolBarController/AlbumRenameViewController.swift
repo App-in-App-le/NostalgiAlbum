@@ -20,7 +20,6 @@ class AlbumRenameViewController: UIViewController {
         if albumTextField.text == "" {
             print("비어있습니다.")
         } else {
-            //guard let shareVC = storyboard?.instantiateViewController(withIdentifier: "ShareViewController") as? ShareViewController else { return }
             shareVC.albumCoverName = albumTextField.text
             shareVC.albumCoverText.text = albumTextField.text
             shareVC.loadingAlbumInfo()
@@ -30,7 +29,6 @@ class AlbumRenameViewController: UIViewController {
 
     @IBAction func closeButton(_ sender: Any) {
         self.dismiss(animated: true)
-        //self.navigationController?.popViewController(animated: true)
     }
 }
 
