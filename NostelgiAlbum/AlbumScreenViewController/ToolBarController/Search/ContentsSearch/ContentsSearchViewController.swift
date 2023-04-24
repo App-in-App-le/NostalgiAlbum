@@ -1,5 +1,10 @@
 import UIKit
 
+protocol SearchDelegate{
+    func pushPage(currentPageNum: Int, targetPageNum: Int)
+    func popPage(difBetCurTar: Int)
+}
+
 class ContentsSearchViewController: UIViewController {
     
     let contentsController = ContentsController()

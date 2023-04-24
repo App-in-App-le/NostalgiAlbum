@@ -3,7 +3,7 @@ import Zip
 import RealmSwift
 
 func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
-    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil}
+    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
     //압축을 할 앨범 directory url
     let dirURL = documentDirectory.appendingPathComponent(AlbumCoverName)
     //nost로 변환할 direcotry
@@ -35,13 +35,14 @@ func zipAlbumDirectory(AlbumCoverName: String) -> URL? {
         print("Something went wrong")
     }
     do {
+        try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_coverInfo.txt"))
         try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_imageNameInfo.txt"))
         try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_imageTextInfo.txt"))
         try FileManager.default.removeItem(at: dirURL.appendingPathComponent("\(AlbumCoverName)_Info.txt"))
     } catch {
         print("Error remove txt file")
     }
-        return nostURL
+    return nostURL
 }
 
 func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) {
@@ -72,30 +73,45 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) {
 
 func exportAlbumInfo(coverData: String) {
     let realm = try! Realm()
+    let albumCoverData = realm.objects(albumCover.self).filter("albumName = '\(coverData)'")
     let albumData = realm.objects(album.self).filter("AlbumTitle = '\(coverData)'")
-    let albumInfo = realm.objects(albumsInfo.self).filter("id = \(albumData.first!.index)")
+    let albumInfo = realm.objects(albumsInfo.self).filter("id = \(albumCoverData.first!.id)")
+    var arrCoverInfo = [String]()
     var arrImageName = [String]()
     var arrImageText = [String]()
     var arrAlbumInfo = [String]()
     
+    // albumCoverData
+    arrCoverInfo.append("\(albumCoverData.first!.id)")
+    arrCoverInfo.append("\(albumCoverData.first!.coverImageName)")
+    arrCoverInfo.append("\(albumCoverData.first!.isCustomCover)")
+    
+    // albumData
     for album in albumData {
         arrImageText.append("\(album.ImageText)")
         arrImageName.append("\(album.ImageName)")
     }
     
+    // albumInfoData
+    arrAlbumInfo.append("\(albumInfo.first!.id)")
     arrAlbumInfo.append(String(albumInfo.first!.numberOfPictures))
     arrAlbumInfo.append(albumInfo.first!.dateOfCreation)
+    
+    let albumCoverInfo = arrCoverInfo.joined(separator: "\n")
     let imageNameInfo = arrImageName.joined(separator: "\n")
     let imageTextInfo = arrImageText.joined(separator: "\n")
     let albumInfoText = arrAlbumInfo.joined(separator: "\n")
     
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
     let dirURL = documentDirectory.appendingPathComponent(coverData)
+    
+    let albumCoverURL = dirURL.appendingPathComponent("\(coverData)_coverInfo.txt")
     let nameInfoURL = dirURL.appendingPathComponent("\(coverData)_imageNameInfo.txt")
     let textInfoURL = dirURL.appendingPathComponent("\(coverData)_imageTextInfo.txt")
     let albumInfoURL = dirURL.appendingPathComponent("\(coverData)_Info.txt")
     
     do {
+        try albumCoverInfo.write(to: albumCoverURL, atomically: true, encoding: .utf8)
         try imageNameInfo.write(to: nameInfoURL, atomically: true, encoding: .utf8)
         try imageTextInfo.write(to: textInfoURL, atomically: true, encoding: .utf8)
         try albumInfoText.write(to: albumInfoURL, atomically: true, encoding: .utf8)
@@ -105,31 +121,41 @@ func exportAlbumInfo(coverData: String) {
     
 }
 
-//공유받은 album realm에 write
-func importAlbumInfo(albumCoverName: String) {
+// 공유받은 album realm에 write
+func importAlbumInfo(albumCoverName: String, useForShare: Bool) {
     let realm = try! Realm()
     
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        //albumName
+    // albumCover
+    let coverInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)_coverInfo.txt")
+    // albumName
     let nameInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)_imageNameInfo.txt")
-    //albumText
+    // albumText
     let textInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)_imageTextInfo.txt")
-    //albumInfo
-    //numberofPictures
-    //dateOfCreation
+    // albumInfo
+    // numberofPictures
+    // dateOfCreation
     let albumInfoURL = documentDirectory.appendingPathComponent(albumCoverName).appendingPathComponent("\(albumCoverName)_Info.txt")
     
+    var arrCoverInfo = [String]()
     var arrImageName = [String]()
     var arrImageText = [String]()
     var arrAlbumInfo = [String]()
     //Reading text file
     do {
+        let coverInfoContents = try String(contentsOfFile: coverInfoURL.path, encoding: .utf8)
         let imageNameContents = try String(contentsOfFile: nameInfoURL.path, encoding: .utf8)
         let textInfoContents = try String(contentsOfFile: textInfoURL.path, encoding: .utf8)
         let albumInfoContents = try String(contentsOfFile: albumInfoURL.path, encoding: .utf8)
+        
+        let coverInfos = coverInfoContents.split(separator: "\n")
         let names = imageNameContents.split(separator: "\n")
         let texts = textInfoContents.split(separator: "\n")
         let infos = albumInfoContents.split(separator: "\n")
+        
+        for coverInfo in coverInfos {
+            arrCoverInfo.append("\(coverInfo)")
+        }
         for name in names {
             arrImageName.append("\(name)")
         }
@@ -142,35 +168,50 @@ func importAlbumInfo(albumCoverName: String) {
     } catch {
         print("File read error")
     }
+    
     let shareAlbumCover = albumCover()
-    shareAlbumCover.incrementIndex()
+    if useForShare == true {
+        shareAlbumCover.incrementIndex()
+    } else {
+        shareAlbumCover.id = Int(arrCoverInfo[0])!
+    }
     shareAlbumCover.albumName = albumCoverName
-    shareAlbumCover.coverImageName = "Red"
+    shareAlbumCover.coverImageName = arrCoverInfo[1]
+    shareAlbumCover.isCustomCover = Bool(arrCoverInfo[2])!
+    
     
     let shareAlbumInfo = albumsInfo()
-    shareAlbumInfo.numberOfPictures = Int(arrAlbumInfo[0])!
-    shareAlbumInfo.dateOfCreation = arrAlbumInfo[1]
-    shareAlbumInfo.incrementIndex()
+    if useForShare == true {
+        shareAlbumInfo.incrementIndex()
+    } else {
+        shareAlbumInfo.id = Int(arrAlbumInfo[0])!
+    }
+    shareAlbumInfo.numberOfPictures = Int(arrAlbumInfo[1])!
+    shareAlbumInfo.dateOfCreation = arrAlbumInfo[2]
     
     
-    for i in 1...arrImageName.count {
-        let shareAlbumImage = album()
-        shareAlbumImage.ImageName = arrImageName[i - 1]
-        shareAlbumImage.ImageText = arrImageText[i - 1]
-        shareAlbumImage.perAlbumIndex = i
-        shareAlbumImage.AlbumTitle = albumCoverName
-        shareAlbumImage.index = shareAlbumCover.id
-        try! realm.write{
-            realm.add(shareAlbumImage)
+    if arrImageName.count != 0 {
+        for i in 1...arrImageName.count {
+            let shareAlbumImage = album()
+            shareAlbumImage.ImageName = arrImageName[i - 1]
+            shareAlbumImage.ImageText = arrImageText[i - 1]
+            shareAlbumImage.perAlbumIndex = i
+            shareAlbumImage.AlbumTitle = albumCoverName
+            shareAlbumImage.index = shareAlbumCover.id
+            try! realm.write{
+                realm.add(shareAlbumImage)
+            }
         }
     }
-    //Write!
+    
+    // Write
     try! realm.write{
         realm.add(shareAlbumCover)
         realm.add(shareAlbumInfo)
     }
-    //Remove text file
+    // Remove text file
     do {
+        try FileManager.default.removeItem(at: coverInfoURL)
         try FileManager.default.removeItem(at: nameInfoURL)
         try FileManager.default.removeItem(at: textInfoURL)
         try FileManager.default.removeItem(at: albumInfoURL)
@@ -178,8 +219,7 @@ func importAlbumInfo(albumCoverName: String) {
         print("Error removing txt")
     }
 }
-/*
- */
+
 func checkExistedAlbum(albumCoverName: String) -> Bool {
     let realm = try! Realm()
     let album = realm.objects(album.self)
