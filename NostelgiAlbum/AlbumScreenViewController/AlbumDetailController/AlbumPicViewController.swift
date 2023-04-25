@@ -1,11 +1,16 @@
 import UIKit
+import RealmSwift
 
 class AlbumPicViewController: UIViewController {
 
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bottomLabel: UILabel!
+    @IBOutlet weak var bodyView: UIView!
     @IBOutlet weak var picName: UILabel!
     @IBOutlet weak var picText: UITextView!
     @IBOutlet weak var picImage: UIButton!
     @IBOutlet weak var settingBtn: UIButton!
+    let realm = try! Realm()
     var picture: album!
     var collectionViewInAlbum : UICollectionView!
     
@@ -18,7 +23,7 @@ class AlbumPicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-        
+        setThemeColor()
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)

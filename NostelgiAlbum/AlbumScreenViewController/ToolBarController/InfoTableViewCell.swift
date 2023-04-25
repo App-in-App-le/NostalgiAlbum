@@ -1,7 +1,9 @@
 import UIKit
+import RealmSwift
 
 class InfoTableCell: UITableViewCell {
     // MARK: - Properties
+    let realm = try! Realm()
     var cellTitle: UILabel! = nil
     var cellDescription: UILabel! = nil
     

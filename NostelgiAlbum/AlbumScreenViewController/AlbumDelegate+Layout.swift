@@ -32,6 +32,8 @@ extension AlbumScreenViewController: UICollectionViewDataSource{
                 cell.reset()
             }
         }
+        
+        cell.setThemeColor()
         return cell
     }
 }
