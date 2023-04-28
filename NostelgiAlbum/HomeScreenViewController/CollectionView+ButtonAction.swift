@@ -96,6 +96,7 @@ extension HomeScreenViewController {
         // editVC
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeEditViewController") as? HomeEditViewController else{ return }
         editVC.modalPresentationStyle = .overCurrentContext
+        editVC.modalTransitionStyle = .crossDissolve
         editVC.collectionViewInHome = self.collectionView
         editVC.IsModifyingView = true
         editVC.albumNameBeforeModify = albumName
@@ -103,7 +104,7 @@ extension HomeScreenViewController {
         editVC.id = albumIndex
         
         // Present editVC
-        self.present(editVC, animated: false)
+        self.present(editVC, animated: true)
     }
     
     @IBAction func homeSettingButtonAction(_ sender: Any) {

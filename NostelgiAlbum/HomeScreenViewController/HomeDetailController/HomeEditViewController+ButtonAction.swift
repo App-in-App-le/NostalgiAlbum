@@ -8,7 +8,7 @@ extension HomeEditViewController {
         let selectCoverTypeAlert = UIAlertController(title: "커버 타입", message: .none, preferredStyle: .alert)
         // selectCoverTypeAlert "기본 커버" Action
         selectCoverTypeAlert.addAction(UIAlertAction(title: "기본 커버", style: .default) { action in
-            let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"]
+            let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"].sorted(by: <)
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
             colors.forEach { color in
                 alert.addAction(UIAlertAction(title: color.key, style: .default) { action in

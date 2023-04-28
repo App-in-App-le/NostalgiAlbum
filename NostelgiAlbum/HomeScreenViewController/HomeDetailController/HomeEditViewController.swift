@@ -4,13 +4,15 @@ import RealmSwift
 class HomeEditViewController: UIViewController {
     // MARK: - Properties
     // UIView
+    @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var editView: UIView!
     @IBOutlet weak var editTitle: UILabel!
     @IBOutlet weak var albumName: UITextField!
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var cancleButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var divideLine: UILabel!
+    let realm = try! Realm()
     var collectionViewInHome : UICollectionView!
     // Modifying
     var IsModifyingView : Bool = false
@@ -22,17 +24,20 @@ class HomeEditViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         setSubViews()
+        setThemeColor()
     }
     
     // MARK: - Methods
     func setSubViews() {
         // editView
-        editView.layer.cornerRadius = 20
+        editView.layer.cornerRadius = 15
         // coverImage
         coverImage.image = UIImage(systemName: "photo")
-        coverImage.layer.cornerRadius = 10
+        coverImage.layer.cornerRadius = 5
+        // selectButton
+        selectButton.layer.cornerRadius = 10
+        
         if !coverImageBeforeModify.isEmpty {
-            let realm = try! Realm()
             let coverImageData = realm.objects(albumCover.self).filter("id = \(id)")
             if coverImageData.first?.isCustomCover == false {
                 setCoverImage(color: coverImageBeforeModify)
@@ -51,8 +56,6 @@ class HomeEditViewController: UIViewController {
         createButton.layer.cornerRadius = 10
         // cancleButton
         cancleButton.layer.cornerRadius = 10
-        // backButton
-        backButton.layer.cornerRadius = 16
         // editTitle
         if IsModifyingView {
             editTitle.text = "앨범 수정"

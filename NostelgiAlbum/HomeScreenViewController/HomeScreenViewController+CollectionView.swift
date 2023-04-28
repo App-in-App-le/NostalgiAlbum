@@ -78,7 +78,8 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 let editVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeEditViewController") as! HomeEditViewController
                 editVC.collectionViewInHome = self.collectionView
                 editVC.modalPresentationStyle = .overCurrentContext
-                self.present(editVC, animated: false)
+                editVC.modalTransitionStyle = .crossDissolve
+                self.present(editVC, animated: true)
             } else {
                 let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as! AlbumScreenViewController
                 pushVC.pageNum = 0
@@ -92,7 +93,8 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 let editVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeEditViewController") as! HomeEditViewController
                 editVC.collectionViewInHome = self.collectionView
                 editVC.modalPresentationStyle = .overCurrentContext
-                self.present(editVC, animated: false)
+                editVC.modalTransitionStyle = .crossDissolve
+                self.present(editVC, animated: true)
             } else {
                 let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as! AlbumScreenViewController
                 pushVC.pageNum = 0

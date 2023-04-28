@@ -33,26 +33,27 @@ class AlbumPicViewController: UIViewController {
         // set settingBtn
         settingBtn.translatesAutoresizingMaskIntoConstraints = false
         settingBtn.setTitle("", for: .normal)
-        settingBtn.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        settingBtn.setImage(UIImage(systemName: "pencil.line"), for: .normal)
         
         // set picImage
         picImage.translatesAutoresizingMaskIntoConstraints = false
         picImage.setTitle("", for: .normal)
         picImage.backgroundColor = .systemGray6
+        picImage.clipsToBounds = true
         picImage.layer.cornerRadius = 10.0
         
         let totalPath = "\(picture.AlbumTitle)_\(picture.perAlbumIndex).jpeg"
         
         if let image = loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle) {
             if image.size.height > image.size.width {
-                width = UIScreen.main.bounds.width - 30
+                width = UIScreen.main.bounds.width / 4 * 3
                 let remainder = Int(width!) % 3
                 if remainder != 0 {
                     width = width! - CGFloat(remainder)
                 }
                 height = width! / 3 * 4
             } else {
-                width = UIScreen.main.bounds.width - 40
+                width = UIScreen.main.bounds.width / 8 * 7
                 let remainder = Int(width!) % 4
                 if remainder != 0 {
                     width = width! - CGFloat(remainder)
@@ -86,14 +87,14 @@ class AlbumPicViewController: UIViewController {
             picImage.heightAnchor.constraint(equalToConstant: height!),
             
             picName.topAnchor.constraint(equalTo: picImage.bottomAnchor, constant: 10),
-            picName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            picName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             picName.heightAnchor.constraint(equalToConstant: 34),
+            picName.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
+            picName.widthAnchor.constraint(equalToConstant: width!),
             
             picText.topAnchor.constraint(equalTo: picName.bottomAnchor, constant: 10),
-            picText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            picText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            picText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            picText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            picText.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
+            picText.widthAnchor.constraint(equalToConstant: width!)
         ]
         newConsArray = [
             settingBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -107,14 +108,14 @@ class AlbumPicViewController: UIViewController {
             picImage.heightAnchor.constraint(equalToConstant: height!),
             
             picName.topAnchor.constraint(equalTo: picImage.bottomAnchor, constant: 10),
-            picName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            picName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             picName.heightAnchor.constraint(equalToConstant: 34),
+            picName.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
+            picName.widthAnchor.constraint(equalToConstant: width!),
             
             picText.topAnchor.constraint(equalTo: picName.bottomAnchor, constant: 10),
-            picText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            picText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            picText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
+            picText.heightAnchor.constraint(equalToConstant: height!),
+            picText.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
+            picText.widthAnchor.constraint(equalToConstant: width!)
         ]
         
         if height! > width! {

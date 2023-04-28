@@ -29,6 +29,23 @@ extension HomeScreenCollectionViewCell {
     }
 }
 
+extension HomeEditViewController {
+    func setThemeColor() {
+        let HomeSettingInfo = realm.objects(HomeSetting.self).first!
+        if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
+            self.createButton.backgroundColor = ThemeColorSet["subColor_3"]
+            self.cancleButton.backgroundColor = ThemeColorSet["subColor_3"]
+            self.selectButton.backgroundColor = ThemeColorSet["subColor_3"]
+            self.coverImage.backgroundColor = .white
+            self.albumName.backgroundColor = .white
+            self.divideLine.backgroundColor = ThemeColorSet["subColor_2"]
+            self.editView.backgroundColor = ThemeColorSet["subColor_1"]
+        } else {
+            return
+        }
+    }
+}
+
 extension AlbumScreenViewController {
     func setThemeColor() {
         let HomeSettingInfo = realm.objects(HomeSetting.self).first!
@@ -111,17 +128,6 @@ extension InfoTableViewController {
             return
         }
     }
-}
-
-extension InfoTableCell {
-//    func setThemeColor() {
-//        let HomeSettingInfo = realm.objects(HomeSetting.self).first!
-//        if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
-//            self.backgroundColor = ThemeColorSet["subColor_1"]
-//        } else {
-//            return
-//        }
-//    }
 }
 
 func getColorSet(color: String) -> [String: UIColor]? {
