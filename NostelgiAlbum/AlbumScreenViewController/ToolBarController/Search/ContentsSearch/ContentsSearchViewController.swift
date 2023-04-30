@@ -52,6 +52,17 @@ class ContentsSearchViewController: UIViewController {
             self.dismiss(animated: true)
         }
     }
+    
+    func targetColoring(nameLabel: UILabel, contentsLabel: UILabel, target: String) {
+        guard let name = nameLabel.text else { return }
+        guard let contents = contentsLabel.text else { return }
+        let attributedName = NSMutableAttributedString(string: name)
+        let attributedContents = NSMutableAttributedString(string: contents)
+        let nameRange = (name as NSString).range(of: target)
+        let contentsRange = (contents as NSString).range(of: target)
+        attributedName.addAttribute(.backgroundColor, value: UIColor.red, range: nameRange)
+        attributedContents.addAttribute(.backgroundColor, value: UIColor.blue, range: contentsRange)
+    }
 }
 // ContentsSearchViewController - Manage DataSource & Reload Data
 extension ContentsSearchViewController {
@@ -85,7 +96,7 @@ extension ContentsSearchViewController {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0/1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0/2.0), heightDimension: .absolute(70))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0/2.0), heightDimension: .fractionalHeight(1.0/4.0))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
             group.interItemSpacing = .fixed(spacing)
             

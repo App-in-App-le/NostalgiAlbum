@@ -834,7 +834,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A6XY8WY2J;
+				DEVELOPMENT_TEAM = N7AA7Y5KM6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera";
@@ -869,7 +869,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A6XY8WY2J;
+				DEVELOPMENT_TEAM = N7AA7Y5KM6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera";

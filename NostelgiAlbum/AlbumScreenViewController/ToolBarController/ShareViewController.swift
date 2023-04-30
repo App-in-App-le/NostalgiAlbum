@@ -38,7 +38,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     }
     
     @IBAction func closeInButtonTapped(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true)
     }
     
     @IBAction func changeAlbumName(_ sender: Any) {

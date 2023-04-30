@@ -3,7 +3,6 @@ import UIKit
 class PageCell: UICollectionViewCell {
     // MARK: - Properties
     let button = PageButton()
-    let label = UILabel()
     static let reuseIdentifier = "page-cell-resue-identifier"
     
     override init(frame: CGRect) {
@@ -24,7 +23,7 @@ extension PageCell {
         button.adjustsImageSizeForAccessibilityContentSizeCategory = true
         contentView.addSubview(button)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.clear
         let inset = CGFloat(10)
         NSLayoutConstraint.activate([
