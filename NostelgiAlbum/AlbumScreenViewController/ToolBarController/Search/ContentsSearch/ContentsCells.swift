@@ -42,6 +42,7 @@ extension ContentsCells {
         contents.translatesAutoresizingMaskIntoConstraints = false
         title.numberOfLines = 0
         contents.numberOfLines = 0
+        title.layer.borderWidth = 1
         button.addSubview(title)
         button.addSubview(contents)
         NSLayoutConstraint.activate([

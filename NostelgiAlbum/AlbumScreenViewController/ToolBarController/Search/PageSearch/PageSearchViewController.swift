@@ -1,40 +1,143 @@
 import UIKit
-
+import RealmSwift
+//class PageSearchViewController: UIViewController {
+//    // MARK: - Properties
+//    var label: UILabel! = nil
+//    var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
+//    var collectionView: UICollectionView! = nil
+//    var uiView: UIView! = nil
+//    static let sectionBackgroundDecorationElementKind = "section-background-element-kind"
+//
+//    // For CollectionView DataSource section(임시)
+//    enum Section {
+//        case main
+//        case info
+//    }
+//    // MARK: - View Life Cycle
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.backgroundColor = UIColor.clear
+//        configureHierarcy()
+//        configureDataSource()
+//
+//    }
+//
+//}
+//
+//// PageSearchViewController Extension - make collection view layout
+//extension PageSearchViewController {
+//    private func createLayout() -> UICollectionViewLayout {
+//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0/5.0), heightDimension: .fractionalHeight(1.0))
+//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+//
+//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.2))
+//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+//
+//        let section = NSCollectionLayoutSection(group: group)
+//        section.contentInsets = NSDirectionalEdgeInsets(top: 300, leading: 0, bottom: 300, trailing: 0)
+//
+//        let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: PageSearchViewController.sectionBackgroundDecorationElementKind)
+//        sectionBackgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 300, leading: 0, bottom: 380, trailing: 0)
+//        section.decorationItems = [sectionBackgroundDecoration]
+//
+//        let config = UICollectionViewCompositionalLayoutConfiguration()
+//        config.scrollDirection = .horizontal
+//
+//        let layout = UICollectionViewCompositionalLayout(section: section, configuration: config)
+//        layout.register(PageSearchSectionDecorationView.self, forDecorationViewOfKind: PageSearchViewController.sectionBackgroundDecorationElementKind)
+//
+//        return layout
+//    }
+//
+//}
+//
+//// MARK: - PageSearchViewController Extension - Hierarcy & DataSource
+//extension PageSearchViewController {
+//    // make PageSearchView hierarcy(uiView & collectionView)
+//    private func configureHierarcy() {
+//        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        collectionView.backgroundColor = UIColor.clear
+//        collectionView.delegate = self
+//
+//        uiView = UIView(frame: view.bounds)
+//        uiView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        uiView.backgroundColor = UIColor.white
+//        uiView.alpha = 0.5
+//        view.addSubview(uiView)
+//        view.addSubview(collectionView)
+//    }
+//    // Set cell button properties
+//    private func configureDataSource() {
+//        let cellRegistration = UICollectionView.CellRegistration<PageCell, Int> { [self] (cell, indexPath, item) in
+//            cell.button.setTitle("\(item)", for: .normal)
+//            cell.button.pageNum = item - 1
+////            cell.layer.borderWidth = 1
+//            cell.button.layer.cornerRadius = 0.5 * cell.button.bounds.size.width
+//            cell.button.titleLabel?.textAlignment = .center
+//            cell.button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+//            cell.button.indexPath = indexPath
+//            cell.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+//            pageButtonList.append(cell.button)
+//            if indexPath.item < 2 || indexPath.item > (pageCount + 2) {
+//                cell.button.isHidden = true
+//                cell.layer.isHidden = true
+//            }
+//        }
+//        // Set Section datasource
+//        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) {
+//            (collectionView: UICollectionView, indexPath: IndexPath, item: Int) -> UICollectionViewCell? in
+//            // Return the cell.
+//            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+//        }
+//        // Apple DataSource
+//        let pageArray = Array(-1...(pageCount+3))
+//        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
+//        snapshot.appendSections([.main])
+//        snapshot.appendItems(pageArray)
+//        dataSource.apply(snapshot, animatingDifferences: false)
+//    }
+//}
+//
 // MARK: - Delegate
 protocol PageDelegate {
     func scrollCenter()
 }
 
+
 class PageSearchViewController: UIViewController {
-    // MARK: - Properties
+    var stackView: UIStackView!
+    var collectionView: UICollectionView!
+    var button: PageButton!
+    var firstPicture: UILabel!
+    var secondPicture: UILabel!
+    var fpTitle: UILabel!
+    var fpContent: UILabel!
+    var spTitle: UILabel!
+    var spContent: UILabel!
+    
     var pageCount: Int = 0 // 전체 페이지 개수
     var didScroll: Bool = true // 버튼 누르기 전 스크롤을 수행했는지
     var previousButton: Int = -1
     var currentPageNum: Int = -1
     var delegate: SearchDelegate! = nil
-    var label: UILabel! = nil
-    var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
-    var collectionView: UICollectionView! = nil
-    var uiView: UIView! = nil
-    static let sectionBackgroundDecorationElementKind = "section-background-element-kind"
-
-    // For CollectionView DataSource section(임시)
-    enum Section {
-        case main
-        case info
-    }
-    // MARK: - View Life Cycle
+    var pageButtonList = Array<PageButton>()
+    var data: Results<album>! = nil
+    
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.clear
         configureHierarcy()
-        configureDataSource()
+        
         
         // modal dismiss gesutre
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
     }
+    
     // MARK: - Methods
     // Page Button Paging & Move Selected Page
     @objc func buttonTapped(_ sender: PageButton) {
@@ -57,9 +160,16 @@ class PageSearchViewController: UIViewController {
             collectionView.scrollToItem(at: sender.indexPath, at: .centeredHorizontally, animated: true)
             didScroll = true
             previousButton = sender.pageNum
+            loadPageInfo(btnPageNum: sender.pageNum)
+            for i in 0...pageButtonList.count - 1 {
+                if (sender.pageNum ) == i {
+                    pageButtonList[i].backgroundColor = UIColor.blue
+                } else {
+                    pageButtonList[i].backgroundColor = UIColor.black
+                }
+            }
         }
     }
-    
     // PageSearchView Dismiss
     @objc func exitSwipe(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .down {
@@ -67,79 +177,216 @@ class PageSearchViewController: UIViewController {
         }
     }
 }
-
-// PageSearchViewController Extension - make collection view layout
+// CollectionView
 extension PageSearchViewController {
-    private func createLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0/5.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-                
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.2))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 300, leading: 0, bottom: 300, trailing: 0)
-        
-        let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: PageSearchViewController.sectionBackgroundDecorationElementKind)
-        sectionBackgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 300, leading: 0, bottom: 380, trailing: 0)
-        section.decorationItems = [sectionBackgroundDecoration]
-        
-        let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.scrollDirection = .horizontal
-    
-        let layout = UICollectionViewCompositionalLayout(section: section, configuration: config)
-        layout.register(PageSearchSectionDecorationView.self, forDecorationViewOfKind: PageSearchViewController.sectionBackgroundDecorationElementKind)
-        
+    func createLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         return layout
     }
-    
+    func configureCollectionView() -> UICollectionView {
+        let layout = createLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.isScrollEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = true
+        collectionView.contentInset = .zero
+        collectionView.backgroundColor = UIColor.white
+        collectionView.clipsToBounds = true
+        collectionView.register(PageCell.self, forCellWithReuseIdentifier: PageCell.reuseIdentifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .clear
+        collectionView.layer.borderColor = UIColor.white.cgColor
+        collectionView.layer.borderWidth = 1
+        collectionView.canCancelContentTouches = true
+        return collectionView
+    }
 }
 
-// MARK: - PageSearchViewController Extension - Hierarcy & DataSource
+// StackView
 extension PageSearchViewController {
-    // make PageSearchView hierarcy(uiView & collectionView)
-    private func configureHierarcy() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = UIColor.clear
-        collectionView.delegate = self
+    func configureHierarcy() {
+        stackView = UIStackView(frame: view.bounds)
+        stackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        stackView.backgroundColor = UIColor.black
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        stackView.isLayoutMarginsRelativeArrangement = true
+
+        collectionView = configureCollectionView()
+        stackView.addArrangedSubview(collectionView)
         
-        uiView = UIView(frame: view.bounds)
-        uiView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        uiView.backgroundColor = UIColor.white
-        uiView.alpha = 0.5
-        view.addSubview(uiView)
-        view.addSubview(collectionView)
+        button = configureButton()
+        stackView.addArrangedSubview(button)
+        
+        view.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
     }
-    // Set cell button properties
-    private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<PageCell, Int> { [self] (cell, indexPath, item) in
-            cell.button.setTitle("\(item)", for: .normal)
-            cell.button.pageNum = item - 1
-//            cell.layer.borderWidth = 1
-            cell.button.layer.cornerRadius = 0.5 * cell.button.bounds.size.width
-            cell.button.titleLabel?.textAlignment = .center
-            cell.button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
-            cell.button.indexPath = indexPath
-            cell.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-            if indexPath.item < 2 || indexPath.item > (pageCount + 2) {
-                cell.button.isHidden = true
-                cell.layer.isHidden = true
-            }
+}
+
+// Button & Label
+extension PageSearchViewController {
+    func configureButton() -> PageButton {
+        let button = PageButton()
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 1
+        button.heightAnchor.constraint(equalToConstant: stackView.frame.size.height/2.0).isActive = true
+        
+        firstPicture = UILabel()
+        secondPicture = UILabel()
+        firstPicture.translatesAutoresizingMaskIntoConstraints = false
+        secondPicture.translatesAutoresizingMaskIntoConstraints = false
+        firstPicture.numberOfLines = 0
+        secondPicture.numberOfLines = 0
+        firstPicture.layer.borderWidth = 1
+        secondPicture.layer.borderWidth = 1
+        firstPicture.layer.borderColor = UIColor.yellow.cgColor
+        secondPicture.layer.borderColor = UIColor.white.cgColor
+        firstPicture.textColor = UIColor.white
+        secondPicture.textColor = UIColor.white
+        button.addSubview(firstPicture)
+        button.addSubview(secondPicture)
+        NSLayoutConstraint.activate([
+            firstPicture.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 10),
+            firstPicture.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
+            firstPicture.topAnchor.constraint(equalTo: button.topAnchor, constant: 10),
+            firstPicture.bottomAnchor.constraint(equalTo: secondPicture.topAnchor, constant: -10),
+            firstPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.5), // Set the height of 'titles' to half the height of 'button'
+            secondPicture.leadingAnchor.constraint(equalTo: button.leadingAnchor),
+            secondPicture.trailingAnchor.constraint(equalTo: button.trailingAnchor),
+            secondPicture.topAnchor.constraint(equalTo: firstPicture.bottomAnchor),
+            secondPicture.bottomAnchor.constraint(equalTo: button.bottomAnchor)
+        ])
+        fpTitle = UILabel()
+        fpTitle.numberOfLines = 0
+        fpContent = UILabel()
+        fpContent.numberOfLines = 0
+        fpTitle.translatesAutoresizingMaskIntoConstraints = false
+        fpContent.translatesAutoresizingMaskIntoConstraints = false
+        fpTitle.layer.borderColor = UIColor.white.cgColor
+        fpTitle.layer.borderWidth = 1
+        fpContent.layer.borderColor = UIColor.white.cgColor
+        fpContent.layer.borderWidth = 1
+        fpTitle.textColor = UIColor.white
+        fpContent.textColor = UIColor.white
+        firstPicture.addSubview(fpTitle)
+        firstPicture.addSubview(fpContent)
+        NSLayoutConstraint.activate([
+            fpTitle.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
+            fpTitle.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
+            fpTitle.topAnchor.constraint(equalTo: firstPicture.topAnchor, constant: CGFloat(10)),
+            fpTitle.bottomAnchor.constraint(equalTo: fpContent.topAnchor, constant: -CGFloat(5)),
+            fpTitle.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.4),
+            fpContent.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
+            fpContent.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
+            fpContent.topAnchor.constraint(equalTo: fpTitle.bottomAnchor, constant: CGFloat(5)),
+            fpContent.bottomAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: CGFloat(10)),
+            fpContent.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.4)
+        ])
+        
+        spTitle = UILabel()
+        spTitle.numberOfLines = 0
+        spContent = UILabel()
+        spContent.numberOfLines = 0
+        spTitle.translatesAutoresizingMaskIntoConstraints = false
+        spContent.translatesAutoresizingMaskIntoConstraints = false
+        spTitle.layer.borderColor = UIColor.white.cgColor
+        spTitle.layer.borderWidth = 1
+        spContent.layer.borderColor = UIColor.white.cgColor
+        spContent.layer.borderWidth = 1
+        spTitle.textColor = UIColor.white
+        spContent.textColor = UIColor.white
+        secondPicture.addSubview(spTitle)
+        secondPicture.addSubview(spContent)
+        NSLayoutConstraint.activate([
+            spTitle.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
+            spTitle.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
+            spTitle.topAnchor.constraint(equalTo: secondPicture.topAnchor, constant: CGFloat(10)),
+            spTitle.bottomAnchor.constraint(equalTo: spContent.topAnchor, constant: -CGFloat(5)),
+            spTitle.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.4),
+            spContent.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
+            spContent.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
+            spContent.topAnchor.constraint(equalTo: spTitle.bottomAnchor, constant: CGFloat(5)),
+            spContent.bottomAnchor.constraint(equalTo: secondPicture.bottomAnchor, constant: CGFloat(10)),
+            spContent.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.4)
+        ])
+        
+        return button
+    }
+}
+
+extension PageSearchViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return (pageCount + 5)
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCell.reuseIdentifier, for: indexPath) as! PageCell
+        cell.button.setTitle("\(indexPath.item - 1)", for: .normal)
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.white.cgColor
+        cell.button.titleLabel?.textColor = .white
+        cell.button.pageNum = indexPath.item - 2
+        cell.button.indexPath = indexPath
+        cell.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        if indexPath.item < 2 || indexPath.item > pageCount + 2 {
+            cell.button.isHidden = true
+            cell.layer.isHidden = true
+        } else {
+            pageButtonList.append(cell.button)
         }
-        // Set Section datasource
-        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: Int) -> UICollectionViewCell? in
-            // Return the cell.
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+        if previousButton == cell.button.pageNum {
+            cell.button.backgroundColor = UIColor.blue
         }
-        // Apple DataSource
-        let pageArray = Array(-1...(pageCount+3))
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(pageArray)
-        dataSource.apply(snapshot, animatingDifferences: false)
+        return cell
+        
+    }
+}
+
+extension PageSearchViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // Return the size for each item at the specified index path
+        return CGSize(width: collectionView.bounds.width/6.0, height: collectionView.bounds.width/6.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        // Return the section insets for the specified section
+        return UIEdgeInsets(top: collectionView.bounds.height/1.5, left: 10, bottom: 10, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        // Return the minimum line spacing for the specified section
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        // Return the minimum interitem spacing for the specified section
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Handle item selection here
+        print("Selected item at index: \(indexPath.item)")
+    }
+}
+
+// MARK: - PageDelegate
+extension PageSearchViewController: PageDelegate{
+    func scrollCenter() {
+        let indexPath = IndexPath(item: currentPageNum + 2, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        loadPageInfo(btnPageNum: currentPageNum)
     }
 }
 
@@ -149,12 +396,53 @@ extension PageSearchViewController: UICollectionViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         didScroll = false
     }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        initPageInfo()
+    }
 }
 
-// MARK: - PageDelegate
-extension PageSearchViewController: PageDelegate{
-    func scrollCenter() {
-        let indexPath = IndexPath(item: currentPageNum + 2, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+extension PageSearchViewController {
+    func loadPageInfo(btnPageNum: Int) {
+        let adnum = btnPageNum + 1
+        let fpIndex = adnum * 2 - 2
+        let spIndex = adnum * 2 - 1
+        fpTitle.fadeTransition(0.4)
+        fpContent.fadeTransition(0.4)
+        spTitle.fadeTransition(0.4)
+        spContent.fadeTransition(0.4)
+        if fpIndex >= data.count {
+            fpTitle.text = "empty"
+            fpContent.text = "empty"
+        } else {
+            fpTitle.text = data[fpIndex].ImageName
+            fpContent.text = data[fpIndex].ImageText
+        }
+        if spIndex > data.count {
+            spTitle.text = "empty"
+            spContent.text = "empty"
+        } else {
+            spTitle.text = data[spIndex].ImageName
+            spContent.text = data[spIndex].ImageText
+        }
+    }
+    func initPageInfo() {
+        fpTitle.fadeTransition(0.4)
+        fpContent.fadeTransition(0.4)
+        spTitle.fadeTransition(0.4)
+        spContent.fadeTransition(0.4)
+        fpTitle.text = "empty"
+        fpContent.text = "empty"
+        spTitle.text = "empty"
+        spContent.text = "empty"
+    }
+}
+
+extension UIView {
+    func fadeTransition(_ duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.fade
+        animation.duration = duration
+        layer.add(animation, forKey: CATransitionType.fade.rawValue)
     }
 }

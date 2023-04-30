@@ -57,7 +57,6 @@ class ContentsSearchViewController: UIViewController {
         let contentsRange = (contents as NSString).range(of: target)
         attributedName.addAttribute(.backgroundColor, value: UIColor.red, range: nameRange)
         attributedContents.addAttribute(.backgroundColor, value: UIColor.blue, range: contentsRange)
-        nameLabel.attributedText
     }
 }
 // ContentsSearchViewController - Manage DataSource & Reload Data
