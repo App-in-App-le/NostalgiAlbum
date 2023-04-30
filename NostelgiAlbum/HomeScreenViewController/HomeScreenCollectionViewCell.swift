@@ -1,8 +1,9 @@
 import UIKit
+import RealmSwift
 
 class HomeScreenCollectionViewCell: UICollectionViewCell {
-    
     // MARK: - Properties
+    let realm = try! Realm()
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var firstButtonTitle: UILabel!
     @IBOutlet weak var secondButton: UIButton!

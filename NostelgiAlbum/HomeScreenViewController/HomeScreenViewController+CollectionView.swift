@@ -20,7 +20,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         // ButtomLabel's backGroundColor
         cell.bottomLabel.backgroundColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)
         // Cell's backGroundColor
-        cell.backgroundColor = UIColor(red: 0.80, green: 0.82, blue: 0.93, alpha: 1.00)
+        cell.setThemeColor()
         
         // Number of Cell that should be printed in CollectionView (data.count + 1[Empty Space])
         let cover_num = realm.objects(albumCover.self).count + 1

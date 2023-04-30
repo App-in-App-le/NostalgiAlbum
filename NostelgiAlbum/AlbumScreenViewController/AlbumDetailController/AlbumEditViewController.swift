@@ -1,12 +1,18 @@
 import UIKit
+import RealmSwift
 
 class AlbumEditViewController: UIViewController {
+    
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bodyView: UIView!
+    @IBOutlet weak var bottomLabel: UILabel!
     
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var editPicture: UIButton!
     @IBOutlet weak var editName: UITextField!
     @IBOutlet weak var editText: UITextView!
     
+    let realm = try! Realm()
     var collectionViewInAlbum : UICollectionView!
     var picVC : AlbumPicViewController?
     var index : Int!
@@ -35,6 +41,7 @@ class AlbumEditViewController: UIViewController {
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
+        setThemeColor()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

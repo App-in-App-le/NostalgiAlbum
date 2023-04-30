@@ -8,29 +8,38 @@ class AlbumScreenViewController: UIViewController {
     var delegate: PageDelegate?
     // collectionView setting
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bottomLabel: UILabel!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        setThemeColor()
+        
         toolbarItems = makeToolbarItems()
         navigationController?.toolbar.tintColor = UIColor.label
         let pageNumButton = UIButton()
-        pageNumButton.setTitle("\(pageNum + 1) Page", for: .normal)
-        pageNumButton.titleLabel?.font = UIFont(name: "Bradley Hand", size: 20)
-        pageNumButton.setTitleColor(.black, for: .normal)
+        pageNumButton.setTitle("\(pageNum + 1) page", for: .normal)
+        pageNumButton.titleLabel?.font = UIFont(name: "Arial", size: 15)
+        pageNumButton.setTitleColor(.white, for: .normal)
         pageNumButton.titleLabel?.sizeToFit()
         pageNumButton.addTarget(self, action: #selector(pageButtonTapped), for: .touchUpInside)
         let titleName = UILabel()
         let albumName = realm.objects(albumCover.self).filter("id = \(coverIndex)").first?.albumName
         titleName.text = albumName
-        titleName.font = UIFont(name: "Bradley Hand", size: 18)
-        titleName.textColor = .black
+        titleName.font = UIFont(name: "Arial.bold", size: 18)
+        titleName.textColor = .white
         titleName.sizeToFit()
         
         navigationItem.titleView = titleName
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left.square"), style: .plain, target: self, action: #selector(popToHome))
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular)
+        let backButtonImage = UIImage(systemName: "chevron.left", withConfiguration: imageConfig)?.withRenderingMode(.alwaysTemplate)
+        let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(popToHome))
+        backButton.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: pageNumButton)
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AlbumScreenViewController.respondToSwipeGesture(_:)))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right

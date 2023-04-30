@@ -1,8 +1,9 @@
 import UIKit
+import RealmSwift
 
 class AlbumScreenCollectionViewCell: UICollectionViewCell {
-    
-    // - MARK: Declare Class' Properties
+    // MARK: - Properties
+    let realm = try! Realm()
     // Cell 하위에 들어가는 하위 뷰 객체들
     var pictureImgButton : UIButton?
     var pictureLabel: UILabel?
@@ -18,7 +19,6 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     func setButton() {
         pictureImgButton!.translatesAutoresizingMaskIntoConstraints = false
         pictureImgButton!.setImage(UIImage(systemName: "plus"), for: .normal)
-        pictureImgButton!.backgroundColor = UIColor(red: 0.57, green: 0.58, blue: 0.67, alpha: 0.50)
         pictureImgButton!.layer.cornerRadius = 10
         pictureImgButton!.imageView!.layer.cornerRadius = 10
         pictureImgButton!.setTitle("", for: .normal)
@@ -101,8 +101,8 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
         }
         // Set image and text.
         pictureLabel!.text = albumInfo.ImageText
-        pictureImgButton?.layer.borderWidth = 5
-        pictureImgButton?.layer.borderColor = UIColor.white.cgColor
+//        pictureImgButton?.layer.borderWidth = 5
+//        pictureImgButton?.layer.borderColor = UIColor.white.cgColor
     }
     
     // - MARK: The target action of pictureImgButton.

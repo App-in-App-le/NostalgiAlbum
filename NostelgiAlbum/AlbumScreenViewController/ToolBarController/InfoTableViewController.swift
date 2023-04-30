@@ -25,6 +25,7 @@ class InfoTableViewController: UIViewController {
         loadData()
         setTableView()
         setTableViewHeader()
+        setThemeColor()
     }
     
 
@@ -46,7 +47,6 @@ class InfoTableViewController: UIViewController {
     
     func setTableView() {
         tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.backgroundColor = .systemGray6
         tableView.isScrollEnabled = false
         tableView.allowsSelection = false
         view.addSubview(tableView)
@@ -68,13 +68,15 @@ class InfoTableViewController: UIViewController {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: header.frame.height))
         label.text = "앨범 정보"
         label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .black
         label.textAlignment = .center
         
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: header.bounds.height * 2, height: header.bounds.height))
         button.setTitle(" 앨범", for: .normal)
         button.titleLabel?.font = UIFont(name: "Arial", size: 15)
-        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.tintColor = .black
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
         header.addSubview(label)
