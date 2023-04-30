@@ -7,10 +7,14 @@ class AlbumPicViewController: UIViewController {
     @IBOutlet weak var bottomLabel: UILabel!
     @IBOutlet weak var bodyView: UIView!
     @IBOutlet weak var picName: UILabel!
+    @IBOutlet weak var picNameShadowView: UIView!
     @IBOutlet weak var picText: UITextView!
+    @IBOutlet weak var picTextShadowView: UIView!
     @IBOutlet weak var picImage: UIButton!
+    @IBOutlet weak var picImageShadowView: UIView!
     @IBOutlet weak var settingBtn: UIButton!
     let realm = try! Realm()
+    var index: Int!
     var picture: album!
     var collectionViewInAlbum : UICollectionView!
     
@@ -22,8 +26,10 @@ class AlbumPicViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setShadow()
         setupSubviews()
         setThemeColor()
+        setFont()
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
@@ -81,20 +87,35 @@ class AlbumPicViewController: UIViewController {
             settingBtn.heightAnchor.constraint(equalToConstant: 30),
             settingBtn.widthAnchor.constraint(equalToConstant: 50),
             
-            picImage.topAnchor.constraint(equalTo: settingBtn.bottomAnchor, constant: 10),
-            picImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            picImage.widthAnchor.constraint(equalToConstant: width!),
-            picImage.heightAnchor.constraint(equalToConstant: height!),
+            picImageShadowView.topAnchor.constraint(equalTo: settingBtn.bottomAnchor, constant: 10),
+            picImageShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            picImageShadowView.widthAnchor.constraint(equalToConstant: width!),
+            picImageShadowView.heightAnchor.constraint(equalToConstant: height!),
             
-            picName.topAnchor.constraint(equalTo: picImage.bottomAnchor, constant: 10),
-            picName.heightAnchor.constraint(equalToConstant: 34),
-            picName.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
-            picName.widthAnchor.constraint(equalToConstant: width!),
+            picImage.topAnchor.constraint(equalTo: picImageShadowView.topAnchor),
+            picImage.bottomAnchor.constraint(equalTo: picImageShadowView.bottomAnchor),
+            picImage.leadingAnchor.constraint(equalTo: picImageShadowView.leadingAnchor),
+            picImage.trailingAnchor.constraint(equalTo: picImageShadowView.trailingAnchor),
             
-            picText.topAnchor.constraint(equalTo: picName.bottomAnchor, constant: 10),
-            picText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
-            picText.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
-            picText.widthAnchor.constraint(equalToConstant: width!)
+            picNameShadowView.topAnchor.constraint(equalTo: picImage.bottomAnchor, constant: 10),
+            picNameShadowView.heightAnchor.constraint(equalToConstant: 34),
+            picNameShadowView.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
+            picNameShadowView.widthAnchor.constraint(equalToConstant: width!),
+            
+            picName.topAnchor.constraint(equalTo: picNameShadowView.topAnchor),
+            picName.bottomAnchor.constraint(equalTo: picNameShadowView.bottomAnchor),
+            picName.leadingAnchor.constraint(equalTo: picNameShadowView.leadingAnchor),
+            picName.trailingAnchor.constraint(equalTo: picNameShadowView.trailingAnchor),
+            
+            picTextShadowView.topAnchor.constraint(equalTo: picName.bottomAnchor, constant: 10),
+            picTextShadowView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            picTextShadowView.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
+            picTextShadowView.widthAnchor.constraint(equalToConstant: width!),
+            
+            picText.topAnchor.constraint(equalTo: picTextShadowView.topAnchor),
+            picText.bottomAnchor.constraint(equalTo: picTextShadowView.bottomAnchor),
+            picText.leadingAnchor.constraint(equalTo: picTextShadowView.leadingAnchor),
+            picText.trailingAnchor.constraint(equalTo: picTextShadowView.trailingAnchor)
         ]
         newConsArray = [
             settingBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -102,20 +123,35 @@ class AlbumPicViewController: UIViewController {
             settingBtn.heightAnchor.constraint(equalToConstant: 30),
             settingBtn.widthAnchor.constraint(equalToConstant: 50),
             
-            picImage.topAnchor.constraint(equalTo: settingBtn.bottomAnchor, constant: 50),
-            picImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            picImage.widthAnchor.constraint(equalToConstant: width!),
-            picImage.heightAnchor.constraint(equalToConstant: height!),
+            picImageShadowView.topAnchor.constraint(equalTo: settingBtn.bottomAnchor, constant: 50),
+            picImageShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            picImageShadowView.widthAnchor.constraint(equalToConstant: width!),
+            picImageShadowView.heightAnchor.constraint(equalToConstant: height!),
             
-            picName.topAnchor.constraint(equalTo: picImage.bottomAnchor, constant: 10),
-            picName.heightAnchor.constraint(equalToConstant: 34),
-            picName.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
-            picName.widthAnchor.constraint(equalToConstant: width!),
+            picImage.topAnchor.constraint(equalTo: picImageShadowView.topAnchor),
+            picImage.bottomAnchor.constraint(equalTo: picImageShadowView.bottomAnchor),
+            picImage.leadingAnchor.constraint(equalTo: picImageShadowView.leadingAnchor),
+            picImage.trailingAnchor.constraint(equalTo: picImageShadowView.trailingAnchor),
             
-            picText.topAnchor.constraint(equalTo: picName.bottomAnchor, constant: 10),
-            picText.heightAnchor.constraint(equalToConstant: height!),
-            picText.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
-            picText.widthAnchor.constraint(equalToConstant: width!)
+            picNameShadowView.topAnchor.constraint(equalTo: picImage.bottomAnchor, constant: 10),
+            picNameShadowView.heightAnchor.constraint(equalToConstant: 34),
+            picNameShadowView.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
+            picNameShadowView.widthAnchor.constraint(equalToConstant: width!),
+            
+            picName.topAnchor.constraint(equalTo: picNameShadowView.topAnchor),
+            picName.bottomAnchor.constraint(equalTo: picNameShadowView.bottomAnchor),
+            picName.leadingAnchor.constraint(equalTo: picNameShadowView.leadingAnchor),
+            picName.trailingAnchor.constraint(equalTo: picNameShadowView.trailingAnchor),
+            
+            picTextShadowView.topAnchor.constraint(equalTo: picName.bottomAnchor, constant: 10),
+            picTextShadowView.heightAnchor.constraint(equalToConstant: height!),
+            picTextShadowView.centerXAnchor.constraint(equalTo: picImage.centerXAnchor),
+            picTextShadowView.widthAnchor.constraint(equalToConstant: width!),
+            
+            picText.topAnchor.constraint(equalTo: picTextShadowView.topAnchor),
+            picText.bottomAnchor.constraint(equalTo: picTextShadowView.bottomAnchor),
+            picText.leadingAnchor.constraint(equalTo: picTextShadowView.leadingAnchor),
+            picText.trailingAnchor.constraint(equalTo: picTextShadowView.trailingAnchor)
         ]
         
         if height! > width! {
@@ -134,15 +170,14 @@ class AlbumPicViewController: UIViewController {
     
     @IBAction func settingPicture(_ sender: Any) {
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumEditViewController") as? AlbumEditViewController else { return }
-//        guard let picVC = self.presentingViewController else { return }
+        
         editVC.picture = picture
         editVC.collectionViewInAlbum = collectionViewInAlbum
         editVC.picVC = self
+        editVC.index = index
         editVC.modalPresentationStyle = .overFullScreen
         self.present(editVC, animated: false)
-//        self.dismiss(animated: false) {
-//            picVC.present(editVC, animated: false)
-//        }
+        
     }
     
     @IBAction func zoomImage(_ sender: Any) {

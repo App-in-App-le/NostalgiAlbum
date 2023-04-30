@@ -1,7 +1,7 @@
 import UIKit
 
 extension AlbumScreenViewController {
-    //search button을 누를 시 동작
+    // search button을 누를 시 동작
     @objc func searchButton(){
         guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "ContentsSearchViewController") as? ContentsSearchViewController else { return }
         searchVC.modalPresentationStyle = .overFullScreen
@@ -11,7 +11,7 @@ extension AlbumScreenViewController {
         self.present(searchVC, animated: false)
     }
         
-    //share button을 누를 시 동작
+    // share button을 누를 시 동작
     @objc func shareButton() {
         let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex)")
         //공유할 Object
@@ -52,9 +52,18 @@ extension AlbumScreenViewController {
         self.present(ac, animated: true, completion: nil)
     }
     
-    //info button을 누를 시 동작
+    // setting button을 누를 시 동작
+    @objc func settingButton() {
+        let settingVC = SettingViewController()
+        settingVC.index = coverIndex
+        settingVC.albumScreenVC = self
+        
+        self.navigationController?.pushViewController(settingVC, animated: false)
+    }
+    
+    // info button을 누를 시 동작
     @objc func infoButton(){
-        let infoVC = InfoTableViewController()
+        let infoVC = InfoViewController()
         infoVC.index = coverIndex
         infoVC.modalTransitionStyle = .crossDissolve
         infoVC.modalPresentationStyle = .overCurrentContext

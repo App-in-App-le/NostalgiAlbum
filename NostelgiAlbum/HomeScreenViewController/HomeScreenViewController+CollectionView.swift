@@ -15,12 +15,16 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         cell.firstButton.gestureRecognizers = nil
         cell.secondButton.gestureRecognizers = nil
         // Buttons' cornerRadius
+        cell.firstButton.layer.masksToBounds = true
+        cell.secondButton.layer.masksToBounds = true
         cell.firstButton.layer.cornerRadius = 10
         cell.secondButton.layer.cornerRadius = 10
         // ButtomLabel's backGroundColor
         cell.bottomLabel.backgroundColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)
         // Cell's backGroundColor
         cell.setThemeColor()
+        // Cell's shadow
+        cell.setShadow()
         
         // Number of Cell that should be printed in CollectionView (data.count + 1[Empty Space])
         let cover_num = realm.objects(albumCover.self).count + 1
@@ -82,9 +86,27 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 self.present(editVC, animated: true)
             } else {
                 let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as! AlbumScreenViewController
-                pushVC.pageNum = 0
                 pushVC.coverIndex = indexPath.row * 2 + 1
+                pushVC.pageNum = 0
                 self.navigationController?.pushViewController(pushVC, animated: false)
+                
+                // 첫 페이지 정하는 부분 (pushPage 함수 수정되면 다시 작성)
+//                let albumInfo = self.realm.objects(albumsInfo.self).filter("id = \(indexPath.row * 2 + 1)").first!
+//                let firstPageSetting = albumInfo.firstPageSetting
+//                switch firstPageSetting {
+//                case 0:
+//                    print("pass")
+//                case 1:
+//                    if albumInfo.numberOfPictures / 2 > 0 {
+//                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.numberOfPictures / 2)
+//                    }
+//                case 2:
+//                    if albumInfo.lastViewingPage - 1 > 0 {
+//                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.lastViewingPage - 1)
+//                    }
+//                default:
+//                    return
+//                }
             }
         }
         // Callback2 :: Second button Action
@@ -97,9 +119,27 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 self.present(editVC, animated: true)
             } else {
                 let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as! AlbumScreenViewController
-                pushVC.pageNum = 0
                 pushVC.coverIndex = indexPath.row * 2 + 2
+                pushVC.pageNum = 0
                 self.navigationController?.pushViewController(pushVC, animated: false)
+                
+                // 첫 페이지 정하는 부분 (pushPage 함수 수정되면 다시 작성)
+//                let albumInfo = self.realm.objects(albumsInfo.self).filter("id = \(indexPath.row * 2 + 2)").first!
+//                let firstPageSetting = albumInfo.firstPageSetting
+//                switch firstPageSetting {
+//                case 0:
+//                    print("pass")
+//                case 1:
+//                    if albumInfo.numberOfPictures / 2 > 0 {
+//                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.numberOfPictures / 2)
+//                    }
+//                case 2:
+//                    if albumInfo.lastViewingPage - 1 > 0 {
+//                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.lastViewingPage - 1)
+//                    }
+//                default:
+//                    return
+//                }
             }
         }
         return cell

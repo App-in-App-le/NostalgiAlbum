@@ -118,7 +118,43 @@ extension ImageViewController {
     }
 }
 
-extension InfoTableViewController {
+extension SettingViewController {
+    func setThemeColor() {
+        let HomeSettingInfo = realm.objects(HomeSetting.self).first!
+        if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
+            view.backgroundColor = ThemeColorSet["subColor_1"]
+            tableView.backgroundColor = ThemeColorSet["subColor_1"]
+        } else {
+            return
+        }
+    }
+}
+
+extension FontSettingViewController {
+    func setThemeColor() {
+        let HomeSettingInfo = realm.objects(HomeSetting.self).first!
+        if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
+            view.backgroundColor = ThemeColorSet["subColor_1"]
+            tableView.backgroundColor = ThemeColorSet["subColor_1"]
+        } else {
+            return
+        }
+    }
+}
+
+extension FirstPageSettingViewController {
+    func setThemeColor() {
+        let HomeSettingInfo = realm.objects(HomeSetting.self).first!
+        if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
+            view.backgroundColor = ThemeColorSet["subColor_1"]
+            tableView.backgroundColor = ThemeColorSet["subColor_1"]
+        } else {
+            return
+        }
+    }
+}
+
+extension InfoViewController {
     func setThemeColor() {
         let HomeSettingInfo = realm.objects(HomeSetting.self).first!
         if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {

@@ -42,6 +42,7 @@ class AlbumEditViewController: UIViewController {
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
         setThemeColor()
+        setFont()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -59,6 +60,7 @@ class AlbumEditViewController: UIViewController {
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.backgroundColor = .systemBlue
         saveButton.layer.cornerRadius = 10.0
+        saveButton.titleLabel?.numberOfLines = 1
         
         // editPicture
         editPicture.translatesAutoresizingMaskIntoConstraints = false

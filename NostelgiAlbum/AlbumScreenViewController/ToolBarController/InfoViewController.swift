@@ -1,12 +1,12 @@
 import UIKit
 import RealmSwift
 
-class InfoTableViewController: UIViewController {
+class InfoViewController: UIViewController {
     // MARK: - Properties
     var tableView: UITableView! = nil
     var tableCons: [NSLayoutConstraint]! = nil
     var index : Int!
-    
+    var font: String!
     
     // MARK: - Model
     let realm = try! Realm()
@@ -21,7 +21,7 @@ class InfoTableViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray6
+        loadfont()
         loadData()
         setTableView()
         setTableViewHeader()
@@ -30,6 +30,12 @@ class InfoTableViewController: UIViewController {
     
 
     // MARK: - Methods
+    func loadfont() {
+        let font_Kor = realm.objects(albumsInfo.self).filter("id = \(index!)").first!.font
+        let font_Eng = FontSet().font[font_Kor]!
+        font = font_Eng
+    }
+    
     func loadData() {
         // 정보 불러오기
         let albumCoverData = realm.objects(albumCover.self).filter("id = \(index!)")
@@ -61,19 +67,20 @@ class InfoTableViewController: UIViewController {
         NSLayoutConstraint.activate(tableCons)
         
         tableView.dataSource = self
+        tableView.delegate = self
     }
     
     func setTableViewHeader() {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 40))
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: header.frame.height))
         label.text = "앨범 정보"
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: font, size: 18)
         label.textColor = .black
         label.textAlignment = .center
         
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: header.bounds.height * 2, height: header.bounds.height))
         button.setTitle(" 앨범", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Arial", size: 15)
+        button.titleLabel?.font = UIFont(name: font, size: 15)
         button.setTitleColor(UIColor.black, for: .normal)
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         button.tintColor = .black
@@ -89,35 +96,7 @@ class InfoTableViewController: UIViewController {
     }
 }
 
-extension InfoTableViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section
-        {
-        case 0:
-            return 2
-        case 1:
-            return 2
-        default:
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = InfoTableCell()
-        cell.backgroundColor = .white
-        
-        switch indexPath.section {
-        case 0:
-            cell.setSubviews(title: section1_cellTitle[indexPath.item], description: section1_cellDescription[indexPath.item])
-        case 1:
-            cell.setSubviews(title: section2_cellTitle[indexPath.item], description: section2_cellDescription[indexPath.item])
-        default:
-            print("Error Occur")
-        }
-        
-        return cell
-    }
-    
+extension InfoViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -134,4 +113,44 @@ extension InfoTableViewController: UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section
+        {
+        case 0:
+            return section1_cellTitle.count
+        case 1:
+            return section2_cellTitle.count
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = InfoTableCell()
+        cell.backgroundColor = .white
+        
+        switch indexPath.section {
+        case 0:
+            cell.setSubviews(title: section1_cellTitle[indexPath.item],
+                             description: section1_cellDescription[indexPath.item],
+                             font: self.font)
+        case 1:
+            cell.setSubviews(title: section2_cellTitle[indexPath.item],
+                             description: section2_cellDescription[indexPath.item],
+                             font: self.font)
+        default:
+            print("Error Occur")
+        }
+        
+        return cell
+    }
+    
+}
+
+extension InfoViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: self.font, size: 14)
+    }
 }

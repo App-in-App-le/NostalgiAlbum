@@ -67,20 +67,30 @@ extension HomeEditViewController {
     }
     
     @IBAction func saveAlbum(_ sender: Any) {
+        // 빈 제목
+        if albumName.text == "" {
+            let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+            present(textAlert, animated: true){
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
+                textAlert.view.superview?.isUserInteractionEnabled = true
+                textAlert.view.superview?.addGestureRecognizer(tap)
+            }
+            return
+        }
+        // 중복 제목
+        if checkExistedAlbum(albumCoverName: albumName.text!) == true {
+            let duplicateNameAlert = UIAlertController(title: "중복 제목", message: "동일한 제목의 앨범이 존재합니다.", preferredStyle: UIAlertController.Style.alert)
+            present(duplicateNameAlert, animated: true){
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
+                duplicateNameAlert.view.superview?.isUserInteractionEnabled = true
+                duplicateNameAlert.view.superview?.addGestureRecognizer(tap)
+            }
+            return
+        }
         // Load realm instance
         let realm = try! Realm()
         // Create new Album
         if !IsModifyingView {
-            // Warning Alert
-            if albumName.text == "" {
-                let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
-                present(textAlert, animated: true){
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
-                    textAlert.view.superview?.isUserInteractionEnabled = true
-                    textAlert.view.superview?.addGestureRecognizer(tap)
-                }
-                return
-            }
             if coverImage.image == UIImage(systemName: "photo"){
                 let imageAlert = UIAlertController(title: "빈 이미지", message: "이미지를 선택해주세요", preferredStyle: UIAlertController.Style.alert)
                 present(imageAlert, animated: true){
@@ -144,16 +154,6 @@ extension HomeEditViewController {
         }
         // Modify exist Album
         else {
-            // Waring Alert
-            if albumName.text == "" {
-                let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
-                present(textAlert, animated: true){
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
-                    textAlert.view.superview?.isUserInteractionEnabled = true
-                    textAlert.view.superview?.addGestureRecognizer(tap)
-                }
-                return
-            }
             // Modify Album Folder's Name
             guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
             let albumDirectoryPath = documentDirectory.appendingPathComponent(albumNameBeforeModify)

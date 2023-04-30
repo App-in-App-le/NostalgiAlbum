@@ -246,7 +246,7 @@ class HomeiCloudSettingViewController: UIViewController {
                                 importAlbumInfo(albumCoverName: albumCoverName, useForShare: false)
                             }
                         }
-                        print("SUCESS :: Complete Recover!")
+                        print("SUCCESS :: Complete Recover!")
                         UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             exit(0)

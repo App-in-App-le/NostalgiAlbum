@@ -121,6 +121,7 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
             guard let picVC = self.albumSVC.storyboard?.instantiateViewController(withIdentifier: "AlbumPicViewController") as? AlbumPicViewController else { return }
             picVC.picture = albumInfo
             picVC.collectionViewInAlbum = albumSVC.collectionView
+            picVC.index = albumSVC.coverIndex
             picVC.modalPresentationStyle = .overFullScreen
             albumSVC.present(picVC, animated: false)
         }

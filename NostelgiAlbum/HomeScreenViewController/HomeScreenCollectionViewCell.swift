@@ -5,8 +5,10 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     let realm = try! Realm()
     @IBOutlet weak var firstButton: UIButton!
+    @IBOutlet weak var firstButtonShadowView: UIView!
     @IBOutlet weak var firstButtonTitle: UILabel!
     @IBOutlet weak var secondButton: UIButton!
+    @IBOutlet weak var secondButtonShadowView: UIView!
     @IBOutlet weak var secondButtonTitle: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
     var callback1 : (()->Void)?
@@ -19,18 +21,5 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     
     @IBAction func makeButton(_ sender: Any) {
         callback2?()
-    }
-}
-
-// - MARK: Cell UI 설정
-extension UICollectionViewCell {
-    func setGradient(color1: CGColor, color2: CGColor){
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.colors = [color1, color2]
-        gradient.locations = [0.8]
-        gradient.startPoint = CGPoint(x: 0.5 , y: 0.0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
-        gradient.frame = self.bounds
-        layer.insertSublayer(gradient, at: 0)
     }
 }

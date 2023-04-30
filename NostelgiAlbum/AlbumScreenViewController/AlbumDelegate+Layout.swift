@@ -33,6 +33,7 @@ extension AlbumScreenViewController: UICollectionViewDataSource{
             }
         }
         
+        cell.setFont()
         cell.setThemeColor()
         return cell
     }

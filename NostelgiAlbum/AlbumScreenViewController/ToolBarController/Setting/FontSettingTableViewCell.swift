@@ -1,24 +1,24 @@
 import UIKit
 import RealmSwift
 
-class InfoTableCell: UITableViewCell {
+class FontSettingTableViewCell: UITableViewCell {
     // MARK: - Properties
     let realm = try! Realm()
     var cellTitle: UILabel! = nil
     var cellDescription: UILabel! = nil
     
     // MARK: - Methods
-    func setSubviews(title: String, description: String, font: String) {
+    func setSubviews(title: String, titleFont: String, descriptionFont: String) {
         cellTitle = UILabel()
         cellTitle.text = title
-        cellTitle.font = UIFont(name: font, size: 15)
+        cellTitle.font = UIFont(name: titleFont, size: 15)
         contentView.addSubview(cellTitle)
         
         cellDescription = UILabel()
-        cellDescription.text = description
+        cellDescription.text = "안녕하세요 반가워요 :)"
         cellDescription.textColor = .systemGray
         cellDescription.textAlignment = .right
-        cellDescription.font = UIFont(name: font, size: 15)
+        cellDescription.font = UIFont(name: descriptionFont, size: 15)
         contentView.addSubview(cellDescription)
         
         cellTitle.translatesAutoresizingMaskIntoConstraints = false
