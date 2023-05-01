@@ -52,6 +52,17 @@ class ContentsSearchViewController: UIViewController {
             self.dismiss(animated: true)
         }
     }
+    
+    func targetColoring(nameLabel: UILabel, contentsLabel: UILabel, target: String) {
+        guard let name = nameLabel.text else { return }
+        guard let contents = contentsLabel.text else { return }
+        let attributedName = NSMutableAttributedString(string: name)
+        let attributedContents = NSMutableAttributedString(string: contents)
+        let nameRange = (name as NSString).range(of: target)
+        let contentsRange = (contents as NSString).range(of: target)
+        attributedName.addAttribute(.backgroundColor, value: UIColor.red, range: nameRange)
+        attributedContents.addAttribute(.backgroundColor, value: UIColor.blue, range: contentsRange)
+    }
 }
 // ContentsSearchViewController - Manage DataSource & Reload Data
 extension ContentsSearchViewController {
@@ -81,16 +92,15 @@ extension ContentsSearchViewController {
 extension ContentsSearchViewController {
     func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
-            let spacing = CGFloat(10)
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0/1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0/2.0), heightDimension: .absolute(70))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0/2.0), heightDimension: .fractionalHeight(1.0/3.0))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
-            group.interItemSpacing = .fixed(spacing)
+            //group.interItemSpacing = .fixed(spacing)
             
             let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = spacing
+            //section.interGroupSpacing = spacing
             section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
             return section
         }
@@ -98,12 +108,10 @@ extension ContentsSearchViewController {
     }
     
     func configureHierarcy() {
-        view.backgroundColor = .systemBackground
         let layout = createLayout()
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemBackground
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
         view.addSubview(searchBar)
@@ -112,11 +120,11 @@ extension ContentsSearchViewController {
         var constraints = [NSLayoutConstraint]()
         constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|[cv]|", options: [], metrics: nil, views: views))
         constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|[searchBar]|", options: [], metrics: nil, views: views))
-        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[searchBar]-20-[cv]|", options: [], metrics: nil, views: views))
+        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[searchBar]-0-[cv]|", options: [], metrics: nil, views: views))
         constraints.append(searchBar.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1.0))
         NSLayoutConstraint.activate(constraints)
         contentsSearchCollectionView = collectionView
-        
+        setThemeColor()
         searchBar.delegate = self
     }
 }
@@ -126,3 +134,4 @@ extension ContentsSearchViewController: UISearchBarDelegate {
         performQuery(with: searchText)
     }
 }
+
