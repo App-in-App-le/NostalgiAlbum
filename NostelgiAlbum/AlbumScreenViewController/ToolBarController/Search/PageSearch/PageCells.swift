@@ -22,7 +22,6 @@ extension PageCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.adjustsImageSizeForAccessibilityContentSizeCategory = true
         contentView.addSubview(button)
-        //button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.white
         button.layer.cornerRadius = 15

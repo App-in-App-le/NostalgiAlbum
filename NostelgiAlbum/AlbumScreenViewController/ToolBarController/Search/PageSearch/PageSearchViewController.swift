@@ -138,8 +138,6 @@ extension PageSearchViewController {
 extension PageSearchViewController {
     func configureButton() -> PageButton {
         let button = PageButton()
-//        button.layer.borderColor = UIColor.white.cgColor
-//        button.layer.borderWidth = 1
         button.heightAnchor.constraint(equalToConstant: stackView.frame.size.height/1.75).isActive = true
 
         firstPicture = UILabel()
@@ -161,7 +159,7 @@ extension PageSearchViewController {
             firstPicture.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
             firstPicture.topAnchor.constraint(equalTo: button.topAnchor, constant: 1),
             firstPicture.bottomAnchor.constraint(equalTo: secondPicture.topAnchor, constant: -10),
-            firstPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.45), // Set the height of 'titles' to half the height of 'button'
+            firstPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.45),
             secondPicture.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 10),
             secondPicture.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
             secondPicture.topAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: 1),
@@ -174,18 +172,12 @@ extension PageSearchViewController {
         fpContent.numberOfLines = 0
         fpTitle.translatesAutoresizingMaskIntoConstraints = false
         fpContent.translatesAutoresizingMaskIntoConstraints = false
-//        fpTitle.layer.borderColor = UIColor.white.cgColor
-//        fpTitle.layer.borderWidth = 1
-//        fpContent.layer.borderColor = UIColor.white.cgColor
-//        fpContent.layer.borderWidth = 1
         fpTitle.textColor = UIColor.white
         fpContent.textColor = UIColor.white
         fpTitle.clipsToBounds = true
         fpContent.clipsToBounds = true
         fpTitle.layer.cornerRadius = 15
         fpContent.layer.cornerRadius = 15
-//        fpTitle.backgroundColor = sub3
-//        fpContent.backgroundColor = sub3
         let fpTitleText = paddingLabel()
         let fpContentText = paddingLabel()
         fpTitleText.numberOfLines = 1
@@ -230,14 +222,8 @@ extension PageSearchViewController {
         spContent.numberOfLines = 0
         spTitle.translatesAutoresizingMaskIntoConstraints = false
         spContent.translatesAutoresizingMaskIntoConstraints = false
-//        spTitle.layer.borderColor = UIColor.white.cgColor
-//        spTitle.layer.borderWidth = 1
-//        spContent.layer.borderColor = UIColor.white.cgColor
-//        spContent.layer.borderWidth = 1
         spTitle.textColor = UIColor.white
         spContent.textColor = UIColor.white
-//        spTitle.backgroundColor = sub3
-//        spContent.backgroundColor = sub3
         spTitle.clipsToBounds = true
         spContent.clipsToBounds = true
         spTitle.layer.cornerRadius = 15

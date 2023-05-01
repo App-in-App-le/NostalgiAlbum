@@ -62,10 +62,6 @@ extension ContentsCells {
         contents.translatesAutoresizingMaskIntoConstraints = false
         title.numberOfLines = 2
         contents.numberOfLines = 2
-//        title.layer.borderWidth = 1
-//        title.layer.borderColor = UIColor.white.cgColor
-//        contents.layer.borderWidth = 1
-//        title.verticalAlignment = .top
         title.textAlignment = .center
         contents.verticalAlignment = .top
         titleText.textAlignment = .center
@@ -79,7 +75,6 @@ extension ContentsCells {
             title.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -CGFloat(7)),
             title.topAnchor.constraint(equalTo: titleText.bottomAnchor, constant: CGFloat(5)),
             title.bottomAnchor.constraint(equalTo: contentsText.topAnchor, constant: -CGFloat(5)),
-            //title.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.2),
             
             titleText.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: CGFloat(7)),
             titleText.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -CGFloat(7)),
