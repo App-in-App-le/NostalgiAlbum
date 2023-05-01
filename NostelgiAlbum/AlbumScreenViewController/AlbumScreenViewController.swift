@@ -94,8 +94,9 @@ extension AlbumScreenViewController {
         pageSearchVC.currentPageNum = pageNum
         pageSearchVC.delegate = self //push, pop
         pageSearchVC.previousButton = pageNum
+        pageSearchVC.data = data
         self.delegate = pageSearchVC //scrollCenter
-        pageSearchVC.modalPresentationStyle = .overCurrentContext
+        //pageSearchVC.modalPresentationStyle = .
         present(pageSearchVC, animated: true){
             self.delegate?.scrollCenter()
         }
