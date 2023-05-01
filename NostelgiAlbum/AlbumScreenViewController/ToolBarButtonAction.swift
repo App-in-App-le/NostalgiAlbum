@@ -80,7 +80,7 @@ extension AlbumScreenViewController: SearchDelegate{
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else { return }
             pushVC.pageNum = i
             pushVC.coverIndex = self.coverIndex
-            self.navigationController?.pushViewController(pushVC, animated: true)
+            self.navigationController?.pushViewController(pushVC, animated: false)
         }
     }
     

@@ -91,22 +91,22 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 self.navigationController?.pushViewController(pushVC, animated: false)
                 
                 // 첫 페이지 정하는 부분 (pushPage 함수 수정되면 다시 작성)
-//                let albumInfo = self.realm.objects(albumsInfo.self).filter("id = \(indexPath.row * 2 + 1)").first!
-//                let firstPageSetting = albumInfo.firstPageSetting
-//                switch firstPageSetting {
-//                case 0:
-//                    print("pass")
-//                case 1:
-//                    if albumInfo.numberOfPictures / 2 > 0 {
-//                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.numberOfPictures / 2)
-//                    }
-//                case 2:
-//                    if albumInfo.lastViewingPage - 1 > 0 {
-//                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.lastViewingPage - 1)
-//                    }
-//                default:
-//                    return
-//                }
+                let albumInfo = self.realm.objects(albumsInfo.self).filter("id = \(indexPath.row * 2 + 1)").first!
+                let firstPageSetting = albumInfo.firstPageSetting
+                switch firstPageSetting {
+                case 0:
+                    print("pass")
+                case 1:
+                    if albumInfo.numberOfPictures / 2 > 0 {
+                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.numberOfPictures / 2)
+                    }
+                case 2:
+                    if albumInfo.lastViewingPage - 1 > 0 {
+                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.lastViewingPage - 1)
+                    }
+                default:
+                    return
+                }
             }
         }
         // Callback2 :: Second button Action
@@ -124,22 +124,22 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                 self.navigationController?.pushViewController(pushVC, animated: false)
                 
                 // 첫 페이지 정하는 부분 (pushPage 함수 수정되면 다시 작성)
-//                let albumInfo = self.realm.objects(albumsInfo.self).filter("id = \(indexPath.row * 2 + 2)").first!
-//                let firstPageSetting = albumInfo.firstPageSetting
-//                switch firstPageSetting {
-//                case 0:
-//                    print("pass")
-//                case 1:
-//                    if albumInfo.numberOfPictures / 2 > 0 {
-//                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.numberOfPictures / 2)
-//                    }
-//                case 2:
-//                    if albumInfo.lastViewingPage - 1 > 0 {
-//                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.lastViewingPage - 1)
-//                    }
-//                default:
-//                    return
-//                }
+                let albumInfo = self.realm.objects(albumsInfo.self).filter("id = \(indexPath.row * 2 + 2)").first!
+                let firstPageSetting = albumInfo.firstPageSetting
+                switch firstPageSetting {
+                case 0:
+                    print("pass")
+                case 1:
+                    if albumInfo.numberOfPictures / 2 > 0 {
+                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.numberOfPictures / 2)
+                    }
+                case 2:
+                    if albumInfo.lastViewingPage - 1 > 0 {
+                        pushVC.pushPage(currentPageNum: 1, targetPageNum: albumInfo.lastViewingPage - 1)
+                    }
+                default:
+                    return
+                }
             }
         }
         return cell
