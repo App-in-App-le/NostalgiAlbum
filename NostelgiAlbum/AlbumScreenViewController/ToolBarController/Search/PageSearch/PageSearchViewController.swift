@@ -29,8 +29,13 @@ class PageSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarcy()
-        
-        
+        if realm.objects(HomeSetting.self).first == nil {
+            let HomeSettingInfo = HomeSetting()
+            try! realm.write {
+                realm.add(HomeSettingInfo)
+            }
+        }
+        setThemeColor()
         // modal dismiss gesutre
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
@@ -62,9 +67,9 @@ class PageSearchViewController: UIViewController {
             loadPageInfo(btnPageNum: sender.pageNum)
             for i in 0...pageButtonList.count - 1 {
                 if (sender.pageNum ) == i {
-                    pageButtonList[i].backgroundColor = UIColor.blue
+                    setThemeColorButton(pageButtonList[i])
                 } else {
-                    pageButtonList[i].backgroundColor = UIColor.black
+                    pageButtonList[i].backgroundColor = UIColor.white
                 }
             }
         }
@@ -90,15 +95,11 @@ extension PageSearchViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = true
         collectionView.contentInset = .zero
-        collectionView.backgroundColor = UIColor.white
         collectionView.clipsToBounds = true
         collectionView.register(PageCell.self, forCellWithReuseIdentifier: PageCell.reuseIdentifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .clear
-        collectionView.layer.borderColor = UIColor.white.cgColor
-        collectionView.layer.borderWidth = 1
         collectionView.canCancelContentTouches = true
         return collectionView
     }
@@ -112,8 +113,7 @@ extension PageSearchViewController {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
-        stackView.spacing = 10
-        stackView.backgroundColor = UIColor.black
+        //stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
@@ -131,7 +131,6 @@ extension PageSearchViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-
     }
 }
 
@@ -139,87 +138,147 @@ extension PageSearchViewController {
 extension PageSearchViewController {
     func configureButton() -> PageButton {
         let button = PageButton()
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1
-        button.heightAnchor.constraint(equalToConstant: stackView.frame.size.height/2.0).isActive = true
-        
+//        button.layer.borderColor = UIColor.white.cgColor
+//        button.layer.borderWidth = 1
+        button.heightAnchor.constraint(equalToConstant: stackView.frame.size.height/1.75).isActive = true
+
         firstPicture = UILabel()
         secondPicture = UILabel()
         firstPicture.translatesAutoresizingMaskIntoConstraints = false
         secondPicture.translatesAutoresizingMaskIntoConstraints = false
         firstPicture.numberOfLines = 0
         secondPicture.numberOfLines = 0
-        firstPicture.layer.borderWidth = 1
-        secondPicture.layer.borderWidth = 1
-        firstPicture.layer.borderColor = UIColor.yellow.cgColor
-        secondPicture.layer.borderColor = UIColor.white.cgColor
         firstPicture.textColor = UIColor.white
         secondPicture.textColor = UIColor.white
+        firstPicture.layer.cornerRadius = 20
+        secondPicture.layer.cornerRadius = 20
+        firstPicture.clipsToBounds = true
+        secondPicture.clipsToBounds = true
         button.addSubview(firstPicture)
         button.addSubview(secondPicture)
         NSLayoutConstraint.activate([
             firstPicture.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 10),
             firstPicture.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
-            firstPicture.topAnchor.constraint(equalTo: button.topAnchor, constant: 10),
+            firstPicture.topAnchor.constraint(equalTo: button.topAnchor, constant: 1),
             firstPicture.bottomAnchor.constraint(equalTo: secondPicture.topAnchor, constant: -10),
-            firstPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.5), // Set the height of 'titles' to half the height of 'button'
-            secondPicture.leadingAnchor.constraint(equalTo: button.leadingAnchor),
-            secondPicture.trailingAnchor.constraint(equalTo: button.trailingAnchor),
-            secondPicture.topAnchor.constraint(equalTo: firstPicture.bottomAnchor),
-            secondPicture.bottomAnchor.constraint(equalTo: button.bottomAnchor)
+            firstPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.45), // Set the height of 'titles' to half the height of 'button'
+            secondPicture.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 10),
+            secondPicture.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
+            secondPicture.topAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: 1),
+            secondPicture.bottomAnchor.constraint(equalTo: button.bottomAnchor),
+            secondPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.45)
         ])
-        fpTitle = UILabel()
+        fpTitle = paddingLabel()
         fpTitle.numberOfLines = 0
-        fpContent = UILabel()
+        fpContent = paddingLabel()
         fpContent.numberOfLines = 0
         fpTitle.translatesAutoresizingMaskIntoConstraints = false
         fpContent.translatesAutoresizingMaskIntoConstraints = false
-        fpTitle.layer.borderColor = UIColor.white.cgColor
-        fpTitle.layer.borderWidth = 1
-        fpContent.layer.borderColor = UIColor.white.cgColor
-        fpContent.layer.borderWidth = 1
+//        fpTitle.layer.borderColor = UIColor.white.cgColor
+//        fpTitle.layer.borderWidth = 1
+//        fpContent.layer.borderColor = UIColor.white.cgColor
+//        fpContent.layer.borderWidth = 1
         fpTitle.textColor = UIColor.white
         fpContent.textColor = UIColor.white
+        fpTitle.clipsToBounds = true
+        fpContent.clipsToBounds = true
+        fpTitle.layer.cornerRadius = 15
+        fpContent.layer.cornerRadius = 15
+//        fpTitle.backgroundColor = sub3
+//        fpContent.backgroundColor = sub3
+        let fpTitleText = paddingLabel()
+        let fpContentText = paddingLabel()
+        fpTitleText.numberOfLines = 1
+        fpContentText.numberOfLines = 0
+        fpTitleText.translatesAutoresizingMaskIntoConstraints = false
+        fpContentText.translatesAutoresizingMaskIntoConstraints = false
+        fpTitleText.text = "이름"
+        fpContentText.text = "내용"
+        firstPicture.addSubview(fpTitleText)
+        firstPicture.addSubview(fpContentText)
         firstPicture.addSubview(fpTitle)
         firstPicture.addSubview(fpContent)
         NSLayoutConstraint.activate([
             fpTitle.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
             fpTitle.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
-            fpTitle.topAnchor.constraint(equalTo: firstPicture.topAnchor, constant: CGFloat(10)),
-            fpTitle.bottomAnchor.constraint(equalTo: fpContent.topAnchor, constant: -CGFloat(5)),
-            fpTitle.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.4),
+            fpTitle.topAnchor.constraint(equalTo: fpTitleText.bottomAnchor, constant: CGFloat(10)),
+            fpTitle.bottomAnchor.constraint(equalTo: fpContentText.topAnchor, constant: -CGFloat(5)),
+            fpTitle.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.2),
+            
             fpContent.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
             fpContent.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
-            fpContent.topAnchor.constraint(equalTo: fpTitle.bottomAnchor, constant: CGFloat(5)),
+            fpContent.topAnchor.constraint(equalTo: fpContentText.bottomAnchor, constant: CGFloat(5)),
             fpContent.bottomAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: CGFloat(10)),
-            fpContent.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.4)
+            fpContent.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.4),
+            
+            fpTitleText.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
+            fpTitleText.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
+            fpTitleText.topAnchor.constraint(equalTo: firstPicture.topAnchor, constant: CGFloat(10)),
+            fpTitleText.bottomAnchor.constraint(equalTo: fpTitle.topAnchor, constant: -CGFloat(5)),
+            fpTitleText.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.1),
+            
+            fpContentText.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
+            fpContentText.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
+            fpContentText.topAnchor.constraint(equalTo: fpTitle.bottomAnchor, constant: CGFloat(10)),
+            fpContentText.bottomAnchor.constraint(equalTo: fpContent.topAnchor, constant: -CGFloat(5)),
+            fpContentText.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.1)
         ])
         
-        spTitle = UILabel()
+        spTitle = paddingLabel()
         spTitle.numberOfLines = 0
-        spContent = UILabel()
+        spContent = paddingLabel()
         spContent.numberOfLines = 0
         spTitle.translatesAutoresizingMaskIntoConstraints = false
         spContent.translatesAutoresizingMaskIntoConstraints = false
-        spTitle.layer.borderColor = UIColor.white.cgColor
-        spTitle.layer.borderWidth = 1
-        spContent.layer.borderColor = UIColor.white.cgColor
-        spContent.layer.borderWidth = 1
+//        spTitle.layer.borderColor = UIColor.white.cgColor
+//        spTitle.layer.borderWidth = 1
+//        spContent.layer.borderColor = UIColor.white.cgColor
+//        spContent.layer.borderWidth = 1
         spTitle.textColor = UIColor.white
         spContent.textColor = UIColor.white
+//        spTitle.backgroundColor = sub3
+//        spContent.backgroundColor = sub3
+        spTitle.clipsToBounds = true
+        spContent.clipsToBounds = true
+        spTitle.layer.cornerRadius = 15
+        spContent.layer.cornerRadius = 15
+        let spTitleText = paddingLabel()
+        let spContentText = paddingLabel()
+        spTitleText.numberOfLines = 1
+        spContentText.numberOfLines = 0
+        spTitleText.translatesAutoresizingMaskIntoConstraints = false
+        spContentText.translatesAutoresizingMaskIntoConstraints = false
+        spTitleText.text = "이름"
+        spContentText.text = "내용"
+
         secondPicture.addSubview(spTitle)
         secondPicture.addSubview(spContent)
+        secondPicture.addSubview(spTitleText)
+        secondPicture.addSubview(spContentText)
         NSLayoutConstraint.activate([
             spTitle.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
             spTitle.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
-            spTitle.topAnchor.constraint(equalTo: secondPicture.topAnchor, constant: CGFloat(10)),
-            spTitle.bottomAnchor.constraint(equalTo: spContent.topAnchor, constant: -CGFloat(5)),
-            spTitle.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.4),
+            spTitle.topAnchor.constraint(equalTo: spTitleText.bottomAnchor, constant: CGFloat(10)),
+            spTitle.bottomAnchor.constraint(equalTo: spContentText.topAnchor, constant: -CGFloat(5)),
+            spTitle.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.2),
+            
             spContent.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
             spContent.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
-            spContent.topAnchor.constraint(equalTo: spTitle.bottomAnchor, constant: CGFloat(5)),
+            spContent.topAnchor.constraint(equalTo: spContentText.bottomAnchor, constant: CGFloat(5)),
             spContent.bottomAnchor.constraint(equalTo: secondPicture.bottomAnchor, constant: CGFloat(10)),
-            spContent.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.4)
+            spContent.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.4),
+            
+            spTitleText.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
+            spTitleText.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
+            spTitleText.topAnchor.constraint(equalTo: secondPicture.topAnchor, constant: CGFloat(10)),
+            spTitleText.bottomAnchor.constraint(equalTo: spTitle.topAnchor, constant: -CGFloat(5)),
+            spTitleText.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.1),
+            
+            spContentText.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
+            spContentText.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
+            spContentText.topAnchor.constraint(equalTo: spTitle.bottomAnchor, constant: CGFloat(10)),
+            spContentText.bottomAnchor.constraint(equalTo: spContent.topAnchor, constant: -CGFloat(5)),
+            spContentText.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.1)
         ])
         
         return button
@@ -233,8 +292,6 @@ extension PageSearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCell.reuseIdentifier, for: indexPath) as! PageCell
         cell.button.setTitle("\(indexPath.item - 1)", for: .normal)
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor.white.cgColor
         cell.button.titleLabel?.textColor = .white
         cell.button.pageNum = indexPath.item - 2
         cell.button.indexPath = indexPath
@@ -245,8 +302,13 @@ extension PageSearchViewController: UICollectionViewDataSource {
         } else {
             pageButtonList.append(cell.button)
         }
+        let themaColorSetInstance = ThemeColorSet()
+        let HomeSettingInfo = realm.objects(HomeSetting.self).first!
+        
         if previousButton == cell.button.pageNum {
-            cell.button.backgroundColor = UIColor.blue
+            if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
+                cell.button.backgroundColor = ThemeColorSet["subColor_4"]
+            }
         }
         return cell
         
@@ -261,7 +323,7 @@ extension PageSearchViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         // Return the section insets for the specified section
-        return UIEdgeInsets(top: collectionView.bounds.height/1.5, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: collectionView.bounds.height/1.5, left: 10, bottom: 20, right: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -316,7 +378,7 @@ extension PageSearchViewController {
             fpTitle.text = data[fpIndex].ImageName
             fpContent.text = data[fpIndex].ImageText
         }
-        if spIndex > data.count {
+        if spIndex >= data.count {
             spTitle.text = "empty"
             spContent.text = "empty"
         } else {
@@ -343,5 +405,25 @@ extension UIView {
         animation.type = CATransitionType.fade
         animation.duration = duration
         layer.add(animation, forKey: CATransitionType.fade.rawValue)
+    }
+}
+
+class paddingLabel: UILabel {
+    private var padding = UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4)
+    
+    convenience init(padding: UIEdgeInsets) {
+        self.init()
+        self.padding = padding
+    }
+    
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: padding))
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        var contentSize = super.intrinsicContentSize
+        contentSize.height += padding.top + padding.bottom
+        contentSize.width += padding.left + padding.right
+        return contentSize
     }
 }

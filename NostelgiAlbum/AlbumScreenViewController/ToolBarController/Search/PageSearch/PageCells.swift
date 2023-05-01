@@ -22,15 +22,15 @@ extension PageCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.adjustsImageSizeForAccessibilityContentSizeCategory = true
         contentView.addSubview(button)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = UIColor.clear
-        let inset = CGFloat(10)
+        //button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.backgroundColor = UIColor.white
+        button.layer.cornerRadius = 15
         NSLayoutConstraint.activate([
-            button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
-            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
-            button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
-            button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset)
+            button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            button.topAnchor.constraint(equalTo: contentView.topAnchor),
+            button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }
