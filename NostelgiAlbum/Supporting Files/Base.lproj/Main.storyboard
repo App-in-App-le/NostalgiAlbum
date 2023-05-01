@@ -13,6 +13,9 @@
         <array key="EF_watermelonSalad.otf">
             <string>EF_watermelonSalad</string>
         </array>
+        <array key="PyeongChangPeace-Light.otf">
+            <string>PyeongChangPeace-Light</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Item-->
@@ -627,97 +630,99 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRN-Fp-mgI" userLabel="PopUpView">
                                 <rect key="frame" x="30" y="236" width="333" height="380"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="앨범 이름" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6f-sn-2kD">
-                                        <rect key="frame" x="35" y="74" width="50" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoI-oE-FsP" userLabel="Divide Line">
-                                        <rect key="frame" x="0.0" y="51" width="333" height="2"/>
+                                        <rect key="frame" x="0.0" y="53" width="333" height="5"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="wck-Hx-vQW"/>
+                                            <constraint firstAttribute="height" constant="5" id="wck-Hx-vQW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" systemColor="opaqueSeparatorColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JHW-5g-6Ba">
-                                        <rect key="frame" x="93" y="74" width="149" height="34"/>
+                                        <rect key="frame" x="93" y="76" width="149" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="앨범 이미지" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2L7-YO-vhA">
-                                        <rect key="frame" x="23" y="125" width="62" height="19"/>
+                                        <rect key="frame" x="23" y="129" width="62" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SgP-uG-7mx">
-                                        <rect key="frame" x="92" y="125" width="150" height="200"/>
+                                        <rect key="frame" x="92" y="127" width="150" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="새로운 앨범" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMa-bZ-V1a">
-                                        <rect key="frame" x="100" y="14" width="133" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 앨범" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMa-bZ-V1a">
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="53"/>
+                                        <fontDescription key="fontDescription" name="PyeongChangPeace-Light" family="PyeongChang Peace" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWd-Le-Twy">
-                                        <rect key="frame" x="250" y="125" width="50" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="추가">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="addImage:" destination="uG1-g0-tif" eventType="touchUpInside" id="iRA-e5-qZV"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="er4-Fc-VlO">
-                                        <rect key="frame" x="183" y="336" width="50" height="32"/>
+                                        <rect key="frame" x="183" y="339" width="50" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.70248031619999995" green="0.70248031619999995" blue="0.70248031619999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="취소" cornerStyle="capsule">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="취소"/>
                                         <connections>
                                             <action selector="closeButton:" destination="uG1-g0-tif" eventType="touchUpInside" id="vHb-Xm-AN7"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDh-hN-cDJ">
-                                        <rect key="frame" x="100" y="336" width="50" height="32"/>
+                                        <rect key="frame" x="100" y="339" width="49" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.70248031619999995" green="0.70248031619999995" blue="0.70248031619999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="생성">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="생성">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="closeButton:" destination="kMX-HM-r06" eventType="touchUpInside" id="RAW-fL-GE6"/>
                                             <action selector="saveAlbum:" destination="uG1-g0-tif" eventType="touchUpInside" id="cnL-cV-Axg"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWd-Le-Twy">
+                                        <rect key="frame" x="250" y="127" width="49" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="추가">
+                                            <fontDescription key="titleFontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="addImage:" destination="uG1-g0-tif" eventType="touchUpInside" id="iRA-e5-qZV"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="앨범 이름" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiW-p1-YwH">
+                                        <rect key="frame" x="35" y="79" width="50" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="yoI-oE-FsP" firstAttribute="top" secondItem="sRN-Fp-mgI" secondAttribute="top" constant="51" id="0yw-PJ-cds"/>
+                                    <constraint firstItem="yoI-oE-FsP" firstAttribute="top" secondItem="sRN-Fp-mgI" secondAttribute="top" constant="53" id="0yw-PJ-cds"/>
                                     <constraint firstItem="yoI-oE-FsP" firstAttribute="leading" secondItem="sRN-Fp-mgI" secondAttribute="leading" id="5fd-vr-fXY"/>
                                     <constraint firstAttribute="trailing" secondItem="yoI-oE-FsP" secondAttribute="trailing" id="7bq-Vg-Xhi"/>
+                                    <constraint firstAttribute="trailing" secondItem="GMa-bZ-V1a" secondAttribute="trailing" id="9GI-ty-znh"/>
+                                    <constraint firstItem="GMa-bZ-V1a" firstAttribute="leading" secondItem="sRN-Fp-mgI" secondAttribute="leading" id="GtB-6q-SKX"/>
+                                    <constraint firstItem="GMa-bZ-V1a" firstAttribute="top" secondItem="sRN-Fp-mgI" secondAttribute="top" id="KWi-h8-yEW"/>
                                     <constraint firstAttribute="height" constant="380" id="bKD-hS-JN3"/>
+                                    <constraint firstItem="yoI-oE-FsP" firstAttribute="top" secondItem="GMa-bZ-V1a" secondAttribute="bottom" id="dwj-hk-dMG"/>
                                     <constraint firstAttribute="width" constant="333" id="gub-wV-Gp2"/>
                                 </constraints>
                             </view>
@@ -1019,9 +1024,9 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앨범 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xym-yq-J0G">
-                                        <rect key="frame" x="161.66666666666666" y="13.333333333333327" width="69.666666666666657" height="24.333333333333329"/>
+                                        <rect key="frame" x="159" y="9.6666666666666732" width="75.333333333333314" height="25.666666666666671"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="PyeongChangPeace-Light" family="PyeongChang Peace" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1031,7 +1036,7 @@
                                     <constraint firstAttribute="bottom" secondItem="wrN-oa-0Ag" secondAttribute="bottom" id="99x-5h-RB4"/>
                                     <constraint firstAttribute="height" constant="45" id="IQG-88-VkO"/>
                                     <constraint firstItem="xym-yq-J0G" firstAttribute="centerX" secondItem="yEZ-va-5m3" secondAttribute="centerX" id="Tpw-uq-c1h"/>
-                                    <constraint firstItem="xym-yq-J0G" firstAttribute="centerY" secondItem="yEZ-va-5m3" secondAttribute="centerY" constant="3" id="pIK-Lk-UAx"/>
+                                    <constraint firstItem="xym-yq-J0G" firstAttribute="centerY" secondItem="yEZ-va-5m3" secondAttribute="centerY" id="pIK-Lk-UAx"/>
                                     <constraint firstAttribute="trailing" secondItem="wrN-oa-0Ag" secondAttribute="trailing" constant="10" id="r5r-95-1SP"/>
                                     <constraint firstItem="wrN-oa-0Ag" firstAttribute="top" secondItem="yEZ-va-5m3" secondAttribute="top" id="rqt-j0-Tla"/>
                                 </constraints>
@@ -1155,7 +1160,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="jr6-Sb-uRQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="27"/>
+                                <fontDescription key="fontDescription" name="PyeongChangPeace-Light" family="PyeongChang Peace" pointSize="27"/>
                                 <color key="textColor" red="0.99215686270000003" green="0.96862745100000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>

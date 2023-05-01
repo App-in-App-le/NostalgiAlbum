@@ -59,3 +59,29 @@ extension PageSearchViewController {
 extension ContentsSearchViewController {
     
 }
+
+extension UIAlertController {
+    func setFont(font: String?, title: String?, message: String?) {
+        // title string이 존재하는 경우
+        if let title = title {
+            let titleText = NSMutableAttributedString(string: title)
+            if let font = font {
+                titleText.addAttribute(.font, value: UIFont(name: font, size: 18)!, range: (title as NSString).range(of: title))
+            } else {
+                titleText.addAttribute(.font, value: UIFont(name: "EF_watermelonSalad", size: 18)!, range: (title as NSString).range(of: title))
+            }
+            self.setValue(titleText, forKey: "attributedTitle")
+        }
+        
+        // message string이 존재하는 경우
+        if let message = message {
+            let messageText = NSMutableAttributedString(string: message)
+            if let font = font {
+                messageText.addAttribute(.font, value: UIFont(name: font, size: 13)!, range: (message as NSString).range(of: message))
+            } else {
+                messageText.addAttribute(.font, value: UIFont(name: "EF_watermelonSalad", size: 13)!, range: (message as NSString).range(of: message))
+            }
+            self.setValue(messageText, forKey: "attributedMessage")
+        }
+    }
+}

@@ -7,7 +7,7 @@ class HomeiCloudSettingViewController: UIViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
-        backgroundStackView.layer.cornerRadius = 15.0
+        backgroundStackView.layer.cornerRadius = 5
         backgroundStackView.layer.borderWidth = 2
         backgroundStackView.layer.borderColor = UIColor.black.cgColor
         backgroundStackView.backgroundColor = .systemGray5
@@ -33,7 +33,8 @@ class HomeiCloudSettingViewController: UIViewController {
             if albumCoverInfos.isEmpty == true {
                 // Alert
                 // Notice Alert
-                let alert = UIAlertController(title: "저장할 앨범이 없습니다", message: "최소 한 개 이상의 앨범을 생성 후 백업을 진행해주세요", preferredStyle: .alert)
+                let alert = UIAlertController(title: "앨범이 없습니다", message: "최소 한 개 이상의 앨범을 생성 후 백업을 진행해주세요", preferredStyle: .alert)
+                alert.setFont(font: nil, title: "앨범이 없습니다", message: "최소 한 개 이상의 앨범을 생성 후 백업을 진행해주세요")
                 let okAction = UIAlertAction(title: "확인", style: .default) { action in
                     self.dismiss(animated: false) {
                         self.dismiss(animated: false)
@@ -62,7 +63,10 @@ class HomeiCloudSettingViewController: UIViewController {
                     } else {
                         message = "이전 백업 데이터가 존재하지 않습니다."
                     }
+                    
                     let alert = UIAlertController(title: "백업", message: message, preferredStyle: .alert)
+                    alert.setFont(font: nil, title: "백업", message: message)
+                    
                     let okAction = UIAlertAction(title: "확인", style: .default) { action in
                         for albumCoverInfo in albumCoverInfos {
                             if let newNostURL = zipAlbumDirectory(AlbumCoverName: albumCoverInfo.albumName) {
@@ -103,6 +107,8 @@ class HomeiCloudSettingViewController: UIViewController {
                         }
                         
                         let alert = UIAlertController(title: "백업 완료", message: "백업이 완료되었습니다.👻", preferredStyle: .alert)
+                        alert.setFont(font: nil, title: "백업 완료", message: "백업이 완료되었습니다.👻")
+                        
                         let okAction = UIAlertAction(title: "확인", style: .default) { action in
                             self.dismiss(animated: false)
                         }
@@ -122,6 +128,7 @@ class HomeiCloudSettingViewController: UIViewController {
         } else {
             // Notice Alert
             let alert = UIAlertController(title: "iCloud 연결이 필요합니다", message: "\n설정 - Apple ID - iCloud - 모두 보기 - NostelgiAlbum - 허용 ", preferredStyle: .alert)
+            alert.setFont(font: nil, title: "iCloud 연결이 필요합니다", message: "\n설정 - Apple ID - iCloud - 모두 보기 - NostelgiAlbum - 허용 ")
             let okAction = UIAlertAction(title: "확인", style: .default) { action in
                 alert.dismiss(animated: false)
             }
@@ -140,6 +147,8 @@ class HomeiCloudSettingViewController: UIViewController {
                 let contents = try FileManager.default.contentsOfDirectory(atPath: iCloudDocsURL.path)
                 if contents.isEmpty {
                     let alert = UIAlertController(title: "백업 파일이 존재하지 않습니다", message: nil, preferredStyle: .alert)
+                    alert.setFont(font: nil, title: "백업 파일이 존재하지 않습니다", message: nil)
+                    
                     let okAction = UIAlertAction(title: "확인", style: .default) { action in
                         alert.dismiss(animated: false)
                     }
@@ -156,6 +165,8 @@ class HomeiCloudSettingViewController: UIViewController {
             // Failed
             // Notice Alert
             let alert = UIAlertController(title: "iCloud 연결이 필요합니다", message: "\n설정 - Apple ID - iCloud - 모두 보기 - NostelgiAlbum - 허용 ", preferredStyle: .alert)
+            alert.setFont(font: nil, title: "iCloud 연결이 필요합니다", message: "\n설정 - Apple ID - iCloud - 모두 보기 - NostelgiAlbum - 허용 ")
+            
             let okAction = UIAlertAction(title: "확인", style: .default) { action in
                 alert.dismiss(animated: false)
             }
@@ -165,6 +176,8 @@ class HomeiCloudSettingViewController: UIViewController {
         }
         
         let alert = UIAlertController(title: "경고", message: "복원을 진행할 경우 \n현재 생성된 앨범 정보가 모두 삭제됩니다", preferredStyle: .alert)
+        alert.setFont(font: nil, title: "경고", message: "복원을 진행할 경우 \n현재 생성된 앨범 정보가 모두 삭제됩니다")
+        
         let cancleAction = UIAlertAction(title: "취소", style: .default) { action in
             alert.dismiss(animated: false)
         }
@@ -176,6 +189,8 @@ class HomeiCloudSettingViewController: UIViewController {
             let message = "[백업 데이터]\n\(Datas.joined(separator: "\n"))"
             
             let alert = UIAlertController(title: "복원", message: "현재 생성된 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n(복원 완료 시, 어플이 종료됩니다.)\n\n\(message)", preferredStyle: .alert)
+            alert.setFont(font: nil, title: "복원", message: "현재 생성된 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n(복원 완료 시, 어플이 종료됩니다.)\n\n\(message)")
+            
             let cancleAction = UIAlertAction(title: "취소", style: .default) { action in
                 alert.dismiss(animated: false)
             }

@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 extension HomeScreenViewController {
     func setThemeColor() {
@@ -20,9 +21,9 @@ extension HomeScreenCollectionViewCell {
         let HomeSettingInfo = realm.objects(HomeSetting.self).first!
         if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
             self.backgroundColor = ThemeColorSet["subColor_1"]
-            self.bottomLabel.backgroundColor = ThemeColorSet["subColor_2"]
-            self.firstButton.backgroundColor = ThemeColorSet["subColor_3"]
-            self.secondButton.backgroundColor = ThemeColorSet["subColor_3"]
+            bottomLabel.backgroundColor = ThemeColorSet["subColor_2"]
+            firstButton.backgroundColor = ThemeColorSet["subColor_3"]
+            secondButton.backgroundColor = ThemeColorSet["subColor_3"]
         } else {
             return
         }
@@ -33,13 +34,15 @@ extension HomeEditViewController {
     func setThemeColor() {
         let HomeSettingInfo = realm.objects(HomeSetting.self).first!
         if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
-            self.createButton.backgroundColor = ThemeColorSet["subColor_3"]
-            self.cancleButton.backgroundColor = ThemeColorSet["subColor_3"]
-            self.selectButton.backgroundColor = ThemeColorSet["subColor_3"]
-            self.coverImage.backgroundColor = .white
-            self.albumName.backgroundColor = .white
-            self.divideLine.backgroundColor = ThemeColorSet["subColor_2"]
-            self.editView.backgroundColor = ThemeColorSet["subColor_1"]
+            createButton.backgroundColor = ThemeColorSet["subColor_3"]
+            cancleButton.backgroundColor = ThemeColorSet["subColor_3"]
+            selectButton.backgroundColor = ThemeColorSet["subColor_3"]
+            coverImage.backgroundColor = .white
+            albumName.backgroundColor = .white
+            divideLine.backgroundColor = ThemeColorSet["subColor_2"]
+            editView.backgroundColor = ThemeColorSet["subColor_1"]
+            editTitle.backgroundColor = ThemeColorSet["mainColor"]
+            editTitle.textColor = .white
         } else {
             return
         }
