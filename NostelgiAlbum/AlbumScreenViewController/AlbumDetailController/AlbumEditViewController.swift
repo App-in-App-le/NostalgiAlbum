@@ -35,13 +35,14 @@ class AlbumEditViewController: UIViewController {
         {
             transPic(picture!)
         } else {
-            editPicture.setImage(UIImage(systemName: "plus.square"), for: .normal)
+            editPicture.setImage(UIImage(systemName: "plus"), for: .normal)
             editPicture.setTitle("", for: .normal)
         }
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
         setThemeColor()
+        setFont()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -59,12 +60,14 @@ class AlbumEditViewController: UIViewController {
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.backgroundColor = .systemBlue
         saveButton.layer.cornerRadius = 10.0
+        saveButton.titleLabel?.numberOfLines = 1
         
         // editPicture
         editPicture.translatesAutoresizingMaskIntoConstraints = false
         editPicture.backgroundColor = .systemGray6
+        editPicture.clipsToBounds = true
         editPicture.layer.cornerRadius = 10.0
-        width = UIScreen.main.bounds.width - 30
+        width = UIScreen.main.bounds.width / 4 * 3
         let remainder = Int(width!) % 3
         if remainder != 0 {
             width = width! - CGFloat(remainder)
@@ -92,14 +95,14 @@ class AlbumEditViewController: UIViewController {
             editPicture.heightAnchor.constraint(equalToConstant: height!),
             
             editName.topAnchor.constraint(equalTo: editPicture.bottomAnchor, constant: 10),
-            editName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            editName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             editName.heightAnchor.constraint(equalToConstant: 34),
+            editName.centerXAnchor.constraint(equalTo: editPicture.centerXAnchor),
+            editName.widthAnchor.constraint(equalToConstant: width!),
             
             editText.topAnchor.constraint(equalTo: editName.bottomAnchor, constant: 10),
-            editText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            editText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            editText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            editText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            editText.centerXAnchor.constraint(equalTo: editPicture.centerXAnchor),
+            editText.widthAnchor.constraint(equalToConstant: width!)
         ]
         NSLayoutConstraint.activate(consArray!)
     }
@@ -109,14 +112,14 @@ class AlbumEditViewController: UIViewController {
         
         if let image = loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle) {
             if image.size.height > image.size.width {
-                width = UIScreen.main.bounds.width - 30
+                width = UIScreen.main.bounds.width / 4 * 3
                 let remainder = Int(width!) % 3
                 if remainder != 0 {
                     width = width! - CGFloat(remainder)
                 }
                 height = width! / 3 * 4
             } else {
-                width = UIScreen.main.bounds.width - 40
+                width = UIScreen.main.bounds.width / 8 * 7
                 let remainder = Int(width!) % 4
                 if remainder != 0 {
                     width = width! - CGFloat(remainder)
@@ -140,14 +143,14 @@ class AlbumEditViewController: UIViewController {
                 editPicture.heightAnchor.constraint(equalToConstant: height!),
                 
                 editName.topAnchor.constraint(equalTo: editPicture.bottomAnchor, constant: 10),
-                editName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                editName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
                 editName.heightAnchor.constraint(equalToConstant: 34),
+                editName.centerXAnchor.constraint(equalTo: editPicture.centerXAnchor),
+                editName.widthAnchor.constraint(equalToConstant: width!),
                 
                 editText.topAnchor.constraint(equalTo: editName.bottomAnchor, constant: 10),
-                editText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                editText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-                editText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
+                editText.heightAnchor.constraint(equalToConstant: height!),
+                editText.centerXAnchor.constraint(equalTo: editPicture.centerXAnchor),
+                editText.widthAnchor.constraint(equalToConstant: width!)
             ]
             NSLayoutConstraint.activate(newConsArray!)
             isHeightLonger = false

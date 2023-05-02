@@ -33,7 +33,7 @@ extension AlbumEditViewController {
         } else {
             addPic()
         }
-        if editPicture.imageView?.image == UIImage(systemName: "photo"){
+        if editPicture.imageView?.image == UIImage(systemName: "plus"){
             let imageAlert = UIAlertController(title: "빈 이미지", message: "이미지를 선택해주세요", preferredStyle: UIAlertController.Style.alert)
             present(imageAlert, animated: true){
                 let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
@@ -42,11 +42,11 @@ extension AlbumEditViewController {
             }
             return
         } else if editName.text == "" {
-            let imageAlert = UIAlertController(title: "빈 제목", message: "사진 제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
-            present(imageAlert, animated: true){
+            let editNameAlert = UIAlertController(title: "빈 제목", message: "사진 제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+            present(editNameAlert, animated: true){
                 let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
-                imageAlert.view.superview?.isUserInteractionEnabled = true
-                imageAlert.view.superview?.addGestureRecognizer(tap)
+                editNameAlert.view.superview?.isUserInteractionEnabled = true
+                editNameAlert.view.superview?.addGestureRecognizer(tap)
             }
             return
         }

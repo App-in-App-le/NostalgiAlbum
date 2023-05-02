@@ -10,7 +10,7 @@ class HomeSettingViewController: UIViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
-        backgroundStackView.layer.cornerRadius = 15.0
+        backgroundStackView.layer.cornerRadius = 5
         backgroundStackView.layer.borderWidth = 2
         backgroundStackView.layer.borderColor = UIColor.black.cgColor
         backgroundStackView.backgroundColor = .systemGray6
@@ -36,10 +36,13 @@ class HomeSettingViewController: UIViewController {
     }
     
     @IBAction func colorSettingButtonAction(_ sender: Any) {
-        print("colorSettingButton Tapped!!")
-        
         let colors = ["파란색": "blue", "갈색": "brown", "녹색" : "green"].sorted(by: <)
-        let alert = UIAlertController(title: "테마", message: "색상을 선택하세요 🎨", preferredStyle: .alert)
+        
+        let titleText = "테마"
+        let messageText = "색상을 선택하세요 🎨"
+        let alert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
+        alert.setFont(font: nil, title: titleText, message: messageText)
+        
         for color in colors {
             print(color.key)
             let action = UIAlertAction(title: color.key, style: .default) { action in
@@ -62,11 +65,6 @@ class HomeSettingViewController: UIViewController {
             default:
                 action.setValue(UIColor.black, forKey: "titleTextColor")
             }
-            
-//            let attributedString = NSMutableAttributedString(string: color.key)
-//            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: NSRange(location: 0, length: attributedString.length))
-//
-//            alert.setValue(attributedString, forKey: "attributedTitle")
             
             alert.addAction(action)
         }

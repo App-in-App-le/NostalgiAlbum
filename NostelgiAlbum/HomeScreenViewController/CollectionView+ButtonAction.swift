@@ -11,18 +11,18 @@ extension HomeScreenViewController {
     @objc func didLongPressView(_ gesture: customLongPressGesture) {
         // Alert
         let longPressAlert = UIAlertController(title: (gesture.albumName), message: .none, preferredStyle: .alert)
+        longPressAlert.setFont(font: nil, title: gesture.albumName, message: nil)
         
         // Delete action
-        let delete = UIAlertAction(title: "앨범 삭제", style: .default) {
+        let delete = UIAlertAction(title: "삭제", style: .default) {
             (action) in self.deleteAlbumCover(gesture.albumIndex, gesture.albumName)
         }
-        delete.setValue(UIColor.blue, forKey: "titleTextColor")
+        delete.setValue(UIColor(red: 0.89, green: 0.25, blue: 0.21, alpha: 0.90), forKey: "titleTextColor")
         
         // Modify action
-        let modify = UIAlertAction(title: "앨범 수정", style: .default) {
+        let modify = UIAlertAction(title: "수정", style: .default) {
             (action) in self.modifyAlbumCover(gesture.albumIndex, gesture.albumName)
         }
-        modify.setValue(UIColor.blue, forKey: "titleTextColor")
         
         // Set Action in Alert
         longPressAlert.addAction(delete)
@@ -96,6 +96,7 @@ extension HomeScreenViewController {
         // editVC
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeEditViewController") as? HomeEditViewController else{ return }
         editVC.modalPresentationStyle = .overCurrentContext
+        editVC.modalTransitionStyle = .crossDissolve
         editVC.collectionViewInHome = self.collectionView
         editVC.IsModifyingView = true
         editVC.albumNameBeforeModify = albumName
@@ -103,7 +104,7 @@ extension HomeScreenViewController {
         editVC.id = albumIndex
         
         // Present editVC
-        self.present(editVC, animated: false)
+        self.present(editVC, animated: true)
     }
     
     @IBAction func homeSettingButtonAction(_ sender: Any) {

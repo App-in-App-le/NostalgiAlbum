@@ -6,9 +6,11 @@ extension HomeEditViewController {
     @IBAction func addImage(_ sender: Any) {
         // selectCoverTypeAlert
         let selectCoverTypeAlert = UIAlertController(title: "커버 타입", message: .none, preferredStyle: .alert)
+        selectCoverTypeAlert.setFont(font: nil, title: "커버 타입", message: nil)
+        
         // selectCoverTypeAlert "기본 커버" Action
-        selectCoverTypeAlert.addAction(UIAlertAction(title: "기본 커버", style: .default) { action in
-            let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"]
+        selectCoverTypeAlert.addAction(UIAlertAction(title: "기본", style: .default) { action in
+            let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"].sorted(by: <)
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
             colors.forEach { color in
                 alert.addAction(UIAlertAction(title: color.key, style: .default) { action in
@@ -20,7 +22,7 @@ extension HomeEditViewController {
             }
         })
         // selectCoverTypeAlert "커버 만들기" Action
-        selectCoverTypeAlert.addAction(UIAlertAction(title: "커버 만들기", style: .default) { action in
+        selectCoverTypeAlert.addAction(UIAlertAction(title: "사진", style: .default) { action in
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in
                 let picker = UIImagePickerController()
@@ -49,38 +51,48 @@ extension HomeEditViewController {
     func setCoverImage(color: String) {
         switch color {
         case "Blue" :
-            coverImage.image = UIImage(named: "Blue")
+            coverImage.image = resizeingImage(image: UIImage(named: "Blue")!, width: 150, height: 200)
         case "Brown" :
-            coverImage.image = UIImage(named: "Brown")
+            coverImage.image = resizeingImage(image: UIImage(named: "Brown")!, width: 150, height: 200)
         case "Green":
-            coverImage.image = UIImage(named: "Green")
+            coverImage.image = resizeingImage(image: UIImage(named: "Green")!, width: 150, height: 200)
         case "Pupple":
-            coverImage.image = UIImage(named: "Pupple")
+            coverImage.image = resizeingImage(image: UIImage(named: "Pupple")!, width: 150, height: 200)
         case "Red":
-            coverImage.image = UIImage(named: "Red")
+            coverImage.image = resizeingImage(image: UIImage(named: "Red")!, width: 150, height: 200)
         case "Turquoise":
-            coverImage.image = UIImage(named: "Turquoise")
+            coverImage.image = resizeingImage(image: UIImage(named: "Turquoise")!, width: 150, height: 200)
         default:
             coverImage.image = nil
         }
-        
+        defaultCoverColor = color
     }
     
     @IBAction func saveAlbum(_ sender: Any) {
+        // 빈 제목
+        if albumName.text == "" {
+            let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
+            present(textAlert, animated: true){
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
+                textAlert.view.superview?.isUserInteractionEnabled = true
+                textAlert.view.superview?.addGestureRecognizer(tap)
+            }
+            return
+        }
+        // 중복 제목
+        if checkExistedAlbum(albumCoverName: albumName.text!) == true && albumNameBeforeModify != albumName.text {
+            let duplicateNameAlert = UIAlertController(title: "중복 제목", message: "동일한 제목의 앨범이 존재합니다.", preferredStyle: UIAlertController.Style.alert)
+            present(duplicateNameAlert, animated: true){
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
+                duplicateNameAlert.view.superview?.isUserInteractionEnabled = true
+                duplicateNameAlert.view.superview?.addGestureRecognizer(tap)
+            }
+            return
+        }
         // Load realm instance
         let realm = try! Realm()
         // Create new Album
         if !IsModifyingView {
-            // Warning Alert
-            if albumName.text == "" {
-                let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
-                present(textAlert, animated: true){
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
-                    textAlert.view.superview?.isUserInteractionEnabled = true
-                    textAlert.view.superview?.addGestureRecognizer(tap)
-                }
-                return
-            }
             if coverImage.image == UIImage(systemName: "photo"){
                 let imageAlert = UIAlertController(title: "빈 이미지", message: "이미지를 선택해주세요", preferredStyle: UIAlertController.Style.alert)
                 present(imageAlert, animated: true){
@@ -104,22 +116,22 @@ extension HomeEditViewController {
             let newAlbumCover = albumCover()
             newAlbumCover.incrementIndex()
             newAlbumCover.albumName = albumName.text!
-            if coverImage.image == UIImage(named: "Blue"){
+            if defaultCoverColor == "Blue" {
                 newAlbumCover.coverImageName = "Blue"
             }
-            else if coverImage.image == UIImage(named: "Brown"){
+            else if defaultCoverColor == "Brown" {
                 newAlbumCover.coverImageName = "Brown"
             }
-            else if coverImage.image == UIImage(named: "Green"){
+            else if defaultCoverColor == "Green" {
                 newAlbumCover.coverImageName = "Green"
             }
-            else if coverImage.image == UIImage(named: "Pupple"){
+            else if defaultCoverColor == "Pupple" {
                 newAlbumCover.coverImageName = "Pupple"
             }
-            else if coverImage.image == UIImage(named: "Red"){
+            else if defaultCoverColor == "Red" {
                 newAlbumCover.coverImageName = "Red"
             }
-            else if coverImage.image == UIImage(named: "Turquoise"){
+            else if defaultCoverColor == "Turquoise" {
                 newAlbumCover.coverImageName = "Turquoise"
             }
             else{
@@ -128,7 +140,7 @@ extension HomeEditViewController {
                 newAlbumCover.isCustomCover = true
                 // Save Custom Image in Album Folder
                 let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
-                saveImageToDocumentDirectory(imageName: customCoverImagePath, image: coverImage.image!, AlbumCoverName: albumName.text!)
+                saveImageToDocumentDirectory(imageName: customCoverImagePath, image: resizeingImage(image: coverImage.image!, width: 120, height: 160)!, AlbumCoverName: albumName.text!)
             }
             // Create new Realm albumdsInfo Model Class
             let newAlbumsInfo = albumsInfo()
@@ -144,16 +156,6 @@ extension HomeEditViewController {
         }
         // Modify exist Album
         else {
-            // Waring Alert
-            if albumName.text == "" {
-                let textAlert = UIAlertController(title: "빈 제목", message: "제목을 입력해주세요", preferredStyle: UIAlertController.Style.alert)
-                present(textAlert, animated: true){
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
-                    textAlert.view.superview?.isUserInteractionEnabled = true
-                    textAlert.view.superview?.addGestureRecognizer(tap)
-                }
-                return
-            }
             // Modify Album Folder's Name
             guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
             let albumDirectoryPath = documentDirectory.appendingPathComponent(albumNameBeforeModify)
@@ -195,42 +197,42 @@ extension HomeEditViewController {
             try! realm.write{
                 // Modify "albumCover" instance in RealmDB
                 albumCoverData.first?.albumName = String(albumName.text!)
-                if coverImage.image == UIImage(named: "Blue"){
+                if defaultCoverColor == "Blue" {
                     albumCoverData.first?.coverImageName = "Blue"
                     if albumCoverData.first?.isCustomCover == true {
                         deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                     }
                     albumCoverData.first?.isCustomCover = false
                 }
-                else if coverImage.image == UIImage(named: "Brown"){
+                else if defaultCoverColor == "Brown" {
                     albumCoverData.first?.coverImageName = "Brown"
                     if albumCoverData.first?.isCustomCover == true {
                         deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                     }
                     albumCoverData.first?.isCustomCover = false
                 }
-                else if coverImage.image == UIImage(named: "Green"){
+                else if defaultCoverColor == "Green" {
                     albumCoverData.first?.coverImageName = "Green"
                     if albumCoverData.first?.isCustomCover == true {
                         deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                     }
                     albumCoverData.first?.isCustomCover = false
                 }
-                else if coverImage.image == UIImage(named: "Pupple"){
+                else if defaultCoverColor == "Pupple" {
                     albumCoverData.first?.coverImageName = "Pupple"
                     if albumCoverData.first?.isCustomCover == true {
                         deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                     }
                     albumCoverData.first?.isCustomCover = false
                 }
-                else if coverImage.image == UIImage(named: "Red"){
+                else if defaultCoverColor == "Red" {
                     albumCoverData.first?.coverImageName = "Red"
                     if albumCoverData.first?.isCustomCover == true {
                         deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
                     }
                     albumCoverData.first?.isCustomCover = false
                 }
-                else if coverImage.image == UIImage(named: "Turquoise"){
+                else if defaultCoverColor == "Turquoise" {
                     albumCoverData.first?.coverImageName = "Turquoise"
                     if albumCoverData.first?.isCustomCover == true {
                         deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
@@ -243,7 +245,7 @@ extension HomeEditViewController {
                     albumCoverData.first?.isCustomCover = true
                     // Add custom image in album folder
                     let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
-                    saveImageToDocumentDirectory(imageName: customCoverImagePath, image: coverImage.image!, AlbumCoverName: albumName.text!)
+                    saveImageToDocumentDirectory(imageName: customCoverImagePath, image: resizeingImage(image: coverImage.image!, width: 120, height: 160)!, AlbumCoverName: albumName.text!)
                 }
                 // Modify "album" instance in RealmDB
                 for album in albumData { album.setAlbumTitle(albumName.text!) }
@@ -292,7 +294,8 @@ extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerC
 
 extension HomeEditViewController: CropViewControllerDelegate {
     func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Mantis.Transformation, cropInfo: Mantis.CropInfo) {
-        self.coverImage.image = resizeingImage(image: cropped, width: 120, height: 160)
+        self.coverImage.image = resizeingImage(image: cropped, width: 150, height: 200)
+        defaultCoverColor = "Custom"
         cropViewController.dismiss(animated: true)
     }
     

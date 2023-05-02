@@ -8,15 +8,17 @@ class InfoTableCell: UITableViewCell {
     var cellDescription: UILabel! = nil
     
     // MARK: - Methods
-    func setSubviews(title: String, description: String) {
+    func setSubviews(title: String, description: String, font: String) {
         cellTitle = UILabel()
         cellTitle.text = title
+        cellTitle.font = UIFont(name: font, size: 15)
         contentView.addSubview(cellTitle)
         
         cellDescription = UILabel()
         cellDescription.text = description
         cellDescription.textColor = .systemGray
         cellDescription.textAlignment = .right
+        cellDescription.font = UIFont(name: font, size: 15)
         contentView.addSubview(cellDescription)
         
         cellTitle.translatesAutoresizingMaskIntoConstraints = false

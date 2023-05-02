@@ -85,6 +85,7 @@ func exportAlbumInfo(coverData: String) {
     arrCoverInfo.append("\(albumCoverData.first!.id)")
     arrCoverInfo.append("\(albumCoverData.first!.coverImageName)")
     arrCoverInfo.append("\(albumCoverData.first!.isCustomCover)")
+    arrCoverInfo.append("\(albumCoverData.first!.albumName)")
     
     // albumData
     for album in albumData {
@@ -96,6 +97,8 @@ func exportAlbumInfo(coverData: String) {
     arrAlbumInfo.append("\(albumInfo.first!.id)")
     arrAlbumInfo.append(String(albumInfo.first!.numberOfPictures))
     arrAlbumInfo.append(albumInfo.first!.dateOfCreation)
+    arrAlbumInfo.append(albumInfo.first!.font)
+    arrAlbumInfo.append(String(albumInfo.first!.firstPageSetting))
     
     let albumCoverInfo = arrCoverInfo.joined(separator: "\n")
     let imageNameInfo = arrImageName.joined(separator: "\n")
@@ -175,9 +178,9 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) {
     } else {
         shareAlbumCover.id = Int(arrCoverInfo[0])!
     }
-    shareAlbumCover.albumName = albumCoverName
     shareAlbumCover.coverImageName = arrCoverInfo[1]
     shareAlbumCover.isCustomCover = Bool(arrCoverInfo[2])!
+    shareAlbumCover.albumName = arrCoverInfo[3]
     
     
     let shareAlbumInfo = albumsInfo()
@@ -188,7 +191,8 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) {
     }
     shareAlbumInfo.numberOfPictures = Int(arrAlbumInfo[1])!
     shareAlbumInfo.dateOfCreation = arrAlbumInfo[2]
-    
+    shareAlbumInfo.font = arrAlbumInfo[3]
+    shareAlbumInfo.firstPageSetting = Int(arrAlbumInfo[4])!
     
     if arrImageName.count != 0 {
         for i in 1...arrImageName.count {
@@ -222,9 +226,9 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) {
 
 func checkExistedAlbum(albumCoverName: String) -> Bool {
     let realm = try! Realm()
-    let album = realm.objects(album.self)
-    for data in album {
-        if data.AlbumTitle == albumCoverName {
+    let albumCover = realm.objects(albumCover.self)
+    for data in albumCover {
+        if data.albumName == albumCoverName {
             return true
         }
     }

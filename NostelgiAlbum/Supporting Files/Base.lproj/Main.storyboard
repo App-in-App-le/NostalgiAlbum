@@ -9,6 +9,14 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="EF_watermelonSalad.otf">
+            <string>EF_watermelonSalad</string>
+        </array>
+        <array key="PyeongChangPeace-Light.otf">
+            <string>PyeongChangPeace-Light</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Item-->
         <scene sceneID="ulJ-yu-Wrh">
@@ -121,16 +129,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x16-SJ-OeI">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pul-iH-fuh">
-                                        <rect key="frame" x="10" y="65" width="373" height="450"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                        <connections>
-                                            <action selector="addAlbumPicture:" destination="qGg-ET-l2z" eventType="touchUpInside" id="7Uo-YJ-iYr"/>
-                                        </connections>
-                                    </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="사진제목" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="29r-LZ-69x">
                                         <rect key="frame" x="20" y="535" width="353" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -165,6 +163,16 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="savePicture:" destination="qGg-ET-l2z" eventType="touchUpInside" id="QGf-y4-Ye2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pul-iH-fuh">
+                                        <rect key="frame" x="20" y="62" width="353" height="452"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="addAlbumPicture:" destination="qGg-ET-l2z" eventType="touchUpInside" id="7Uo-YJ-iYr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -232,17 +240,24 @@
                                             <action selector="settingPicture:" destination="8u0-KJ-518" eventType="touchUpInside" id="cCF-2i-w4t"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izs-d9-9Yf">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="btT-1e-fYT">
                                         <rect key="frame" x="20" y="62" width="353" height="452"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.80000000000000004" green="0.81960784310000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                        <connections>
-                                            <action selector="zoomImage:" destination="8u0-KJ-518" eventType="touchUpInside" id="2tr-iM-aPQ"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izs-d9-9Yf">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="452"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.80000000000000004" green="0.81960784310000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <connections>
+                                                    <action selector="zoomImage:" destination="8u0-KJ-518" eventType="touchUpInside" id="2tr-iM-aPQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIF-nT-vqL" userLabel="Top">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="5"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -263,22 +278,36 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJL-vM-fOY">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1bx-R2-EGi">
                                         <rect key="frame" x="20" y="533" width="353" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SO7-SW-9Ff">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJL-vM-fOY">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cqb-sA-kr2">
                                         <rect key="frame" x="20" y="589" width="353" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SO7-SW-9Ff">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="150"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.81960784310000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
@@ -302,8 +331,11 @@
                         <outlet property="bodyView" destination="blZ-Tc-pwX" id="iQb-yb-dy0"/>
                         <outlet property="bottomLabel" destination="UCN-ev-AEs" id="dsm-wP-dGi"/>
                         <outlet property="picImage" destination="izs-d9-9Yf" id="kmD-oB-3BV"/>
+                        <outlet property="picImageShadowView" destination="btT-1e-fYT" id="bke-mG-ST0"/>
                         <outlet property="picName" destination="DJL-vM-fOY" id="7fy-cP-pgF"/>
+                        <outlet property="picNameShadowView" destination="1bx-R2-EGi" id="EeI-Ma-dhe"/>
                         <outlet property="picText" destination="SO7-SW-9Ff" id="rb2-wK-hJk"/>
+                        <outlet property="picTextShadowView" destination="cqb-sA-kr2" id="0ot-Fm-qi4"/>
                         <outlet property="settingBtn" destination="iX7-Vq-biM" id="WqP-l3-xtn"/>
                         <outlet property="topLabel" destination="SIF-nT-vqL" id="dNd-Gk-Mjc"/>
                     </connections>
@@ -598,114 +630,99 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRN-Fp-mgI" userLabel="PopUpView">
                                 <rect key="frame" x="30" y="236" width="333" height="380"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="앨범 명" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6f-sn-2kD">
-                                        <rect key="frame" x="38" y="80" width="45" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoI-oE-FsP" userLabel="Bottom">
-                                        <rect key="frame" x="0.0" y="51" width="333" height="2"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoI-oE-FsP" userLabel="Divide Line">
+                                        <rect key="frame" x="0.0" y="53" width="333" height="5"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="wck-Hx-vQW"/>
+                                            <constraint firstAttribute="height" constant="5" id="wck-Hx-vQW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" systemColor="opaqueSeparatorColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JHW-5g-6Ba">
-                                        <rect key="frame" x="93" y="74" width="149" height="34"/>
+                                        <rect key="frame" x="93" y="76" width="149" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="앨범 이미지" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2L7-YO-vhA">
-                                        <rect key="frame" x="12" y="128" width="71" height="22"/>
+                                        <rect key="frame" x="23" y="129" width="62" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SgP-uG-7mx">
-                                        <rect key="frame" x="92" y="125" width="150" height="200"/>
+                                        <rect key="frame" x="92" y="127" width="150" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="새로운 앨범" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMa-bZ-V1a">
-                                        <rect key="frame" x="100" y="14" width="133" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 앨범" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMa-bZ-V1a">
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="53"/>
+                                        <fontDescription key="fontDescription" name="PyeongChangPeace-Light" family="PyeongChang Peace" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWd-Le-Twy">
-                                        <rect key="frame" x="250" y="125" width="46.666666666666686" height="29.666666666666515"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" red="0.70248031619999995" green="0.70248031619999995" blue="0.70248031619999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="선택">
-                                            <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
-                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="addImage:" destination="uG1-g0-tif" eventType="touchUpInside" id="iRA-e5-qZV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Im-bq-rgU">
-                                        <rect key="frame" x="17" y="10" width="32" height="32"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="er4-Fc-VlO">
+                                        <rect key="frame" x="183" y="339" width="50" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.70248031619999995" green="0.70248031619999995" blue="0.70248031619999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" cornerStyle="capsule">
-                                            <imageReference key="image" image="chevron.left" catalog="system" symbolScale="default"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15"/>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="취소"/>
                                         <connections>
-                                            <action selector="closeButton:" destination="uG1-g0-tif" eventType="touchUpInside" id="R9r-kr-I9v"/>
-                                            <action selector="closeButton:" destination="kMX-HM-r06" eventType="touchUpInside" id="gob-4Y-Lft"/>
+                                            <action selector="closeButton:" destination="uG1-g0-tif" eventType="touchUpInside" id="vHb-Xm-AN7"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDh-hN-cDJ">
-                                        <rect key="frame" x="105" y="336" width="50" height="32"/>
+                                        <rect key="frame" x="100" y="339" width="49" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.70248031619999995" green="0.70248031619999995" blue="0.70248031619999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="생성">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="생성">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="closeButton:" destination="kMX-HM-r06" eventType="touchUpInside" id="RAW-fL-GE6"/>
                                             <action selector="saveAlbum:" destination="uG1-g0-tif" eventType="touchUpInside" id="cnL-cV-Axg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="er4-Fc-VlO">
-                                        <rect key="frame" x="183" y="336" width="50" height="32"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWd-Le-Twy">
+                                        <rect key="frame" x="250" y="127" width="49" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.70248031619999995" green="0.70248031619999995" blue="0.70248031619999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="취소" cornerStyle="capsule">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="추가">
+                                            <fontDescription key="titleFontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="closeButton:" destination="kMX-HM-r06" eventType="touchUpInside" id="JGd-Hh-laH"/>
-                                            <action selector="closeButton:" destination="uG1-g0-tif" eventType="touchUpInside" id="vHb-Xm-AN7"/>
+                                            <action selector="addImage:" destination="uG1-g0-tif" eventType="touchUpInside" id="iRA-e5-qZV"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="앨범 이름" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiW-p1-YwH">
+                                        <rect key="frame" x="35" y="79" width="50" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <color key="backgroundColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="yoI-oE-FsP" firstAttribute="top" secondItem="sRN-Fp-mgI" secondAttribute="top" constant="51" id="0yw-PJ-cds"/>
+                                    <constraint firstItem="yoI-oE-FsP" firstAttribute="top" secondItem="sRN-Fp-mgI" secondAttribute="top" constant="53" id="0yw-PJ-cds"/>
                                     <constraint firstItem="yoI-oE-FsP" firstAttribute="leading" secondItem="sRN-Fp-mgI" secondAttribute="leading" id="5fd-vr-fXY"/>
                                     <constraint firstAttribute="trailing" secondItem="yoI-oE-FsP" secondAttribute="trailing" id="7bq-Vg-Xhi"/>
+                                    <constraint firstAttribute="trailing" secondItem="GMa-bZ-V1a" secondAttribute="trailing" id="9GI-ty-znh"/>
+                                    <constraint firstItem="GMa-bZ-V1a" firstAttribute="leading" secondItem="sRN-Fp-mgI" secondAttribute="leading" id="GtB-6q-SKX"/>
+                                    <constraint firstItem="GMa-bZ-V1a" firstAttribute="top" secondItem="sRN-Fp-mgI" secondAttribute="top" id="KWi-h8-yEW"/>
                                     <constraint firstAttribute="height" constant="380" id="bKD-hS-JN3"/>
+                                    <constraint firstItem="yoI-oE-FsP" firstAttribute="top" secondItem="GMa-bZ-V1a" secondAttribute="bottom" id="dwj-hk-dMG"/>
                                     <constraint firstAttribute="width" constant="333" id="gub-wV-Gp2"/>
                                 </constraints>
                             </view>
@@ -724,12 +741,13 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="albumName" destination="JHW-5g-6Ba" id="pF0-0T-KRf"/>
-                        <outlet property="backButton" destination="8Im-bq-rgU" id="Fz2-DP-DYc"/>
                         <outlet property="cancleButton" destination="er4-Fc-VlO" id="bai-IG-Z7Y"/>
                         <outlet property="coverImage" destination="SgP-uG-7mx" id="tHP-im-e3V"/>
                         <outlet property="createButton" destination="eDh-hN-cDJ" id="XXW-Ti-JbT"/>
+                        <outlet property="divideLine" destination="yoI-oE-FsP" id="nft-1b-brw"/>
                         <outlet property="editTitle" destination="GMa-bZ-V1a" id="Yxx-ve-SNC"/>
                         <outlet property="editView" destination="sRN-Fp-mgI" id="kNM-0a-7Rd"/>
+                        <outlet property="selectButton" destination="RWd-Le-Twy" id="wEI-zV-4gt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82C-Jj-OyW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -994,21 +1012,21 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrN-oa-0Ag">
-                                        <rect key="frame" x="335.33333333333331" y="0.0" width="47.666666666666686" height="45"/>
+                                        <rect key="frame" x="336.66666666666669" y="0.0" width="46.333333333333314" height="45"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" imagePadding="0.0">
                                             <imageReference key="image" image="gearshape" catalog="system" variableValue="0.0"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15" weight="medium"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14" weight="regular"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="homeSettingButtonAction:" destination="AqL-py-2mg" eventType="touchUpInside" id="wQt-vH-0Gc"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앨범 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xym-yq-J0G">
-                                        <rect key="frame" x="165" y="12" width="63" height="21"/>
+                                        <rect key="frame" x="159" y="9.6666666666666732" width="75.333333333333314" height="25.666666666666671"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="PyeongChangPeace-Light" family="PyeongChang Peace" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1050,34 +1068,58 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="191"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY1-8S-3pd">
-                                                    <rect key="frame" x="45" y="23" width="120" height="160"/>
-                                                    <color key="backgroundColor" red="0.56862745100000001" green="0.58431372550000005" blue="0.67843137249999996" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RdU-bk-1cX">
+                                                    <rect key="frame" x="45" y="19" width="120" height="160"/>
+                                                    <subviews>
+                                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY1-8S-3pd">
+                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+                                                            <color key="backgroundColor" red="0.56862745100000001" green="0.58431372550000005" blue="0.67843137249999996" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="120" id="fDI-1g-51e"/>
+                                                                <constraint firstAttribute="height" constant="160" id="vrg-bu-Ao6"/>
+                                                            </constraints>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain"/>
+                                                            <connections>
+                                                                <action selector="fmakeButton:" destination="CeX-Lr-C6B" eventType="touchUpInside" id="oNc-UP-Trf"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="120" id="fDI-1g-51e"/>
-                                                        <constraint firstAttribute="height" constant="160" id="vrg-bu-Ao6"/>
+                                                        <constraint firstAttribute="bottom" secondItem="EY1-8S-3pd" secondAttribute="bottom" id="3kI-s6-R02"/>
+                                                        <constraint firstItem="EY1-8S-3pd" firstAttribute="leading" secondItem="RdU-bk-1cX" secondAttribute="leading" id="73O-JY-ulO"/>
+                                                        <constraint firstAttribute="trailing" secondItem="EY1-8S-3pd" secondAttribute="trailing" id="Kf3-tI-DQ4"/>
+                                                        <constraint firstItem="EY1-8S-3pd" firstAttribute="top" secondItem="RdU-bk-1cX" secondAttribute="top" id="M0X-6A-DKH"/>
                                                     </constraints>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain"/>
-                                                    <connections>
-                                                        <action selector="fmakeButton:" destination="CeX-Lr-C6B" eventType="touchUpInside" id="oNc-UP-Trf"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZb-vt-307">
-                                                    <rect key="frame" x="225" y="23" width="120" height="160"/>
-                                                    <color key="backgroundColor" red="0.57254901960000004" green="0.58431372550000005" blue="0.6705882353" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Co9-hV-8No">
+                                                    <rect key="frame" x="225" y="19" width="120" height="160"/>
+                                                    <subviews>
+                                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZb-vt-307">
+                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+                                                            <color key="backgroundColor" red="0.57254901960000004" green="0.58431372550000005" blue="0.6705882353" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="120" id="9uT-kD-oA9"/>
+                                                                <constraint firstAttribute="height" constant="160" id="AlM-EP-pbq"/>
+                                                            </constraints>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain"/>
+                                                            <connections>
+                                                                <action selector="makeButton:" destination="CeX-Lr-C6B" eventType="touchUpInside" id="lvp-cZ-lgb"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="120" id="9uT-kD-oA9"/>
-                                                        <constraint firstAttribute="height" constant="160" id="AlM-EP-pbq"/>
+                                                        <constraint firstAttribute="bottom" secondItem="qZb-vt-307" secondAttribute="bottom" id="6O3-8N-LyZ"/>
+                                                        <constraint firstItem="qZb-vt-307" firstAttribute="leading" secondItem="Co9-hV-8No" secondAttribute="leading" id="9xx-qS-3Hn"/>
+                                                        <constraint firstAttribute="trailing" secondItem="qZb-vt-307" secondAttribute="trailing" id="JnT-hP-Lee"/>
+                                                        <constraint firstItem="qZb-vt-307" firstAttribute="top" secondItem="Co9-hV-8No" secondAttribute="top" id="qOl-zX-RKV"/>
                                                     </constraints>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain"/>
-                                                    <connections>
-                                                        <action selector="makeButton:" destination="CeX-Lr-C6B" eventType="touchUpInside" id="lvp-cZ-lgb"/>
-                                                    </connections>
-                                                </button>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5J-hg-IWu" userLabel="Bottom">
                                                     <rect key="frame" x="0.0" y="186" width="390" height="5"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1091,13 +1133,13 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstItem="u5J-hg-IWu" firstAttribute="top" secondItem="Co9-hV-8No" secondAttribute="bottom" constant="7" id="9Xu-iL-0pG"/>
                                                 <constraint firstItem="u5J-hg-IWu" firstAttribute="leading" secondItem="fL4-xs-pw7" secondAttribute="leading" id="ELE-BL-5An"/>
-                                                <constraint firstItem="u5J-hg-IWu" firstAttribute="top" secondItem="EY1-8S-3pd" secondAttribute="bottom" constant="3" id="HHZ-s2-TB7"/>
+                                                <constraint firstItem="u5J-hg-IWu" firstAttribute="top" secondItem="RdU-bk-1cX" secondAttribute="bottom" constant="7" id="OVW-06-H2A"/>
                                                 <constraint firstAttribute="trailing" secondItem="u5J-hg-IWu" secondAttribute="trailing" id="Ptq-Fc-2eP"/>
-                                                <constraint firstItem="EY1-8S-3pd" firstAttribute="leading" secondItem="fL4-xs-pw7" secondAttribute="leading" constant="45" id="Tl6-f3-IPV"/>
-                                                <constraint firstItem="u5J-hg-IWu" firstAttribute="top" secondItem="qZb-vt-307" secondAttribute="bottom" constant="3" id="adU-TR-8Ld"/>
+                                                <constraint firstAttribute="trailing" secondItem="Co9-hV-8No" secondAttribute="trailing" constant="45" id="XXg-tI-JuJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="u5J-hg-IWu" secondAttribute="bottom" id="jw4-Xq-yvZ"/>
-                                                <constraint firstAttribute="trailing" secondItem="qZb-vt-307" secondAttribute="trailing" constant="45" id="mb3-rn-sEN"/>
+                                                <constraint firstItem="RdU-bk-1cX" firstAttribute="leading" secondItem="fL4-xs-pw7" secondAttribute="leading" constant="45" id="yYY-9m-0LX"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1105,7 +1147,9 @@
                                         <connections>
                                             <outlet property="bottomLabel" destination="u5J-hg-IWu" id="JFz-gv-zAu"/>
                                             <outlet property="firstButton" destination="EY1-8S-3pd" id="BvM-63-oJB"/>
+                                            <outlet property="firstButtonShadowView" destination="RdU-bk-1cX" id="wIi-RQ-JX0"/>
                                             <outlet property="secondButton" destination="qZb-vt-307" id="N8h-3L-EOw"/>
+                                            <outlet property="secondButtonShadowView" destination="Co9-hV-8No" id="gV9-vK-fal"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1116,7 +1160,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="jr6-Sb-uRQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="PyeongChangPeace-Light" family="PyeongChang Peace" pointSize="27"/>
                                 <color key="textColor" red="0.99215686270000003" green="0.96862745100000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1197,7 +1241,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="46"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up.on.square" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up.on.square" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="backupButtonAction:" destination="JP0-GQ-iCB" eventType="touchUpInside" id="J2g-YY-nTz"/>
                                         </connections>
@@ -1207,7 +1253,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="n46-4g-UPk"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1234,7 +1280,9 @@
                                         <rect key="frame" x="0.0" y="71" width="60" height="46"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.down.on.square" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.down.on.square" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="recoverButtonAction:" destination="JP0-GQ-iCB" eventType="touchUpInside" id="ImX-ty-2qw"/>
                                         </connections>
@@ -1244,7 +1292,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="6kN-Bu-1wX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1334,7 +1382,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <imageReference key="image" image="icloud.and.arrow.up" catalog="system" variableValue="0.0"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="22"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="iCloudButtonAction:" destination="tk2-GR-CMu" eventType="touchUpInside" id="ePt-nP-0Dv"/>
@@ -1345,7 +1393,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="Yas-TP-9oo"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1374,7 +1422,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <imageReference key="image" image="scribble.variable" catalog="system"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="colorSettingButtonAction:" destination="tk2-GR-CMu" eventType="touchUpInside" id="aPS-Ga-QSY"/>
@@ -1385,7 +1433,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="zSi-hx-2Fe"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1432,7 +1480,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="icloud.and.arrow.up" catalog="system" width="128" height="108"/>
@@ -1447,9 +1494,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

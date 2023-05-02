@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.icloud-container-identifiers</key>
 	<array>
-		<string>iCloud.com.chopmozzi.NostelgiAlbum</string>
+		<string>iCloud.com.App-in-App-le.NostelgiAlbum</string>
 	</array>
 	<key>com.apple.developer.icloud-services</key>
 	<array>
@@ -12,7 +12,7 @@
 	</array>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>iCloud.com.chopmozzi.NostelgiAlbum</string>
+		<string>iCloud.com.App-in-App-le.NostelgiAlbum</string>
 	</array>
 </dict>
 </plist>
