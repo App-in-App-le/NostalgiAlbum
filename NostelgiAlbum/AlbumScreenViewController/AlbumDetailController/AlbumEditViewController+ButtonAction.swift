@@ -28,11 +28,6 @@ extension AlbumEditViewController {
     }
     
     @IBAction func savePicture(_ sender: Any) {
-        if picture != nil {
-            modifyPic()
-        } else {
-            addPic()
-        }
         if editPicture.imageView?.image == UIImage(systemName: "plus"){
             let imageAlert = UIAlertController(title: "빈 이미지", message: "이미지를 선택해주세요", preferredStyle: UIAlertController.Style.alert)
             present(imageAlert, animated: true){
@@ -49,6 +44,15 @@ extension AlbumEditViewController {
                 editNameAlert.view.superview?.addGestureRecognizer(tap)
             }
             return
+        }
+        if editText.text == "설명을 입력해주세요" && editText.textColor == .systemGray3 {
+            editText.text = nil
+        }
+        
+        if picture != nil {
+            modifyPic()
+        } else {
+            addPic()
         }
         deleteTmpPicture()
         collectionViewInAlbum.reloadData()

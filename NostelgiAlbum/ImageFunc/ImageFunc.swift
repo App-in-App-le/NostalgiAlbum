@@ -96,24 +96,33 @@ func fixOrientation(image: UIImage) -> UIImage{
 }
 
 extension UIImage {
-    func resize(newWidth: CGFloat, newHeight: CGFloat) -> UIImage {
-        let nnewWidth = newWidth - 50
-        let nnewHeight = newHeight - 50
-        if self.size.width >= self.size.height {
-            let scale = nnewWidth / self.size.width
-            let nHeight = self.size.height * scale
-            let size = CGSize(width: nnewWidth, height: nHeight)
-            let render = UIGraphicsImageRenderer(size: size)
-            let renderImage = render.image { context in self.draw(in: CGRect(origin: .zero, size: size))}
-            return renderImage
-        } else {
-            let scale = nnewHeight / self.size.height
-            let nWidth = self.size.width * scale
-            let size = CGSize(width: nWidth, height: nnewHeight)
-            let render = UIGraphicsImageRenderer(size: size)
-            let renderImage = render.image { context in self.draw(in: CGRect(origin: .zero, size: size))}
-            return renderImage
+//    func resize(newWidth: CGFloat, newHeight: CGFloat) -> UIImage {
+//        let nnewWidth = newWidth - 50
+//        let nnewHeight = newHeight - 50
+//        if self.size.width >= self.size.height {
+//            let scale = nnewWidth / self.size.width
+//            let nHeight = self.size.height * scale
+//            let size = CGSize(width: nnewWidth, height: nHeight)
+//            let render = UIGraphicsImageRenderer(size: size)
+//            let renderImage = render.image { context in self.draw(in: CGRect(origin: .zero, size: size))}
+//            return renderImage
+//        } else {
+//            let scale = nnewHeight / self.size.height
+//            let nWidth = self.size.width * scale
+//            let size = CGSize(width: nWidth, height: nnewHeight)
+//            let render = UIGraphicsImageRenderer(size: size)
+//            let renderImage = render.image { context in self.draw(in: CGRect(origin: .zero, size: size))}
+//            return renderImage
+//        }
+//    }
+    
+    func resize(width: CGFloat, height: CGFloat) -> UIImage {
+        let size = CGSize(width: width, height: height)
+        let render = UIGraphicsImageRenderer(size: size)
+        let renderImage = render.image { (context) in
+            self.draw(in: CGRect(origin: .zero, size: size))
         }
+        return renderImage
     }
 }
 

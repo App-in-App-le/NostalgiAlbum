@@ -31,6 +31,7 @@ class AlbumEditViewController: UIViewController {
         editName.delegate = self
         editText.delegate = self
         setSubViews()
+        
         if picture != nil
         {
             transPic(picture!)
@@ -38,6 +39,12 @@ class AlbumEditViewController: UIViewController {
             editPicture.setImage(UIImage(systemName: "plus"), for: .normal)
             editPicture.setTitle("", for: .normal)
         }
+        
+        if editText.text.isEmpty {
+            editText.text = "설명을 입력해주세요"
+            editText.textColor = .systemGray3
+        }
+        
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
@@ -175,6 +182,10 @@ extension AlbumEditViewController: UITextFieldDelegate {
 
 extension AlbumEditViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "설명을 입력해주세요" {
+            textView.text = nil
+        }
+        
         // editPictureDescriptionVC
         guard let editPictureDescriptionVC = self.storyboard?.instantiateViewController(withIdentifier: "SetPictureDescriptionViewController") as? SetPictureDescriptionViewController else{ return }
         editPictureDescriptionVC.editVC = self
