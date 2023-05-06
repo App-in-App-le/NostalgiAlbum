@@ -94,10 +94,10 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
         // Construct "Dynamic-Layout" by comparing the width and height of the image.
         if image!.size.width < image!.size.height {
             setLayout(HeightIsLonger: true)
-            pictureImgButton?.setImage(resizeingImage(image: image!, width: Int((self.bounds.height - 40) / 4 * 3), height: Int((self.bounds.height - 40))), for: .normal)
+            pictureImgButton?.setImage(image?.resize(newWidth: (self.bounds.height - 40) / 4 * 3, newHeight: self.bounds.height - 40, byScale: false), for: .normal)
         } else {
             setLayout(HeightIsLonger: false)
-            pictureImgButton?.setImage(resizeingImage(image: image!, width: Int(self.bounds.width / 4 * 3), height: Int(self.bounds.width / 16 * 9)), for: .normal)
+            pictureImgButton?.setImage(image?.resize(newWidth: self.bounds.width / 4 * 3, newHeight: self.bounds.width / 16 * 9, byScale: false), for: .normal)
         }
         // Set image and text.
         pictureLabel!.text = albumInfo.ImageText

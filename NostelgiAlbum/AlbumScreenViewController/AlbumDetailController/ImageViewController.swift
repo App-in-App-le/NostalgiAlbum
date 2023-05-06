@@ -19,7 +19,7 @@ class ImageViewController: UIViewController {
     }
     
     func imageInit() {
-        imageView.image = loadImageFromDocumentDirectory(imageName: imageName!, albumTitle: albumTitle!)?.resize(width: imageView.frame.width, height: imageView.frame.height)
+        imageView.image = loadImageFromDocumentDirectory(imageName: imageName!, albumTitle: albumTitle!)?.resize(newWidth: imageView.frame.width, newHeight: imageView.frame.height, byScale: true)
     }
     
     @IBAction func closeAction(_ sender: Any) {

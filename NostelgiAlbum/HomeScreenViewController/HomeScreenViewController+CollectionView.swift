@@ -40,7 +40,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                     cell.firstButton.setImage(UIImage(named: firstbuttonInfo.coverImageName), for: .normal)
                 } else {
                     let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(firstbuttonInfo.albumName)_CoverImage.jpeg", albumTitle: firstbuttonInfo.albumName)
-                    cell.firstButton.setImage(customCoverImage, for: .normal)
+                    cell.firstButton.setImage(customCoverImage?.resize(newWidth: 120, newHeight: 160, byScale: false), for: .normal)
                 }
                 let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
                 LongPressGestureRecognizer.albumIndex = indexPath.row * 2 + 1
@@ -56,7 +56,7 @@ extension HomeScreenViewController: UICollectionViewDataSource{
                     cell.secondButton.setImage(UIImage(named: secondbuttonInfo.coverImageName), for: .normal)
                 } else {
                     let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(secondbuttonInfo.albumName)_CoverImage.jpeg", albumTitle: secondbuttonInfo.albumName)
-                    cell.secondButton.setImage(customCoverImage, for: .normal)
+                    cell.secondButton.setImage(customCoverImage?.resize(newWidth: 120, newHeight: 160, byScale: false), for: .normal)
                 }
                 let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
                 LongPressGestureRecognizer.albumIndex = indexPath.row * 2 + 2

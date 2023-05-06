@@ -66,7 +66,7 @@ class AlbumPicViewController: UIViewController {
                 }
                 height = width! / 4 * 3
             }
-            picImage.setImage(resizeingImage(image: loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)!, width: Int(width!), height: Int(height!)), for: .normal)
+            picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: width!, newHeight: height!, byScale: false), for: .normal)
         }
 //        picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: picImage.frame.width, newHeight: (picImage.frame.height)), for: .normal)
         

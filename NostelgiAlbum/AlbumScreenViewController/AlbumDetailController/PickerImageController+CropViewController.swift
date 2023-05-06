@@ -62,7 +62,7 @@ extension AlbumEditViewController: CropViewControllerDelegate {
             }
         }
         
-        self.editPicture.setImage(resizeingImage(image: cropped, width: Int(width!), height: Int(height!)), for: .normal)
+        self.editPicture.setImage(cropped.resize(newWidth: width!, newHeight: height!, byScale: false), for: .normal)
         self.editPicture.setTitle("", for: .normal)
         cropViewController.dismiss(animated: true)
     }

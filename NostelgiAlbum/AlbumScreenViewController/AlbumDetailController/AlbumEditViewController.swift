@@ -133,7 +133,7 @@ class AlbumEditViewController: UIViewController {
                 }
                 height = width! / 4 * 3
             }
-            editPicture.setImage(resizeingImage(image: loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)!, width: Int(width!), height: Int(height!)), for: .normal)
+            editPicture.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: width!, newHeight: height!, byScale: false), for: .normal)
         }
         
         if height! < width! {

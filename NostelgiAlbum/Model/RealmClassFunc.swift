@@ -33,7 +33,7 @@ class albumsInfo: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var numberOfPictures: Int = 0
     @objc dynamic var dateOfCreation: String = ""
-    @objc dynamic var font: String = "지마켓 산스체"
+    @objc dynamic var font: String = "수박 화체"
     @objc dynamic var firstPageSetting: Int = 0
     @objc dynamic var lastViewingPage: Int = 0
     
