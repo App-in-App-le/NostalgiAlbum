@@ -31,12 +31,15 @@ class ContentsController {
     // searched true -> return searched list | searched false -> return all searches list
     func filteredSearch(with filter: String?=nil, limit: Int?=nil) -> [Search] {
         let filtered = searches.filter { $0.contains(filter) }
-        
+        if filter == nil || filter == "" {
+            return []
+        }
         if let limit = limit {
             return Array(filtered.prefix(through: limit))
         } else {
             return filtered
         }
+        
     }
     // searches closure -> return search name & contents list
     private lazy var searches: [Search] = {

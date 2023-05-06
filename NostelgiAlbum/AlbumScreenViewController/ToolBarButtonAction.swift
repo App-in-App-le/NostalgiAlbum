@@ -4,11 +4,11 @@ extension AlbumScreenViewController {
     // search button을 누를 시 동작
     @objc func searchButton(){
         guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "ContentsSearchViewController") as? ContentsSearchViewController else { return }
-        searchVC.modalPresentationStyle = .overFullScreen
         searchVC.coverIndex = coverIndex
         searchVC.currentPageNum = pageNum
         searchVC.delegate = self
         self.present(searchVC, animated: false)
+//        self.navigationController?.pushViewController(searchVC, animated: true)
     }
         
     // share button을 누를 시 동작
@@ -80,6 +80,7 @@ extension AlbumScreenViewController: SearchDelegate{
             guard let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumScreenViewController") as? AlbumScreenViewController else { return }
             pushVC.pageNum = i
             pushVC.coverIndex = self.coverIndex
+            pushVC.albumScreenVC = self
             self.navigationController?.pushViewController(pushVC, animated: false)
         }
     }
