@@ -51,17 +51,17 @@ extension HomeEditViewController {
     func setCoverImage(color: String) {
         switch color {
         case "Blue" :
-            coverImage.image = resizeingImage(image: UIImage(named: "Blue")!, width: 150, height: 200)
+            coverImage.image = UIImage(named: "Blue")?.resize(newWidth: 150, newHeight: 200, byScale: false)
         case "Brown" :
-            coverImage.image = resizeingImage(image: UIImage(named: "Brown")!, width: 150, height: 200)
+            coverImage.image = UIImage(named: "Brown")?.resize(newWidth: 150, newHeight: 200, byScale: false)
         case "Green":
-            coverImage.image = resizeingImage(image: UIImage(named: "Green")!, width: 150, height: 200)
+            coverImage.image = UIImage(named: "Green")?.resize(newWidth: 150, newHeight: 200, byScale: false)
         case "Pupple":
-            coverImage.image = resizeingImage(image: UIImage(named: "Pupple")!, width: 150, height: 200)
+            coverImage.image = UIImage(named: "Pupple")?.resize(newWidth: 150, newHeight: 200, byScale: false)
         case "Red":
-            coverImage.image = resizeingImage(image: UIImage(named: "Red")!, width: 150, height: 200)
+            coverImage.image = UIImage(named: "Red")?.resize(newWidth: 150, newHeight: 200, byScale: false)
         case "Turquoise":
-            coverImage.image = resizeingImage(image: UIImage(named: "Turquoise")!, width: 150, height: 200)
+            coverImage.image = UIImage(named: "Turquoise")?.resize(newWidth: 150, newHeight: 200, byScale: false)
         default:
             coverImage.image = nil
         }
@@ -140,7 +140,7 @@ extension HomeEditViewController {
                 newAlbumCover.isCustomCover = true
                 // Save Custom Image in Album Folder
                 let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
-                saveImageToDocumentDirectory(imageName: customCoverImagePath, image: resizeingImage(image: coverImage.image!, width: 120, height: 160)!, AlbumCoverName: albumName.text!)
+                saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: 120, newHeight: 160, byScale: false))!, AlbumCoverName: albumName.text!)
             }
             // Create new Realm albumdsInfo Model Class
             let newAlbumsInfo = albumsInfo()
@@ -245,7 +245,7 @@ extension HomeEditViewController {
                     albumCoverData.first?.isCustomCover = true
                     // Add custom image in album folder
                     let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
-                    saveImageToDocumentDirectory(imageName: customCoverImagePath, image: resizeingImage(image: coverImage.image!, width: 120, height: 160)!, AlbumCoverName: albumName.text!)
+                    saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: 120, newHeight: 160, byScale: false))!, AlbumCoverName: albumName.text!)
                 }
                 // Modify "album" instance in RealmDB
                 for album in albumData { album.setAlbumTitle(albumName.text!) }
@@ -294,7 +294,7 @@ extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerC
 
 extension HomeEditViewController: CropViewControllerDelegate {
     func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Mantis.Transformation, cropInfo: Mantis.CropInfo) {
-        self.coverImage.image = resizeingImage(image: cropped, width: 150, height: 200)
+        self.coverImage.image = cropped.resize(newWidth: 150, newHeight: 200, byScale: false)
         defaultCoverColor = "Custom"
         cropViewController.dismiss(animated: true)
     }

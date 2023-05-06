@@ -139,7 +139,7 @@
                                         <rect key="frame" x="20" y="589" width="353" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <color key="textColor" systemColor="labelColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -762,7 +762,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRQ-Pv-sdi">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRQ-Pv-sdi">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6CA-pi-86C">
@@ -789,14 +789,22 @@
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zF8-78-9Q7" userLabel="앨범 이름">
                                         <rect key="frame" x="20" y="293.33333333333331" width="353" height="34"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmA-Gm-Sir">
+                                        <rect key="frame" x="335.33333333333331" y="267.33333333333331" width="37.666666666666686" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="zF8-78-9Q7" firstAttribute="top" secondItem="pmA-Gm-Sir" secondAttribute="bottom" constant="8" id="1XF-SE-th2"/>
+                                    <constraint firstItem="pmA-Gm-Sir" firstAttribute="trailing" secondItem="zF8-78-9Q7" secondAttribute="trailing" id="Gy7-SY-8Es"/>
                                     <constraint firstAttribute="trailing" secondItem="zF8-78-9Q7" secondAttribute="trailing" constant="20" id="LHC-YA-xIO"/>
                                     <constraint firstItem="zF8-78-9Q7" firstAttribute="top" secondItem="Lrx-s2-Epd" secondAttribute="bottom" constant="200" id="Zmr-q1-iqv"/>
                                     <constraint firstItem="zF8-78-9Q7" firstAttribute="leading" secondItem="GRQ-Pv-sdi" secondAttribute="leading" constant="20" id="xzl-pO-KDO"/>
@@ -819,6 +827,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="albumName" destination="zF8-78-9Q7" id="s66-Vi-1zk"/>
+                        <outlet property="wordCountLabel" destination="pmA-Gm-Sir" id="3Kf-tu-wgQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOn-L5-VYb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -863,7 +872,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1Q-c0-L3C">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1Q-c0-L3C">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACd-wM-xCw">
@@ -890,15 +899,22 @@
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kU6-8Q-Yhk" userLabel="사진 이름">
                                         <rect key="frame" x="20" y="293.33333333333331" width="353" height="34"/>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQm-qr-sB6">
+                                        <rect key="frame" x="335.33333333333331" y="267.33333333333331" width="37.666666666666686" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="kU6-8Q-Yhk" firstAttribute="top" secondItem="TPo-cQ-UVj" secondAttribute="bottom" constant="200" id="3lq-FK-FFe"/>
+                                    <constraint firstItem="kU6-8Q-Yhk" firstAttribute="top" secondItem="zQm-qr-sB6" secondAttribute="bottom" constant="8" id="KR7-UF-CeY"/>
+                                    <constraint firstItem="zQm-qr-sB6" firstAttribute="trailing" secondItem="kU6-8Q-Yhk" secondAttribute="trailing" id="YhA-8t-Rzh"/>
                                     <constraint firstItem="kU6-8Q-Yhk" firstAttribute="leading" secondItem="b1Q-c0-L3C" secondAttribute="leading" constant="20" id="n4M-QB-5Vc"/>
                                     <constraint firstAttribute="trailing" secondItem="kU6-8Q-Yhk" secondAttribute="trailing" constant="20" id="snN-RP-pte"/>
                                 </constraints>
@@ -920,6 +936,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="pictureName" destination="kU6-8Q-Yhk" id="3h1-f9-ACq"/>
+                        <outlet property="wordCountLabel" destination="zQm-qr-sB6" id="Ya2-s9-Fcz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9IP-dg-eCy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -934,7 +951,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-jI-RVr">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-jI-RVr">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmb-4j-S2Z">
@@ -969,9 +986,17 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZA-d2-4SQ">
+                                        <rect key="frame" x="335.33333333333331" y="267.33333333333331" width="37.666666666666686" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="KPA-EV-TPs" firstAttribute="top" secondItem="sZA-d2-4SQ" secondAttribute="bottom" constant="8" id="6ZZ-qa-ZEk"/>
+                                    <constraint firstItem="sZA-d2-4SQ" firstAttribute="trailing" secondItem="KPA-EV-TPs" secondAttribute="trailing" id="aYk-bv-wT2"/>
                                     <constraint firstItem="KPA-EV-TPs" firstAttribute="top" secondItem="Req-da-wbB" secondAttribute="bottom" constant="200" id="fL0-bF-CTk"/>
                                     <constraint firstAttribute="trailing" secondItem="KPA-EV-TPs" secondAttribute="trailing" constant="20" id="lOd-AB-bCA"/>
                                     <constraint firstItem="KPA-EV-TPs" firstAttribute="leading" secondItem="V2z-jI-RVr" secondAttribute="leading" constant="20" id="y7o-nz-AqT"/>
@@ -994,6 +1019,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="pictureDescription" destination="KPA-EV-TPs" id="BsI-Et-h2O"/>
+                        <outlet property="wordCountLabel" destination="sZA-d2-4SQ" id="cff-ID-aRu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xfc-ML-K7f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1024,7 +1050,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앨범 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xym-yq-J0G">
-                                        <rect key="frame" x="159" y="9.6666666666666732" width="75.333333333333314" height="25.666666666666671"/>
+                                        <rect key="frame" x="161" y="11.333333333333327" width="71.333333333333314" height="22.333333333333329"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="PyeongChangPeace-Light" family="PyeongChang Peace" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

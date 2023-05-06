@@ -36,6 +36,8 @@ class HomeEditViewController: UIViewController {
         // coverImage
         coverImage.image = UIImage(systemName: "photo")
         coverImage.layer.cornerRadius = 5
+        coverImage.layer.borderColor = UIColor.systemGray3.cgColor
+        coverImage.layer.borderWidth = 0.5
         // selectButton
         selectButton.layer.cornerRadius = 8
         
@@ -46,11 +48,10 @@ class HomeEditViewController: UIViewController {
                 defaultCoverColor = coverImageBeforeModify
             } else {
                 let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(albumNameBeforeModify)_CoverImage.jpeg", albumTitle: albumNameBeforeModify)
-                let resizedImage = resizeingImage(image: customCoverImage!, width: 150, height: 200)
+                let resizedImage = customCoverImage?.resize(newWidth: 150, newHeight: 200, byScale: false)
                 coverImage.image = resizedImage
             }
             createButton.setTitle("수정", for: .normal)
-//            createButton.font = UIFont(name: "EF_watermelonSalad", size: 13)
         }
         // albumName
         albumName.placeholder = "앨범 명을 입력하세요"

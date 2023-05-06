@@ -25,8 +25,8 @@ extension HomeScreenViewController {
         }
         
         // Set Action in Alert
-        longPressAlert.addAction(delete)
         longPressAlert.addAction(modify)
+        longPressAlert.addAction(delete)
         
         // Print Alert
         present(longPressAlert, animated: true){
