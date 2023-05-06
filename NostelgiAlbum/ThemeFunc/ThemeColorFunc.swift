@@ -140,12 +140,26 @@ extension PageSearchViewController {
             stackView.backgroundColor = ThemeColorSet["mainColor"]
             collectionView.backgroundColor = ThemeColorSet["subColor_1"]
             button.backgroundColor = ThemeColorSet["subColor_1"]
-            firstPicture.backgroundColor = ThemeColorSet["subColor_4"]
-            secondPicture.backgroundColor = ThemeColorSet["subColor_4"]
-            fpTitle.backgroundColor = ThemeColorSet["subColor_3"]
-            fpContent.backgroundColor = ThemeColorSet["subColor_3"]
-            spTitle.backgroundColor = ThemeColorSet["subColor_3"]
-            spContent.backgroundColor = ThemeColorSet["subColor_3"]
+            firstPicture.backgroundColor = ThemeColorSet["subColor_3"]
+            secondPicture.backgroundColor = ThemeColorSet["subColor_3"]
+            firstPicture.layer.borderColor = ThemeColorSet["subColor_2"]?.cgColor
+            firstPicture.layer.borderWidth = 1.5
+            secondPicture.layer.borderColor = ThemeColorSet["subColor_2"]?.cgColor
+            secondPicture.layer.borderWidth = 1.5
+            firstPicture.layer.cornerRadius = 8
+            secondPicture.layer.cornerRadius = 8
+            fpTitle.backgroundColor = .white
+            fpContent.backgroundColor = .white
+            spTitle.backgroundColor = .white
+            spContent.backgroundColor = .white
+            fpTitle.layer.borderWidth = 1
+            fpContent.layer.borderWidth = 1
+            spTitle.layer.borderWidth = 1
+            spContent.layer.borderWidth = 1
+            fpTitle.layer.borderColor = ThemeColorSet["mainColor"]?.cgColor
+            fpContent.layer.borderColor = ThemeColorSet["mainColor"]?.cgColor
+            spTitle.layer.borderColor = ThemeColorSet["mainColor"]?.cgColor
+            spContent.layer.borderColor = ThemeColorSet["mainColor"]?.cgColor
         }
         
     }
@@ -162,9 +176,19 @@ extension ContentsCells {
         let realm = try! Realm()
         let HomeSettingInfo = realm.objects(HomeSetting.self).first!
         if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
-            button.backgroundColor = ThemeColorSet["subColor_2"]
+            button.backgroundColor = ThemeColorSet["subColor_3"]
+            button.layer.borderColor = ThemeColorSet["subColor_2"]?.cgColor
+            button.layer.borderWidth = 1.5
             title.backgroundColor = ThemeColorSet["subColor_3"]
-            contents.backgroundColor = ThemeColorSet["subColor_4"]
+            contents.backgroundColor = ThemeColorSet["subColor_3"]
+            title.backgroundColor = .white
+            contents.backgroundColor = .white
+            title.layer.borderWidth = 1
+            contents.layer.borderWidth = 1
+            title.layer.borderColor = ThemeColorSet["mainColor"]?.cgColor
+            contents.layer.borderColor = ThemeColorSet["mainColor"]?.cgColor
+            titleText.backgroundColor = ThemeColorSet["subColor_3"]
+            contentsText.backgroundColor = ThemeColorSet["subColor_3"]
         }
     }
 }
@@ -175,7 +199,10 @@ extension ContentsSearchViewController {
         let HomeSettingInfo = realm.objects(HomeSetting.self).first!
         if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
             view.backgroundColor = ThemeColorSet["mainColor"]
-            searchBar.barTintColor = ThemeColorSet["subColor_1"]
+            searchBar.barTintColor = ThemeColorSet["mainColor"]
+//            searchBar.barTintColor = UIColor.white
+            searchBar.searchTextField.backgroundColor = UIColor.white
+            backButton.backgroundColor = ThemeColorSet["subColor_1"]
             contentsSearchCollectionView.backgroundColor = ThemeColorSet["subColor_1"]
         }
     }

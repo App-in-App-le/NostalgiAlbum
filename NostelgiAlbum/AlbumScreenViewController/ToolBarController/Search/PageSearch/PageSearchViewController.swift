@@ -7,14 +7,18 @@ protocol PageDelegate {
 
 class PageSearchViewController: UIViewController {
     var stackView: UIStackView!
-    var collectionView: UICollectionView!
+    var collectionView: PageCollectionView!
     var button: PageButton!
-    var firstPicture: UILabel!
-    var secondPicture: UILabel!
-    var fpTitle: UILabel!
-    var fpContent: UILabel!
-    var spTitle: UILabel!
-    var spContent: UILabel!
+    var firstPicture = UILabel()
+    var secondPicture = UILabel()
+    var fpTitle = paddingLabel()
+    var fpContent = VerticalAlignLabel()
+    var spTitle = paddingLabel()
+    var spContent = VerticalAlignLabel()
+    let fpTitleText = paddingLabel()
+    let fpContentText = paddingLabel()
+    let spTitleText = paddingLabel()
+    let spContentText = paddingLabel()
     
     var pageCount: Int = 0 // 전체 페이지 개수
     var didScroll: Bool = true // 버튼 누르기 전 스크롤을 수행했는지
@@ -23,6 +27,7 @@ class PageSearchViewController: UIViewController {
     var delegate: SearchDelegate! = nil
     var pageButtonList = Array<PageButton>()
     var data: Results<album>! = nil
+    var index: Int!
     
     let realm = try! Realm()
     
@@ -36,12 +41,13 @@ class PageSearchViewController: UIViewController {
             }
         }
         setThemeColor()
+        setFont()
         // modal dismiss gesutre
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
         swipeRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeRecognizer)
     }
-    
+        
     // MARK: - Methods
     // Page Button Paging & Move Selected Page
     @objc func buttonTapped(_ sender: PageButton) {
@@ -74,11 +80,31 @@ class PageSearchViewController: UIViewController {
             }
         }
     }
+    @objc func bottomButtonTapped(_ sender: PageButton) {
+        if sender.pageNum != -1 {
+            let movePageNum = sender.pageNum - currentPageNum
+            if movePageNum == 0 {
+                dismiss(animated: true)
+            } else if movePageNum > 0 {
+                dismiss(animated: false) {
+                    self.delegate?.pushPage(currentPageNum: self.currentPageNum + 1, targetPageNum: sender.pageNum)
+                }
+            } else {
+                dismiss(animated: true) {
+                    self.delegate?.popPage(difBetCurTar: -(movePageNum - 1))
+                }
+            }
+        }
+    }
     // PageSearchView Dismiss
     @objc func exitSwipe(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .down {
             self.dismiss(animated: true)
         }
+    }
+    
+    func fadeAnimation(duration: TimeInterval, isHidden: Bool) {
+        
     }
 }
 // CollectionView
@@ -88,9 +114,9 @@ extension PageSearchViewController {
         layout.scrollDirection = .horizontal
         return layout
     }
-    func configureCollectionView() -> UICollectionView {
+    func configureCollectionView() -> PageCollectionView {
         let layout = createLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = PageCollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isScrollEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = true
@@ -101,6 +127,7 @@ extension PageSearchViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.canCancelContentTouches = true
+        
         return collectionView
     }
 }
@@ -115,14 +142,16 @@ extension PageSearchViewController {
         stackView.distribution = .fill
         //stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
+
 
         collectionView = configureCollectionView()
         stackView.addArrangedSubview(collectionView)
-        
+
         button = configureButton()
         stackView.addArrangedSubview(button)
+
         
         view.addSubview(stackView)
         NSLayoutConstraint.activate([
@@ -138,10 +167,8 @@ extension PageSearchViewController {
 extension PageSearchViewController {
     func configureButton() -> PageButton {
         let button = PageButton()
-        button.heightAnchor.constraint(equalToConstant: stackView.frame.size.height/1.75).isActive = true
-
-        firstPicture = UILabel()
-        secondPicture = UILabel()
+        button.heightAnchor.constraint(equalToConstant: stackView.frame.size.height/1.3).isActive = true
+        button.addTarget(self, action: #selector(bottomButtonTapped(_:)), for: .touchUpInside)
         firstPicture.translatesAutoresizingMaskIntoConstraints = false
         secondPicture.translatesAutoresizingMaskIntoConstraints = false
         firstPicture.numberOfLines = 0
@@ -152,39 +179,39 @@ extension PageSearchViewController {
         secondPicture.layer.cornerRadius = 20
         firstPicture.clipsToBounds = true
         secondPicture.clipsToBounds = true
+        firstPicture.isHidden = true
+        secondPicture.isHidden = true
         button.addSubview(firstPicture)
         button.addSubview(secondPicture)
         NSLayoutConstraint.activate([
-            firstPicture.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 10),
-            firstPicture.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
-            firstPicture.topAnchor.constraint(equalTo: button.topAnchor, constant: 1),
-            firstPicture.bottomAnchor.constraint(equalTo: secondPicture.topAnchor, constant: -10),
+            firstPicture.topAnchor.constraint(equalTo: button.topAnchor, constant: 15),
+            firstPicture.bottomAnchor.constraint(equalTo: secondPicture.topAnchor, constant: -20),
             firstPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.45),
-            secondPicture.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 10),
-            secondPicture.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
+            firstPicture.widthAnchor.constraint(equalTo: button.widthAnchor, multiplier: 0.7),
+            firstPicture.centerXAnchor.constraint(equalTo: button.centerXAnchor),
             secondPicture.topAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: 1),
             secondPicture.bottomAnchor.constraint(equalTo: button.bottomAnchor),
-            secondPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.45)
+            secondPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.45),
+            secondPicture.widthAnchor.constraint(equalTo: button.widthAnchor, multiplier: 0.7),
+            secondPicture.centerXAnchor.constraint(equalTo: button.centerXAnchor)
         ])
-        fpTitle = paddingLabel()
         fpTitle.numberOfLines = 0
-        fpContent = paddingLabel()
         fpContent.numberOfLines = 0
         fpTitle.translatesAutoresizingMaskIntoConstraints = false
         fpContent.translatesAutoresizingMaskIntoConstraints = false
-        fpTitle.textColor = UIColor.white
-        fpContent.textColor = UIColor.white
+        fpTitle.textColor = UIColor.black
+        fpContent.textColor = UIColor.black
         fpTitle.clipsToBounds = true
         fpContent.clipsToBounds = true
-        fpTitle.layer.cornerRadius = 15
-        fpContent.layer.cornerRadius = 15
-        let fpTitleText = paddingLabel()
-        let fpContentText = paddingLabel()
+        fpTitle.layer.cornerRadius = 7
+        fpContent.layer.cornerRadius = 7
+        fpTitle.textAlignment = .center
+        fpContent.verticalAlignment = .top
         fpTitleText.numberOfLines = 1
         fpContentText.numberOfLines = 0
         fpTitleText.translatesAutoresizingMaskIntoConstraints = false
         fpContentText.translatesAutoresizingMaskIntoConstraints = false
-        fpTitleText.text = "이름"
+        fpTitleText.text = "제목"
         fpContentText.text = "내용"
         firstPicture.addSubview(fpTitleText)
         firstPicture.addSubview(fpContentText)
@@ -194,47 +221,42 @@ extension PageSearchViewController {
             fpTitle.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
             fpTitle.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
             fpTitle.topAnchor.constraint(equalTo: fpTitleText.bottomAnchor, constant: CGFloat(10)),
-            fpTitle.bottomAnchor.constraint(equalTo: fpContentText.topAnchor, constant: -CGFloat(5)),
-            fpTitle.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.2),
+            fpTitle.bottomAnchor.constraint(equalTo: fpContentText.topAnchor, constant: -CGFloat(20)),
+            fpTitle.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.15),
             
             fpContent.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
             fpContent.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
             fpContent.topAnchor.constraint(equalTo: fpContentText.bottomAnchor, constant: CGFloat(5)),
-            fpContent.bottomAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: CGFloat(10)),
-            fpContent.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.4),
-            
-            fpTitleText.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
-            fpTitleText.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
+            fpContent.bottomAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: -CGFloat(15)),
+
             fpTitleText.topAnchor.constraint(equalTo: firstPicture.topAnchor, constant: CGFloat(10)),
             fpTitleText.bottomAnchor.constraint(equalTo: fpTitle.topAnchor, constant: -CGFloat(5)),
             fpTitleText.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.1),
+            fpTitleText.centerXAnchor.constraint(equalTo: firstPicture.centerXAnchor),
             
-            fpContentText.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
-            fpContentText.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
             fpContentText.topAnchor.constraint(equalTo: fpTitle.bottomAnchor, constant: CGFloat(10)),
             fpContentText.bottomAnchor.constraint(equalTo: fpContent.topAnchor, constant: -CGFloat(5)),
-            fpContentText.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.1)
+            fpContentText.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.1),
+            fpContentText.centerXAnchor.constraint(equalTo: firstPicture.centerXAnchor)
         ])
         
-        spTitle = paddingLabel()
         spTitle.numberOfLines = 0
-        spContent = paddingLabel()
         spContent.numberOfLines = 0
         spTitle.translatesAutoresizingMaskIntoConstraints = false
         spContent.translatesAutoresizingMaskIntoConstraints = false
-        spTitle.textColor = UIColor.white
-        spContent.textColor = UIColor.white
+        spTitle.textColor = UIColor.black
+        spContent.textColor = UIColor.black
         spTitle.clipsToBounds = true
         spContent.clipsToBounds = true
-        spTitle.layer.cornerRadius = 15
-        spContent.layer.cornerRadius = 15
-        let spTitleText = paddingLabel()
-        let spContentText = paddingLabel()
+        spTitle.layer.cornerRadius = 7
+        spContent.layer.cornerRadius = 7
+        spTitle.textAlignment = .center
+        spContent.verticalAlignment = .top
         spTitleText.numberOfLines = 1
         spContentText.numberOfLines = 0
         spTitleText.translatesAutoresizingMaskIntoConstraints = false
         spContentText.translatesAutoresizingMaskIntoConstraints = false
-        spTitleText.text = "이름"
+        spTitleText.text = "제목"
         spContentText.text = "내용"
 
         secondPicture.addSubview(spTitle)
@@ -245,28 +267,24 @@ extension PageSearchViewController {
             spTitle.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
             spTitle.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
             spTitle.topAnchor.constraint(equalTo: spTitleText.bottomAnchor, constant: CGFloat(10)),
-            spTitle.bottomAnchor.constraint(equalTo: spContentText.topAnchor, constant: -CGFloat(5)),
-            spTitle.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.2),
+            spTitle.bottomAnchor.constraint(equalTo: spContentText.topAnchor, constant: -CGFloat(20)),
+            spTitle.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.15),
             
             spContent.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
             spContent.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
             spContent.topAnchor.constraint(equalTo: spContentText.bottomAnchor, constant: CGFloat(5)),
-            spContent.bottomAnchor.constraint(equalTo: secondPicture.bottomAnchor, constant: CGFloat(10)),
-            spContent.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.4),
-            
-            spTitleText.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
-            spTitleText.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
+            spContent.bottomAnchor.constraint(equalTo: secondPicture.bottomAnchor, constant: -CGFloat(15)),
+
             spTitleText.topAnchor.constraint(equalTo: secondPicture.topAnchor, constant: CGFloat(10)),
             spTitleText.bottomAnchor.constraint(equalTo: spTitle.topAnchor, constant: -CGFloat(5)),
             spTitleText.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.1),
+            spTitleText.centerXAnchor.constraint(equalTo: secondPicture.centerXAnchor),
             
-            spContentText.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
-            spContentText.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
             spContentText.topAnchor.constraint(equalTo: spTitle.bottomAnchor, constant: CGFloat(10)),
             spContentText.bottomAnchor.constraint(equalTo: spContent.topAnchor, constant: -CGFloat(5)),
-            spContentText.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.1)
+            spContentText.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.1),
+            spContentText.centerXAnchor.constraint(equalTo: secondPicture.centerXAnchor)
         ])
-        
         return button
     }
 }
@@ -282,13 +300,15 @@ extension PageSearchViewController: UICollectionViewDataSource {
         cell.button.pageNum = indexPath.item - 2
         cell.button.indexPath = indexPath
         cell.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        cell.index = index
+//        cell.button.layer.cornerRadius = collectionView.bounds.height/24.0
+        cell.setFont()
         if indexPath.item < 2 || indexPath.item > pageCount + 2 {
             cell.button.isHidden = true
             cell.layer.isHidden = true
         } else {
             pageButtonList.append(cell.button)
         }
-        let themaColorSetInstance = ThemeColorSet()
         let HomeSettingInfo = realm.objects(HomeSetting.self).first!
         
         if previousButton == cell.button.pageNum {
@@ -309,7 +329,7 @@ extension PageSearchViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         // Return the section insets for the specified section
-        return UIEdgeInsets(top: collectionView.bounds.height/1.5, left: 10, bottom: 20, right: 10)
+        return UIEdgeInsets(top: collectionView.bounds.height/1.5, left: 17, bottom: 35, right: 17)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -343,73 +363,76 @@ extension PageSearchViewController: UICollectionViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         didScroll = false
     }
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         initPageInfo()
     }
 }
 
 extension PageSearchViewController {
+    // PageCell에 페이지 내부 사진 정보 load
     func loadPageInfo(btnPageNum: Int) {
         let adnum = btnPageNum + 1
         let fpIndex = adnum * 2 - 2
         let spIndex = adnum * 2 - 1
-        fpTitle.fadeTransition(0.4)
-        fpContent.fadeTransition(0.4)
-        spTitle.fadeTransition(0.4)
-        spContent.fadeTransition(0.4)
+        button.pageNum = btnPageNum
         if fpIndex >= data.count {
+            UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                self.firstPicture.isHidden = true
+            }, completion: nil)
             fpTitle.text = "empty"
             fpContent.text = "empty"
         } else {
+            if firstPicture.isHidden {
+                UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                    self.firstPicture.isHidden = false
+                }, completion: nil)
+            } else {
+                fpTitle.fadeTransition(0.4)
+                fpContent.fadeTransition(0.4)
+            }
             fpTitle.text = data[fpIndex].ImageName
             fpContent.text = data[fpIndex].ImageText
         }
         if spIndex >= data.count {
             spTitle.text = "empty"
             spContent.text = "empty"
+            UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                self.secondPicture.isHidden = true
+            }, completion: nil)
         } else {
+            if secondPicture.isHidden {
+                UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                    self.secondPicture.isHidden = false
+                }, completion: nil)
+            } else {
+                spTitle.fadeTransition(0.4)
+                spContent.fadeTransition(0.4)
+            }
             spTitle.text = data[spIndex].ImageName
             spContent.text = data[spIndex].ImageText
+            
+
         }
     }
     func initPageInfo() {
-        fpTitle.fadeTransition(0.4)
-        fpContent.fadeTransition(0.4)
-        spTitle.fadeTransition(0.4)
-        spContent.fadeTransition(0.4)
-        fpTitle.text = "empty"
-        fpContent.text = "empty"
-        spTitle.text = "empty"
-        spContent.text = "empty"
+        button.pageNum = -1
+        // 데이터가 없을 시(초기 상태 & 스크롤할 때)
+        UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.firstPicture.isHidden = true
+        }, completion: nil)
+        UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.secondPicture.isHidden = true
+        }, completion: nil)
+
     }
 }
 
-extension UIView {
-    func fadeTransition(_ duration:CFTimeInterval) {
-        let animation = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.fade
-        animation.duration = duration
-        layer.add(animation, forKey: CATransitionType.fade.rawValue)
-    }
-}
-
-class paddingLabel: UILabel {
-    private var padding = UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4)
-    
-    convenience init(padding: UIEdgeInsets) {
-        self.init()
-        self.padding = padding
-    }
-    
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: padding))
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        var contentSize = super.intrinsicContentSize
-        contentSize.height += padding.top + padding.bottom
-        contentSize.width += padding.left + padding.right
-        return contentSize
+class PageCollectionView: UICollectionView {
+    override func touchesShouldCancel(in view: UIView) -> Bool {
+        if view is UIButton {
+            return true
+        }
+        return super.touchesShouldCancel(in: view)
     }
 }

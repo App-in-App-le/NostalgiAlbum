@@ -3,6 +3,7 @@ import UIKit
 class PageCell: UICollectionViewCell {
     // MARK: - Properties
     let button = PageButton()
+    var index: Int!
     static let reuseIdentifier = "page-cell-resue-identifier"
     
     override init(frame: CGRect) {
@@ -24,7 +25,7 @@ extension PageCell {
         contentView.addSubview(button)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor.white
-        button.layer.cornerRadius = 15
+        button.layer.cornerRadius = 10
         NSLayoutConstraint.activate([
             button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
