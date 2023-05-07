@@ -1050,7 +1050,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앨범 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xym-yq-J0G">
-                                        <rect key="frame" x="161" y="11.333333333333327" width="71.333333333333314" height="22.333333333333329"/>
+                                        <rect key="frame" x="159" y="9.6666666666666732" width="75.333333333333314" height="25.666666666666671"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="PyeongChangPeace-Light" family="PyeongChang Peace" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1095,15 +1095,11 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RdU-bk-1cX">
-                                                    <rect key="frame" x="45" y="19" width="120" height="160"/>
+                                                    <rect key="frame" x="45" y="165" width="24" height="14"/>
                                                     <subviews>
                                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY1-8S-3pd">
-                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="14"/>
                                                             <color key="backgroundColor" red="0.56862745100000001" green="0.58431372550000005" blue="0.67843137249999996" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="120" id="fDI-1g-51e"/>
-                                                                <constraint firstAttribute="height" constant="160" id="vrg-bu-Ao6"/>
-                                                            </constraints>
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain"/>
@@ -1121,15 +1117,11 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Co9-hV-8No">
-                                                    <rect key="frame" x="225" y="19" width="120" height="160"/>
+                                                    <rect key="frame" x="321" y="165" width="24" height="14"/>
                                                     <subviews>
                                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZb-vt-307">
-                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="14"/>
                                                             <color key="backgroundColor" red="0.57254901960000004" green="0.58431372550000005" blue="0.6705882353" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="120" id="9uT-kD-oA9"/>
-                                                                <constraint firstAttribute="height" constant="160" id="AlM-EP-pbq"/>
-                                                            </constraints>
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain"/>
@@ -1221,7 +1213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="49k-8k-NnS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="361" y="931"/>
+            <point key="canvasLocation" x="359.5419847328244" y="930.98591549295782"/>
         </scene>
         <!--Home iCloud Setting View Controller-->
         <scene sceneID="Fej-Xg-mCz">
