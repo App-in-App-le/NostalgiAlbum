@@ -5,11 +5,11 @@ class AlbumRenameViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var albumTextField: UITextField!
-
+    weak var shareVC: ShareViewController!
+    
     var albumCoverName: String!
     var filePath: URL!
-    var shareVC: ShareViewController!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         albumTextField.text = albumCoverName

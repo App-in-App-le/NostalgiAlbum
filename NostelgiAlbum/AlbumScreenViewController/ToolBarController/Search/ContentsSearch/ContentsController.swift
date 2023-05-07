@@ -13,6 +13,7 @@ class ContentsController {
         let contents: String
         let page: Int
         let identifier = UUID()
+        
         // MARK: - Search Struct Methods
         func hash(into hasher: inout Hasher) {
             hasher.combine(identifier)

@@ -3,12 +3,13 @@ import UIKit
 class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     
     @IBOutlet weak var albumShareButton: UIButton!
+    @IBOutlet weak var albumCoverText: UITextField!
+    weak var collectionViewInHome : UICollectionView!
+    
     var filePath: URL?
-    var collectionViewInHome : UICollectionView!
     var existedAlbum : Bool!
     var albumCoverName : String!
-    // 기존 button이었던 object를 Textfield로 변경
-    @IBOutlet weak var albumCoverText: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         albumCoverName = filePath?.deletingPathExtension().lastPathComponent

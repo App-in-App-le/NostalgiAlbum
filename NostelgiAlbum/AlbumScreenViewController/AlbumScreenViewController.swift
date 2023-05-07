@@ -6,12 +6,13 @@ class AlbumScreenViewController: UIViewController {
     let realm = try! Realm()
     var pageNum : Int = 0
     var coverIndex : Int = 0
-    var delegate: PageDelegate?
+    
     // collectionView setting
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
-    var albumScreenVC: AlbumScreenViewController? = nil
+    weak var albumScreenVC: AlbumScreenViewController? = nil
+    weak var delegate: PageDelegate?
     var isFontChanged: Bool = false
     
     // MARK: - View Life Cycle

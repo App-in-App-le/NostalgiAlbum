@@ -4,7 +4,7 @@ class SetPictureDescriptionViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var pictureDescription: UITextView!
     @IBOutlet weak var wordCountLabel: UILabel!
-    var editVC: AlbumEditViewController!
+    weak var editVC: AlbumEditViewController!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {

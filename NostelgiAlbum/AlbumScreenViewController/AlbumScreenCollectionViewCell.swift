@@ -8,9 +8,9 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     var pictureImgButton : UIButton?
     var pictureLabel: UILabel?
     // AlbumScreenViewController에서 받아온 정보들을 담을 객체
-    var albumSVC: AlbumScreenViewController!
-    var albumInfo : album!
-    var albumCoverInfo : albumCover!
+    weak var albumSVC: AlbumScreenViewController!
+    weak var albumInfo : album!
+    weak var albumCoverInfo : albumCover!
     
     var cons: [NSLayoutConstraint]?
     var newCons: [NSLayoutConstraint]?

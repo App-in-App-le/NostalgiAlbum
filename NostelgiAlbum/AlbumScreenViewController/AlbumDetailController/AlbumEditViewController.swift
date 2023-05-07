@@ -12,12 +12,14 @@ class AlbumEditViewController: UIViewController {
     @IBOutlet weak var editName: UITextField!
     @IBOutlet weak var editText: UITextView!
     
+    weak var picVC : AlbumPicViewController?
+    weak var picture: album? = nil
+    
     let realm = try! Realm()
     var collectionViewInAlbum : UICollectionView!
-    var picVC : AlbumPicViewController?
+    
     var index : Int!
     var albumCoverName : String!
-    var picture: album? = nil
     
     var width: CGFloat?
     var height: CGFloat?
