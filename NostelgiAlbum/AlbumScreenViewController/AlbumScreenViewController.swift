@@ -28,7 +28,13 @@ class AlbumScreenViewController: UIViewController {
         titleName.text = albumName
         titleName.textColor = .white
         titleName.font = UIFont.boldSystemFont(ofSize: 18)
+        titleName.numberOfLines = 0
         titleName.sizeToFit()
+        titleName.textAlignment = .center
+        let widthConstraint = titleName.widthAnchor.constraint(equalToConstant: 200)
+        widthConstraint.isActive = true
+//        titleName.clipsToBounds = true
+        print("size\(titleName.layer.frame.width)")
         navigationItem.titleView = titleName
         
         let pageNumButton = UIButton()
@@ -95,6 +101,7 @@ extension AlbumScreenViewController {
         pageSearchVC.delegate = self //push, pop
         pageSearchVC.previousButton = pageNum
         pageSearchVC.data = data
+        pageSearchVC.index = coverIndex
         self.delegate = pageSearchVC //scrollCenter
         //pageSearchVC.modalPresentationStyle = .
         present(pageSearchVC, animated: true){

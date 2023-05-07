@@ -8,6 +8,7 @@ protocol SearchDelegate{
 class ContentsSearchViewController: UIViewController {
     
     let contentsController = ContentsController()
+    let contentsCells = ContentsCells()
     let searchBar = UISearchBar()
     var contentsSearchCollectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, ContentsController.Search>!
@@ -15,6 +16,10 @@ class ContentsSearchViewController: UIViewController {
     var pageCount: Int = 0
     var currentPageNum: Int = -1
     var delegate: SearchDelegate! = nil
+    let backButton = UIButton()
+    let topBorder = UIView()
+    let bottomBorder = UIView()
+    //var backButton: UIButton! = nil
     
     enum Section: CaseIterable {
         case main
@@ -25,10 +30,6 @@ class ContentsSearchViewController: UIViewController {
         configureHierarcy()
         configureDataSource()
         performQuery(with: nil)
-        // modal dismiss gesutre
-        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
-        swipeRecognizer.direction = .right
-        self.view.addGestureRecognizer(swipeRecognizer)
     }
     // MARK: - Methods
     // Move Page to searched page
@@ -47,10 +48,8 @@ class ContentsSearchViewController: UIViewController {
         }
     }
     // dismiss ContentsSsearchView
-    @objc func exitSwipe(_ sender :UISwipeGestureRecognizer) {
-        if sender.direction == .right {
-            self.dismiss(animated: true)
-        }
+    @objc func dismissView() {
+        self.dismiss(animated: true)
     }
     
     func targetColoring(nameLabel: UILabel, contentsLabel: UILabel, target: String) {
@@ -68,12 +67,15 @@ class ContentsSearchViewController: UIViewController {
 extension ContentsSearchViewController {
     func configureDataSource() {
         contentsController.coverIndex = coverIndex
+//        contentsCells.index = coverIndex
         let cellRegistration = UICollectionView.CellRegistration<ContentsCells, ContentsController.Search> {
             [self] (cell, indexPath, search) in
             cell.button.pageNum = search.page
             cell.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             cell.title.text = search.name
             cell.contents.text = search.contents
+            cell.index = coverIndex
+            cell.setFont()
         }
         dataSource = UICollectionViewDiffableDataSource<Section, ContentsController.Search>(collectionView: contentsSearchCollectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, identifier: ContentsController.Search) -> UICollectionViewCell? in
@@ -113,6 +115,7 @@ extension ContentsSearchViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        searchBar.isTranslucent = false
         view.addSubview(collectionView)
         view.addSubview(searchBar)
         
