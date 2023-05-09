@@ -1,4 +1,5 @@
 import UIKit
+import Zip
 
 class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     
@@ -19,11 +20,169 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     }
     
     @IBAction func openInButtonTapped(_ sender: Any) {
+        var titleText = ""
+        var messageText = ""
+        let errorAlert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
+        errorAlert.setFont(font: nil, title: titleText, message: messageText)
+        let okAction = UIAlertAction(title: "확인", style: .default) { action in
+            errorAlert.dismiss(animated: false)
+        }
+        errorAlert.addAction(okAction)
         //.nost file URL에서 .nost앞 앨범 이름만 따옴
         if(!existedAlbum) {
-            unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: filePath!)
-            //realm에 공유받은 album정보 write
-            importAlbumInfo(albumCoverName: albumCoverName, useForShare: true)
+            do {
+                try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: filePath!)
+            } catch let error {
+                switch error {
+                case ZipError.unzipFail:
+                    titleText = "압축 해제 실패"
+                    messageText = "압축 해제에 실패했습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileWriteFileExistsError:
+                    titleText = "기존 파일 존재"
+                    messageText = "기존 파일이 존재하고 있습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileReadUnknownError:
+                    titleText = "파일 읽기 에러"
+                    messageText = "파일을 읽을 수 없습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileReadInvalidFileNameError:
+                    titleText = "잘못된 이름"
+                    messageText = "읽을 수 없는 파일 이름입니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileWriteInvalidFileNameError:
+                    titleText = "잘못된 이름"
+                    messageText = "파일 이름이 잘못되었습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileWriteOutOfSpaceError:
+                    titleText = "용량 부족"
+                    messageText = "디바이스에 용량이 부족합니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileWriteNoPermissionError:
+                    titleText = "권한 부재"
+                    messageText = "파일을 작성할 권한이 없습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileReadNoPermissionError:
+                    titleText = "권한 부재"
+                    messageText = "파일을 읽을 권한이 없습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileNoSuchFileError:
+                    titleText = "파일 부재"
+                    messageText = "파일을 찾을 수 없습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                default:
+                    titleText = "공유 실패"
+                    messageText = "공유 파일 받기에 실패했습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                }
+            }
+            do {
+                //realm에 공유받은 album정보 write
+                try importAlbumInfo(albumCoverName: albumCoverName, useForShare: true)
+            } catch let error {
+                switch error {
+                case ZipError.unzipFail:
+                    titleText = "압축 해제 실패"
+                    messageText = "압축 해제에 실패했습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileWriteFileExistsError:
+                    titleText = "기존 파일 존재"
+                    messageText = "기존 파일이 존재하고 있습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileReadUnknownError:
+                    titleText = "파일 읽기 에러"
+                    messageText = "파일을 읽을 수 없습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileReadInvalidFileNameError:
+                    titleText = "잘못된 이름"
+                    messageText = "읽을 수 없는 파일 이름입니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileWriteInvalidFileNameError:
+                    titleText = "잘못된 이름"
+                    messageText = "파일 이름이 잘못되었습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileWriteOutOfSpaceError:
+                    titleText = "용량 부족"
+                    messageText = "디바이스에 용량이 부족합니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileWriteNoPermissionError:
+                    titleText = "권한 부재"
+                    messageText = "파일을 작성할 권한이 없습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileReadNoPermissionError:
+                    titleText = "권한 부재"
+                    messageText = "파일을 읽을 권한이 없습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                case let nsError as NSError where nsError.code == NSFileNoSuchFileError:
+                    titleText = "파일 부재"
+                    messageText = "파일을 찾을 수 없습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                default:
+                    titleText = "공유 실패"
+                    messageText = "공유 파일 받기에 실패했습니다."
+                    present(errorAlert, animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                    break
+                }
+            }
             //album reload
             collectionViewInHome.reloadData()
             //self.navigationController?.popViewController(animated: true)
