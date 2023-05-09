@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
      iOS 13이상 적용
      */
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        nostFileRemove()
         //Main.storyboard set
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         //Main.storyboard의 HomeScreenViewController객체를 가져옴
