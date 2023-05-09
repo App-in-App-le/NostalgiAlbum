@@ -59,9 +59,9 @@ class HomeiCloudSettingViewController: UIViewController {
                         for content in contents {
                             Datas.append("앨범 명: \(content.replacingOccurrences(of: ".nost", with: ""))")
                         }
-                        message = "기존 백업 데이터가 존재합니다! \n백업 진행 시, 이전 백업 데이터가 삭제되고 현재 앨범 정보가 저장됩니다.\n\n[이전 백업 데이터]\n\(Datas.joined(separator: "\n"))"
+                        message = "1. 백업 진행 시, 이전 백업 데이터가 삭제되고 현재 앨범 정보가 저장됩니다.\n\n2. 백업 중 네트워크 연결 끊김과 앱 종료에 주의해주세요.\n\n기존 백업 데이터가 존재합니다!\n\n[이전 백업 데이터]\n\(Datas.joined(separator: "\n"))"
                     } else {
-                        message = "이전 백업 데이터가 존재하지 않습니다."
+                        message = "1. 백업 진행 시, 이전 백업 데이터가 삭제되고 현재 앨범 정보가 저장됩니다.\n\n2. 백업 중 네트워크 연결 끊김과 앱 종료에 주의해주세요.\n\n이전 백업 데이터가 존재하지 않습니다."
                     }
                     
                     let alert = UIAlertController(title: "백업", message: message, preferredStyle: .alert)
@@ -188,8 +188,8 @@ class HomeiCloudSettingViewController: UIViewController {
             }
             let message = "[백업 데이터]\n\(Datas.joined(separator: "\n"))"
             
-            let alert = UIAlertController(title: "복원", message: "현재 생성된 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n(복원 완료 시, 어플이 종료됩니다.)\n\n\(message)", preferredStyle: .alert)
-            alert.setFont(font: nil, title: "복원", message: "현재 생성된 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n(복원 완료 시, 어플이 종료됩니다.)\n\n\(message)")
+            let alert = UIAlertController(title: "복원", message: "1. 복원 완료 시 기존의 백업 데이터는 소멸됩니다.\n\n2. 복원 중 네트워크 연결 끊김과 앱 종료에 주의해주세요.\n\n3. 복원이 완료되면 앱이 종료됩니다.\n\n현재 존재하는 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n\n\(message)", preferredStyle: .alert)
+            alert.setFont(font: nil, title: "복원", message: "1. 복원 완료 시 기존의 백업 데이터는 소멸됩니다.\n\n2. 복원 중 네트워크 연결 끊김과 앱 종료에 주의해주세요.\n\n3. 복원이 완료되면 앱이 종료됩니다.\n\n현재 존재하는 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n\n\(message)")
             
             let cancleAction = UIAlertAction(title: "취소", style: .default) { action in
                 alert.dismiss(animated: false)
