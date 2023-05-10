@@ -7,7 +7,15 @@ func zipAlbumDirectory(AlbumCoverName: String) throws -> URL? {
     //압축을 할 앨범 directory url
     let dirURL = documentDirectory.appendingPathComponent(AlbumCoverName)
     //nost로 변환할 direcotry
-    let nostURL = documentDirectory.appendingPathComponent("\(AlbumCoverName).nost")
+    do {
+        if !FileManager.default.fileExists(atPath: documentDirectory.appendingPathComponent("nostFiles").path) {
+            try FileManager.default.createDirectory(at: documentDirectory.appendingPathComponent("nostFiles"), withIntermediateDirectories: true, attributes: nil)
+        }
+    } catch let error as NSError {
+        throw error
+    }
+    
+    let nostURL = documentDirectory.appendingPathComponent("nostFiles").appendingPathComponent("\(AlbumCoverName).nost")
     do {
         try exportAlbumInfo(coverData: AlbumCoverName)
     } catch let error as NSError {
@@ -15,7 +23,7 @@ func zipAlbumDirectory(AlbumCoverName: String) throws -> URL? {
     }
     do {
         let files = try FileManager.default.contentsOfDirectory(at: dirURL, includingPropertiesForKeys: nil)
-        let zipFilePath = documentDirectory.appendingPathComponent("\(AlbumCoverName).zip")
+        let zipFilePath = documentDirectory.appendingPathComponent("nostFiles").appendingPathComponent("\(AlbumCoverName).zip")
         try Zip.zipFiles(paths: files, zipFilePath: zipFilePath, password: nil, progress: nil)
         do {
             if FileManager.default.fileExists(atPath: nostURL.path) {
@@ -54,52 +62,6 @@ func zipAlbumDirectory(AlbumCoverName: String) throws -> URL? {
         throw error
     }
     return nostURL
-}
-
-func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) throws {
-    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-    //(앨범 이름).zip file을 만들 경로
-    let zipURL = documentDirectory.appendingPathComponent("\(AlbumCoverName).zip")
-//    print("sharepath",shareFilePath.path)
-//    print("zipURL",zipURL.path)
-//    if let data = try? Data(contentsOf: shareFilePath) {
-//        try? data.write(to: zipURL)
-//        do {
-//            try Zip.unzipFile(zipURL, destination: zipURL.deletingPathExtension(), overwrite: true, password: nil)
-//            changeIfModifyName(albumCoverName: AlbumCoverName)
-//            //zipURL == sandbox에서 documents내 zip
-//            try FileManager.default.removeItem(at: zipURL)
-//            //filePath == simulator의 경우 tmp/com....NostelgiAlbum-Inbox
-//            //device의 경우 Inbox/내 .nost파일
-//            try FileManager.default.removeItem(at: shareFilePath)
-//        } catch {
-//            print("Something went wrong")
-//        }
-//    } else {
-//        print("Error rewrite zip")
-//    }
-    do {
-        let data = try Data(contentsOf: shareFilePath)
-        do {
-            try data.write(to: zipURL)
-        } catch let error {
-            throw error
-        }
-        do {
-            try Zip.unzipFile(zipURL, destination: zipURL.deletingPathExtension(), overwrite: true, password: nil)
-            try changeIfModifyName(albumCoverName: AlbumCoverName)
-            //zipURL == sandbox에서 documents내 zip
-            try FileManager.default.removeItem(at: zipURL)
-            //filePath == simulator의 경우 tmp/com....NostelgiAlbum-Inbox
-            //device의 경우 Inbox/내 .nost파일
-            try FileManager.default.removeItem(at: shareFilePath)
-        } catch let error {
-            throw error
-        }
-    } catch let error {
-        throw error
-    }
-    
 }
 
 func exportAlbumInfo(coverData: String) throws {
@@ -144,11 +106,61 @@ func exportAlbumInfo(coverData: String) throws {
     let textInfoURL = dirURL.appendingPathComponent("\(coverData)_imageTextInfo.txt")
     let albumInfoURL = dirURL.appendingPathComponent("\(coverData)_Info.txt")
     
+    if FileManager.default.fileExists(atPath: albumCoverURL.path) {
+        do {
+            try FileManager.default.removeItem(at: albumCoverURL)
+        } catch let error as NSError {
+            print("Error occur :: \(error)")
+        }
+    }
+    if FileManager.default.fileExists(atPath: nameInfoURL.path) {
+        do {
+            try FileManager.default.removeItem(at: nameInfoURL)
+        } catch let error as NSError {
+            print("Error occur :: \(error)")
+        }
+    }
+    if FileManager.default.fileExists(atPath: textInfoURL.path) {
+        do {
+            try FileManager.default.removeItem(at: textInfoURL)
+        } catch let error as NSError {
+            print("Error occur :: \(error)")
+        }
+    }
+    if FileManager.default.fileExists(atPath: albumInfoURL.path) {
+        do {
+            try FileManager.default.removeItem(at: albumInfoURL)
+        } catch let error as NSError {
+            print("Error occur :: \(error)")
+        }
+    }
+    
     do {
         try albumCoverInfo.write(to: albumCoverURL, atomically: true, encoding: .utf8)
         try imageNameInfo.write(to: nameInfoURL, atomically: true, encoding: .utf8)
         try imageTextInfo.write(to: textInfoURL, atomically: true, encoding: .utf8)
         try albumInfoText.write(to: albumInfoURL, atomically: true, encoding: .utf8)
+    } catch let error {
+        throw error
+    }
+    
+}
+
+func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) throws {
+    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+    // (앨범 이름).zip file을 만들 경로
+    let zipURL = documentDirectory.appendingPathComponent("\(AlbumCoverName).zip")
+    // unzip한 파일들 저장할 디렉토리 생성
+    do {
+        let data = try Data(contentsOf: shareFilePath)
+        try data.write(to: zipURL)
+        try Zip.unzipFile(zipURL, destination: zipURL.deletingPathExtension(), overwrite: true, password: nil)
+        try changeIfModifyName(albumCoverName: AlbumCoverName)
+        //zipURL == sandbox에서 documents내 zip
+        try FileManager.default.removeItem(at: zipURL)
+        //filePath == simulator의 경우 tmp/com....NostelgiAlbum-Inbox
+        //device의 경우 Inbox/내 .nost파일
+        try FileManager.default.removeItem(at: shareFilePath)
     } catch let error {
         throw error
     }
@@ -292,32 +304,15 @@ func changeIfModifyName(albumCoverName: String) throws {
         throw error
     }
 }
+
 // 기존에 강제 종료 등으로 인한 nost & zip파일이 남아있을 경우 삭제
 func nostFileRemove() {
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-    do {
-        let filesURL = try FileManager.default.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-        let nostFilesURLs = filesURL.filter { $0.pathExtension == "nost" }
-        if !nostFilesURLs.isEmpty {
-            for nostFileURL in nostFilesURLs {
-                do {
-                    try FileManager.default.removeItem(at: nostFileURL)
-                } catch {
-                    print("nost file delete error")
-                }
-            }
+    if FileManager.default.fileExists(atPath: documentDirectory.appendingPathComponent("nostFiles").path) {
+        do {
+            try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent("nostFiles"))
+        } catch {
+            print("nostFiles Directory delete error")
         }
-        let zipFilesURLs = filesURL.filter { $0.pathExtension == "nost"}
-        if !zipFilesURLs.isEmpty {
-            for zipFileURL in zipFilesURLs {
-                do {
-                    try FileManager.default.removeItem(at: zipFileURL)
-                } catch {
-                    print("zip file delete error")
-                }
-            }
-        }
-    } catch {
-        print("file load error")
     }
 }

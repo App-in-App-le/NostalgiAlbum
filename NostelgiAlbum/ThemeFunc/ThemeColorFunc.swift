@@ -133,6 +133,21 @@ extension InfoViewController {
     }
 }
 
+extension ShareViewController {
+    func setThemeColor() {
+        let HomeSettingInfo = realm.objects(HomeSetting.self).first!
+        if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
+            createButton.backgroundColor = ThemeColorSet["subColor_3"]
+            cancleButton.backgroundColor = ThemeColorSet["subColor_3"]
+            albumName.backgroundColor = .white
+            divideLine.backgroundColor = ThemeColorSet["subColor_2"]
+            editView.backgroundColor = ThemeColorSet["subColor_1"]
+            editTitle.backgroundColor = ThemeColorSet["mainColor"]
+            editTitle.textColor = .white
+        }
+    }
+}
+
 extension PageSearchViewController {
     func setThemeColor() {
         let HomeSettingInfo = realm.objects(HomeSetting.self).first!

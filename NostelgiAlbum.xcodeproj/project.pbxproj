@@ -19,6 +19,7 @@
 		804C7E8E295835D200C63880 /* ImageFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C7E8D295835D200C63880 /* ImageFunc.swift */; };
 		80554C3029FD59D900F04AF1 /* ShadowFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80554C2F29FD59D900F04AF1 /* ShadowFunc.swift */; };
 		806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A653D293873C80054FAEF /* HomeEditViewController.swift */; };
+		8075A0A92A0A21F60075B141 /* ErrorHandlingFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8075A0A82A0A21F60075B141 /* ErrorHandlingFunc.swift */; };
 		807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A193B29312CEE00BC434B /* RealmClassFunc.swift */; };
 		807FF50129260656005D9884 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FF50029260656005D9884 /* InfoTableViewCell.swift */; };
 		8080200E29E18B9700CECCB8 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8080200D29E18B9700CECCB8 /* InfoViewController.swift */; };
@@ -106,6 +107,7 @@
 		804C7E8D295835D200C63880 /* ImageFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFunc.swift; sourceTree = "<group>"; };
 		80554C2F29FD59D900F04AF1 /* ShadowFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowFunc.swift; sourceTree = "<group>"; };
 		806A653D293873C80054FAEF /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
+		8075A0A82A0A21F60075B141 /* ErrorHandlingFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingFunc.swift; sourceTree = "<group>"; };
 		807A193B29312CEE00BC434B /* RealmClassFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClassFunc.swift; sourceTree = "<group>"; };
 		807FF50029260656005D9884 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		8080200D29E18B9700CECCB8 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,14 @@
 			path = ShadowFunc;
 			sourceTree = "<group>";
 		};
+		8075A0AA2A0A21FE0075B141 /* ErrorHandlingFunc */ = {
+			isa = PBXGroup;
+			children = (
+				8075A0A82A0A21F60075B141 /* ErrorHandlingFunc.swift */,
+			);
+			path = ErrorHandlingFunc;
+			sourceTree = "<group>";
+		};
 		8094CA1728EDC65500E70F76 = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +259,7 @@
 				80554C2E29FD599C00F04AF1 /* ShadowFunc */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
 				80D80B5029ED78F7009612FA /* NostelgiAlbum.entitlements */,
+				8075A0AA2A0A21FE0075B141 /* ErrorHandlingFunc */,
 			);
 			path = NostelgiAlbum;
 			sourceTree = "<group>";
@@ -721,6 +732,7 @@
 				831E7446299A7BDF00D48D5C /* AlbumDelegate+Layout.swift in Sources */,
 				80554C3029FD59D900F04AF1 /* ShadowFunc.swift in Sources */,
 				8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */,
+				8075A0A92A0A21F60075B141 /* ErrorHandlingFunc.swift in Sources */,
 				8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */,
 				80263E4C29FCC8C300C74F69 /* FirstPageSettingViewController.swift in Sources */,
 				8006D02229ED528300389292 /* HomeiCloudSettingViewController.swift in Sources */,
