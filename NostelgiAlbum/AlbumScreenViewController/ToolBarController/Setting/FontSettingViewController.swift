@@ -3,12 +3,12 @@ import RealmSwift
 
 class FontSettingViewController: UIViewController {
     // MARK: - Properties
+    weak var albumScreenVC: AlbumScreenViewController! = nil
+    weak var settingVC: SettingViewController! = nil
     var tableView: UITableView! = nil
     var tableCons: [NSLayoutConstraint]! = nil
     var font: String!
     var index: Int!
-    var albumScreenVC: AlbumScreenViewController! = nil
-    var settingVC: SettingViewController! = nil
     
     // MARK: - Model
     let realm = try! Realm()

@@ -140,7 +140,9 @@ extension HomeEditViewController {
                 newAlbumCover.isCustomCover = true
                 // Save Custom Image in Album Folder
                 let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
-                saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: 120, newHeight: 160, byScale: false))!, AlbumCoverName: albumName.text!)
+                let height = collectionViewInHome.bounds.height / 3 / 5 * 4
+                let width = height / 4 * 3
+                saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: width, newHeight: height, byScale: false))!, AlbumCoverName: albumName.text!)
             }
             // Create new Realm albumdsInfo Model Class
             let newAlbumsInfo = albumsInfo()
@@ -245,7 +247,9 @@ extension HomeEditViewController {
                     albumCoverData.first?.isCustomCover = true
                     // Add custom image in album folder
                     let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
-                    saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: 120, newHeight: 160, byScale: false))!, AlbumCoverName: albumName.text!)
+                    let height = collectionViewInHome.bounds.height / 3 / 5 * 4
+                    let width = height / 4 * 3
+                    saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: width, newHeight: height, byScale: false))!, AlbumCoverName: albumName.text!)
                 }
                 // Modify "album" instance in RealmDB
                 for album in albumData { album.setAlbumTitle(albumName.text!) }

@@ -6,10 +6,8 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     let realm = try! Realm()
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var firstButtonShadowView: UIView!
-    @IBOutlet weak var firstButtonTitle: UILabel!
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var secondButtonShadowView: UIView!
-    @IBOutlet weak var secondButtonTitle: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
     var callback1 : (()->Void)?
     var callback2 : (()->Void)?
@@ -21,5 +19,17 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     
     @IBAction func makeButton(_ sender: Any) {
         callback2?()
+    }
+    
+    func setFirstButton(height: CGFloat) {
+        firstButton.translatesAutoresizingMaskIntoConstraints = false
+        firstButton.heightAnchor.constraint(equalToConstant: height).isActive = true
+        firstButton.widthAnchor.constraint(equalToConstant: height / 4 * 3).isActive = true
+    }
+    
+    func setSecondButton(height: CGFloat) {
+        secondButton.translatesAutoresizingMaskIntoConstraints = false
+        secondButton.heightAnchor.constraint(equalToConstant: height).isActive = true
+        secondButton.widthAnchor.constraint(equalToConstant: height / 4 * 3).isActive = true
     }
 }

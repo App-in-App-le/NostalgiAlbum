@@ -5,7 +5,7 @@ class SetAlbumNameViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var albumName: UITextField!
     @IBOutlet weak var wordCountLabel: UILabel!
-    var editVC : HomeEditViewController!
+    weak var editVC : HomeEditViewController!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {

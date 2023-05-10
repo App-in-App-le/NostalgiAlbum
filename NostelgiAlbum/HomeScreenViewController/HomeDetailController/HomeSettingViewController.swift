@@ -4,8 +4,8 @@ import RealmSwift
 class HomeSettingViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var backgroundStackView: UIStackView!
+    weak var homeScreenViewController: HomeScreenViewController! = nil
     let realm = try! Realm()
-    var homeScreenViewController: HomeScreenViewController! = nil
     var homeScreenCollectionView: UICollectionView! = nil
     
     // MARK: - View Life Cycle

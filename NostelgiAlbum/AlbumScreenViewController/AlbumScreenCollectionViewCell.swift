@@ -8,9 +8,9 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
     var pictureImgButton : UIButton?
     var pictureLabel: UILabel?
     // AlbumScreenViewController에서 받아온 정보들을 담을 객체
-    var albumSVC: AlbumScreenViewController!
-    var albumInfo : album!
-    var albumCoverInfo : albumCover!
+    var albumName: String!
+    weak var albumSVC: AlbumScreenViewController!
+    weak var albumInfo : album!
     
     var cons: [NSLayoutConstraint]?
     var newCons: [NSLayoutConstraint]?
@@ -111,7 +111,7 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
         if pictureImgButton!.imageView?.image == UIImage(systemName: "plus"){
             guard let editVC = self.albumSVC.storyboard?.instantiateViewController(withIdentifier: "AlbumEditViewController") as? AlbumEditViewController else { return }
             editVC.index = self.albumSVC.coverIndex
-            editVC.albumCoverName = self.albumCoverInfo.albumName
+            editVC.albumCoverName = self.albumName
             editVC.collectionViewInAlbum = self.albumSVC.collectionView
             editVC.modalPresentationStyle = .overFullScreen
             // editVC.navigationController?.pushViewController(editVC, animated: false)

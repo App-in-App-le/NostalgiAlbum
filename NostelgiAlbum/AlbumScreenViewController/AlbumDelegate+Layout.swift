@@ -11,11 +11,9 @@ extension AlbumScreenViewController: UICollectionViewDataSource{
         let coverData = realm.objects(albumCover.self).filter("id = \(coverIndex)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumScreenCollectionViewCell", for: indexPath) as! AlbumScreenCollectionViewCell
         var picture: album
-        var pictureCover: albumCover
         
-        pictureCover = coverData.first!
         cell.albumSVC = self
-        cell.albumCoverInfo = pictureCover
+        cell.albumName = coverData.first?.albumName
         
         if (indexPath.item + pageNum * 2) < data.count {
             picture = data[indexPath.item + pageNum * 2]

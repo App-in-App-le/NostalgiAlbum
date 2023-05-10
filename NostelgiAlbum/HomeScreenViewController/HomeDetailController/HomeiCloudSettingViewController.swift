@@ -59,9 +59,9 @@ class HomeiCloudSettingViewController: UIViewController {
                         for content in contents {
                             Datas.append("앨범 명: \(content.replacingOccurrences(of: ".nost", with: ""))")
                         }
-                        message = "기존 백업 데이터가 존재합니다! \n백업 진행 시, 이전 백업 데이터가 삭제되고 현재 앨범 정보가 저장됩니다.\n\n[이전 백업 데이터]\n\(Datas.joined(separator: "\n"))"
+                        message = "1. 백업 진행 시, 이전 백업 데이터가 삭제되고 현재 앨범 정보가 저장됩니다.\n\n2. 백업 중 네트워크 연결 끊김과 앱 종료에 주의해주세요.\n\n기존 백업 데이터가 존재합니다!\n\n[이전 백업 데이터]\n\(Datas.joined(separator: "\n"))"
                     } else {
-                        message = "이전 백업 데이터가 존재하지 않습니다."
+                        message = "1. 백업 진행 시, 이전 백업 데이터가 삭제되고 현재 앨범 정보가 저장됩니다.\n\n2. 백업 중 네트워크 연결 끊김과 앱 종료에 주의해주세요.\n\n이전 백업 데이터가 존재하지 않습니다."
                     }
                     
                     let alert = UIAlertController(title: "백업", message: message, preferredStyle: .alert)
@@ -69,12 +69,17 @@ class HomeiCloudSettingViewController: UIViewController {
                     
                     let okAction = UIAlertAction(title: "확인", style: .default) { action in
                         for albumCoverInfo in albumCoverInfos {
-                            if let newNostURL = zipAlbumDirectory(AlbumCoverName: albumCoverInfo.albumName) {
-                                localNostURL.append(newNostURL)
-                                iCloudNostURL.append(iCloudDocsURL.appendingPathComponent("\(albumCoverInfo.albumName).nost"))
-                            } else {
-                                // Alert or Error
-                                print("FileManager Error :: Cannot Find Document Directory Path in zipAlbumDirectory")
+                            do {
+                                if let newNostURL = try zipAlbumDirectory(AlbumCoverName: albumCoverInfo.albumName) {
+                                    localNostURL.append(newNostURL)
+                                    iCloudNostURL.append(iCloudDocsURL.appendingPathComponent("\(albumCoverInfo.albumName).nost"))
+                                } else {
+                                    // newNostURL이 nil인 경우
+                                }
+                            } catch let error {
+                                // 백업 중에 zipAlbumDirectory에서 문제가 발생
+                                // 백업 중이던 파일을 전부 삭제해줘야 함 -> 문제 발생 시, 앱 껏다 키면 .nost파일은 nostFiles에 있어서 다 알아서 삭제 됨.
+                                NSErrorHandling_Alert(error: error, vc: self)
                                 return
                             }
                         }
@@ -106,8 +111,8 @@ class HomeiCloudSettingViewController: UIViewController {
                             }
                         }
                         
-                        let alert = UIAlertController(title: "백업 완료", message: "백업이 완료되었습니다.👻", preferredStyle: .alert)
-                        alert.setFont(font: nil, title: "백업 완료", message: "백업이 완료되었습니다.👻")
+                        let alert = UIAlertController(title: "백업 완료", message: "백업이 완료되었습니다.", preferredStyle: .alert)
+                        alert.setFont(font: nil, title: "백업 완료", message: "백업이 완료되었습니다.")
                         
                         let okAction = UIAlertAction(title: "확인", style: .default) { action in
                             self.dismiss(animated: false)
@@ -188,8 +193,8 @@ class HomeiCloudSettingViewController: UIViewController {
             }
             let message = "[백업 데이터]\n\(Datas.joined(separator: "\n"))"
             
-            let alert = UIAlertController(title: "복원", message: "현재 생성된 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n(복원 완료 시, 어플이 종료됩니다.)\n\n\(message)", preferredStyle: .alert)
-            alert.setFont(font: nil, title: "복원", message: "현재 생성된 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n(복원 완료 시, 어플이 종료됩니다.)\n\n\(message)")
+            let alert = UIAlertController(title: "복원", message: "1. 복원 완료 시 기존의 백업 데이터는 소멸됩니다.\n\n2. 복원 중 네트워크 연결 끊김과 앱 종료에 주의해주세요.\n\n3. 복원이 완료되면 앱이 종료됩니다.\n\n현재 존재하는 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n\n\(message)", preferredStyle: .alert)
+            alert.setFont(font: nil, title: "복원", message: "1. 복원 완료 시 기존의 백업 데이터는 소멸됩니다.\n\n2. 복원 중 네트워크 연결 끊김과 앱 종료에 주의해주세요.\n\n3. 복원이 완료되면 앱이 종료됩니다.\n\n현재 존재하는 앨범 정보를 삭제하고 복원을 진행하시겠습니까?\n\n\(message)")
             
             let cancleAction = UIAlertAction(title: "취소", style: .default) { action in
                 alert.dismiss(animated: false)
@@ -257,8 +262,23 @@ class HomeiCloudSettingViewController: UIViewController {
                             if content.hasSuffix(".nost") {
                                 let albumCoverName = content.replacingOccurrences(of: ".nost", with: "")
                                 let shareFilePath = iCloudDocsURL.appendingPathComponent(content)
-                                unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: shareFilePath)
-                                importAlbumInfo(albumCoverName: albumCoverName, useForShare: false)
+                                do{
+                                    try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: shareFilePath)
+                                } catch let error {
+                                    NSErrorHandling_Alert(error: error, vc: self)
+                                    // MARK: - 해제 된 디렉토리들을 이름을 비교해서 전부 삭제 해줘야 함
+                                    // 풀릴 예정이었던 앨범 이름들을 전부 가져오는 방법을 생각해봐야 함
+                                    
+                                    return
+                                }
+                                do{
+                                    try importAlbumInfo(albumCoverName: albumCoverName, useForShare: false)
+                                } catch let error {
+                                    NSErrorHandling_Alert(error: error, vc: self)
+                                    // MARK: - 이미 import 되어버린 부분들을 되돌릴 방법을 찾아봐야함 (RealmDB는 너무 까다로움)
+                                    // 난이도 급상승 구간
+                                    return
+                                }
                             }
                         }
                         print("SUCCESS :: Complete Recover!")

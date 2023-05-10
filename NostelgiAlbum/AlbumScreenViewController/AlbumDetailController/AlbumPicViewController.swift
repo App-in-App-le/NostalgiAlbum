@@ -13,10 +13,11 @@ class AlbumPicViewController: UIViewController {
     @IBOutlet weak var picImage: UIButton!
     @IBOutlet weak var picImageShadowView: UIView!
     @IBOutlet weak var settingBtn: UIButton!
+    weak var picture: album!
+    weak var collectionViewInAlbum : UICollectionView!
+    
     let realm = try! Realm()
     var index: Int!
-    var picture: album!
-    var collectionViewInAlbum : UICollectionView!
     
     var width: CGFloat?
     var height: CGFloat?

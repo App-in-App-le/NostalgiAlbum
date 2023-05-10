@@ -3,9 +3,9 @@ import RealmSwift
 
 class SettingViewController: UIViewController {
     // MARK: - Properties
+    weak var albumScreenVC: AlbumScreenViewController! = nil
     var tableView: UITableView! = nil
     var tableCons: [NSLayoutConstraint]! = nil
-    var albumScreenVC: AlbumScreenViewController! = nil
     var index: Int!
     var font: String!
     

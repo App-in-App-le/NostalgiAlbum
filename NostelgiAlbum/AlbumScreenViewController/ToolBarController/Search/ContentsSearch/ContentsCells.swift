@@ -6,10 +6,10 @@ class ContentsCells : UICollectionViewCell {
     let button = PageButton()
     let title = UILabel()
     let contents = VerticalAlignLabel()
-//    let contents = UILabel()
     let titleText = UILabel()
     let contentsText = UILabel()
     var index: Int!
+    
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -1,11 +1,13 @@
 import UIKit
 import RealmSwift
 // MARK: - Delegate
-protocol PageDelegate {
+protocol PageDelegate: AnyObject {
     func scrollCenter()
 }
 
 class PageSearchViewController: UIViewController {
+    weak var delegate: SearchDelegate! = nil
+    
     var stackView: UIStackView!
     var collectionView: PageCollectionView!
     var button: PageButton!
@@ -24,7 +26,6 @@ class PageSearchViewController: UIViewController {
     var didScroll: Bool = true // 버튼 누르기 전 스크롤을 수행했는지
     var previousButton: Int = -1
     var currentPageNum: Int = -1
-    var delegate: SearchDelegate! = nil
     var pageButtonList = Array<PageButton>()
     var data: Results<album>! = nil
     var index: Int!

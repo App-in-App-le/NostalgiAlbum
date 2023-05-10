@@ -1,12 +1,13 @@
 import UIKit
 
-protocol SearchDelegate{
+protocol SearchDelegate: AnyObject {
     func pushPage(currentPageNum: Int, targetPageNum: Int)
     func popPage(difBetCurTar: Int)
 }
 
 class ContentsSearchViewController: UIViewController {
     
+    weak var delegate: SearchDelegate! = nil
     let contentsController = ContentsController()
     let contentsCells = ContentsCells()
     let searchBar = UISearchBar()
@@ -15,7 +16,6 @@ class ContentsSearchViewController: UIViewController {
     var coverIndex: Int = -1
     var pageCount: Int = 0
     var currentPageNum: Int = -1
-    var delegate: SearchDelegate! = nil
     let backButton = UIButton()
     let topBorder = UIView()
     let bottomBorder = UIView()

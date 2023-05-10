@@ -10,6 +10,10 @@ extension HomeScreenViewController: UICollectionViewDataSource{
         // Dequeue Reusable cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeScreenCollectionViewCell", for: indexPath) as! HomeScreenCollectionViewCell
         // Initialize Buttons' properties
+        let cellHeight = collectionView.bounds.height / 3 / 5 * 4
+        let cellWidth = cellHeight / 4 * 3
+        cell.setFirstButton(height: cellHeight)
+        cell.setSecondButton(height: cellHeight)
         cell.firstButton.setImage(UIImage(systemName: "plus"), for: .normal)
         cell.secondButton.setImage(UIImage(systemName: "plus"), for: .normal)
         cell.firstButton.gestureRecognizers = nil
@@ -37,10 +41,10 @@ extension HomeScreenViewController: UICollectionViewDataSource{
             // First Button
             if let firstbuttonInfo = realm.objects(albumCover.self).filter("id = \(indexPath.row * 2 + 1)").first {
                 if firstbuttonInfo.isCustomCover == false {
-                    cell.firstButton.setImage(UIImage(named: firstbuttonInfo.coverImageName), for: .normal)
+                    cell.firstButton.setImage(UIImage(named: firstbuttonInfo.coverImageName)?.resize(newWidth: cellWidth, newHeight: cellHeight, byScale: false), for: .normal)
                 } else {
                     let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(firstbuttonInfo.albumName)_CoverImage.jpeg", albumTitle: firstbuttonInfo.albumName)
-                    cell.firstButton.setImage(customCoverImage?.resize(newWidth: 120, newHeight: 160, byScale: false), for: .normal)
+                    cell.firstButton.setImage(customCoverImage?.resize(newWidth: cellWidth, newHeight: cellHeight, byScale: false), for: .normal)
                 }
                 let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
                 LongPressGestureRecognizer.albumIndex = indexPath.row * 2 + 1
@@ -53,10 +57,10 @@ extension HomeScreenViewController: UICollectionViewDataSource{
             if let secondbuttonInfo = realm.objects(albumCover.self).filter("id = \(indexPath.row * 2 + 2)").first {
                 
                 if secondbuttonInfo.isCustomCover == false {
-                    cell.secondButton.setImage(UIImage(named: secondbuttonInfo.coverImageName), for: .normal)
+                    cell.secondButton.setImage(UIImage(named: secondbuttonInfo.coverImageName)?.resize(newWidth: cellWidth, newHeight: cellHeight, byScale: false), for: .normal)
                 } else {
                     let customCoverImage = loadImageFromDocumentDirectory(imageName: "\(secondbuttonInfo.albumName)_CoverImage.jpeg", albumTitle: secondbuttonInfo.albumName)
-                    cell.secondButton.setImage(customCoverImage?.resize(newWidth: 120, newHeight: 160, byScale: false), for: .normal)
+                    cell.secondButton.setImage(customCoverImage?.resize(newWidth: cellWidth, newHeight: cellHeight, byScale: false), for: .normal)
                 }
                 let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
                 LongPressGestureRecognizer.albumIndex = indexPath.row * 2 + 2

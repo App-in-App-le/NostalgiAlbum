@@ -4,7 +4,7 @@ class SetPictureNameViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var pictureName: UITextField!
     @IBOutlet weak var wordCountLabel: UILabel!
-    var editVC: AlbumEditViewController!
+    weak var editVC: AlbumEditViewController!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {

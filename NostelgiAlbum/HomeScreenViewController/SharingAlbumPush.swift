@@ -11,7 +11,7 @@ extension HomeScreenViewController {
         
         // Push shareVC
         shareVC.modalPresentationStyle = .overFullScreen
-        self.present(shareVC, animated: true)
+        self.present(shareVC, animated: false)
     }
     
 }

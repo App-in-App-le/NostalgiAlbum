@@ -12,8 +12,9 @@ class HomeEditViewController: UIViewController {
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var cancleButton: UIButton!
     @IBOutlet weak var divideLine: UILabel!
+    weak var collectionViewInHome : UICollectionView!
+    
     let realm = try! Realm()
-    var collectionViewInHome : UICollectionView!
     var defaultCoverColor: String! = ""
     // Modifying
     var IsModifyingView : Bool = false
