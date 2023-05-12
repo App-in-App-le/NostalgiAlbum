@@ -28,7 +28,6 @@
 		8092C3A3298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8092C3A2298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift */; };
 		8092C3A5298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */; };
 		8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2328EDC65500E70F76 /* AppDelegate.swift */; };
-		8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2528EDC65500E70F76 /* SceneDelegate.swift */; };
 		8094CA2B28EDC65500E70F76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8094CA2928EDC65500E70F76 /* Main.storyboard */; };
 		8094CA2D28EDC65900E70F76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8094CA2C28EDC65900E70F76 /* Assets.xcassets */; };
 		8094CA3028EDC65900E70F76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */; };
@@ -117,7 +116,6 @@
 		8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+ButtonAction.swift"; sourceTree = "<group>"; };
 		8094CA2028EDC65500E70F76 /* NostelgiAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NostelgiAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8094CA2328EDC65500E70F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8094CA2528EDC65500E70F76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8094CA2A28EDC65500E70F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8094CA2C28EDC65900E70F76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8094CA2F28EDC65900E70F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -287,7 +285,6 @@
 				8094CA2928EDC65500E70F76 /* Main.storyboard */,
 				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
 				8094CA2328EDC65500E70F76 /* AppDelegate.swift */,
-				8094CA2528EDC65500E70F76 /* SceneDelegate.swift */,
 				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
 				80D580F329FBFEDD00EF65C9 /* Fonts */,
 			);
@@ -751,7 +748,6 @@
 				8320291F295EA8E2001709E9 /* AlbumEditViewController.swift in Sources */,
 				8092C3A3298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift in Sources */,
 				83C615F629994CE30018BBAF /* ToolBarButtonAction.swift in Sources */,
-				8094CA2628EDC65500E70F76 /* SceneDelegate.swift in Sources */,
 				807A193C29312CEF00BC434B /* RealmClassFunc.swift in Sources */,
 				83E5D2B629E80410001C7DE0 /* PageCells.swift in Sources */,
 				8080200E29E18B9700CECCB8 /* InfoViewController.swift in Sources */,
@@ -934,7 +930,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A6XY8WY2J;
+				DEVELOPMENT_TEAM = N7AA7Y5KM6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera";
@@ -950,7 +946,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.App-in-App-le.NostelgiAlbum";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chopmozzi.NostelgiAlbum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -969,7 +965,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A6XY8WY2J;
+				DEVELOPMENT_TEAM = N7AA7Y5KM6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera";
@@ -985,7 +981,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.App-in-App-le.NostelgiAlbum";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chopmozzi.NostelgiAlbum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

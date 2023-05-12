@@ -78,12 +78,12 @@ func exportAlbumInfo(coverData: String) throws {
     arrCoverInfo.append("\(albumCoverData.first!.id)")
     arrCoverInfo.append("\(albumCoverData.first!.coverImageName)")
     arrCoverInfo.append("\(albumCoverData.first!.isCustomCover)")
-    arrCoverInfo.append("\(albumCoverData.first!.albumName)")
     
     // albumData
     for album in albumData {
         arrImageText.append("\(album.ImageText)")
         arrImageName.append("\(album.ImageName)")
+        print("chop: \(album)")
     }
     
     // albumInfoData
@@ -224,7 +224,7 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) throws {
     }
     shareAlbumCover.coverImageName = arrCoverInfo[1]
     shareAlbumCover.isCustomCover = Bool(arrCoverInfo[2])!
-    shareAlbumCover.albumName = arrCoverInfo[3]
+    shareAlbumCover.albumName = albumCoverName
     
     
     let shareAlbumInfo = albumsInfo()

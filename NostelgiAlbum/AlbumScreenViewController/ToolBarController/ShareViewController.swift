@@ -48,6 +48,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
                 return
             }
             do {
+                albumCoverName = albumName.text
                 //realm에 공유받은 album정보 write
                 try importAlbumInfo(albumCoverName: albumCoverName, useForShare: true)
             } catch let error {
