@@ -37,8 +37,12 @@ func zipAlbumDirectory(AlbumCoverName: String) throws -> URL? {
             }
             do {
                 //zip -> nost write
-                if let data = try? Data(contentsOf: zipFilePath) {
+                if var data = try? Data(contentsOf: zipFilePath) {
                     let newURL = URL(filePath: nostURL.path)
+                    let stringToAdd = "@"
+                    let stringData = stringToAdd.data(using: .utf8)
+                    data.append(stringData!)
+                    
                     try? data.write(to: newURL)
                     try FileManager.default.removeItem(at: zipFilePath)
                 } else {
@@ -78,12 +82,12 @@ func exportAlbumInfo(coverData: String) throws {
     arrCoverInfo.append("\(albumCoverData.first!.id)")
     arrCoverInfo.append("\(albumCoverData.first!.coverImageName)")
     arrCoverInfo.append("\(albumCoverData.first!.isCustomCover)")
-    arrCoverInfo.append("\(albumCoverData.first!.albumName)")
     
     // albumData
     for album in albumData {
         arrImageText.append("\(album.ImageText)")
         arrImageName.append("\(album.ImageName)")
+        print("chop: \(album)")
     }
     
     // albumInfoData
@@ -153,6 +157,16 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) throws {
     // unzip한 파일들 저장할 디렉토리 생성
     do {
         let data = try Data(contentsOf: shareFilePath)
+        let lastByte = data.last
+//        let lastByte = data.suffix(1)
+        if let lastByte = lastByte {
+            if lastByte == UInt8(ascii: "@") {
+                print("lastByte: \(lastByte)")
+            }
+            print("lastByte: \(lastByte)")
+        }
+//        print("lasbyte: \(lastByte)")
+        print("중간 지점")
         try data.write(to: zipURL)
         try Zip.unzipFile(zipURL, destination: zipURL.deletingPathExtension(), overwrite: true, password: nil)
         try changeIfModifyName(albumCoverName: AlbumCoverName)
@@ -224,7 +238,7 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) throws {
     }
     shareAlbumCover.coverImageName = arrCoverInfo[1]
     shareAlbumCover.isCustomCover = Bool(arrCoverInfo[2])!
-    shareAlbumCover.albumName = arrCoverInfo[3]
+    shareAlbumCover.albumName = albumCoverName
     
     
     let shareAlbumInfo = albumsInfo()
