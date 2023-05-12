@@ -9,9 +9,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         deleteTmpFiles()
         nostFileRemove()
-        deleteTmpPicture()
-        // moveItem한 곳을 비우는 지점(강제종료가 돼서 데이터가 남아있다 가정) 1
-//        KakaoSDK.initSDK(appKey: "ba34b359e20b51a415f50d09ccd869f2")
         return true
     }
     
