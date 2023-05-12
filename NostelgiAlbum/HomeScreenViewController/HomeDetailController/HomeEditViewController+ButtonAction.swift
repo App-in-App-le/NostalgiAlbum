@@ -256,6 +256,9 @@ extension HomeEditViewController {
             }
         }
         
+        // delete tmp picture files
+        deleteTmpFiles()
+        
         // Reload HomeScreenView's collectionView
         collectionViewInHome.reloadData()
         

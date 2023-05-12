@@ -9,7 +9,8 @@ extension AlbumScreenViewController {
                 switch swipeGesture.direction{
                 case UISwipeGestureRecognizer.Direction.right :
                     if pageNum != 0 {
-                        if albumScreenVC != nil && isFontChanged == true {
+                        if albumScreenVC != nil && isFontChanged == true && albumScreenVC?.navigationItem.titleView != nil {
+                            // Font를 바꿔주는 부분
                             albumScreenVC!.setFont()
                             albumScreenVC!.collectionView.reloadData()
                             albumScreenVC!.isFontChanged = true
@@ -41,9 +42,6 @@ extension AlbumScreenViewController {
     }
     
     @objc func popToHome() {
-        try! realm.write {
-            realm.objects(albumsInfo.self).filter("id = \(coverIndex)").first!.lastViewingPage = pageNum + 1
-        }
         self.navigationController?.popToRootViewController(animated: false)
     }
     

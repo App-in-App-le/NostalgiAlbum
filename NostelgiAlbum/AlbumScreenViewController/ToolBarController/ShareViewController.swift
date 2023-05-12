@@ -40,10 +40,10 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
         //.nost file URL에서 .nost앞 앨범 이름만 따옴
         if(!existedAlbum) {
             do {
-                try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: filePath!)
+                try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: filePath!, deleteShareFile: true)
             } catch let error {
                 NSErrorHandling_Alert(error: error, vc: self)
-                // MARK: - 해당 unzip되던 앨범 디렉토리가 있는지 확인하고 삭제해줘야 함
+                // MARK: - Document에 저장된 album Directory 삭제
                 guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
                 if FileManager.default.fileExists(atPath: documentDirectory.appendingPathComponent(albumCoverName).path) {
                     do {
@@ -55,11 +55,12 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
                 return
             }
             do {
+                albumCoverName = albumName.text
                 //realm에 공유받은 album정보 write
                 try importAlbumInfo(albumCoverName: albumCoverName, useForShare: true)
             } catch let error {
                 NSErrorHandling_Alert(error: error, vc: self)
-                // MARK: - 받다만 정보들을 처리해줘야 함 + 공유 받은 albumDirectory도 삭제 해야 함
+                // MARK: - RealmDB에 들어간 정보 삭제 + Document에 저장된 album Directory 삭제
                 // Realm에 있는 정보 삭제
                 // Realm에 입력되는 순서 -> album, albumsInfo, albumCover
                 let albums = realm.objects(album.self).filter("AlbumTitle = \(albumCoverName!)")
@@ -96,6 +97,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
                         }
                     }
                 }
+                
                 // Document에 생성된 Album Directory 삭제
                 guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
                 if FileManager.default.fileExists(atPath: documentDirectory.appendingPathComponent(albumCoverName).path) {
