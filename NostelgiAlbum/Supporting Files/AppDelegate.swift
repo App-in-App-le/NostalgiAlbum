@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //rootViewControlelr에 객체 값 할당
         window?.rootViewController = vc
         window?.rootViewController = navigationController
+        
         // moveItem을 하는 지점 3
         if(url.scheme == "file" && url.pathExtension == "nost")
         {

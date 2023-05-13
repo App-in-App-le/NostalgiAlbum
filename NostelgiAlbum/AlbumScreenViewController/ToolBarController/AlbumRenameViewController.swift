@@ -24,6 +24,7 @@ class AlbumRenameViewController: UIViewController {
         if albumTextField.text == "" {
             print("비어있습니다.")
         } else {
+            shareVC.albumCoverName = albumTextField.text
             shareVC.loadingAlbumInfo()
             shareVC.albumName.text = albumTextField.text
             self.dismiss(animated: true)

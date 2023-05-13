@@ -28,7 +28,7 @@ class AlbumScreenViewController: UIViewController {
         let albumName = realm.objects(albumCover.self).filter("id = \(coverIndex)").first!.albumName
         titleName.text = albumName
         titleName.textColor = .white
-        titleName.font = UIFont.boldSystemFont(ofSize: 18)
+//        titleName.font = UIFont.boldSystemFont(ofSize: 18)
         titleName.numberOfLines = 0
         titleName.sizeToFit()
         titleName.textAlignment = .center
@@ -70,6 +70,8 @@ class AlbumScreenViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
         navigationController?.isToolbarHidden = false
+        setFont()
+
     }
     
     // MARK: - Methods

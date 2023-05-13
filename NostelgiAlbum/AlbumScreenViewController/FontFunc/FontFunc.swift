@@ -11,8 +11,12 @@ extension AlbumScreenViewController {
         let selected_font_Kor = albumInfo.font
         let selected_font_Eng = FontSet().font[selected_font_Kor]
         
+        print("view: \(self.navigationItem.titleView)")
+        print("suvView: ",self.navigationItem.titleView?.subviews)
         let titleLabel = self.navigationItem.titleView as! UILabel
         titleLabel.font = UIFont(name: selected_font_Eng!, size: 18)
+        print("titleLabel: \(titleLabel.text)")
+        print("titleLabel Font: \(titleLabel.font)")
         
         let pageNumButton = self.navigationItem.rightBarButtonItem?.customView as! UIButton
         pageNumButton.titleLabel?.font = UIFont(name: selected_font_Eng!, size: 15)
