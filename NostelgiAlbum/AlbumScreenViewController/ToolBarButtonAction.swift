@@ -22,6 +22,23 @@ extension AlbumScreenViewController {
         do {
             fileURL = try zipAlbumDirectory(AlbumCoverName: coverData.first!.albumName)
         } catch let error {
+            // txt 파일이 있는지 확인하고 있으면 다 삭제
+            // 잔여 txt파일 삭제
+            do {
+                let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                // 해당 앨범 정보 불러오기
+                let contents = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.appendingPathComponent(coverData.first!.albumName).path)
+                // 해당 앨범 정보 중 txt파일은 모두 삭제
+                for content in contents {
+                    if content.hasSuffix(".txt") {
+                        do {
+                            try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent(coverData.first!.albumName).appendingPathComponent(content))
+                        }
+                    }
+                }
+            } catch let error as NSError{
+                print("FileManager Error Occur :: \(error)")
+            }
             NSErrorHandling_Alert(error: error, vc: self)
             return
         }

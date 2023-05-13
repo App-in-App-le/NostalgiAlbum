@@ -99,8 +99,8 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
             setLayout(HeightIsLonger: false)
             pictureImgButton?.setImage(image?.resize(newWidth: self.bounds.width / 4 * 3, newHeight: self.bounds.width / 16 * 9, byScale: false), for: .normal)
         }
-        // Set image and text.
-        pictureLabel!.text = albumInfo.ImageText
+        // Set image and text(imageName).
+        pictureLabel!.text = albumInfo.ImageName
 //        pictureImgButton?.layer.borderWidth = 5
 //        pictureImgButton?.layer.borderColor = UIColor.white.cgColor
     }

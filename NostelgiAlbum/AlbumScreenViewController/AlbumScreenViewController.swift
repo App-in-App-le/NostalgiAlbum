@@ -35,7 +35,6 @@ class AlbumScreenViewController: UIViewController {
         let widthConstraint = titleName.widthAnchor.constraint(equalToConstant: 200)
         widthConstraint.isActive = true
 //        titleName.clipsToBounds = true
-        print("size\(titleName.layer.frame.width)")
         navigationItem.titleView = titleName
         
         let pageNumButton = UIButton()
@@ -70,6 +69,11 @@ class AlbumScreenViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
         navigationController?.isToolbarHidden = false
+        // 해당 앨범에서 몇 페이지에 머물렀는지 확인하기 위해 설정
+        try! realm.write {
+            realm.objects(albumsInfo.self).filter("id = \(coverIndex)").first!.lastViewingPage = pageNum + 1
+        }
+        print("TEST :: \(pageNum + 1) 페이지 Appear !!!")
     }
     
     // MARK: - Methods
