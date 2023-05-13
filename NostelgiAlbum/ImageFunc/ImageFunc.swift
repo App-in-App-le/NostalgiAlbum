@@ -115,7 +115,7 @@ extension UIImage {
     }
 }
 
-func deleteTmpPicture() {
+func deleteTmpFiles() {
     let tmpDir = NSTemporaryDirectory()
     var fileList : Array<String>! = nil
     

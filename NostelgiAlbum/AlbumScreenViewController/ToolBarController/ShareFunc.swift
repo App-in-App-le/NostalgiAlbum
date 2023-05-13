@@ -146,7 +146,7 @@ func exportAlbumInfo(coverData: String) throws {
     
 }
 
-func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) throws {
+func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL, deleteShareFile: Bool) throws {
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
     // (앨범 이름).zip file을 만들 경로
     let zipURL = documentDirectory.appendingPathComponent("\(AlbumCoverName).zip")
@@ -160,7 +160,9 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL) throws {
         try FileManager.default.removeItem(at: zipURL)
         //filePath == simulator의 경우 tmp/com....NostelgiAlbum-Inbox
         //device의 경우 Inbox/내 .nost파일
-        try FileManager.default.removeItem(at: shareFilePath)
+        if deleteShareFile == true {
+            try FileManager.default.removeItem(at: shareFilePath)
+        }
     } catch let error {
         throw error
     }

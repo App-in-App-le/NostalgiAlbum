@@ -52,10 +52,43 @@ class HomeiCloudSettingViewController: UIViewController {
                 }
                 // BackUp
                 do {
-                    let contents = try FileManager.default.contentsOfDirectory(atPath: iCloudDocsURL.path)
+                    var contents = try FileManager.default.contentsOfDirectory(atPath: iCloudDocsURL.path)
                     var message = String()
+                    // iCloud Drive에 .Trash 파일과 .iCloud 파일에 대한 처리
                     if !contents.isEmpty {
                         var Datas = [String]()
+                        for content in contents {
+                            if content.hasSuffix(".Trash") {
+                                do {
+                                    try FileManager.default.removeItem(at: iCloudDocsURL.appendingPathComponent(content))
+                                } catch let error as NSError {
+                                    print("FileManager Remove Error Occur :: \(error)")
+                                }
+                            } else if content.hasSuffix(".icloud") {
+                                do {
+                                    var modifiedContent = content
+                                    modifiedContent.removeFirst()
+                                    let iCloudFileURL = iCloudDocsURL.appendingPathComponent(content)
+                                    let destinationURL = iCloudDocsURL.appendingPathComponent(modifiedContent).deletingPathExtension()
+                                    // 파일 다운로드 시작
+                                    try FileManager.default.startDownloadingUbiquitousItem(at: iCloudFileURL)
+                                    
+                                    // 파일 다운로드가 완료될 때까지 대기
+                                    while !FileManager.default.fileExists(atPath: destinationURL.path) {
+                                        Thread.sleep(forTimeInterval: 0.1)
+                                    }
+                                    
+                                    print("파일 다운로드 완료: \(destinationURL.absoluteString)")
+                                } catch let error {
+                                    // iCloud 파일 내려받는 코드 관련에러도 추가해야할 듯 함
+                                    print("FileManager DownLoadiCloudFiles Error Occur :: \(error.localizedDescription)")
+                                    NSErrorHandling_Alert(error: error, vc: self)
+                                    return
+                                }
+                            }
+                        }
+                        // 첫 번째 Alert
+                        contents = try FileManager.default.contentsOfDirectory(atPath: iCloudDocsURL.path)
                         for content in contents {
                             Datas.append("앨범 명: \(content.replacingOccurrences(of: ".nost", with: ""))")
                         }
@@ -75,10 +108,32 @@ class HomeiCloudSettingViewController: UIViewController {
                                     iCloudNostURL.append(iCloudDocsURL.appendingPathComponent("\(albumCoverInfo.albumName).nost"))
                                 } else {
                                     // newNostURL이 nil인 경우
+                                    // 에러를 불러올 수 없으니 직접 입력
+                                    let error = NSError(domain: "NSCocoaErrorDomain", code: NSFileWriteNoPermissionError)
+                                    // .userDomainMask의 권한 문제가 발생하였다고 일단 표시 (zipAlbumDirectory)
+                                    NSErrorHandling_Alert(error: error, vc: self)
+                                    // text 파일 앞과 같이 삭제
+                                    return
                                 }
                             } catch let error {
                                 // 백업 중에 zipAlbumDirectory에서 문제가 발생
-                                // 백업 중이던 파일을 전부 삭제해줘야 함 -> 문제 발생 시, 앱 껏다 키면 .nost파일은 nostFiles에 있어서 다 알아서 삭제 됨.
+                                // 잔여 txt파일 삭제
+                                do {
+                                    let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                                    // 해당 앨범 정보 불러오기
+                                    let contents = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.appendingPathComponent(albumCoverInfo.albumName).path)
+                                    // 해당 앨범 정보 중 txt파일은 모두 삭제
+                                    for content in contents {
+                                        if content.hasSuffix(".txt") {
+                                            do {
+                                                try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent(albumCoverInfo.albumName).appendingPathComponent(content))
+                                            }
+                                        }
+                                    }
+                                } catch let error as NSError{
+                                    print("FileManager Error Occur :: \(error)")
+                                }
+                                
                                 NSErrorHandling_Alert(error: error, vc: self)
                                 return
                             }
@@ -149,7 +204,40 @@ class HomeiCloudSettingViewController: UIViewController {
             // Success
             // Notice Alert
             do {
-                let contents = try FileManager.default.contentsOfDirectory(atPath: iCloudDocsURL.path)
+                var contents = try FileManager.default.contentsOfDirectory(atPath: iCloudDocsURL.path)
+                for content in contents {
+                    if content.hasSuffix(".Trash") {
+                        do {
+                            try FileManager.default.removeItem(at: iCloudDocsURL.appendingPathComponent(content))
+                        } catch let error as NSError {
+                            print("FileManager Remove Error Occur :: \(error)")
+                        }
+                    } else if content.hasSuffix(".icloud") {
+                        do {
+                            var modifiedContent = content // .chop.nost.icloud
+                            modifiedContent.removeFirst() // chop.nost.icloud -> download -> chop.nost
+                            let iCloudFileURL = iCloudDocsURL.appendingPathComponent(content)
+                            let destinationURL = iCloudDocsURL.appendingPathComponent(modifiedContent).deletingPathExtension()
+                            // 파일 다운로드 시작
+                            try FileManager.default.startDownloadingUbiquitousItem(at: iCloudFileURL)
+                                   
+                            // 파일 다운로드가 완료될 때까지 대기
+                            while !FileManager.default.fileExists(atPath: destinationURL.path) {
+                                Thread.sleep(forTimeInterval: 0.1)
+                                // break 조건을 달아야 하나?
+                                // download 최대 시간 혹은 취소 버튼을 만들어줘야하나?
+                            }
+                                   
+                            print("파일 다운로드 완료: \(destinationURL.absoluteString)")
+                        } catch let error {
+                            // iCloud 파일 내려받는 코드 관련에러도 추가해야할 듯 함
+                            print("FileManager DownLoadiCloudFiles Error Occur :: \(error.localizedDescription)")
+                            NSErrorHandling_Alert(error: error, vc: self)
+                            return
+                        }
+                    }
+                }
+                contents = try FileManager.default.contentsOfDirectory(atPath: iCloudDocsURL.path)
                 if contents.isEmpty {
                     let alert = UIAlertController(title: "백업 파일이 존재하지 않습니다", message: nil, preferredStyle: .alert)
                     alert.setFont(font: nil, title: "백업 파일이 존재하지 않습니다", message: nil)
@@ -201,13 +289,36 @@ class HomeiCloudSettingViewController: UIViewController {
             }
             let confirmAction = UIAlertAction(title: "확인", style: .default) { action in
                 if let iCloudDocsURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") {
+                    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+                    // 기존 정보 복사 -> 복원 실패 대비
+                    do {
+                        try FileManager.default.createDirectory(atPath: documentDirectory.appendingPathComponent("recovery_backup").path, withIntermediateDirectories: true, attributes: nil)
+                        let contents = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.path)
+                        for content in contents {
+                            if content == "recovery_backup" {
+                                continue
+                            }
+                            do {
+                                try FileManager.default.copyItem(at: documentDirectory.appendingPathComponent(content), to: documentDirectory.appendingPathComponent("recovery_backup").appendingPathComponent(content))
+                            }
+                        }
+                    } catch let error as NSError {
+                        // 용량 부족 및 다양한 문제가 발생 할 수 있기 때문
+                        NSErrorHandling_Alert(error: error, vc: self)
+                        // 에러 발생 시 만들던 복사본 디렉토리 삭제
+                        do {
+                            try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent("recovery_backup"))
+                        } catch let error as NSError {
+                            print("FileManager remove Directory Error :: \(error)")
+                        }
+                        return
+                    }
                     // 기존 정보 삭제
                     // Document 정보 삭제
-                    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
                     do {
                         let contents = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.path)
                         for content in contents {
-                            if !content.hasPrefix("default") && !content.hasSuffix("Inbox") {
+                            if !content.hasPrefix("default") && !content.hasSuffix("Inbox") && content != "recovery_backup" {
                                 print(content)
                                 do {
                                     try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent(content))
@@ -257,31 +368,113 @@ class HomeiCloudSettingViewController: UIViewController {
                     // unzip & import data
                     do {
                         let contents = try FileManager.default.contentsOfDirectory(atPath: iCloudDocsURL.path)
-                        print(contents)
                         for content in contents {
                             if content.hasSuffix(".nost") {
                                 let albumCoverName = content.replacingOccurrences(of: ".nost", with: "")
                                 let shareFilePath = iCloudDocsURL.appendingPathComponent(content)
                                 do{
-                                    try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: shareFilePath)
+                                    // deleteShareFile: false -> 백업 파일은 성공 시 삭제
+                                    try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: shareFilePath, deleteShareFile: false)
                                 } catch let error {
+                                    // MARK: - 디비 정보, 사진 정보, 백업 파일 전부 백업했다가 실패 시 전체 복원
+                                    do {
+                                        // Document 파일 전체 삭제
+                                        var contents = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.path)
+                                        for content in contents {
+                                            do {
+                                                if content == "recovery_backup" {
+                                                    continue
+                                                }
+                                                try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent(content))
+                                            } catch let error as NSError {
+                                                print("FileManager removeItem Error :: \(error)")
+                                            }
+                                        }
+                                        // Document에 이전 파일 복원
+                                        contents = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.appendingPathComponent("recovery_backup").path)
+                                        for content in contents {
+                                            do {
+                                                try FileManager.default.moveItem(at: documentDirectory.appendingPathComponent("recovery_backup").appendingPathComponent(content), to: documentDirectory.appendingPathComponent(content))
+                                            } catch let error as NSError {
+                                                print("FileManager moveItem Error :: \(error)")
+                                            }
+                                        }
+                                        // recovery_backup 폴더 삭제
+                                        do {
+                                            try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent("recovery_backup"))
+                                        } catch let error as NSError {
+                                            print("FileManager removeItem Error :: \(error)")
+                                        }
+                                    } catch let error as NSError {
+                                        print("FileManager contentsOfDirectory Error :: \(error)")
+                                    }
+                                    // Alert 띄우기
                                     NSErrorHandling_Alert(error: error, vc: self)
-                                    // MARK: - 해제 된 디렉토리들을 이름을 비교해서 전부 삭제 해줘야 함
-                                    // 풀릴 예정이었던 앨범 이름들을 전부 가져오는 방법을 생각해봐야 함
-                                    
                                     return
                                 }
+                                
                                 do{
                                     try importAlbumInfo(albumCoverName: albumCoverName, useForShare: false)
                                 } catch let error {
+                                    // MARK: - 디비 정보, 사진 정보, 백업 파일 전부 백업했다가 실패 시 전체 복원
+                                    do {
+                                        // Document 파일 전체 삭제
+                                        var contents = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.path)
+                                        for content in contents {
+                                            do {
+                                                if content == "recovery_backup" {
+                                                    continue
+                                                }
+                                                try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent(content))
+                                            } catch let error as NSError {
+                                                print("FileManager removeItem Error :: \(error)")
+                                            }
+                                        }
+                                        // Document에 이전 파일 복원
+                                        contents = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.appendingPathComponent("recovery_backup").path)
+                                        for content in contents {
+                                            do {
+                                                try FileManager.default.moveItem(at: documentDirectory.appendingPathComponent("recovery_backup").appendingPathComponent(content), to: documentDirectory.appendingPathComponent(content))
+                                            } catch let error as NSError {
+                                                print("FileManager moveItem Error :: \(error)")
+                                            }
+                                        }
+                                        // recovery_backup 폴더 삭제
+                                        do {
+                                            try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent("recovery_backup"))
+                                        } catch let error as NSError {
+                                            print("FileManager removeItem Error :: \(error)")
+                                        }
+                                    } catch let error as NSError {
+                                        print("FileManager contentsOfDirectory Error :: \(error)")
+                                    }
+                                    // Alert 띄우기
                                     NSErrorHandling_Alert(error: error, vc: self)
-                                    // MARK: - 이미 import 되어버린 부분들을 되돌릴 방법을 찾아봐야함 (RealmDB는 너무 까다로움)
-                                    // 난이도 급상승 구간
                                     return
                                 }
                             }
                         }
+                        // 성공
                         print("SUCCESS :: Complete Recover!")
+                        
+                        // iCloud에 있는 백업 파일 삭제
+                        for content in contents {
+                            let shareFilePath = iCloudDocsURL.appendingPathComponent(content)
+                            do {
+                                try FileManager.default.removeItem(at: shareFilePath)
+                            } catch let error as NSError {
+                                print("FileManager removeItem Error :: \(error)")
+                            }
+                        }
+                        
+                        // recovery_backup directory 삭제
+                        do {
+                            try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent("recovery_backup"))
+                        } catch let error as NSError {
+                            print("FileManager removeItem error Occur :: \(error)")
+                        }
+                        
+                        // 앱 종료
                         UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             exit(0)

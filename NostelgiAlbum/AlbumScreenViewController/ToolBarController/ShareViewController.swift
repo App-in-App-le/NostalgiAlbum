@@ -40,11 +40,18 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
         //.nost file URL에서 .nost앞 앨범 이름만 따옴
         if(!existedAlbum) {
             do {
-                try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: filePath!)
+                try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: filePath!, deleteShareFile: true)
             } catch let error {
                 NSErrorHandling_Alert(error: error, vc: self)
-                // MARK: - 해당 unzip되던 앨범 디렉토리가 있는지 확인하고 삭제해줘야 함
-                
+                // MARK: - Document에 저장된 album Directory 삭제
+                guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+                if FileManager.default.fileExists(atPath: documentDirectory.appendingPathComponent(albumCoverName).path) {
+                    do {
+                        try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent(albumCoverName))
+                    } catch let error as NSError{
+                        print("Error Occur In ShareViewController :: \(error)")
+                    }
+                }
                 return
             }
             do {
@@ -53,8 +60,53 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
                 try importAlbumInfo(albumCoverName: albumCoverName, useForShare: true)
             } catch let error {
                 NSErrorHandling_Alert(error: error, vc: self)
-                // MARK: - 받다만 정보들을 처리해줘야 함
+                // MARK: - RealmDB에 들어간 정보 삭제 + Document에 저장된 album Directory 삭제
+                // Realm에 있는 정보 삭제
+                // Realm에 입력되는 순서 -> album, albumsInfo, albumCover
+                let albums = realm.objects(album.self).filter("AlbumTitle = \(albumCoverName!)")
+                if let firstPicture = albums.first {
+                    let albumId = firstPicture.index
+                    // album 정보 삭제
+                    for album in albums {
+                        do {
+                            try realm.write {
+                                realm.delete(album)
+                            }
+                        } catch let error as NSError{
+                            print("Error occur in ShareViewController [OpenInButtonTapped] :: \(error)")
+                        }
+                    }
+                    // albumsInfo 정보 삭제
+                    if let albumsInfo = realm.objects(albumsInfo.self).filter("id = \(albumId)").first {
+                        do {
+                            try realm.write {
+                                realm.delete(albumsInfo)
+                            }
+                        } catch let error as NSError{
+                            print("Error occur in ShareViewController [OpenInButtonTapped] :: \(error)")
+                        }
+                    }
+                    // albumCover 정보 삭제
+                    if let albumCover = realm.objects(albumCover.self).filter("id = \(albumId)").first {
+                        do {
+                            try realm.write {
+                                realm.delete(albumCover)
+                            }
+                        } catch let error as NSError{
+                            print("Error occur in ShareViewController [OpenInButtonTapped] :: \(error)")
+                        }
+                    }
+                }
                 
+                // Document에 생성된 Album Directory 삭제
+                guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+                if FileManager.default.fileExists(atPath: documentDirectory.appendingPathComponent(albumCoverName).path) {
+                    do {
+                        try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent(albumCoverName))
+                    } catch let error as NSError{
+                        print("Error Occur In ShareViewController :: \(error)")
+                    }
+                }
                 return
             }
             //album reload

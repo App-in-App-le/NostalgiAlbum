@@ -54,7 +54,7 @@ extension AlbumEditViewController {
         } else {
             addPic()
         }
-        deleteTmpPicture()
+        deleteTmpFiles()
         collectionViewInAlbum.reloadData()
         
         dismiss(animated: false) {
