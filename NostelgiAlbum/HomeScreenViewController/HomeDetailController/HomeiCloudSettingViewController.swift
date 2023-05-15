@@ -105,7 +105,7 @@ class HomeiCloudSettingViewController: UIViewController {
                             // 첫 번째 Alert
                             contents = try FileManager.default.contentsOfDirectory(atPath: iCloudDocsURL.path)
                             for content in contents {
-                                Datas.append("앨범 명: \(content.replacingOccurrences(of: ".nost", with: ""))")
+                                Datas.append("앨범 명: \(content.replacingOccurrences(of: ".nost", with: "").precomposedStringWithCanonicalMapping)")
                             }
                             message = "1. 백업 진행 시, 이전 백업 데이터가 삭제되고 현재 앨범 정보가 저장됩니다.\n\n2. 백업 중 네트워크 연결 끊김과 앱 종료에 주의해주세요.\n\n기존 백업 데이터가 존재합니다!\n\n[이전 백업 데이터]\n\(Datas.joined(separator: "\n"))"
                         } else {
@@ -331,7 +331,7 @@ class HomeiCloudSettingViewController: UIViewController {
                 let okAction = UIAlertAction(title: "확인", style: .default) { action in
                     var Datas = [String]()
                     for AlbumData in AlbumDatas {
-                        Datas.append("앨범 명: \(AlbumData.replacingOccurrences(of: ".nost", with: ""))")
+                        Datas.append("앨범 명: \(AlbumData.replacingOccurrences(of: ".nost", with: "").precomposedStringWithCanonicalMapping)")
                     }
                     let message = "[백업 데이터]\n\(Datas.joined(separator: "\n"))"
                     
