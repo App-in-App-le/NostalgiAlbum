@@ -35,8 +35,9 @@ class HomeEditViewController: UIViewController {
         editView.clipsToBounds = true
         editView.layer.cornerRadius = 15
         // coverImage
-        coverImage.image = UIImage(systemName: "photo")
+        coverImage.image = UIImage(systemName: "photo.on.rectangle.angled")
         coverImage.layer.cornerRadius = 5
+        coverImage.tintColor = .darkGray
         coverImage.layer.borderColor = UIColor.systemGray3.cgColor
         coverImage.layer.borderWidth = 0.5
         // selectButton

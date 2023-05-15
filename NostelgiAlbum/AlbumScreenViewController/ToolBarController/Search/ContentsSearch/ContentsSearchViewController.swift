@@ -6,7 +6,7 @@ protocol SearchDelegate: AnyObject {
 }
 
 class ContentsSearchViewController: UIViewController {
-    
+    // MARK: - Properties
     weak var delegate: SearchDelegate! = nil
     let contentsController = ContentsController()
     let contentsCells = ContentsCells()
@@ -19,11 +19,11 @@ class ContentsSearchViewController: UIViewController {
     let backButton = UIButton()
     let topBorder = UIView()
     let bottomBorder = UIView()
-    //var backButton: UIButton! = nil
     
     enum Section: CaseIterable {
         case main
     }
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,7 @@ class ContentsSearchViewController: UIViewController {
         configureDataSource()
         performQuery(with: nil)
     }
+    
     // MARK: - Methods
     // Move Page to searched page
     @objc func buttonTapped(_ sender: PageButton) {

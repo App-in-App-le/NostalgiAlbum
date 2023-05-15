@@ -3,7 +3,7 @@ import RealmSwift
 import Zip
 
 class ShareViewController: UIViewController, UIDocumentPickerDelegate {
-    
+    // MARK: - Properties
     @IBOutlet weak var editView: UIView!
     @IBOutlet weak var editTitle: UILabel!
     @IBOutlet weak var albumName: UITextField!
@@ -16,6 +16,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     var existedAlbum : Bool!
     var albumCoverName : String!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         albumCoverName = filePath?.deletingPathExtension().lastPathComponent.precomposedStringWithCanonicalMapping
@@ -30,6 +31,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
         setThemeColor()
     }
     
+    // MARK: - Methods
     func setSubViews() {
         // editView
         editView.clipsToBounds = true
@@ -60,6 +62,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
             }
             do {
                 albumCoverName = albumName.text
+                
                 //realm에 공유받은 album정보 write
                 try importAlbumInfo(albumCoverName: albumCoverName, useForShare: true)
             } catch let error {

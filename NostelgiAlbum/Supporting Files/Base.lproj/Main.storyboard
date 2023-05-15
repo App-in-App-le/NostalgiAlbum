@@ -1040,7 +1040,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.26403817530000001" green="0.2859640121" blue="0.45993506909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.2627450980392157" green="0.28627450980392155" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="wrN-oa-0Ag" secondAttribute="bottom" id="99x-5h-RB4"/>
                                     <constraint firstAttribute="height" constant="45" id="IQG-88-VkO"/>
@@ -1383,7 +1383,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <imageReference key="image" image="icloud.and.arrow.up" catalog="system" variableValue="0.0"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="22"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="iCloudButtonAction:" destination="tk2-GR-CMu" eventType="touchUpInside" id="ePt-nP-0Dv"/>
@@ -1408,22 +1408,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jX4-k1-cpO">
-                                        <rect key="frame" x="0.0" y="89" width="80" height="2"/>
+                                        <rect key="frame" x="0.0" y="89" width="80" height="4"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="5RL-f0-rFW"/>
+                                            <constraint firstAttribute="height" constant="4" id="5RL-f0-rFW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0B-RT-5NZ">
-                                        <rect key="frame" x="0.0" y="91" width="80" height="62"/>
+                                        <rect key="frame" x="0.0" y="93" width="80" height="60"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <imageReference key="image" image="scribble.variable" catalog="system"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="scribble.variable" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="23"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="colorSettingButtonAction:" destination="tk2-GR-CMu" eventType="touchUpInside" id="aPS-Ga-QSY"/>

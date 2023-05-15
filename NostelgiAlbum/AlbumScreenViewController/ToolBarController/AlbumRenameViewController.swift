@@ -1,7 +1,7 @@
 import UIKit
 
 class AlbumRenameViewController: UIViewController {
-    
+    // MARK: - Properties
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var albumTextField: UITextField!
@@ -11,6 +11,7 @@ class AlbumRenameViewController: UIViewController {
     var albumCoverName: String!
     var filePath: URL!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         albumTextField.text = shareVC.albumName.text
@@ -22,7 +23,8 @@ class AlbumRenameViewController: UIViewController {
             wordCountLabel.text = "0 / 0"
         }
     }
-
+    
+    // MARK: - Methods
     @IBAction func checkButton(_ sender: Any) {
         if albumTextField.text == "" {
             print("비어있습니다.")

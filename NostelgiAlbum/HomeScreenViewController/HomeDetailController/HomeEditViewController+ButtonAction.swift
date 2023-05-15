@@ -93,7 +93,7 @@ extension HomeEditViewController {
         let realm = try! Realm()
         // Create new Album
         if !IsModifyingView {
-            if coverImage.image == UIImage(systemName: "photo"){
+            if coverImage.image == UIImage(systemName: "photo.on.rectangle.angled"){
                 let imageAlert = UIAlertController(title: "빈 이미지", message: "이미지를 선택해주세요", preferredStyle: UIAlertController.Style.alert)
                 present(imageAlert, animated: true){
                     let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))

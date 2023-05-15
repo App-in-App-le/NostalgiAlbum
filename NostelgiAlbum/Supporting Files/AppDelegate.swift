@@ -9,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         deleteTmpFiles()
         nostFileRemove()
         externalFileRemove()
+        sleep(1)
         return true
     }
     

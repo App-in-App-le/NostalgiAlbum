@@ -16,6 +16,7 @@ class FirstPageSettingViewController: UIViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         loadFont()
         loadFirstPageSetting()
         setTableView()

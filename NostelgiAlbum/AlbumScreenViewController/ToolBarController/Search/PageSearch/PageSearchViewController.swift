@@ -6,8 +6,8 @@ protocol PageDelegate: AnyObject {
 }
 
 class PageSearchViewController: UIViewController {
+    // MARK: - Properties
     weak var delegate: SearchDelegate! = nil
-    
     var stackView: UIStackView!
     var collectionView: PageCollectionView!
     var button: PageButton!
@@ -21,7 +21,6 @@ class PageSearchViewController: UIViewController {
     let fpContentText = paddingLabel()
     let spTitleText = paddingLabel()
     let spContentText = paddingLabel()
-    
     var pageCount: Int = 0 // 전체 페이지 개수
     var didScroll: Bool = true // 버튼 누르기 전 스크롤을 수행했는지
     var previousButton: Int = -1
@@ -29,9 +28,9 @@ class PageSearchViewController: UIViewController {
     var pageButtonList = Array<PageButton>()
     var data: Results<album>! = nil
     var index: Int!
-    
     let realm = try! Realm()
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarcy()

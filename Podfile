@@ -9,6 +9,7 @@ target 'NostelgiAlbum' do
 	pod 'RealmSwift'
 	pod 'Zip', '~> 2.1'
 	pod 'Mantis', '~> 2.8.0'
+	pod 'ReachabilitySwift'
   target 'NostelgiAlbumTests' do
     inherit! :search_paths
     # Pods for testing
