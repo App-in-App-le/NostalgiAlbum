@@ -76,30 +76,39 @@ extension AlbumScreenViewController {
                 print("사진을 삭제하지 못했습니다.")
             }
         }
-        try! realm.write{
-            realm.delete(picture)
-            if pictures.first != nil {
-                picturesInfo.first!.setNumberOfPictures(pictures.first!.index)
-            } else {
-                picturesInfo.first!.numberOfPictures = 0
+        do {
+            try realm.write{
+                realm.delete(picture)
+                if pictures.first != nil {
+                    picturesInfo.first!.setNumberOfPictures(pictures.first!.index)
+                } else {
+                    picturesInfo.first!.numberOfPictures = 0
+                }
             }
+        } catch let error {
+            print("error: \(error.localizedDescription)")
         }
         if num <= pictures.count {
-            for index in num...pictures.count {
-                try! realm.write{
-                    pictures[index-1].perAlbumIndex -= 1
+            do {
+                try realm.write {
+                    for index in num...pictures.count {
+                        pictures[index-1].perAlbumIndex -= 1
+                        let updatePath = "\(pictures[index-1].AlbumTitle)/\(pictures[index-1].AlbumTitle)_\(index).jpeg"
+                        let originPath = "\(pictures[index-1].AlbumTitle)/\(pictures[index-1].AlbumTitle)_\(index + 1).jpeg"
+                        let originDirectory = documentDirectory.appending(path: originPath)
+                        let updateDirectory = documentDirectory.appending(path: updatePath)
+                        print("origin",originDirectory.path)
+                        print("update",updateDirectory.path)
+                        do {
+                            try FileManager.default.moveItem(atPath: originDirectory.path, toPath: updateDirectory.path)
+                        } catch let error {
+                            print("경로가 없습니다.")
+                            NSErrorHandling_Alert(error: error, vc: self)
+                        }
+                    }
                 }
-                let updatePath = "\(pictures[index-1].AlbumTitle)/\(pictures[index-1].AlbumTitle)_\(index).jpeg"
-                let originPath = "\(pictures[index-1].AlbumTitle)/\(pictures[index-1].AlbumTitle)_\(index + 1).jpeg"
-                let originDirectory = documentDirectory.appending(path: originPath)
-                let updateDirectory = documentDirectory.appending(path: updatePath)
-                print("origin",originDirectory.path)
-                print("update",updateDirectory.path)
-                do {
-                    try FileManager.default.moveItem(atPath: originDirectory.path, toPath: updateDirectory.path)
-                } catch {
-                    print("경로가 없습니다.")
-                }
+            } catch let error {
+                print("error : \(error.localizedDescription)")
             }
         }
         collectionView.reloadData()

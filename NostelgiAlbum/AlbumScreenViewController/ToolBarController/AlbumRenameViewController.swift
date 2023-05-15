@@ -1,7 +1,7 @@
 import UIKit
 
 class AlbumRenameViewController: UIViewController {
-
+    
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var albumTextField: UITextField!
@@ -13,11 +13,14 @@ class AlbumRenameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        albumTextField.text = albumCoverName
+        albumTextField.text = shareVC.albumName.text
         albumTextField.becomeFirstResponder()
-        
         albumTextField.delegate = self
-        wordCountLabel.text = "\(albumCoverName.count) / 10"
+        if let text = albumTextField.text {
+            wordCountLabel.text = "(text.count) / 10"
+        } else {
+            wordCountLabel.text = "0 / 0"
+        }
     }
 
     @IBAction func checkButton(_ sender: Any) {

@@ -69,9 +69,14 @@ class AlbumScreenViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
         navigationController?.isToolbarHidden = false
-        // 해당 앨범에서 몇 페이지에 머물렀는지 확인하기 위해 설정
-        try! realm.write {
-            realm.objects(albumsInfo.self).filter("id = \(coverIndex)").first!.lastViewingPage = pageNum + 1
+        do {
+            // 해당 앨범에서 몇 페이지에 머물렀는지 확인하기 위해 설정
+            try realm.write {
+                realm.objects(albumsInfo.self).filter("id = \(coverIndex)").first!.lastViewingPage = pageNum + 1
+            }
+        } catch {
+            print("error: \(error.localizedDescription)")
+            NSErrorHandling_Alert(error: error, vc: self)
         }
         print("TEST :: \(pageNum + 1) 페이지 Appear !!!")
     }

@@ -14,9 +14,15 @@ extension HomeScreenViewController {
         longPressAlert.setFont(font: nil, title: gesture.albumName, message: nil)
         
         // Delete action
-        let delete = UIAlertAction(title: "삭제", style: .default) {
-            (action) in self.deleteAlbumCover(gesture.albumIndex, gesture.albumName)
+        let delete = UIAlertAction(title: "삭제", style: .default) { [weak self] action in
+            do {
+                try self?.deleteAlbumCover(gesture.albumIndex, gesture.albumName)
+            } catch {
+                // 예외 처리
+                print("앨범 커버 삭제 중 에러 발생: \(error.localizedDescription)")
+            }
         }
+        
         delete.setValue(UIColor(red: 0.89, green: 0.25, blue: 0.21, alpha: 0.90), forKey: "titleTextColor")
         
         // Modify action
@@ -36,7 +42,7 @@ extension HomeScreenViewController {
         }
     }
     
-    private func deleteAlbumCover(_ albumIndex : Int, _ albumName : String) {
+    private func deleteAlbumCover(_ albumIndex : Int, _ albumName : String) throws {
         // Realm Data
         let albumCoverNum = realm.objects(albumCover.self).count
         let albumCoverData = realm.objects(albumCover.self).filter("id = \(albumIndex)")
@@ -50,8 +56,9 @@ extension HomeScreenViewController {
                 realm.delete(albumData)
                 realm.delete(albumsInfoData)
             }
-        } catch {
+        } catch let error {
             print("RealmDB에서 파일을 삭제하지 못했습니다.")
+            throw error
         }
         
         // Delete All Data in Documents
@@ -71,17 +78,22 @@ extension HomeScreenViewController {
                 let albumCoverData = realm.objects(albumCover.self).filter("id = \(index)")
                 let albumsInfoData = realm.objects(albumsInfo.self).filter("id = \(index)")
                 let albumData = realm.objects(album.self).filter("index = \(index)")
-                try! realm.write{
-                    albumCoverData.first!.id -= 1
-                    albumsInfoData.first!.id -= 1
-                    if albumData.count != 0{
-                        for data in albumData{
-                            data.index -= 1
+                do {
+                    try realm.write{
+                        albumCoverData.first!.id -= 1
+                        albumsInfoData.first!.id -= 1
+                        if albumData.count != 0{
+                            for data in albumData{
+                                data.index -= 1
+                            }
                         }
+                        realm.add(albumCoverData)
+                        realm.add(albumsInfoData)
+                        realm.add(albumData)
                     }
-                    realm.add(albumCoverData)
-                    realm.add(albumsInfoData)
-                    realm.add(albumData)
+                } catch let error {
+                    print("Realm write error : \(error.localizedDescription)")
+                    throw error
                 }
             }
         } else {

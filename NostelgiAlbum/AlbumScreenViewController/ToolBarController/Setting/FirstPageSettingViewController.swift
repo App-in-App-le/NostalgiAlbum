@@ -127,8 +127,12 @@ extension FirstPageSettingViewController: UITableViewDelegate {
             let firstPageSetting = indexPath.item
             let albumsInfo = realm.objects(albumsInfo.self).filter("id = \(index!)").first!
             if firstPageSetting != albumsInfo.firstPageSetting {
-                try! realm.write {
-                    albumsInfo.firstPageSetting = firstPageSetting
+                do {
+                    try realm.write {
+                        albumsInfo.firstPageSetting = firstPageSetting
+                    }
+                } catch let error {
+                    NSErrorHandling_Alert(error: error, vc: self)
                 }
                 // tableView 다시 그리기 -> 누른 Cell에 따라 설정 값에 체크를 넣어주기 위해
                 loadFirstPageSetting()

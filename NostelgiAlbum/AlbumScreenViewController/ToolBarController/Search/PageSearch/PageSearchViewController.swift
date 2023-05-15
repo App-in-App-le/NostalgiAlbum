@@ -35,12 +35,6 @@ class PageSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarcy()
-        if realm.objects(HomeSetting.self).first == nil {
-            let HomeSettingInfo = HomeSetting()
-            try! realm.write {
-                realm.add(HomeSettingInfo)
-            }
-        }
         setThemeColor()
         setFont()
         // modal dismiss gesutre

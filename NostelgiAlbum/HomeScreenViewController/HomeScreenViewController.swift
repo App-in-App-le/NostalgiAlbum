@@ -18,8 +18,12 @@ class HomeScreenViewController: UIViewController {
         print("####path",Realm.Configuration.defaultConfiguration.fileURL!)
         if realm.objects(HomeSetting.self).first == nil {
             let HomeSettingInfo = HomeSetting()
-            try! realm.write {
-                realm.add(HomeSettingInfo)
+            do {
+                try realm.write {
+                    realm.add(HomeSettingInfo)
+                }
+            } catch let error {
+                NSErrorHandling_Alert(error: error, vc: self)
             }
         }
         setThemeColor()

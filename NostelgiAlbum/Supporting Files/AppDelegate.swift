@@ -1,7 +1,6 @@
 import UIKit
 import os.log
-//import KakaoSDKCommon
-//import KakaoSDKAuth
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -9,13 +8,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         deleteTmpFiles()
         nostFileRemove()
+        externalFileRemove()
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-        // Inbox가 생성이 되는 지점 2
-        print("chopchopchop")
-        print(url.absoluteString)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         //Main.storyboard의 HomeScreenViewController객체를 가져옴
         let vc = storyboard.instantiateViewController(withIdentifier: "HomeScreenViewController")
@@ -31,10 +28,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard let homeScreenViewController = navigationController.viewControllers.first as? HomeScreenViewController else {
                 return false
             }
+            
+            guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                let error = NSError(domain: NSCocoaErrorDomain, code: NSFileReadNoSuchFileError, userInfo: nil)
+                NSErrorHandling_Alert(error: error, vc: homeScreenViewController)
+                return false
+            }
+            let extURL = documentDirectory.appendingPathComponent("extTemp")
+            let extfileURL = extURL.appendingPathComponent(url.lastPathComponent)
+            print("urllast:\(url.lastPathComponent)")
+            print("extfileURL:\(extfileURL)")
+            do {
+                if !FileManager.default.fileExists(atPath: extURL.path) {
+                    try FileManager.default.createDirectory(at: extURL, withIntermediateDirectories: true, attributes: nil)
+                }
+                do {
+                    try FileManager.default.moveItem(at: url, to: extfileURL)
+                } catch let error {
+                    print("move error")
+                    print("error:\(error.localizedDescription)")
+                    NSErrorHandling_Alert(error: error, vc: homeScreenViewController)
+                }
+            } catch let error {
+                print("create dir error")
+                NSErrorHandling_Alert(error: error, vc: homeScreenViewController)
+            }
             //HomeScreenViewController의 pushShareView 동작(파일 URL을 같이 넣어줌)
-            homeScreenViewController.pushShareView(path: url)
+            homeScreenViewController.pushShareView(path: extfileURL)
         }
-        return true
+            return true
         }
     
 

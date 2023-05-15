@@ -18,8 +18,12 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        albumCoverName = filePath?.deletingPathExtension().lastPathComponent
+        albumCoverName = filePath?.deletingPathExtension().lastPathComponent.precomposedStringWithCanonicalMapping
+        if albumCoverName?.count ?? 0 > 10 {
+            albumCoverName = String(albumCoverName?.prefix(9) ?? "")
+        }
         albumName.text = albumCoverName
+        albumCoverName = albumName.text
         albumName.delegate = self //textfield 클릭 시 다른 뷰로 전환되는 delegate 추가
         loadingAlbumInfo()
         setSubViews()
@@ -157,5 +161,33 @@ extension ShareViewController: UITextFieldDelegate {
         renameVC.modalPresentationStyle = .currentContext
         renameVC.modalTransitionStyle = .crossDissolve
         self.present(renameVC, animated: true)
+    }
+}
+
+extension String.Encoding {
+    static let euc_kr = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.EUC_KR.rawValue)))
+}
+
+extension String {
+    func bytesByRemovingPercentEncoding(using encoding: String.Encoding) -> Data {
+        struct My {
+            static let regex = try! NSRegularExpression(pattern: "(%[0-9A-F]{2})|(.)", options: .caseInsensitive)
+        }
+        var bytes = Data()
+        let nsSelf = self as NSString
+        for match in My.regex.matches(in: self, range: NSRange(0..<self.utf16.count)) {
+            if match.range(at:1).location != NSNotFound {
+                let hexString = nsSelf.substring(with: NSMakeRange(match.range(at:1).location+1, 2))
+                bytes.append(UInt8(hexString, radix: 16)!)
+            } else {
+                let singleChar = nsSelf.substring(with: match.range(at:2))
+                bytes.append(singleChar.data(using: encoding) ?? "?".data(using: .ascii)!)
+            }
+        }
+        return bytes
+    }
+    
+    func removingPercentEncoding(using encoding: String.Encoding) -> String? {
+        return String(data: bytesByRemovingPercentEncoding(using: encoding), encoding: encoding)
     }
 }

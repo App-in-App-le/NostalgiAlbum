@@ -65,12 +65,22 @@ extension AlbumEditViewController {
     func modifyPic() {
         let realm = try! Realm()
         let updPicture = (realm.objects(album.self).filter("index = \(picture!.index)"))
-        try! realm.write {
-            updPicture[picture!.perAlbumIndex - 1].ImageName = editName.text!
-            updPicture[picture!.perAlbumIndex - 1].ImageText = editText.text!
+        do {
+            try realm.write {
+                updPicture[picture!.perAlbumIndex - 1].ImageName = editName.text!
+                updPicture[picture!.perAlbumIndex - 1].ImageText = editText.text!
+            }
+        } catch let error {
+            print("Realm Write Error :: \(error.localizedDescription)")
+            NSErrorHandling_Alert(error: error, vc: self)
         }
         let totalPath = "\(picture!.AlbumTitle)_\(picture!.perAlbumIndex).jpeg"
-        saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: picture!.AlbumTitle)
+        do {
+            try saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: picture!.AlbumTitle)
+        } catch let error {
+            print("Modifying Picture Error :: \(error.localizedDescription)")
+            NSErrorHandling_Alert(error: error, vc: self)
+        }
     }
     
     func addPic() {
@@ -82,12 +92,22 @@ extension AlbumEditViewController {
         newPicture.index = index
         newPicture.AlbumTitle = albumCoverName
         newPicture.perAlbumIndex = data.first!.numberOfPictures + 1
-        try! realm.write {
-            realm.add(newPicture)
-            data.first!.setNumberOfPictures(index)
+        do {
+            try realm.write {
+                realm.add(newPicture)
+                data.first!.setNumberOfPictures(index)
+            }
+        } catch let error {
+            print("Realm Write Error :: \(error.localizedDescription)")
+            NSErrorHandling_Alert(error: error, vc: self)
         }
         let totalPath = "\(newPicture.AlbumTitle)_\(newPicture.perAlbumIndex).jpeg"
-        saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: albumCoverName)
+        do {
+            try saveImageToDocumentDirectory(imageName: totalPath, image: (editPicture.imageView?.image!)!, AlbumCoverName: albumCoverName)
+        } catch let error {
+            print("Add Picture Error :: \(error.localizedDescription)")
+            NSErrorHandling_Alert(error: error, vc: self)
+        }
     }
     
     @objc private func didTappedOutside(_ sender: UITapGestureRecognizer){

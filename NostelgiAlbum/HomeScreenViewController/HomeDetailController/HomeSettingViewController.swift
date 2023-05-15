@@ -47,8 +47,12 @@ class HomeSettingViewController: UIViewController {
             print(color.key)
             let action = UIAlertAction(title: color.key, style: .default) { action in
                 let homeSettingInfo = self.realm.objects(HomeSetting.self).first!
-                try! self.realm.write {
-                    homeSettingInfo.themeColor = color.value
+                do {
+                    try self.realm.write {
+                        homeSettingInfo.themeColor = color.value
+                    }
+                } catch let error {
+                    print("색 변경 실패: \(error.localizedDescription)")
                 }
                 self.homeScreenViewController.setThemeColor()
                 self.homeScreenCollectionView.reloadData()
