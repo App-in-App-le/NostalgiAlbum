@@ -2,32 +2,27 @@ import UIKit
 import RealmSwift
 
 class AlbumEditViewController: UIViewController {
-    
+    // MARK: - Properties
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var bodyView: UIView!
     @IBOutlet weak var bottomLabel: UILabel!
-    
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var editPicture: UIButton!
     @IBOutlet weak var editName: UITextField!
     @IBOutlet weak var editText: UITextView!
-    
     weak var picVC : AlbumPicViewController?
     weak var picture: album? = nil
-    
     let realm = try! Realm()
     var collectionViewInAlbum : UICollectionView!
-    
     var index : Int!
     var albumCoverName : String!
-    
     var width: CGFloat?
     var height: CGFloat?
-    
     var isHeightLonger: Bool = true
     var consArray: [NSLayoutConstraint]?
     var newConsArray: [NSLayoutConstraint]?
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         editName.delegate = self
@@ -54,6 +49,7 @@ class AlbumEditViewController: UIViewController {
         setFont()
     }
     
+    // MARK: - Methods
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
@@ -168,6 +164,7 @@ class AlbumEditViewController: UIViewController {
         editName.text = picture.ImageName
         editText.text = picture.ImageText
     }
+    
 }
 
 extension AlbumEditViewController: UITextFieldDelegate {
