@@ -8,7 +8,6 @@ extension HomeScreenViewController {
         shareVC.filePath = path
         // Set collectionView in shareVC properties to reload Data
         shareVC.collectionViewInHome = collectionView
-        
         // Push shareVC
         shareVC.modalPresentationStyle = .overFullScreen
         self.present(shareVC, animated: false)

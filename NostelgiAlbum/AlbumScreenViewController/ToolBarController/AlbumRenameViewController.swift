@@ -18,7 +18,7 @@ class AlbumRenameViewController: UIViewController {
         albumTextField.becomeFirstResponder()
         albumTextField.delegate = self
         if let text = albumTextField.text {
-            wordCountLabel.text = "(text.count) / 10"
+            wordCountLabel.text = "\(text.count) / 10"
         } else {
             wordCountLabel.text = "0 / 0"
         }

@@ -1,5 +1,4 @@
 import UIKit
-import os.log
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -9,6 +8,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         deleteTmpFiles()
         nostFileRemove()
         externalFileRemove()
+        let path = NSHomeDirectory()+"/Library/SplashBoard"
+        do {
+            try FileManager.default.removeItem(atPath: path)
+        } catch {
+            print("launch screen, app icon캐시 삭제 실패: \(error)")
+        }
         sleep(1)
         return true
     }
