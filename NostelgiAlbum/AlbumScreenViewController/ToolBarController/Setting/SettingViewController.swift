@@ -20,6 +20,7 @@ class SettingViewController: UIViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         loadFont()
         setTableView()
         setTableViewHeader()

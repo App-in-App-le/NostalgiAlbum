@@ -8,6 +8,7 @@ class SetPictureDescriptionViewController: UIViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         pictureDescription.text = editVC.editText.text
         wordCountLabel.text = "\(pictureDescription.text.count) / 50"
         

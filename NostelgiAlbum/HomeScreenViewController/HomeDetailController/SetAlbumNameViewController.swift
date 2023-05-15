@@ -9,6 +9,7 @@ class SetAlbumNameViewController: UIViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         albumName.text = editVC.albumName.text
         wordCountLabel.text = "\(albumName.text!.count) / 10"
         albumName.becomeFirstResponder()

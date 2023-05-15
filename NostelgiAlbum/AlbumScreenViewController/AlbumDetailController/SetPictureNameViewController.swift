@@ -8,6 +8,7 @@ class SetPictureNameViewController: UIViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         pictureName.text = editVC.editName.text
         wordCountLabel.text = "\(pictureName.text!.count) / 10"
         pictureName.becomeFirstResponder()

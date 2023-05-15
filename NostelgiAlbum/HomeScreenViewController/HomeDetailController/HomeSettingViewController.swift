@@ -10,6 +10,7 @@ class HomeSettingViewController: UIViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         backgroundStackView.layer.cornerRadius = 5
         backgroundStackView.layer.borderWidth = 2
         backgroundStackView.layer.borderColor = UIColor.black.cgColor

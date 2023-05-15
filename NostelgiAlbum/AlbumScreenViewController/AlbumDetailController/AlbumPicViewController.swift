@@ -2,7 +2,7 @@ import UIKit
 import RealmSwift
 
 class AlbumPicViewController: UIViewController {
-
+    // MARK: - Properties
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
     @IBOutlet weak var bodyView: UIView!
@@ -15,16 +15,14 @@ class AlbumPicViewController: UIViewController {
     @IBOutlet weak var settingBtn: UIButton!
     weak var picture: album!
     weak var collectionViewInAlbum : UICollectionView!
-    
     let realm = try! Realm()
     var index: Int!
-    
     var width: CGFloat?
     var height: CGFloat?
-    
     var consArray: [NSLayoutConstraint]?
     var newConsArray: [NSLayoutConstraint]?
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setShadow()
@@ -36,6 +34,7 @@ class AlbumPicViewController: UIViewController {
         self.view.addGestureRecognizer(swipeRecognizer)
     }
     
+    // MARK: - Methods
     func setupSubviews() {
         // set settingBtn
         settingBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +68,6 @@ class AlbumPicViewController: UIViewController {
             }
             picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: width!, newHeight: height!, byScale: false), for: .normal)
         }
-//        picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: picImage.frame.width, newHeight: (picImage.frame.height)), for: .normal)
         
         // set picName
         picName.translatesAutoresizingMaskIntoConstraints = false
