@@ -144,8 +144,12 @@ extension FontSettingViewController: UITableViewDelegate {
             
             // 현재 글꼴 변경 시, 표시하도록 하는 부분
             if albumsInfo.font != selected_font {
-                try! realm.write {
-                    albumsInfo.font = selected_font
+                do {
+                    try realm.write {
+                        albumsInfo.font = selected_font
+                    }
+                } catch let error {
+                    NSErrorHandling_Alert(error: error, vc: self)
                 }
                 // Navigation으로 Push 했기 때문에 Pop하기 전에 글꼴을 바꿔주어야 한다.
                 // 현재 페이지 글꼴 바꾸기

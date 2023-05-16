@@ -1,6 +1,6 @@
 import UIKit
 
-func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverName: String) {
+func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverName: String) throws {
     // 1. 이미지를 저장할 경로를 설정해줘야함 - 도큐먼트 폴더,File 관련된건 Filemanager가 관리함(싱글톤 패턴)
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
     let imageURL = documentDirectory.appendingPathComponent(AlbumCoverName).appendingPathComponent(imageName)
@@ -24,8 +24,10 @@ func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverN
         do {
             try FileManager.default.removeItem(at: imageURL)
             print("이미지 삭제 완료")
-        } catch {
+        } catch let error {
             print("이미지를 삭제하지 못했습니다.")
+            print("Error occur :: \(error)")
+            throw error
         }
     }
 
@@ -34,8 +36,10 @@ func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverN
     do {
         try data.write(to: imageURL)
         print("이미지 저장완료")
-    } catch {
+    } catch let error as NSError {
         print("이미지를 저장하지 못했습니다.")
+        print("Error occur :: \(error)")
+        throw error
     }
 }
 
@@ -56,7 +60,7 @@ func loadImageFromDocumentDirectory(imageName: String, albumTitle: String) -> UI
     return nil
 }
 
-func deleteImageFromDocumentDirectory(imageName: String) {
+func deleteImageFromDocumentDirectory(imageName: String) throws {
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
 
     let imageURL = documentDirectory.appendingPathComponent(imageName)
@@ -65,8 +69,9 @@ func deleteImageFromDocumentDirectory(imageName: String) {
         do {
             try FileManager.default.removeItem(at: imageURL)
             print("이미지 삭제 완료")
-        } catch {
+        } catch let error {
             print("이미지를 삭제하지 못했습니다.")
+            throw error
         }
     }
 }

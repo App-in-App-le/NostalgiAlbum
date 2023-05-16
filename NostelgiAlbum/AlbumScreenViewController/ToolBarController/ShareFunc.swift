@@ -2,6 +2,10 @@ import Foundation
 import Zip
 import RealmSwift
 
+enum ErrorMessage: String, Error {
+    case notNost = "잘못된 nost파일 형식입니다."
+}
+
 func zipAlbumDirectory(AlbumCoverName: String) throws -> URL? {
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
     //압축을 할 앨범 directory url
@@ -37,7 +41,10 @@ func zipAlbumDirectory(AlbumCoverName: String) throws -> URL? {
             }
             do {
                 //zip -> nost write
-                if let data = try? Data(contentsOf: zipFilePath) {
+                if var data = try? Data(contentsOf: zipFilePath) {
+                    let stringToCheck = "@"
+                    let checkData = stringToCheck.data(using: .utf8)
+                    data.append(checkData!)
                     let newURL = URL(filePath: nostURL.path)
                     try? data.write(to: newURL)
                     try FileManager.default.removeItem(at: zipFilePath)
@@ -83,7 +90,6 @@ func exportAlbumInfo(coverData: String) throws {
     for album in albumData {
         arrImageText.append("\(album.ImageText)")
         arrImageName.append("\(album.ImageName)")
-        print("chop: \(album)")
     }
     
     // albumInfoData
@@ -153,6 +159,14 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL, deleteShare
     // unzip한 파일들 저장할 디렉토리 생성
     do {
         let data = try Data(contentsOf: shareFilePath)
+        let checkByte = data.last
+        if let checkByte = checkByte {
+            if checkByte == UInt8(ascii: "@") {
+                print("올바른 파일입니다.")
+            } else {
+                throw ErrorMessage.notNost
+            }
+        }
         try data.write(to: zipURL)
         try Zip.unzipFile(zipURL, destination: zipURL.deletingPathExtension(), overwrite: true, password: nil)
         try changeIfModifyName(albumCoverName: AlbumCoverName)
@@ -240,24 +254,44 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) throws {
     shareAlbumInfo.font = arrAlbumInfo[3]
     shareAlbumInfo.firstPageSetting = Int(arrAlbumInfo[4])!
     
+//    if arrImageName.count != 0 {
+//        for i in 1...arrImageName.count {
+//            let shareAlbumImage = album()
+//            shareAlbumImage.ImageName = arrImageName[i - 1]
+//            shareAlbumImage.ImageText = arrImageText[i - 1]
+//            shareAlbumImage.perAlbumIndex = i
+//            shareAlbumImage.AlbumTitle = albumCoverName
+//            shareAlbumImage.index = shareAlbumCover.id
+//            try! realm.write{
+//                realm.add(shareAlbumImage)
+//            }
+//        }
+//    }
     if arrImageName.count != 0 {
-        for i in 1...arrImageName.count {
-            let shareAlbumImage = album()
-            shareAlbumImage.ImageName = arrImageName[i - 1]
-            shareAlbumImage.ImageText = arrImageText[i - 1]
-            shareAlbumImage.perAlbumIndex = i
-            shareAlbumImage.AlbumTitle = albumCoverName
-            shareAlbumImage.index = shareAlbumCover.id
-            try! realm.write{
-                realm.add(shareAlbumImage)
+        do {
+            try realm.write {
+                for i in 1...arrImageName.count {
+                    let shareAlbumImage = album()
+                    shareAlbumImage.ImageName = arrImageName[i - 1]
+                    shareAlbumImage.ImageText = arrImageText[i - 1]
+                    shareAlbumImage.perAlbumIndex = i
+                    shareAlbumImage.AlbumTitle = albumCoverName
+                    shareAlbumImage.index = shareAlbumCover.id
+                    realm.add(shareAlbumImage)
+                }
             }
+        } catch let error {
+            throw error
         }
     }
-    
-    // Write
-    try! realm.write{
-        realm.add(shareAlbumCover)
-        realm.add(shareAlbumInfo)
+    do {
+        // Write
+        try realm.write{
+            realm.add(shareAlbumCover)
+            realm.add(shareAlbumInfo)
+        }
+    } catch let error {
+        throw error
     }
     // Remove text file
     do {
@@ -315,6 +349,19 @@ func nostFileRemove() {
             try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent("nostFiles"))
         } catch {
             print("nostFiles Directory delete error")
+        }
+    }
+}
+
+// 카카오톡과 같은 외부 링크로 파일 받을 시 생기는 Inbox에서 extTemp로 이동시킨 파일들 삭제
+func externalFileRemove() {
+    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+    if FileManager.default.fileExists(atPath: documentDirectory.appendingPathComponent("extTemp").path)
+    {
+        do {
+            try FileManager.default.removeItem(at: documentDirectory.appendingPathComponent("extTemp"))
+        } catch {
+            print("extTemp Directory delete error")
         }
     }
 }

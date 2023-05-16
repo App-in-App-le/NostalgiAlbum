@@ -14,11 +14,14 @@ class AlbumRenameViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        albumTextField.text = albumCoverName
+        albumTextField.text = shareVC.albumName.text
         albumTextField.becomeFirstResponder()
-        
         albumTextField.delegate = self
-        wordCountLabel.text = "\(albumCoverName.count) / 10"
+        if let text = albumTextField.text {
+            wordCountLabel.text = "\(text.count) / 10"
+        } else {
+            wordCountLabel.text = "0 / 0"
+        }
     }
     
     // MARK: - Methods
@@ -26,6 +29,7 @@ class AlbumRenameViewController: UIViewController {
         if albumTextField.text == "" {
             print("비어있습니다.")
         } else {
+            shareVC.albumCoverName = albumTextField.text
             shareVC.loadingAlbumInfo()
             shareVC.albumName.text = albumTextField.text
             self.dismiss(animated: true)

@@ -108,7 +108,7 @@ extension HomeEditViewController {
             if !FileManager.default.fileExists(atPath: dirPath.path){
                 do{
                     try FileManager.default.createDirectory(atPath: dirPath.path, withIntermediateDirectories: true, attributes: nil)
-                } catch{
+                } catch {
                     NSLog("Couldn't create document directory")
                 }
             }
@@ -142,18 +142,27 @@ extension HomeEditViewController {
                 let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
                 let height = collectionViewInHome.bounds.height / 3 / 5 * 4
                 let width = height / 4 * 3
-                saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: width, newHeight: height, byScale: false))!, AlbumCoverName: albumName.text!)
+                do {
+                    try saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: width, newHeight: height, byScale: false))!, AlbumCoverName: albumName.text!)
+                } catch let error {
+                    print("save Album Error :: \(error.localizedDescription)")
+                    NSErrorHandling_Alert(error: error, vc: self)
+                }
             }
             // Create new Realm albumdsInfo Model Class
             let newAlbumsInfo = albumsInfo()
             newAlbumsInfo.incrementIndex()
             newAlbumsInfo.setDateOfCreation()
             newAlbumsInfo.numberOfPictures = 0
-            // Save New Models in Realm
-            try! realm.write
-            {
-                realm.add(newAlbumCover)
-                realm.add(newAlbumsInfo)
+            do {
+                // Save New Models in Realm
+                try realm.write
+                {
+                    realm.add(newAlbumCover)
+                    realm.add(newAlbumsInfo)
+                }
+            } catch let error {
+                NSErrorHandling_Alert(error: error, vc: self)
             }
         }
         // Modify exist Album
@@ -195,64 +204,96 @@ extension HomeEditViewController {
                     print("Move failed")
                 }
             }
-            // Modify RealmDB :: album -> [albumTitle], albumCover -> [albumName, CoverImageName]
-            try! realm.write{
-                // Modify "albumCover" instance in RealmDB
-                albumCoverData.first?.albumName = String(albumName.text!)
-                if defaultCoverColor == "Blue" {
-                    albumCoverData.first?.coverImageName = "Blue"
-                    if albumCoverData.first?.isCustomCover == true {
-                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+            do {
+                // Modify RealmDB :: album -> [albumTitle], albumCover -> [albumName, CoverImageName]
+                try realm.write{
+                    // Modify "albumCover" instance in RealmDB
+                    albumCoverData.first?.albumName = String(albumName.text!)
+                    if defaultCoverColor == "Blue" {
+                        albumCoverData.first?.coverImageName = "Blue"
+                        if albumCoverData.first?.isCustomCover == true {
+                            do {
+                                try deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                            } catch let error {
+                                NSErrorHandling_Alert(error: error, vc: self)
+                            }
+                        }
+                        albumCoverData.first?.isCustomCover = false
                     }
-                    albumCoverData.first?.isCustomCover = false
-                }
-                else if defaultCoverColor == "Brown" {
-                    albumCoverData.first?.coverImageName = "Brown"
-                    if albumCoverData.first?.isCustomCover == true {
-                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    else if defaultCoverColor == "Brown" {
+                        albumCoverData.first?.coverImageName = "Brown"
+                        if albumCoverData.first?.isCustomCover == true {
+                            do {
+                                try deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                            } catch let error {
+                                NSErrorHandling_Alert(error: error, vc: self)
+                            }
+                        }
+                        albumCoverData.first?.isCustomCover = false
                     }
-                    albumCoverData.first?.isCustomCover = false
-                }
-                else if defaultCoverColor == "Green" {
-                    albumCoverData.first?.coverImageName = "Green"
-                    if albumCoverData.first?.isCustomCover == true {
-                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    else if defaultCoverColor == "Green" {
+                        albumCoverData.first?.coverImageName = "Green"
+                        if albumCoverData.first?.isCustomCover == true {
+                            do {
+                                try deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                            } catch let error {
+                                NSErrorHandling_Alert(error: error, vc: self)
+                            }
+                        }
+                        albumCoverData.first?.isCustomCover = false
                     }
-                    albumCoverData.first?.isCustomCover = false
-                }
-                else if defaultCoverColor == "Pupple" {
-                    albumCoverData.first?.coverImageName = "Pupple"
-                    if albumCoverData.first?.isCustomCover == true {
-                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    else if defaultCoverColor == "Pupple" {
+                        albumCoverData.first?.coverImageName = "Pupple"
+                        if albumCoverData.first?.isCustomCover == true {
+                            do {
+                                try deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                            } catch let error {
+                                NSErrorHandling_Alert(error: error, vc: self)
+                            }
+                        }
+                        albumCoverData.first?.isCustomCover = false
                     }
-                    albumCoverData.first?.isCustomCover = false
-                }
-                else if defaultCoverColor == "Red" {
-                    albumCoverData.first?.coverImageName = "Red"
-                    if albumCoverData.first?.isCustomCover == true {
-                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    else if defaultCoverColor == "Red" {
+                        albumCoverData.first?.coverImageName = "Red"
+                        if albumCoverData.first?.isCustomCover == true {
+                            do {
+                                try deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                            } catch let error {
+                                NSErrorHandling_Alert(error: error, vc: self)
+                            }
+                        }
+                        albumCoverData.first?.isCustomCover = false
                     }
-                    albumCoverData.first?.isCustomCover = false
-                }
-                else if defaultCoverColor == "Turquoise" {
-                    albumCoverData.first?.coverImageName = "Turquoise"
-                    if albumCoverData.first?.isCustomCover == true {
-                        deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                    else if defaultCoverColor == "Turquoise" {
+                        albumCoverData.first?.coverImageName = "Turquoise"
+                        if albumCoverData.first?.isCustomCover == true {
+                            do {
+                                try deleteImageFromDocumentDirectory(imageName: "\(albumName.text!)/\(albumName.text!)_CoverImage.jpeg")
+                            } catch let error {
+                                NSErrorHandling_Alert(error: error, vc: self)
+                            }
+                        }
+                        albumCoverData.first?.isCustomCover = false
+                    } else {
+                        // Modify to Custom Image
+                        albumCoverData.first?.coverImageName = "Custom"
+                        albumCoverData.first?.isCustomCover = true
+                        // Add custom image in album folder
+                        let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
+                        let height = collectionViewInHome.bounds.height / 3 / 5 * 4
+                        let width = height / 4 * 3
+                        do {
+                            try saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: width, newHeight: height, byScale: false))!, AlbumCoverName: albumName.text!)
+                        } catch let error {
+                            print("save Album Error :: \(error.localizedDescription)")
+                            NSErrorHandling_Alert(error: error, vc: self)
+                        }
                     }
-                    albumCoverData.first?.isCustomCover = false
+                    // Modify "album" instance in RealmDB
+                    for album in albumData { album.setAlbumTitle(albumName.text!) }
                 }
-                else{
-                    // Modify to Custom Image
-                    albumCoverData.first?.coverImageName = "Custom"
-                    albumCoverData.first?.isCustomCover = true
-                    // Add custom image in album folder
-                    let customCoverImagePath = "\(albumName.text!)_CoverImage.jpeg"
-                    let height = collectionViewInHome.bounds.height / 3 / 5 * 4
-                    let width = height / 4 * 3
-                    saveImageToDocumentDirectory(imageName: customCoverImagePath, image: (coverImage.image?.resize(newWidth: width, newHeight: height, byScale: false))!, AlbumCoverName: albumName.text!)
-                }
-                // Modify "album" instance in RealmDB
-                for album in albumData { album.setAlbumTitle(albumName.text!) }
+            } catch let error {
+                print("Realm write error : \(error.localizedDescription)")
             }
         }
         

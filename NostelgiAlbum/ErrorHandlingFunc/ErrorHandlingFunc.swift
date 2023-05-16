@@ -1,5 +1,6 @@
 import Foundation
 import Zip
+import RealmSwift
 
 func NSErrorHandling_Alert(error: Error, vc: UIViewController) {
     var titleText = ""
@@ -50,6 +51,16 @@ func NSErrorHandling_Alert(error: Error, vc: UIViewController) {
             messageText = "동작이 실패하였습니다. 다시 시도해주세요."
         }
         
+    case let nsError as NSError where nsError.code == NSFileWriteVolumeReadOnlyError:
+        titleText = "읽기 전용"
+        messageText = "현재 읽기만 가능한 상태입니다."
+    
+    case ErrorMessage.notNost:
+        titleText = "잘못된 파일"
+        messageText = "잘못된 파일 형식입니다."
+    
+    
+    // iCloud Error 추가 필요
     case let nsError as NSError where nsError.domain == NSURLErrorDomain:
         if nsError.code == NSURLErrorNotConnectedToInternet {
             titleText = "인터넷 연결"
