@@ -54,8 +54,6 @@ extension ContentsCells {
         contentsText.translatesAutoresizingMaskIntoConstraints = false
         titleText.textColor = .black
         contentsText.textColor = .black
-//        titleText.backgroundColor = .white
-//        contentsText.backgroundColor = .white
         titleText.layer.cornerRadius = 10
         titleText.clipsToBounds = true
         contentsText.layer.cornerRadius = 10
@@ -66,7 +64,6 @@ extension ContentsCells {
         contents.numberOfLines = 0
         title.textAlignment = .center
         contents.verticalAlignment = .top
-//        contents.textAlignment = .left
         titleText.textAlignment = .center
         contentsText.textAlignment = .center
         button.addSubview(title)

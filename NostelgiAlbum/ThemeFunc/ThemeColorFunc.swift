@@ -70,7 +70,7 @@ extension AlbumScreenCollectionViewCell {
         let HomeSettingInfo = realm.objects(HomeSetting.self).first!
         if let ThemeColorSet = getColorSet(color: HomeSettingInfo.themeColor) {
             self.backgroundColor = ThemeColorSet["subColor_1"]
-            self.pictureImgButton?.backgroundColor = ThemeColorSet["subColor_3"]
+            self.pictureImgButton.backgroundColor = ThemeColorSet["subColor_3"]
         } else {
             return
         }
