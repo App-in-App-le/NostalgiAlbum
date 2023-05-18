@@ -2,6 +2,10 @@ import UIKit
 import RealmSwift
 
 extension AlbumEditViewController {
+    @IBAction func dismissEditView(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     // 사진을 어디서 가져올지 Alert
     @IBAction func addAlbumPicture(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

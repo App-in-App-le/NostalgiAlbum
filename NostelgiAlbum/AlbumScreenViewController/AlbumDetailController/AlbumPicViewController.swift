@@ -176,6 +176,9 @@ class AlbumPicViewController: UIViewController {
         }
     }
     
+    @IBAction func dismissPicture(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     @IBAction func settingPicture(_ sender: Any) {
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumEditViewController") as? AlbumEditViewController else { return }
         
