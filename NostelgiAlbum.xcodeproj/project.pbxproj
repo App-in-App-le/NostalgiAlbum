@@ -263,10 +263,7 @@
 				80C8C86F29DE947E00A9F01F /* Supporting Files */,
 				831A0520297A9B7A009D26A0 /* HomeScreenViewController */,
 				831A0522297A9BD7009D26A0 /* AlbumScreenViewController */,
-				831A0525297A9BFE009D26A0 /* ImageFunc */,
-				80D580E529F79BC400EF65C9 /* ThemeFunc */,
-				80554C2E29FD599C00F04AF1 /* ShadowFunc */,
-				8075A0AA2A0A21FE0075B141 /* ErrorHandlingFunc */,
+				80AE5D022A1769910066743D /* Function */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
 				80D80B5029ED78F7009612FA /* NostelgiAlbum.entitlements */,
 			);
@@ -288,6 +285,36 @@
 				8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */,
 			);
 			path = NostelgiAlbumUITests;
+			sourceTree = "<group>";
+		};
+		80AE5D002A17695C0066743D /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				83C615C7298B978D0018BBAF /* ShareViewController.swift */,
+				80A6D644299A0BE600B2D657 /* ShareFunc.swift */,
+				831E744729A5286400D48D5C /* AlbumRenameViewController.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		80AE5D012A17696A0066743D /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				8080200D29E18B9700CECCB8 /* InfoViewController.swift */,
+				807FF50029260656005D9884 /* InfoTableViewCell.swift */,
+			);
+			path = Information;
+			sourceTree = "<group>";
+		};
+		80AE5D022A1769910066743D /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				831A0525297A9BFE009D26A0 /* ImageFunc */,
+				80D580E529F79BC400EF65C9 /* ThemeFunc */,
+				80554C2E29FD599C00F04AF1 /* ShadowFunc */,
+				8075A0AA2A0A21FE0075B141 /* ErrorHandlingFunc */,
+			);
+			path = Function;
 			sourceTree = "<group>";
 		};
 		80C8C86F29DE947E00A9F01F /* Supporting Files */ = {
@@ -422,12 +449,9 @@
 			isa = PBXGroup;
 			children = (
 				83E5D2B729E85709001C7DE0 /* Search */,
-				83C615C7298B978D0018BBAF /* ShareViewController.swift */,
-				80A6D644299A0BE600B2D657 /* ShareFunc.swift */,
-				831E744729A5286400D48D5C /* AlbumRenameViewController.swift */,
+				80AE5D002A17695C0066743D /* Share */,
 				80D580EE29FBDDD700EF65C9 /* Setting */,
-				8080200D29E18B9700CECCB8 /* InfoViewController.swift */,
-				807FF50029260656005D9884 /* InfoTableViewCell.swift */,
+				80AE5D012A17696A0066743D /* Information */,
 			);
 			path = ToolBarController;
 			sourceTree = "<group>";
