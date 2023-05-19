@@ -7,12 +7,12 @@ class AlbumScreenViewController: UIViewController {
     var pageNum : Int = 0
     var coverIndex : Int = 0
     
-    // collectionView setting
+    // collectionView setting(Layout및 글씨)을 위한 변수
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
     weak var albumScreenVC: AlbumScreenViewController? = nil
-    weak var delegate: PageDelegate?
+    weak var pageDelegate: PageDelegate?
     var isFontChanged: Bool = false
     
     // MARK: - View Life Cycle
@@ -28,13 +28,11 @@ class AlbumScreenViewController: UIViewController {
         let albumName = realm.objects(albumCover.self).filter("id = \(coverIndex)").first!.albumName
         titleName.text = albumName
         titleName.textColor = .white
-//        titleName.font = UIFont.boldSystemFont(ofSize: 18)
         titleName.numberOfLines = 0
         titleName.sizeToFit()
         titleName.textAlignment = .center
         let widthConstraint = titleName.widthAnchor.constraint(equalToConstant: 200)
         widthConstraint.isActive = true
-//        titleName.clipsToBounds = true
         navigationItem.titleView = titleName
         
         let pageNumButton = UIButton()
@@ -62,8 +60,7 @@ class AlbumScreenViewController: UIViewController {
         setThemeColor()
         setFont()
         
-        print(titleName.font.fontName)
-    }
+        }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -72,13 +69,14 @@ class AlbumScreenViewController: UIViewController {
         do {
             // 해당 앨범에서 몇 페이지에 머물렀는지 확인하기 위해 설정
             try realm.write {
-                realm.objects(albumsInfo.self).filter("id = \(coverIndex)").first!.lastViewingPage = pageNum + 1
+                if let album = realm.objects(albumsInfo.self).filter("id = \(coverIndex)").first {
+                    album.lastViewingPage = pageNum + 1
+                }
             }
         } catch {
             print("error: \(error.localizedDescription)")
             NSErrorHandling_Alert(error: error, vc: self)
         }
-        print("TEST :: \(pageNum + 1) 페이지 Appear !!!")
     }
     
     // MARK: - Methods
@@ -112,10 +110,9 @@ extension AlbumScreenViewController {
         pageSearchVC.previousButton = pageNum
         pageSearchVC.data = data
         pageSearchVC.index = coverIndex
-        self.delegate = pageSearchVC //scrollCenter
-        //pageSearchVC.modalPresentationStyle = .
+        self.pageDelegate = pageSearchVC //scrollCenter
         present(pageSearchVC, animated: true){
-            self.delegate?.scrollCenter()
+            self.pageDelegate?.scrollCenter()
         }
     }
 }

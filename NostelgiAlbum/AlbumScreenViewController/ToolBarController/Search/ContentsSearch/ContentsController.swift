@@ -47,7 +47,7 @@ class ContentsController {
         return generateSearch()
     }()
 }
-// ContentsController extension -> load album data & generate search struct
+// ContentsController extension -> 앨범의 데이터를 불러오고 search data를 구성
 extension ContentsController {
     private func generateSearch() -> [Search] {
         let datas = realm.objects(album.self).filter("index = \(coverIndex)")

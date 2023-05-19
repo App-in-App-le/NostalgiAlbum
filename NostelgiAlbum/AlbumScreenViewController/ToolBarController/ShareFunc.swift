@@ -254,19 +254,6 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) throws {
     shareAlbumInfo.font = arrAlbumInfo[3]
     shareAlbumInfo.firstPageSetting = Int(arrAlbumInfo[4])!
     
-//    if arrImageName.count != 0 {
-//        for i in 1...arrImageName.count {
-//            let shareAlbumImage = album()
-//            shareAlbumImage.ImageName = arrImageName[i - 1]
-//            shareAlbumImage.ImageText = arrImageText[i - 1]
-//            shareAlbumImage.perAlbumIndex = i
-//            shareAlbumImage.AlbumTitle = albumCoverName
-//            shareAlbumImage.index = shareAlbumCover.id
-//            try! realm.write{
-//                realm.add(shareAlbumImage)
-//            }
-//        }
-//    }
     if arrImageName.count != 0 {
         do {
             try realm.write {

@@ -1,7 +1,7 @@
 import UIKit
 
 // DataSource, Delegate에 대한 extension을 정의
-extension AlbumScreenViewController: UICollectionViewDataSource{
+extension AlbumScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }
@@ -17,11 +17,21 @@ extension AlbumScreenViewController: UICollectionViewDataSource{
         
         if (indexPath.item + pageNum * 2) < data.count {
             picture = data[indexPath.item + pageNum * 2]
-            cell.configure(picture)
-            cell.albumInfo = picture
-            let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
-            LongPressGestureRecognizer.picture = picture
-            cell.pictureImgButton!.addGestureRecognizer(LongPressGestureRecognizer)
+            if cell.configure(picture) {
+                cell.albumInfo = picture
+                let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
+                LongPressGestureRecognizer.picture = picture
+                cell.pictureImgButton.addGestureRecognizer(LongPressGestureRecognizer)
+                cell.pictureImgButton.isEnabled = true
+            } else {
+                cell.albumInit()
+                cell.pictureImgButton.setImage(UIImage(systemName: "exclamationmark.triangle"), for: .normal)
+                cell.pictureLabel.text = "이미지 오류"
+                let LongPressGestureRecognizer = customLongPressGesture(target: self, action: #selector(didLongPressView(_:)))
+                LongPressGestureRecognizer.picture = picture
+                cell.pictureImgButton.addGestureRecognizer(LongPressGestureRecognizer)
+                cell.pictureImgButton.isEnabled = false
+            }
         } else {
             if indexPath.item + pageNum * 2 == data.count {
                 cell.albumInit()

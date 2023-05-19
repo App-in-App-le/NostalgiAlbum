@@ -13,14 +13,15 @@ class AlbumPicViewController: UIViewController {
     @IBOutlet weak var picImage: UIButton!
     @IBOutlet weak var picImageShadowView: UIView!
     @IBOutlet weak var settingBtn: UIButton!
+    @IBOutlet weak var dismissButton: UIButton!
     weak var picture: album!
     weak var collectionViewInAlbum : UICollectionView!
     let realm = try! Realm()
     var index: Int!
-    var width: CGFloat?
-    var height: CGFloat?
-    var consArray: [NSLayoutConstraint]?
-    var newConsArray: [NSLayoutConstraint]?
+    var width: CGFloat! = nil
+    var height: CGFloat! = nil
+    var consArray: [NSLayoutConstraint]! = nil
+    var newConsArray: [NSLayoutConstraint]! = nil
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -40,6 +41,9 @@ class AlbumPicViewController: UIViewController {
         settingBtn.translatesAutoresizingMaskIntoConstraints = false
         settingBtn.setTitle("", for: .normal)
         settingBtn.setImage(UIImage(systemName: "pencil.line"), for: .normal)
+        
+        // set dismissButton
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
         
         // set picImage
         picImage.translatesAutoresizingMaskIntoConstraints = false
@@ -66,9 +70,8 @@ class AlbumPicViewController: UIViewController {
                 }
                 height = width! / 4 * 3
             }
-            picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: width!, newHeight: height!, byScale: false), for: .normal)
+            picImage.setImage(loadImageFromDocumentDirectory(imageName: totalPath, albumTitle: picture.AlbumTitle)?.resize(newWidth: width, newHeight: height, byScale: false), for: .normal)
         }
-        
         // set picName
         picName.translatesAutoresizingMaskIntoConstraints = false
         picName.text = picture.ImageName
@@ -85,6 +88,9 @@ class AlbumPicViewController: UIViewController {
             settingBtn.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             settingBtn.heightAnchor.constraint(equalToConstant: 30),
             settingBtn.widthAnchor.constraint(equalToConstant: 50),
+            
+            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             
             picImageShadowView.topAnchor.constraint(equalTo: settingBtn.bottomAnchor, constant: 10),
             picImageShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -122,6 +128,9 @@ class AlbumPicViewController: UIViewController {
             settingBtn.heightAnchor.constraint(equalToConstant: 30),
             settingBtn.widthAnchor.constraint(equalToConstant: 50),
             
+            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            
             picImageShadowView.topAnchor.constraint(equalTo: settingBtn.bottomAnchor, constant: 50),
             picImageShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             picImageShadowView.widthAnchor.constraint(equalToConstant: width!),
@@ -153,10 +162,10 @@ class AlbumPicViewController: UIViewController {
             picText.trailingAnchor.constraint(equalTo: picTextShadowView.trailingAnchor)
         ]
         
-        if height! > width! {
-            NSLayoutConstraint.activate(consArray!)
+        if height > width {
+            NSLayoutConstraint.activate(consArray)
         } else {
-            NSLayoutConstraint.activate(newConsArray!)
+            NSLayoutConstraint.activate(newConsArray)
         }
         
     }
@@ -167,6 +176,9 @@ class AlbumPicViewController: UIViewController {
         }
     }
     
+    @IBAction func dismissPicture(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     @IBAction func settingPicture(_ sender: Any) {
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumEditViewController") as? AlbumEditViewController else { return }
         

@@ -54,7 +54,11 @@ func loadImageFromDocumentDirectory(imageName: String, albumTitle: String) -> UI
         let imageURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(albumTitle).appendingPathComponent(imageName)
         // 3. UIImage로 불러오기
         let loadImage = UIImage(contentsOfFile: imageURL.path)
-        return fixOrientation(image: loadImage!)
+        if let loadImage = loadImage {
+            return fixOrientation(image: loadImage)
+        } else {
+            return nil
+        }
     }
 
     return nil
@@ -132,7 +136,6 @@ func deleteTmpFiles() {
     do {
         for file in fileList {
             let resultDir = tmpDir+file
-            print("result",resultDir)
             try FileManager.default.removeItem(atPath: resultDir)
         }
     } catch {

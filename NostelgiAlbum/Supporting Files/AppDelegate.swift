@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,14 +28,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //rootViewControlelr에 객체 값 할당
         window?.rootViewController = vc
         window?.rootViewController = navigationController
-        
+        let realm = try! Realm()
         // moveItem을 하는 지점 3
         if(url.scheme == "file" && url.pathExtension == "nost")
         {
             guard let homeScreenViewController = navigationController.viewControllers.first as? HomeScreenViewController else {
                 return false
             }
-            
+            if realm.objects(albumsInfo.self).count == 6 {
+                let titleText = "앨범 슬롯이 꽉 찼습니다."
+                let messageText = "앨범을 비워주세요."
+                let errorAlert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
+                errorAlert.setFont(font: nil, title: titleText, message: messageText)
+                let okAction = UIAlertAction(title: "확인", style: .default) { action in errorAlert.dismiss(animated: false)
+                }
+                errorAlert.addAction(okAction)
+                homeScreenViewController.present(errorAlert, animated: true)
+                return false
+            }
+
             guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
                 let error = NSError(domain: NSCocoaErrorDomain, code: NSFileReadNoSuchFileError, userInfo: nil)
                 NSErrorHandling_Alert(error: error, vc: homeScreenViewController)
@@ -42,8 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             let extURL = documentDirectory.appendingPathComponent("extTemp")
             let extfileURL = extURL.appendingPathComponent(url.lastPathComponent)
-            print("urllast:\(url.lastPathComponent)")
-            print("extfileURL:\(extfileURL)")
             do {
                 if !FileManager.default.fileExists(atPath: extURL.path) {
                     try FileManager.default.createDirectory(at: extURL, withIntermediateDirectories: true, attributes: nil)

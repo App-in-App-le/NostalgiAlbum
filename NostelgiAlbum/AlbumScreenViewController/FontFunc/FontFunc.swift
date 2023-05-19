@@ -25,7 +25,7 @@ extension AlbumScreenCollectionViewCell {
         let selected_font_Kor = albumInfo.font
         let selected_font_Eng = FontSet().font[selected_font_Kor]
         
-        self.pictureLabel?.font = UIFont(name: selected_font_Eng!, size: 15)
+        self.pictureLabel.font = UIFont(name: selected_font_Eng!, size: 15)
     }
 }
 
