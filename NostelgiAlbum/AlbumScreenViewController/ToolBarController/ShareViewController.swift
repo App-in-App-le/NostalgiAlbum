@@ -44,7 +44,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     
     @IBAction func openInButtonTapped(_ sender: Any) {
         //.nost file URL에서 .nost앞 앨범 이름만 따옴
-        if(!existedAlbum) {
+        if !existedAlbum {
             do {
                 try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: filePath!, deleteShareFile: true)
             } catch let error {
@@ -62,7 +62,6 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
             }
             do {
                 albumCoverName = albumName.text
-                
                 //realm에 공유받은 album정보 write
                 try importAlbumInfo(albumCoverName: albumCoverName, useForShare: true)
             } catch let error {
@@ -104,7 +103,6 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
                         }
                     }
                 }
-                
                 // Document에 생성된 Album Directory 삭제
                 guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
                 if FileManager.default.fileExists(atPath: documentDirectory.appendingPathComponent(albumCoverName).path) {
@@ -118,7 +116,6 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
             }
             //album reload
             collectionViewInHome.reloadData()
-            //self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: false)
         } else {
             let textAlert = UIAlertController(title: "중복된 이름", message: "이미 존재하는 앨범입니다. 이름을 바꿔주세요.", preferredStyle: UIAlertController.Style.alert)

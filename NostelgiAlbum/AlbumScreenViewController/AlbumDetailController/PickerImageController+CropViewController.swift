@@ -14,7 +14,6 @@ extension AlbumEditViewController : UINavigationControllerDelegate, UIImagePicke
 extension AlbumEditViewController: CropViewControllerDelegate {
     func cropViewControllerDidCrop(_ cropViewController: Mantis.CropViewController, cropped: UIImage, transformation: Mantis.Transformation, cropInfo: Mantis.CropInfo) {
         if cropInfo.cropSize.width > cropInfo.cropSize.height {
-            print("가로")
             if isHeightLonger == true {
                 width = UIScreen.main.bounds.width - 40
                 let remainder = Int(width!) % 4
@@ -29,10 +28,13 @@ extension AlbumEditViewController: CropViewControllerDelegate {
                     saveButton.heightAnchor.constraint(equalToConstant: 30),
                     saveButton.widthAnchor.constraint(equalToConstant: 50),
                     
+                    dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+                    dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+                    
                     editPicture.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 50),
                     editPicture.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                    editPicture.widthAnchor.constraint(equalToConstant: width!),
-                    editPicture.heightAnchor.constraint(equalToConstant: height!),
+                    editPicture.widthAnchor.constraint(equalToConstant: width),
+                    editPicture.heightAnchor.constraint(equalToConstant: height),
                     
                     editName.topAnchor.constraint(equalTo: editPicture.bottomAnchor, constant: 10),
                     editName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -44,25 +46,24 @@ extension AlbumEditViewController: CropViewControllerDelegate {
                     editText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
                     editText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
                 ]
-                NSLayoutConstraint.activate(newConsArray!)
+                NSLayoutConstraint.activate(newConsArray)
                 isHeightLonger = false
             }
         } else {
-            print("세로")
             if isHeightLonger == false {
                 width = UIScreen.main.bounds.width - 30
-                let remainder = Int(width!) % 3
+                let remainder = Int(width) % 3
                 if remainder != 0 {
                     width = width! - CGFloat(remainder)
                 }
                 height = width! / 3 * 4
-                NSLayoutConstraint.deactivate(newConsArray!)
-                NSLayoutConstraint.activate(consArray!)
+                NSLayoutConstraint.deactivate(newConsArray)
+                NSLayoutConstraint.activate(consArray)
                 isHeightLonger = true
             }
         }
         
-        self.editPicture.setImage(cropped.resize(newWidth: width!, newHeight: height!, byScale: false), for: .normal)
+        self.editPicture.setImage(cropped.resize(newWidth: width, newHeight: height, byScale: false), for: .normal)
         self.editPicture.setTitle("", for: .normal)
         cropViewController.dismiss(animated: true)
     }

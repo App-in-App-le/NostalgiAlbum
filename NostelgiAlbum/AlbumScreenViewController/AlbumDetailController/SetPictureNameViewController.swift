@@ -10,7 +10,11 @@ class SetPictureNameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pictureName.text = editVC.editName.text
-        wordCountLabel.text = "\(pictureName.text!.count) / 20"
+        if let text = pictureName.text {
+            wordCountLabel.text = "\(text.count) / 10"
+        } else {
+            wordCountLabel.text = "0 / 10"
+        }
         pictureName.becomeFirstResponder()
         pictureName.delegate = self
     }

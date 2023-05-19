@@ -2,6 +2,11 @@ import UIKit
 import RealmSwift
 
 extension AlbumEditViewController {
+    @IBAction func dismissEditView(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    // 사진을 어디서 가져올지 Alert
     @IBAction func addAlbumPicture(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in self.openLibrary()}
@@ -26,11 +31,11 @@ extension AlbumEditViewController {
         picker.sourceType = .camera
         present(picker, animated: false, completion: nil)
     }
-    
+    // 사진 저장
     @IBAction func savePicture(_ sender: Any) {
-        if editPicture.imageView?.image == UIImage(systemName: "plus"){
+        if editPicture.imageView?.image == UIImage(systemName: "plus") {
             let imageAlert = UIAlertController(title: "빈 이미지", message: "이미지를 선택해주세요", preferredStyle: UIAlertController.Style.alert)
-            present(imageAlert, animated: true){
+            present(imageAlert, animated: true) {
                 let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:)))
                 imageAlert.view.superview?.isUserInteractionEnabled = true
                 imageAlert.view.superview?.addGestureRecognizer(tap)
@@ -61,7 +66,7 @@ extension AlbumEditViewController {
             self.picVC?.dismiss(animated: false)
         }
     }
-    
+    // 사진을 변경
     func modifyPic() {
         let realm = try! Realm()
         let updPicture = (realm.objects(album.self).filter("index = \(picture!.index)"))
@@ -82,7 +87,7 @@ extension AlbumEditViewController {
             NSErrorHandling_Alert(error: error, vc: self)
         }
     }
-    
+    // 사진을 추가
     func addPic() {
         let realm = try! Realm()
         let newPicture = album()

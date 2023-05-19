@@ -11,7 +11,6 @@ class SetPictureDescriptionViewController: UIViewController {
         super.viewDidLoad()
         pictureDescription.text = editVC.editText.text
         wordCountLabel.text = "\(pictureDescription.text.count) / 50"
-        
         pictureDescription.layer.cornerRadius = 7
         pictureDescription.becomeFirstResponder()
         pictureDescription.delegate = self
