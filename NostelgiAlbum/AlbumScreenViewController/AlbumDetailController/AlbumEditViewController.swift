@@ -41,10 +41,6 @@ class AlbumEditViewController: UIViewController {
             editText.text = "설명을 입력해주세요"
             editText.textColor = .systemGray3
         }
-        
-//        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
-//        swipeRecognizer.direction = .down
-//        self.view.addGestureRecognizer(swipeRecognizer)
         setThemeColor()
         setFont()
     }
@@ -53,12 +49,6 @@ class AlbumEditViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-//    @objc func exitSwipe(_ sender :UISwipeGestureRecognizer) {
-//        if sender.direction == .down{
-//            self.dismiss(animated: true)
-//        }
-//    }
     
     func setSubViews() {
         // saveButton

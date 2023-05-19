@@ -10,12 +10,15 @@ extension HomeEditViewController {
         
         // selectCoverTypeAlert "기본 커버" Action
         selectCoverTypeAlert.addAction(UIAlertAction(title: "기본", style: .default) { action in
-            let colors = [ "파란색" : "Blue", "갈색" : "Brown", "녹색" : "Green", "보라색" : "Pupple", "빨간색" : "Red", "청록색" : "Turquoise"].sorted(by: <)
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+            let colors = [ "파란색 🔵" : "Blue", "  갈색  🟤" : "Brown", "  녹색  🟢" : "Green", "보라색 🟣" : "Pupple", "빨간색 🔴" : "Red"].sorted(by: >)
+            let alert = UIAlertController(title: "색상 선택", message: nil, preferredStyle: .alert)
+            alert.setFont(font: nil, title: "색상 선택", message: nil)
             colors.forEach { color in
-                alert.addAction(UIAlertAction(title: color.key, style: .default) { action in
+                let action = UIAlertAction(title: color.key, style: .default) { action in
                     self.setCoverImage(color: color.value)
-                })
+                }
+                action.setValue(UIColor.darkGray, forKey: "titleTextColor")
+                alert.addAction(action)
             }
             self.present(alert, animated: true) {
                 alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTappedOutside(_:))))

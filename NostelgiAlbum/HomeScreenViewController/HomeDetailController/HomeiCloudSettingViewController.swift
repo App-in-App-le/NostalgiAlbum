@@ -163,7 +163,6 @@ class HomeiCloudSettingViewController: UIViewController {
                                     do {
                                         // flag: true -> iCloud에 업로드 (수동 업로드) -> 에러를 잡기 위해 설정
                                         try FileManager.default.setUbiquitous(true, itemAt: localNostURL[index], destinationURL: iCloudNostURL[index])
-                                        print("DATA BACK UP :: UPLOAD SUCCESS TO iCLOUD DRIVER")
                                     } catch let error {
                                         // iCloud에 업로드하다가 실패한 경우
                                         print("DATA BACK UP :: UPLOAD FAIL TO iCLOUD DRIVER \(error) ")

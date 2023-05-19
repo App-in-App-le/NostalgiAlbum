@@ -30,9 +30,9 @@ class AlbumPicViewController: UIViewController {
         setupSubviews()
         setThemeColor()
         setFont()
-//        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
-//        swipeRecognizer.direction = .down
-//        self.view.addGestureRecognizer(swipeRecognizer)
+        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
+        swipeRecognizer.direction = .right
+        self.view.addGestureRecognizer(swipeRecognizer)
     }
     
     // MARK: - Methods
@@ -170,11 +170,11 @@ class AlbumPicViewController: UIViewController {
         
     }
     
-//    @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
-//        if sender.direction == .down{
-//            self.dismiss(animated: true)
-//        }
-//    }
+    @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
+        if sender.direction == .right{
+            self.dismiss(animated: true)
+        }
+    }
     
     @IBAction func dismissPicture(_ sender: Any) {
         self.dismiss(animated: false)

@@ -2,11 +2,11 @@ import UIKit
 
 func saveImageToDocumentDirectory(imageName: String, image: UIImage, AlbumCoverName: String) throws {
     // 1. 이미지를 저장할 경로를 설정해줘야함 - 도큐먼트 폴더,File 관련된건 Filemanager가 관리함(싱글톤 패턴)
+    // 2. 이미지 파일 이름 & 최종 경로 설정
     guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
     let imageURL = documentDirectory.appendingPathComponent(AlbumCoverName).appendingPathComponent(imageName)
-    // 2. 이미지 파일 이름 & 최종 경로 설정
-    NSLog(imageURL.path())
-    // 돌아가는 방향 잡는 부분
+    
+    // pickerView에서 이미지 돌아가는 에러 해결
     let changedImage = fixOrientation(image: image)
 
     // 3. 이미지 압축(image.pngData())
