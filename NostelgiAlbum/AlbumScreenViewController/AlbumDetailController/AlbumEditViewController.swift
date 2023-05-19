@@ -42,9 +42,9 @@ class AlbumEditViewController: UIViewController {
             editText.textColor = .systemGray3
         }
         
-        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
-        swipeRecognizer.direction = .down
-        self.view.addGestureRecognizer(swipeRecognizer)
+//        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
+//        swipeRecognizer.direction = .down
+//        self.view.addGestureRecognizer(swipeRecognizer)
         setThemeColor()
         setFont()
     }
@@ -54,11 +54,11 @@ class AlbumEditViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @objc func exitSwipe(_ sender :UISwipeGestureRecognizer) {
-        if sender.direction == .down{
-            self.dismiss(animated: true)
-        }
-    }
+//    @objc func exitSwipe(_ sender :UISwipeGestureRecognizer) {
+//        if sender.direction == .down{
+//            self.dismiss(animated: true)
+//        }
+//    }
     
     func setSubViews() {
         // saveButton

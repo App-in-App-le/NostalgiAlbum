@@ -3,7 +3,7 @@ import RealmSwift
 
 extension AlbumEditViewController {
     @IBAction func dismissEditView(_ sender: Any) {
-        self.dismiss(animated: true)
+        self.dismiss(animated: false)
     }
     
     // 사진을 어디서 가져올지 Alert
