@@ -6,8 +6,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         deleteTmpFiles()
-        nostFileRemove()
-        externalFileRemove()
+//        nostFileRemove()
+//        externalFileRemove()
+        deleteRestDirectoryInDocument()
         let path = NSHomeDirectory()+"/Library/SplashBoard"
         do {
             try FileManager.default.removeItem(atPath: path)
