@@ -14,8 +14,8 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
-        closeButton.setTitle("", for: .normal)
-        closeButton.setImage(UIImage(systemName: "clear"), for: .normal)
+//        closeButton.setTitle("", for: .normal)
+//        closeButton.setImage(UIImage(systemName: "clear"), for: .normal)
         imageInit()
         setThemeColor()
     }
@@ -26,7 +26,7 @@ class ImageViewController: UIViewController {
     }
     
     @IBAction func closeAction(_ sender: Any) {
-        self.dismiss(animated: false)
+        self.dismiss(animated: true)
     }
 }
 

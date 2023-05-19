@@ -3,7 +3,28 @@ import RealmSwift
 
 extension AlbumEditViewController {
     @IBAction func dismissEditView(_ sender: Any) {
-        self.dismiss(animated: false)
+        var titleText = "수정 취소"
+        var messageText = "수정을 취소하시겠습니까?"
+        if picVC == nil {
+            titleText = "생성 취소"
+            messageText = "사진 추가를 취소하시겠습니까?"
+        }
+        
+        let dismissAlert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
+        dismissAlert.setFont(font: nil, title: titleText, message: messageText)
+        
+        let confirmAction = UIAlertAction(title: "예", style: .default) { action in
+            self.dismiss(animated: true)
+        }
+        
+        let cancleAction = UIAlertAction(title: "아니오", style: .default) { action in
+            dismissAlert.dismiss(animated: true)
+        }
+        
+        dismissAlert.addAction(confirmAction)
+        dismissAlert.addAction(cancleAction)
+        
+        self.present(dismissAlert, animated: true)
     }
     
     // 사진을 어디서 가져올지 Alert
@@ -50,21 +71,42 @@ extension AlbumEditViewController {
             }
             return
         }
-        if editText.text == "설명을 입력해주세요" && editText.textColor == .systemGray3 {
-            editText.text = nil
+        
+        var titleText = "수정 완료"
+        var messageText = "변경 내용을 저장하시겠습니까?"
+        if picVC == nil {
+            titleText = "생성 완료"
+            messageText = "새로운 사진을 추가하시겠습니까?"
+        }
+        let saveAlert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
+        saveAlert.setFont(font: nil, title: titleText, message: messageText)
+        
+        let confirmAction = UIAlertAction(title: "예", style: .default) { action in
+            if self.editText.text == "설명을 입력해주세요" && self.editText.textColor == .systemGray3 {
+                self.editText.text = nil
+            }
+            
+            if self.picture != nil {
+                self.modifyPic()
+            } else {
+                self.addPic()
+            }
+            deleteTmpFiles()
+            self.collectionViewInAlbum.reloadData()
+            
+            self.dismiss(animated: false) {
+                self.picVC?.dismiss(animated: false)
+            }
         }
         
-        if picture != nil {
-            modifyPic()
-        } else {
-            addPic()
+        let cancleAction = UIAlertAction(title: "아니오", style: .default) { action in
+            saveAlert.dismiss(animated: true)
         }
-        deleteTmpFiles()
-        collectionViewInAlbum.reloadData()
         
-        dismiss(animated: false) {
-            self.picVC?.dismiss(animated: false)
-        }
+        saveAlert.addAction(confirmAction)
+        saveAlert.addAction(cancleAction)
+        
+        self.present(saveAlert, animated: true)
     }
     // 사진을 변경
     func modifyPic() {

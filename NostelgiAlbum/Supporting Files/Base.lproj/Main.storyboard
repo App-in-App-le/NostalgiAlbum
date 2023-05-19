@@ -154,12 +154,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDz-rf-7Ho">
-                                        <rect key="frame" x="338" y="23" width="49" height="31"/>
+                                        <rect key="frame" x="339" y="24" width="49" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="저장">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="titleFontDescription" name="EF_watermelonSalad" family="EF_수박화체" pointSize="13"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="savePicture:" destination="qGg-ET-l2z" eventType="touchUpInside" id="QGf-y4-Ye2"/>
@@ -179,7 +179,7 @@
                                         <rect key="frame" x="15" y="20" width="40" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="xmark.app" catalog="system">
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.left.square" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -324,7 +324,7 @@
                                         <rect key="frame" x="15" y="20" width="40" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="xmark.app" catalog="system" title="">
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.left.square" catalog="system" title="">
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -383,10 +383,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DiD-Yh-0z4">
-                                        <rect key="frame" x="10" y="69" width="43" height="33"/>
+                                        <rect key="frame" x="8" y="77" width="49" height="33.333333333333343"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="xmark.app" catalog="system">
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.left.square" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -410,13 +410,11 @@
                         <viewLayoutGuide key="safeArea" id="JkI-f5-TyR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="JkI-f5-TyR" firstAttribute="trailing" secondItem="DiD-Yh-0z4" secondAttribute="trailing" constant="340" id="4UI-JO-arL"/>
-                            <constraint firstItem="DiD-Yh-0z4" firstAttribute="top" secondItem="JkI-f5-TyR" secondAttribute="top" constant="10" id="8OY-NH-71O"/>
+                            <constraint firstItem="DiD-Yh-0z4" firstAttribute="top" secondItem="JkI-f5-TyR" secondAttribute="top" constant="18" id="8OY-NH-71O"/>
                             <constraint firstItem="9EG-c4-JCK" firstAttribute="top" secondItem="yRj-Hy-QZk" secondAttribute="top" id="ATZ-m8-qTn"/>
-                            <constraint firstItem="JkI-f5-TyR" firstAttribute="bottom" secondItem="DiD-Yh-0z4" secondAttribute="bottom" constant="716" id="CFN-kN-Wn7"/>
                             <constraint firstAttribute="bottom" secondItem="9EG-c4-JCK" secondAttribute="bottom" id="HC7-TN-yWq"/>
                             <constraint firstItem="9EG-c4-JCK" firstAttribute="leading" secondItem="JkI-f5-TyR" secondAttribute="leading" id="JOm-kq-zKm"/>
-                            <constraint firstItem="DiD-Yh-0z4" firstAttribute="leading" secondItem="JkI-f5-TyR" secondAttribute="leading" constant="10" id="fDk-d7-Wdj"/>
+                            <constraint firstItem="DiD-Yh-0z4" firstAttribute="leading" secondItem="JkI-f5-TyR" secondAttribute="leading" constant="8" id="fDk-d7-Wdj"/>
                             <constraint firstItem="9EG-c4-JCK" firstAttribute="trailing" secondItem="JkI-f5-TyR" secondAttribute="trailing" id="lWM-eP-qcq"/>
                         </constraints>
                     </view>
@@ -1059,7 +1057,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앨범 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xym-yq-J0G">
-                                        <rect key="frame" x="161" y="11.333333333333327" width="71.333333333333314" height="22.333333333333329"/>
+                                        <rect key="frame" x="159" y="9.6666666666666732" width="75.333333333333314" height="25.666666666666671"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="PyeongChangPeace-Light" family="PyeongChang Peace" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1507,13 +1505,13 @@
     </scenes>
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
+        <image name="chevron.left.square" catalog="system" width="128" height="114"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="icloud.and.arrow.up" catalog="system" width="128" height="108"/>
         <image name="scribble.variable" catalog="system" width="128" height="119"/>
         <image name="square.and.arrow.down.on.square" catalog="system" width="122" height="128"/>
         <image name="square.and.arrow.up.on.square" catalog="system" width="119" height="128"/>
-        <image name="xmark.app" catalog="system" width="128" height="114"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

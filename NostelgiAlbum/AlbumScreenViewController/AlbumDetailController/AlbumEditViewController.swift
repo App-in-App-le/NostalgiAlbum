@@ -11,7 +11,7 @@ class AlbumEditViewController: UIViewController {
     @IBOutlet weak var editName: UITextField!
     @IBOutlet weak var editText: UITextView!
     @IBOutlet weak var dismissButton: UIButton!
-    weak var picVC : AlbumPicViewController?
+    weak var picVC : AlbumPicViewController? = nil
     weak var picture: album?
     let realm = try! Realm()
     var collectionViewInAlbum : UICollectionView!
@@ -98,8 +98,8 @@ class AlbumEditViewController: UIViewController {
             saveButton.heightAnchor.constraint(equalToConstant: 30),
             saveButton.widthAnchor.constraint(equalToConstant: 50),
             
-            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
+            dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             
             editPicture.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 10),
             editPicture.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -148,8 +148,8 @@ class AlbumEditViewController: UIViewController {
                 saveButton.heightAnchor.constraint(equalToConstant: 30),
                 saveButton.widthAnchor.constraint(equalToConstant: 50),
                 
-                dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-                dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+                dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
+                dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
                 
                 editPicture.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 50),
                 editPicture.centerXAnchor.constraint(equalTo: view.centerXAnchor),

@@ -31,7 +31,7 @@ extension AlbumEditViewController {
         let selected_font_Kor = albumInfo.font
         let selected_font_Eng = FontSet().font[selected_font_Kor]
         
-        self.saveButton.titleLabel?.font = UIFont(name: selected_font_Eng!, size: 14)
+        self.saveButton.titleLabel?.font = UIFont(name: selected_font_Eng!, size: 13)
         self.editName.font = UIFont(name: selected_font_Eng!, size: 14)
         self.editText.font = UIFont(name: selected_font_Eng!, size: 14)
     }
