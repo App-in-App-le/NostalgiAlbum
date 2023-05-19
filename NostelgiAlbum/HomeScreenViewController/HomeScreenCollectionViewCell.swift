@@ -9,16 +9,16 @@ class HomeScreenCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var secondButtonShadowView: UIView!
     @IBOutlet weak var bottomLabel: UILabel!
-    var callback1 : (()->Void)?
-    var callback2 : (()->Void)?
+    var callBack1 : (()->Void)!
+    var callBack2 : (()->Void)!
     
     // MARK: - Methods
     @IBAction func fmakeButton(_ sender: Any) {
-        callback1?()
+        callBack1()
     }
     
     @IBAction func makeButton(_ sender: Any) {
-        callback2?()
+        callBack2()
     }
     
     func setFirstButton(height: CGFloat) {

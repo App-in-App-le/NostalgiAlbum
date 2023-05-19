@@ -2,13 +2,12 @@ import UIKit
 
 extension HomeScreenViewController {
     func pushShareView(path: URL) {
-        // Initialize shareViewController
+        // 앨범을 공유 받았을 때, 출력되는 ViewController 생성
         let shareVC = self.storyboard?.instantiateViewController(withIdentifier: "ShareViewController") as! ShareViewController
-        // .nost file's path
+        // 앨범을 공유 받은 경로 전달
         shareVC.filePath = path
-        // Set collectionView in shareVC properties to reload Data
         shareVC.collectionViewInHome = collectionView
-        // Push shareVC
+        // 해당  shareVC를 Present
         shareVC.modalPresentationStyle = .overFullScreen
         self.present(shareVC, animated: false)
     }

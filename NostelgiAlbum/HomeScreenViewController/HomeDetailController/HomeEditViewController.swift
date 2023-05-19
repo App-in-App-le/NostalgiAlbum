@@ -3,7 +3,6 @@ import RealmSwift
 
 class HomeEditViewController: UIViewController {
     // MARK: - Properties
-    // UIView
     @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var editView: UIView!
     @IBOutlet weak var editTitle: UILabel!
@@ -12,15 +11,15 @@ class HomeEditViewController: UIViewController {
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var cancleButton: UIButton!
     @IBOutlet weak var divideLine: UILabel!
-    weak var collectionViewInHome : UICollectionView!
-    
+    weak var collectionViewInHome: UICollectionView!
     let realm = try! Realm()
+    var id: Int = 0
+    // 수정 EditView 관련 변수
+    var IsModifyingView: Bool = false
+    var albumNameBeforeModify: String = ""
+    var coverImageBeforeModify: String = ""
+    // CustomCoverColor를 구분하기 위해 선언
     var defaultCoverColor: String! = ""
-    // Modifying
-    var IsModifyingView : Bool = false
-    var albumNameBeforeModify : String = ""
-    var coverImageBeforeModify : String = ""
-    var id : Int = 0
     
     // MARK: - View Life Cycle
     override func viewDidLoad(){
@@ -43,6 +42,7 @@ class HomeEditViewController: UIViewController {
         // selectButton
         selectButton.layer.cornerRadius = 8
         
+        // 수정 Edit일 경우, CoverImage를 다시 설정
         if !coverImageBeforeModify.isEmpty {
             let coverImageData = realm.objects(albumCover.self).filter("id = \(id)")
             if coverImageData.first?.isCustomCover == false {
