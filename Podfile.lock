@@ -1,11 +1,11 @@
 PODS:
   - Mantis (2.8.0)
   - ReachabilitySwift (5.0.0)
-  - Realm (10.32.3):
-    - Realm/Headers (= 10.32.3)
-  - Realm/Headers (10.32.3)
-  - RealmSwift (10.32.3):
-    - Realm (= 10.32.3)
+  - Realm (10.39.1):
+    - Realm/Headers (= 10.39.1)
+  - Realm/Headers (10.39.1)
+  - RealmSwift (10.39.1):
+    - Realm (= 10.39.1)
   - Zip (2.1.2)
 
 DEPENDENCIES:
@@ -25,10 +25,10 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Mantis: 9d048431a9c4f4296c0d5b9c109c7e5dc392e7cd
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  Realm: fdf6732924dc5e69e30e0db2c11e869f92b53f3d
-  RealmSwift: 7c181da8fa1c2fe613656a77c198d6a3dc3879a1
+  Realm: 1f3157edf145f4d9036765ab550c8cb18f62b700
+  RealmSwift: 8a69a1cb788cd5865966f49667b130567e07bceb
   Zip: b3fef584b147b6e582b2256a9815c897d60ddc67
 
-PODFILE CHECKSUM: c262e24a246dfe83034c113f49e14ce4f8bdc8da
+PODFILE CHECKSUM: 452f085d9600bb9f927c49e37f31e95453cd457f
 
 COCOAPODS: 1.11.3
