@@ -1,10 +1,6 @@
 import UIKit
 import RealmSwift
 
-// tableView 같은 경우 Delegate 안에서 Font를 정해야하는 부분이 있기 때문에 따로 함수를 만들지 않고 Delegate안에서 해결하는 방식으로 처리함
-// -> SettingViewController, FontSettingViewController, InfoViewController
-
-// AlbumViewController
 extension AlbumScreenViewController {
     func setFont() {
         let albumInfo = realm.objects(albumsInfo.self).filter("id = \(coverIndex)").first!
@@ -35,7 +31,7 @@ extension AlbumEditViewController {
         let selected_font_Kor = albumInfo.font
         let selected_font_Eng = FontSet().font[selected_font_Kor]
         
-        self.saveButton.titleLabel?.font = UIFont(name: selected_font_Eng!, size: 14)
+        self.saveButton.titleLabel?.font = UIFont(name: selected_font_Eng!, size: 13)
         self.editName.font = UIFont(name: selected_font_Eng!, size: 14)
         self.editText.font = UIFont(name: selected_font_Eng!, size: 14)
     }
@@ -52,7 +48,6 @@ extension AlbumPicViewController {
     }
 }
 
-// Tool Bar View Controller
 extension PageSearchViewController {
     func setFont() {
         let albumInfo = realm.objects(albumsInfo.self).filter("id = \(index!)").first!
@@ -80,10 +75,6 @@ extension PageCell {
         self.button.titleLabel?.font = UIFont(name: selected_font_Eng!, size: 18)
 
     }
-}
-
-extension ContentsSearchViewController {
-    
 }
 
 extension ContentsCells {
@@ -117,9 +108,9 @@ extension UIAlertController {
         if let message = message {
             let messageText = NSMutableAttributedString(string: message)
             if let font = font {
-                messageText.addAttribute(.font, value: UIFont(name: font, size: 13)!, range: (message as NSString).range(of: message))
+                messageText.addAttribute(.font, value: UIFont(name: font, size: 14)!, range: (message as NSString).range(of: message))
             } else {
-                messageText.addAttribute(.font, value: UIFont(name: "EF_watermelonSalad", size: 13)!, range: (message as NSString).range(of: message))
+                messageText.addAttribute(.font, value: UIFont(name: "EF_watermelonSalad", size: 14)!, range: (message as NSString).range(of: message))
             }
             self.setValue(messageText, forKey: "attributedMessage")
         }

@@ -87,6 +87,7 @@ extension AlbumEditViewController {
             bottomLabel.backgroundColor = ThemeColorSet["subColor_2"]
             editPicture.backgroundColor = ThemeColorSet["subColor_3"]
             saveButton.backgroundColor = ThemeColorSet["subColor_4"]
+            dismissButton.tintColor = ThemeColorSet["mainColor"]
         } else {
             return
         }
@@ -103,6 +104,7 @@ extension AlbumPicViewController {
             bottomLabel.backgroundColor = ThemeColorSet["subColor_2"]
             picImage.backgroundColor = ThemeColorSet["subColor_3"]
             settingBtn.tintColor = ThemeColorSet["mainColor"]
+            dismissButton.tintColor = ThemeColorSet["mainColor"]
         } else {
             return
         }

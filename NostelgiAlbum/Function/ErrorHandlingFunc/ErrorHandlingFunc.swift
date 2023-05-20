@@ -45,8 +45,11 @@ func NSErrorHandling_Alert(error: Error, vc: UIViewController) {
             titleText = "아이클라우드 서버 연결 실패"
             messageText = "아이클라우드 서비스를 사용할 수 없습니다. 설정에서 앱의 아이클라우드 권한을 추가해주세요."
             
+        case NSFileWriteUnknownError:
+            titleText = "이미지 저장 실패"
+            messageText = "이미지 저장이 실패하였습니다."
+            
         default:
-            // 기타 Cocoa Error 에러
             titleText = "동작 실패 (2)"
             messageText = "동작이 실패하였습니다. 다시 시도해주세요."
         }
@@ -55,22 +58,30 @@ func NSErrorHandling_Alert(error: Error, vc: UIViewController) {
         titleText = "읽기 전용"
         messageText = "현재 읽기만 가능한 상태입니다."
     
+    case HomeScreenViewErrorMessage.reviewAlbumError:
+        titleText = "앨범 수정 실패"
+        messageText = "앨범 수정 중 사진 파일이 손상되었습니다."
+        
+    case HomeScreenViewErrorMessage.deleteAlbumError:
+        titleText = "앨범 삭제 실패"
+        messageText = "앨범 삭제를 실패하였습니다."
+        
     case ErrorMessage.notNost:
         titleText = "잘못된 파일"
         messageText = "잘못된 파일 형식입니다."
-    
-    
-    // iCloud Error 추가 필요
+        
+    case let nsError as NSError where nsError.domain == "io.realm":
+        titleText = "데이터 베이스 오류"
+        messageText = "데이터 베이스에서 오류가 발생하였습니다."
+        
     case let nsError as NSError where nsError.domain == NSURLErrorDomain:
         if nsError.code == NSURLErrorNotConnectedToInternet {
             titleText = "인터넷 연결"
             messageText = "인터넷 연결이 필요합니다."
         } else {
-            // 다른 NSURLError 에러
             titleText = "NSURLError"
             messageText = "NSURLError가 발생했습니다."
         }
-        
     default:
         titleText = "동작 실패 (1)"
         messageText = "동작이 실패하였습니다. 다시 시도해주세요."

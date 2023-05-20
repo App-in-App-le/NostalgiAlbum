@@ -113,8 +113,8 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
             editVC.albumCoverName = self.albumName
             editVC.collectionViewInAlbum = self.albumSVC.collectionView
             editVC.modalPresentationStyle = .overFullScreen
-            // editVC.navigationController?.pushViewController(editVC, animated: false)
-            albumSVC.present(editVC, animated: false)
+            editVC.modalTransitionStyle = .crossDissolve
+            albumSVC.present(editVC, animated: true)
             // When the pictureImageButton has a picture, go to the albumPicView.
         } else {
             guard let picVC = self.albumSVC.storyboard?.instantiateViewController(withIdentifier: "AlbumPicViewController") as? AlbumPicViewController else { return }
@@ -122,7 +122,8 @@ class AlbumScreenCollectionViewCell: UICollectionViewCell {
             picVC.collectionViewInAlbum = albumSVC.collectionView
             picVC.index = albumSVC.coverIndex
             picVC.modalPresentationStyle = .overFullScreen
-            albumSVC.present(picVC, animated: false)
+            picVC.modalTransitionStyle = .crossDissolve
+            albumSVC.present(picVC, animated: true)
         }
     }
     

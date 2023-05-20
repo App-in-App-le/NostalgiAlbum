@@ -40,13 +40,12 @@ class FontSettingViewController: UIViewController {
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableCons = [
+        NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ]
-        NSLayoutConstraint.activate(tableCons)
+        ])
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -131,7 +130,6 @@ extension FontSettingViewController: UITableViewDataSource {
 
 extension FontSettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
         switch indexPath.section {
         case 0:
             return

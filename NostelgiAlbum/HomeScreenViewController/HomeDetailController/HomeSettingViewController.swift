@@ -5,8 +5,8 @@ class HomeSettingViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var backgroundStackView: UIStackView!
     weak var homeScreenViewController: HomeScreenViewController! = nil
+    weak var homeScreenCollectionView: UICollectionView! = nil
     let realm = try! Realm()
-    var homeScreenCollectionView: UICollectionView! = nil
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -45,7 +45,6 @@ class HomeSettingViewController: UIViewController {
         alert.setFont(font: nil, title: titleText, message: messageText)
         
         for color in colors {
-            print(color.key)
             let action = UIAlertAction(title: color.key, style: .default) { action in
                 let homeSettingInfo = self.realm.objects(HomeSetting.self).first!
                 do {
