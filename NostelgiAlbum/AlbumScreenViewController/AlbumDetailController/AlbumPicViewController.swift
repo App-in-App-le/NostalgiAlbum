@@ -31,7 +31,7 @@ class AlbumPicViewController: UIViewController {
         setThemeColor()
         setFont()
         let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(exitSwipe(_:)))
-        swipeRecognizer.direction = .down
+        swipeRecognizer.direction = .right
         self.view.addGestureRecognizer(swipeRecognizer)
     }
     
@@ -89,8 +89,8 @@ class AlbumPicViewController: UIViewController {
             settingBtn.heightAnchor.constraint(equalToConstant: 30),
             settingBtn.widthAnchor.constraint(equalToConstant: 50),
             
-            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
+            dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             
             picImageShadowView.topAnchor.constraint(equalTo: settingBtn.bottomAnchor, constant: 10),
             picImageShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -128,8 +128,8 @@ class AlbumPicViewController: UIViewController {
             settingBtn.heightAnchor.constraint(equalToConstant: 30),
             settingBtn.widthAnchor.constraint(equalToConstant: 50),
             
-            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
+            dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             
             picImageShadowView.topAnchor.constraint(equalTo: settingBtn.bottomAnchor, constant: 50),
             picImageShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -171,24 +171,41 @@ class AlbumPicViewController: UIViewController {
     }
     
     @objc func exitSwipe(_ sender :UISwipeGestureRecognizer){
-        if sender.direction == .down{
+        if sender.direction == .right{
             self.dismiss(animated: true)
         }
     }
     
     @IBAction func dismissPicture(_ sender: Any) {
-        self.dismiss(animated: true)
+        self.dismiss(animated: false)
     }
+    
     @IBAction func settingPicture(_ sender: Any) {
-        guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumEditViewController") as? AlbumEditViewController else { return }
+        let settingAlert = UIAlertController(title: "수정", message: "내용을 수정하시겠습니까?", preferredStyle: .alert)
+        settingAlert.setFont(font: nil, title: "수정", message: "내용을 수정하시겠습니까?")
         
-        editVC.picture = picture
-        editVC.collectionViewInAlbum = collectionViewInAlbum
-        editVC.picVC = self
-        editVC.index = index
-        editVC.modalPresentationStyle = .overFullScreen
-        self.present(editVC, animated: false)
+        let confirmAction = UIAlertAction(title: "예", style: .default) { action in
+            guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumEditViewController") as? AlbumEditViewController else { return }
+            
+            editVC.picture = self.picture
+            editVC.collectionViewInAlbum = self.collectionViewInAlbum
+            editVC.picVC = self
+            editVC.index = self.index
+            
+            editVC.modalPresentationStyle = .overFullScreen
+            editVC.modalTransitionStyle = .crossDissolve
+            
+            self.present(editVC, animated: true)
+        }
         
+        let cancleAction = UIAlertAction(title: "아니오", style: .default) { action in
+            settingAlert.dismiss(animated: true)
+        }
+        
+        settingAlert.addAction(confirmAction)
+        settingAlert.addAction(cancleAction)
+        
+        self.present(settingAlert, animated: true)
     }
     
     @IBAction func zoomImage(_ sender: Any) {
@@ -197,6 +214,7 @@ class AlbumPicViewController: UIViewController {
         zoomVC.imageName = totalPath
         zoomVC.albumTitle = self.picture.AlbumTitle
         zoomVC.modalPresentationStyle = .overFullScreen
-        self.present(zoomVC, animated: false)
+        zoomVC.modalTransitionStyle = .crossDissolve
+        self.present(zoomVC, animated: true)
     }
 }

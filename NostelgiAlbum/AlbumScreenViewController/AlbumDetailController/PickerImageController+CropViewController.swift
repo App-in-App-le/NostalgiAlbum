@@ -28,8 +28,8 @@ extension AlbumEditViewController: CropViewControllerDelegate {
                     saveButton.heightAnchor.constraint(equalToConstant: 30),
                     saveButton.widthAnchor.constraint(equalToConstant: 50),
                     
-                    dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-                    dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+                    dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
+                    dismissButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
                     
                     editPicture.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 50),
                     editPicture.centerXAnchor.constraint(equalTo: view.centerXAnchor),

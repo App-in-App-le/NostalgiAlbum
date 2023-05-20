@@ -11,9 +11,9 @@ class SetPictureNameViewController: UIViewController {
         super.viewDidLoad()
         pictureName.text = editVC.editName.text
         if let text = pictureName.text {
-            wordCountLabel.text = "\(text.count) / 10"
+            wordCountLabel.text = "\(text.count) / 20"
         } else {
-            wordCountLabel.text = "0 / 10"
+            wordCountLabel.text = "0 / 20"
         }
         pictureName.becomeFirstResponder()
         pictureName.delegate = self
@@ -37,14 +37,14 @@ extension SetPictureNameViewController: UITextFieldDelegate {
         
         let changedText = currentText.replacingCharacters(in: stringRange, with: string)
         
-        if changedText.count <= 10 {
-            self.wordCountLabel.text = "\(changedText.count) / 10"
+        if changedText.count <= 20 {
+            self.wordCountLabel.text = "\(changedText.count) / 20"
             self.wordCountLabel.textColor = .white
         } else {
             self.wordCountLabel.textColor = .red
         }
         
         
-        return changedText.count <= 10
+        return changedText.count <= 20
     }
 }

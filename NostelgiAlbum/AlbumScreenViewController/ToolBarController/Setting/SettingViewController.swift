@@ -147,8 +147,7 @@ extension SettingViewController: UITableViewDelegate {
                 self.navigationController?.pushViewController(fontSettingVC, animated: true)
             }
         case 1:
-            // 첫 페이지 설정
-            if indexPath.item == 0 {
+                if indexPath.item == 0 {
                 let firstPageSettingVC = FirstPageSettingViewController()
                 firstPageSettingVC.index = index
                 
