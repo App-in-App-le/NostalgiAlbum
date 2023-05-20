@@ -34,7 +34,6 @@ extension PageSearchViewController {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
-        //stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
@@ -78,13 +77,13 @@ extension PageSearchViewController {
         button.addSubview(firstPicture)
         button.addSubview(secondPicture)
         NSLayoutConstraint.activate([
-            firstPicture.topAnchor.constraint(equalTo: button.topAnchor, constant: 15),
+            firstPicture.topAnchor.constraint(equalTo: button.topAnchor, constant: 20),
             firstPicture.bottomAnchor.constraint(equalTo: secondPicture.topAnchor, constant: -20),
             firstPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.45),
             firstPicture.widthAnchor.constraint(equalTo: button.widthAnchor, multiplier: 0.7),
             firstPicture.centerXAnchor.constraint(equalTo: button.centerXAnchor),
-            secondPicture.topAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: 1),
-            secondPicture.bottomAnchor.constraint(equalTo: button.bottomAnchor),
+            
+            secondPicture.topAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: 20),
             secondPicture.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.45),
             secondPicture.widthAnchor.constraint(equalTo: button.widthAnchor, multiplier: 0.7),
             secondPicture.centerXAnchor.constraint(equalTo: button.centerXAnchor)
@@ -112,26 +111,25 @@ extension PageSearchViewController {
         firstPicture.addSubview(fpTitle)
         firstPicture.addSubview(fpContent)
         NSLayoutConstraint.activate([
-            fpTitle.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
-            fpTitle.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
-            fpTitle.topAnchor.constraint(equalTo: fpTitleText.bottomAnchor, constant: CGFloat(10)),
-            fpTitle.bottomAnchor.constraint(equalTo: fpContentText.topAnchor, constant: -CGFloat(20)),
-            fpTitle.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.15),
-            
-            fpContent.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: CGFloat(20)),
-            fpContent.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -CGFloat(20)),
-            fpContent.topAnchor.constraint(equalTo: fpContentText.bottomAnchor, constant: CGFloat(5)),
-            fpContent.bottomAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: -CGFloat(15)),
-
-            fpTitleText.topAnchor.constraint(equalTo: firstPicture.topAnchor, constant: CGFloat(10)),
-            fpTitleText.bottomAnchor.constraint(equalTo: fpTitle.topAnchor, constant: -CGFloat(5)),
-            fpTitleText.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.1),
+            fpTitleText.topAnchor.constraint(equalTo: firstPicture.topAnchor, constant: 10),
+            fpTitleText.bottomAnchor.constraint(equalTo: fpTitle.topAnchor, constant: -5),
             fpTitleText.centerXAnchor.constraint(equalTo: firstPicture.centerXAnchor),
-            
-            fpContentText.topAnchor.constraint(equalTo: fpTitle.bottomAnchor, constant: CGFloat(10)),
-            fpContentText.bottomAnchor.constraint(equalTo: fpContent.topAnchor, constant: -CGFloat(5)),
-            fpContentText.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.1),
-            fpContentText.centerXAnchor.constraint(equalTo: firstPicture.centerXAnchor)
+
+            fpTitle.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: 20),
+            fpTitle.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -20),
+            fpTitle.topAnchor.constraint(equalTo: fpTitleText.bottomAnchor, constant: 5),
+            fpTitle.bottomAnchor.constraint(equalTo: fpContentText.topAnchor, constant: -20),
+            fpTitle.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.15),
+
+            fpContentText.topAnchor.constraint(equalTo: fpTitle.bottomAnchor, constant: 20),
+            fpContentText.bottomAnchor.constraint(equalTo: fpContent.topAnchor, constant: -5),
+            fpContentText.centerXAnchor.constraint(equalTo: firstPicture.centerXAnchor),
+
+            fpContent.leadingAnchor.constraint(equalTo: firstPicture.leadingAnchor, constant: 20),
+            fpContent.trailingAnchor.constraint(equalTo: firstPicture.trailingAnchor, constant: -20),
+            fpContent.topAnchor.constraint(equalTo: fpContentText.bottomAnchor, constant: 5),
+            fpContent.bottomAnchor.constraint(equalTo: firstPicture.bottomAnchor, constant: -15),
+            fpContent.heightAnchor.constraint(equalTo: firstPicture.heightAnchor, multiplier: 0.45)
         ])
         
         spTitle.numberOfLines = 0
@@ -158,26 +156,25 @@ extension PageSearchViewController {
         secondPicture.addSubview(spTitleText)
         secondPicture.addSubview(spContentText)
         NSLayoutConstraint.activate([
-            spTitle.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
-            spTitle.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
-            spTitle.topAnchor.constraint(equalTo: spTitleText.bottomAnchor, constant: CGFloat(10)),
-            spTitle.bottomAnchor.constraint(equalTo: spContentText.topAnchor, constant: -CGFloat(20)),
-            spTitle.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.15),
-            
-            spContent.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: CGFloat(20)),
-            spContent.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -CGFloat(20)),
-            spContent.topAnchor.constraint(equalTo: spContentText.bottomAnchor, constant: CGFloat(5)),
-            spContent.bottomAnchor.constraint(equalTo: secondPicture.bottomAnchor, constant: -CGFloat(15)),
-
-            spTitleText.topAnchor.constraint(equalTo: secondPicture.topAnchor, constant: CGFloat(10)),
-            spTitleText.bottomAnchor.constraint(equalTo: spTitle.topAnchor, constant: -CGFloat(5)),
-            spTitleText.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.1),
+            spTitleText.topAnchor.constraint(equalTo: secondPicture.topAnchor, constant: 10),
+            spTitleText.bottomAnchor.constraint(equalTo: spTitle.topAnchor, constant: -5),
             spTitleText.centerXAnchor.constraint(equalTo: secondPicture.centerXAnchor),
-            
-            spContentText.topAnchor.constraint(equalTo: spTitle.bottomAnchor, constant: CGFloat(10)),
-            spContentText.bottomAnchor.constraint(equalTo: spContent.topAnchor, constant: -CGFloat(5)),
-            spContentText.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.1),
-            spContentText.centerXAnchor.constraint(equalTo: secondPicture.centerXAnchor)
+
+            spTitle.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: 20),
+            spTitle.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -20),
+            spTitle.topAnchor.constraint(equalTo: spTitleText.bottomAnchor, constant: 5),
+            spTitle.bottomAnchor.constraint(equalTo: spContentText.topAnchor, constant: -20),
+            spTitle.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.15),
+
+            spContentText.topAnchor.constraint(equalTo: spTitle.bottomAnchor, constant: 20),
+            spContentText.bottomAnchor.constraint(equalTo: spContent.topAnchor, constant: -5),
+            spContentText.centerXAnchor.constraint(equalTo: secondPicture.centerXAnchor),
+
+            spContent.leadingAnchor.constraint(equalTo: secondPicture.leadingAnchor, constant: 20),
+            spContent.trailingAnchor.constraint(equalTo: secondPicture.trailingAnchor, constant: -20),
+            spContent.topAnchor.constraint(equalTo: spContentText.bottomAnchor, constant: 5),
+            spContent.bottomAnchor.constraint(equalTo: secondPicture.bottomAnchor, constant: -15),
+            spContent.heightAnchor.constraint(equalTo: secondPicture.heightAnchor, multiplier: 0.45)
         ])
         return button
     }

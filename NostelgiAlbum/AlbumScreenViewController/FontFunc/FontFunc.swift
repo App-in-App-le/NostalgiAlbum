@@ -53,16 +53,65 @@ extension PageSearchViewController {
         let albumInfo = realm.objects(albumsInfo.self).filter("id = \(index!)").first!
         let selected_font_Kor = albumInfo.font
         let selected_font_Eng = FontSet().font[selected_font_Kor]
-        
-        self.fpTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 17)
-        self.fpContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 17)
-        self.spTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 17)
-        self.spContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 17)
-        
-        self.fpTitle.font = UIFont(name: selected_font_Eng!, size: 16)
-        self.fpContent.font = UIFont(name: selected_font_Eng!, size: 16)
-        self.spTitle.font = UIFont(name: selected_font_Eng!, size: 16)
-        self.spContent.font = UIFont(name: selected_font_Eng!, size: 16)
+                
+        let height = UIScreen.main.bounds.size.height
+        switch height {
+        case 667.0:
+            self.fpTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 13)
+            self.fpContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 13)
+            self.spTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 13)
+            self.spContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 13)
+            
+            self.fpTitle.font = UIFont(name: selected_font_Eng!, size: 12)
+            self.fpContent.font = UIFont(name: selected_font_Eng!, size: 12)
+            self.spTitle.font = UIFont(name: selected_font_Eng!, size: 12)
+            self.spContent.font = UIFont(name: selected_font_Eng!, size: 12)
+
+        case 736.0:
+            self.fpTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 14)
+            self.fpContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 14)
+            self.spTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 14)
+            self.spContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 14)
+            
+            self.fpTitle.font = UIFont(name: selected_font_Eng!, size: 13)
+            self.fpContent.font = UIFont(name: selected_font_Eng!, size: 13)
+            self.spTitle.font = UIFont(name: selected_font_Eng!, size: 13)
+            self.spContent.font = UIFont(name: selected_font_Eng!, size: 13)
+
+        case 812.0:
+            self.fpTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 15)
+            self.fpContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 15)
+            self.spTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 15)
+            self.spContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 15)
+            
+            self.fpTitle.font = UIFont(name: selected_font_Eng!, size: 14)
+            self.fpContent.font = UIFont(name: selected_font_Eng!, size: 14)
+            self.spTitle.font = UIFont(name: selected_font_Eng!, size: 14)
+            self.spContent.font = UIFont(name: selected_font_Eng!, size: 14)
+
+        case 896.0:
+            self.fpTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 16)
+            self.fpContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 16)
+            self.spTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 16)
+            self.spContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 16)
+            
+            self.fpTitle.font = UIFont(name: selected_font_Eng!, size: 15)
+            self.fpContent.font = UIFont(name: selected_font_Eng!, size: 15)
+            self.spTitle.font = UIFont(name: selected_font_Eng!, size: 15)
+            self.spContent.font = UIFont(name: selected_font_Eng!, size: 15)
+
+        default:
+            self.fpTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 17)
+            self.fpContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 17)
+            self.spTitleText.font = UIFont(name: "PyeongChangPeace-Light", size: 17)
+            self.spContentText.font = UIFont(name: "PyeongChangPeace-Light", size: 17)
+            
+            self.fpTitle.font = UIFont(name: selected_font_Eng!, size: 16)
+            self.fpContent.font = UIFont(name: selected_font_Eng!, size: 16)
+            self.spTitle.font = UIFont(name: selected_font_Eng!, size: 16)
+            self.spContent.font = UIFont(name: selected_font_Eng!, size: 16)
+        }
+
     }
 }
 
@@ -84,10 +133,38 @@ extension ContentsCells {
         let selected_font_Kor = albumInfo.font
         let selected_font_Eng = FontSet().font[selected_font_Kor]
         
-        self.title.font = UIFont(name: selected_font_Eng!, size: 14)
-        self.contents.font = UIFont(name: selected_font_Eng!, size: 14)
-        self.titleText.font = UIFont(name: "PyeongChangPeace-Light", size: 14)
-        self.contentsText.font = UIFont(name: "PyeongChangPeace-Light", size: 14)
+        let height = UIScreen.main.bounds.size.height
+        switch height {
+        case 667.0:
+            self.title.font = UIFont(name: selected_font_Eng!, size: 10)
+            self.contents.font = UIFont(name: selected_font_Eng!, size: 10)
+            self.titleText.font = UIFont(name: "PyeongChangPeace-Light", size: 10)
+            self.contentsText.font = UIFont(name: "PyeongChangPeace-Light", size: 10)
+            
+        case 736.0:
+            self.title.font = UIFont(name: selected_font_Eng!, size: 11)
+            self.contents.font = UIFont(name: selected_font_Eng!, size: 11)
+            self.titleText.font = UIFont(name: "PyeongChangPeace-Light", size: 11)
+            self.contentsText.font = UIFont(name: "PyeongChangPeace-Light", size: 11)
+        
+        case 812.0:
+            self.title.font = UIFont(name: selected_font_Eng!, size: 12)
+            self.contents.font = UIFont(name: selected_font_Eng!, size: 12)
+            self.titleText.font = UIFont(name: "PyeongChangPeace-Light", size: 12)
+            self.contentsText.font = UIFont(name: "PyeongChangPeace-Light", size: 12)
+        
+        case 896.0:
+            self.title.font = UIFont(name: selected_font_Eng!, size: 13)
+            self.contents.font = UIFont(name: selected_font_Eng!, size: 13)
+            self.titleText.font = UIFont(name: "PyeongChangPeace-Light", size: 13)
+            self.contentsText.font = UIFont(name: "PyeongChangPeace-Light", size: 13)
+
+        default:
+            self.title.font = UIFont(name: selected_font_Eng!, size: 14)
+            self.contents.font = UIFont(name: selected_font_Eng!, size: 14)
+            self.titleText.font = UIFont(name: "PyeongChangPeace-Light", size: 14)
+            self.contentsText.font = UIFont(name: "PyeongChangPeace-Light", size: 14)
+        }
     }
 }
 
