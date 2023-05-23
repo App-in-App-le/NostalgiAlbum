@@ -14,6 +14,7 @@ class AlbumEditViewController: UIViewController {
     weak var picVC : AlbumPicViewController? = nil
     weak var picture: album?
     let realm = try! Realm()
+    let picker = UIImagePickerController()
     var collectionViewInAlbum : UICollectionView!
     var index : Int!
     var albumCoverName : String!

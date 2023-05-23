@@ -30,8 +30,8 @@ extension AlbumEditViewController {
     // 사진을 어디서 가져올지 Alert
     @IBAction func addAlbumPicture(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in self.openLibrary()}
-        let camera = UIAlertAction(title: "카메라", style: .default){(action) in self.openCamera()}
+        let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in self.loadLibrary()}
+        let camera = UIAlertAction(title: "카메라", style: .default){(action) in self.loadCamera()}
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         alert.addAction(library)
         alert.addAction(camera)
@@ -39,19 +39,22 @@ extension AlbumEditViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func openLibrary() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        present(picker, animated: false, completion: nil)
+    func loadLibrary() {
+        if self.albumAuth() {
+            self.openPhotoLibrary()
+        } else {
+            self.showAlertAuth("앨범")
+        }
     }
     
-    func openCamera() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .camera
-        present(picker, animated: false, completion: nil)
+    func loadCamera() {
+        if self.cameraAuth() {
+            self.openCamera()
+        } else {
+            self.showAlertAuth("카메라")
+        }
     }
+    
     // 사진 저장
     @IBAction func savePicture(_ sender: Any) {
         if editPicture.imageView?.image == UIImage(systemName: "plus") {

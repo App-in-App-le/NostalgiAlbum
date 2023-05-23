@@ -13,6 +13,7 @@ class HomeEditViewController: UIViewController {
     @IBOutlet weak var divideLine: UILabel!
     weak var collectionViewInHome: UICollectionView!
     let realm = try! Realm()
+    let picker = UIImagePickerController()
     var id: Int = 0
     // 수정 EditView 관련 변수
     var IsModifyingView: Bool = false

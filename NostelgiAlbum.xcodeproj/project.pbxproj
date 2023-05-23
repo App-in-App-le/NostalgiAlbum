@@ -986,9 +986,10 @@
 				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = test;
+				INFOPLIST_KEY_CFBundleDisplayName = NostelgiAlbum;
+				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 카메라를 사용하기 위해 카메라 접근 권한을 허용해주세요. 카메라를 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앱에서 앨범을 사용하기 위해 앨범 접근 권한을 허용해주세요. 앨범을 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앱에서 앨범을 사용하기 위해 앨범 접근 권한을 허용해주세요. 앨범을 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1026,9 +1027,10 @@
 				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = test;
+				INFOPLIST_KEY_CFBundleDisplayName = NostelgiAlbum;
+				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 카메라를 사용하기 위해 카메라 접근 권한을 허용해주세요. 카메라를 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앱에서 앨범을 사용하기 위해 앨범 접근 권한을 허용해주세요. 앨범을 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앱에서 앨범을 사용하기 위해 앨범 접근 권한을 허용해주세요. 앨범을 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
