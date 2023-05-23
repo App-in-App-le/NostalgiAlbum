@@ -29,6 +29,7 @@ class AlbumEditViewController: UIViewController {
         super.viewDidLoad()
         editName.delegate = self
         editText.delegate = self
+        picker.delegate = self
         setSubViews()
         
         if let picture = picture {

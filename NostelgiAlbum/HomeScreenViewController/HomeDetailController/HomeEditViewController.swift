@@ -25,6 +25,8 @@ class HomeEditViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad(){
         super.viewDidLoad()
+        picker.delegate = self
+        
         setSubViews()
         setThemeColor()
     }

@@ -16,6 +16,7 @@ extension AlbumEditViewController : UINavigationControllerDelegate, UIImagePicke
      카메라 접근 권한 판별하는 함수
      */
     func cameraAuth() -> Bool {
+        let semaphore = DispatchSemaphore(value: 0)
         var hasPermission = false
         
         AVCaptureDevice.requestAccess(for: .video) { granted in
@@ -26,8 +27,11 @@ extension AlbumEditViewController : UINavigationControllerDelegate, UIImagePicke
                 print("권한 거부")
                 hasPermission = false
             }
+            
+            semaphore.signal()
         }
         
+        semaphore.wait()
         return hasPermission
     }
     
