@@ -40,11 +40,7 @@ extension AlbumEditViewController {
     }
     
     func loadLibrary() {
-        if self.albumAuth() {
-            self.openPhotoLibrary()
-        } else {
-            self.showAlertAuth("앨범")
-        }
+        self.albumAuth()
     }
     
     func loadCamera() {

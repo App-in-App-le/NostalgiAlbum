@@ -987,9 +987,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NostelgiAlbum;
-				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 카메라를 사용하기 위해 카메라 접근 권한을 허용해주세요. 카메라를 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앱에서 앨범을 사용하기 위해 앨범 접근 권한을 허용해주세요. 앨범을 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앱에서 앨범을 사용하기 위해 앨범 접근 권한을 허용해주세요. 앨범을 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1028,9 +1028,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NostelgiAlbum;
-				INFOPLIST_KEY_NSCameraUsageDescription = "앱에서 카메라를 사용하기 위해 카메라 접근 권한을 허용해주세요. 카메라를 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앱에서 앨범을 사용하기 위해 앨범 접근 권한을 허용해주세요. 앨범을 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앱에서 앨범을 사용하기 위해 앨범 접근 권한을 허용해주세요. 앨범을 통해 앱에 등록한 사진은 디바이스에만 저장됩니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

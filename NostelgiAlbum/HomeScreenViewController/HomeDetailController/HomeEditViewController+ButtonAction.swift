@@ -31,11 +31,7 @@ extension HomeEditViewController {
         selectCoverTypeAlert.addAction(UIAlertAction(title: "사진", style: .default) { action in
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in
-                if self.albumAuth() {
-                    self.openPhotoLibrary()
-                } else {
-                    self.showAlertAuth("앨범")
-                }
+                self.albumAuth()
             }
             let camera = UIAlertAction(title: "카메라", style: .default){(action) in
                 if self.cameraAuth() {
@@ -470,30 +466,37 @@ extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerC
     /**
      앨범 접근 권한 판별하는 함수
      */
-    func albumAuth() -> Bool {
-        var hasPermission = false
-        
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .denied:
-            print("거부")
-            hasPermission = false
-        case .authorized:
-            print("허용")
-            hasPermission = true
-        case .notDetermined, .restricted:
-            print("아직 결정하지 않은 상태")
-            PHPhotoLibrary.requestAuthorization { state in
-                if state == .authorized {
-                    hasPermission = true
-                } else {
-                    hasPermission = false
+    func albumAuth() {
+        switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+        case .notDetermined:
+            print("not determined")
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                switch status {
+                case .authorized, .limited:
+                    DispatchQueue.main.async {
+                        self.openPhotoLibrary()
+                    }
+                case .denied:
+                    DispatchQueue.main.async {
+                        self.showAlertAuth("앨범")
+                    }
+                default:
+                    print("error.")
                 }
             }
+        case .restricted:
+            print("restricted")
+        case .denied:
+            DispatchQueue.main.async {
+                self.showAlertAuth("앨범")
+            }
+        case .limited, .authorized:
+            DispatchQueue.main.async {
+                self.openPhotoLibrary()
+            }
         default:
-            break
+            print("error")
         }
-        
-        return hasPermission
     }
     
     /**

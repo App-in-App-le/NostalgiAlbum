@@ -38,30 +38,37 @@ extension AlbumEditViewController : UINavigationControllerDelegate, UIImagePicke
     /**
      앨범 접근 권한 판별하는 함수
      */
-    func albumAuth() -> Bool {
-        var hasPermission = false
-        
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .denied:
-            print("거부")
-            hasPermission = false
-        case .authorized:
-            print("허용")
-            hasPermission = true
-        case .notDetermined, .restricted:
-            print("아직 결정하지 않은 상태")
-            PHPhotoLibrary.requestAuthorization { state in
-                if state == .authorized {
-                    hasPermission = true
-                } else {
-                    hasPermission = false
+    func albumAuth() {
+        switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+        case .notDetermined:
+            print("not determined")
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                switch status {
+                case .authorized, .limited:
+                    DispatchQueue.main.async {
+                        self.openPhotoLibrary()
+                    }
+                case .denied:
+                    DispatchQueue.main.async {
+                        self.showAlertAuth("앨범")
+                    }
+                default:
+                    print("error.")
                 }
             }
+        case .restricted:
+            print("restricted")
+        case .denied:
+            DispatchQueue.main.async {
+                self.showAlertAuth("앨범")
+            }
+        case .limited, .authorized:
+            DispatchQueue.main.async {
+                self.openPhotoLibrary()
+            }
         default:
-            break
+            print("error")
         }
-        
-        return hasPermission
     }
     
     /**
