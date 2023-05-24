@@ -14,6 +14,7 @@ class AlbumEditViewController: UIViewController {
     weak var picVC : AlbumPicViewController? = nil
     weak var picture: album?
     let realm = try! Realm()
+    let picker = UIImagePickerController()
     var collectionViewInAlbum : UICollectionView!
     var index : Int!
     var albumCoverName : String!
@@ -28,6 +29,7 @@ class AlbumEditViewController: UIViewController {
         super.viewDidLoad()
         editName.delegate = self
         editText.delegate = self
+        picker.delegate = self
         setSubViews()
         
         if let picture = picture {

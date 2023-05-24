@@ -1,6 +1,8 @@
 import UIKit
 import RealmSwift
 import Mantis
+import AVFoundation
+import Photos
 
 extension HomeEditViewController {
     @IBAction func addImage(_ sender: Any) {
@@ -29,16 +31,14 @@ extension HomeEditViewController {
         selectCoverTypeAlert.addAction(UIAlertAction(title: "사진", style: .default) { action in
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let library = UIAlertAction(title: "사진 앨범", style: .default){(action) in
-                let picker = UIImagePickerController()
-                picker.delegate = self
-                picker.sourceType = .photoLibrary
-                self.present(picker, animated: false, completion: nil)
+                self.albumAuth()
             }
             let camera = UIAlertAction(title: "카메라", style: .default){(action) in
-                let picker = UIImagePickerController()
-                picker.delegate = self
-                picker.sourceType = .camera
-                self.present(picker, animated: false, completion: nil)
+                if self.cameraAuth() {
+                    self.openCamera()
+                } else {
+                    self.showAlertAuth("카메라")
+                }
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             alert.addAction(library)
@@ -437,6 +437,115 @@ extension HomeEditViewController: UINavigationControllerDelegate, UIImagePickerC
             dismiss(animated: true) {
                 self.openCropVC(image: image)
             }
+        }
+    }
+    
+    /**
+     카메라 접근 권한 판별하는 함수
+     */
+    func cameraAuth() -> Bool {
+        let semaphore = DispatchSemaphore(value: 0)
+        var hasPermission = false
+        
+        AVCaptureDevice.requestAccess(for: .video) { granted in
+            if granted {
+                print("권한 허용")
+                hasPermission = true
+            } else {
+                print("권한 거부")
+                hasPermission = false
+            }
+            
+            semaphore.signal()
+        }
+        
+        semaphore.wait()
+        return hasPermission
+    }
+    
+    /**
+     앨범 접근 권한 판별하는 함수
+     */
+    func albumAuth() {
+        switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+        case .notDetermined:
+            print("not determined")
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                switch status {
+                case .authorized, .limited:
+                    DispatchQueue.main.async {
+                        self.openPhotoLibrary()
+                    }
+                case .denied:
+                    DispatchQueue.main.async {
+                        self.showAlertAuth("앨범")
+                    }
+                default:
+                    print("error.")
+                }
+            }
+        case .restricted:
+            print("restricted")
+        case .denied:
+            DispatchQueue.main.async {
+                self.showAlertAuth("앨범")
+            }
+        case .limited, .authorized:
+            DispatchQueue.main.async {
+                self.openPhotoLibrary()
+            }
+        default:
+            print("error")
+        }
+    }
+    
+    /**
+     권한을 거부했을 때 띄어주는 Alert 함수
+     - Parameters:
+     - type: 권한 종류
+     */
+    func showAlertAuth(_ type: String) {
+        if let appName = Bundle.main.infoDictionary!["CFBundleDisplayName"] as? String {
+            let alertVC = UIAlertController(
+                title: "설정",
+                message: "\(appName)이(가) \(type) 접근 허용되어 있지 않습니다. 설정화면으로 가시겠습니까?",
+                preferredStyle: .alert
+            )
+            let cancelAction = UIAlertAction(title: "취소", style: .default) { _ in
+                self.dismiss(animated: true)
+            }
+            let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+            }
+            alertVC.addAction(cancelAction)
+            alertVC.addAction(confirmAction)
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
+    
+    /**
+     아이폰에서 앨범에 접근하는 함수
+     */
+    func openPhotoLibrary() {
+        if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
+            self.picker.sourceType = .photoLibrary
+            self.picker.modalPresentationStyle = .currentContext
+            self.present(self.picker, animated: true, completion: nil)
+        } else {
+            print("앨범에 접근할 수 없습니다.")
+        }
+    }
+    
+    /**
+     아이폰에서 카메라에 접근하는 함수
+     */
+    func openCamera() {
+        if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
+            self.picker.sourceType = .camera
+            self.picker.modalPresentationStyle = .currentContext
+            self.present(self.picker, animated: true, completion: nil)
+        } else {
+            print("카메라에 접근할 수 없습니다.")
         }
     }
 }
