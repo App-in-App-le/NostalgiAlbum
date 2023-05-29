@@ -1,21 +1,21 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'NostelgiAlbum' do
+target 'NostalgiAlbum' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for NostelgiAlbum
+  # Pods for NostalgiAlbum
 	pod 'RealmSwift'
 	pod 'Zip', '~> 2.1'
 	pod 'Mantis', '~> 2.8.0'
 	pod 'ReachabilitySwift'
-  target 'NostelgiAlbumTests' do
+  target 'NostalgiAlbumTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'NostelgiAlbumUITests' do
+  target 'NostalgiAlbumUITests' do
     # Pods for testing
   end
 

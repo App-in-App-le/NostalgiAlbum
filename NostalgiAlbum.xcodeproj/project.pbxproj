@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E40494444D284B57AB22A17 /* Pods_NostelgiAlbumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD45D2E351EE192C1D87DB8D /* Pods_NostelgiAlbumTests.framework */; };
+		4D0641CF4859702478221EFB /* Pods_NostalgiAlbum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE51E097CCEC881A09C8FD7 /* Pods_NostalgiAlbum.framework */; };
 		8002F65328EE905B00E9913D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65228EE905B00E9913D /* HomeScreenViewController.swift */; };
 		8002F65528EE9D1800E9913D /* HomeScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */; };
 		8006D02229ED528300389292 /* HomeiCloudSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8006D02129ED528300389292 /* HomeiCloudSettingViewController.swift */; };
@@ -31,9 +31,9 @@
 		8094CA2428EDC65500E70F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA2328EDC65500E70F76 /* AppDelegate.swift */; };
 		8094CA2B28EDC65500E70F76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8094CA2928EDC65500E70F76 /* Main.storyboard */; };
 		8094CA3028EDC65900E70F76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */; };
-		8094CA3B28EDC65900E70F76 /* NostelgiAlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA3A28EDC65900E70F76 /* NostelgiAlbumTests.swift */; };
-		8094CA4528EDC65900E70F76 /* NostelgiAlbumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */; };
-		8094CA4728EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */; };
+		8094CA3B28EDC65900E70F76 /* NostalgiAlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA3A28EDC65900E70F76 /* NostalgiAlbumTests.swift */; };
+		8094CA4528EDC65900E70F76 /* NostalgiAlbumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4428EDC65900E70F76 /* NostalgiAlbumUITests.swift */; };
+		8094CA4728EDC65900E70F76 /* NostalgiAlbumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4628EDC65900E70F76 /* NostalgiAlbumUITestsLaunchTests.swift */; };
 		80A6D645299A0BE600B2D657 /* ShareFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D644299A0BE600B2D657 /* ShareFunc.swift */; };
 		80A854942A24C29F005FB36F /* LaunchScreen_ver4.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A854932A24C29F005FB36F /* LaunchScreen_ver4.png */; };
 		80C56D18298CE5360063688F /* HomeScreenViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */; };
@@ -73,8 +73,8 @@
 		83E5D2B429E80410001C7DE0 /* ContentsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2AF29E80410001C7DE0 /* ContentsCells.swift */; };
 		83E5D2B529E80410001C7DE0 /* PageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2B029E80410001C7DE0 /* PageSearchViewController.swift */; };
 		83E5D2B629E80410001C7DE0 /* PageCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5D2B129E80410001C7DE0 /* PageCells.swift */; };
-		C0F3ECE166A7DAA34C483BBF /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9012CEB3A508CA15AB036C93 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */; };
-		C674A76DE71B2D6B321B1C1E /* Pods_NostelgiAlbum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333B1EB0131BF7D37399E3F7 /* Pods_NostelgiAlbum.framework */; };
+		935C4FF81EDBAF4F793120E2 /* Pods_NostalgiAlbumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF6EDAD41102EF034851F87 /* Pods_NostalgiAlbumTests.framework */; };
+		F5E670CE743A1E8DEDC3E8A6 /* Pods_NostalgiAlbum_NostalgiAlbumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75BD0ADD8586C2C1C06C8695 /* Pods_NostalgiAlbum_NostalgiAlbumUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,10 +96,16 @@
 
 /* Begin PBXFileReference section */
 		09E86ACB70C1454B76E222B5 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		333B1EB0131BF7D37399E3F7 /* Pods_NostelgiAlbum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DA53895188E8C3371CFB825 /* Pods-NostalgiAlbum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostalgiAlbum.debug.xcconfig"; path = "Target Support Files/Pods-NostalgiAlbum/Pods-NostalgiAlbum.debug.xcconfig"; sourceTree = "<group>"; };
+		2BF0A3D2A32A17D01406DF70 /* Pods-NostalgiAlbumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostalgiAlbumTests.release.xcconfig"; path = "Target Support Files/Pods-NostalgiAlbumTests/Pods-NostalgiAlbumTests.release.xcconfig"; sourceTree = "<group>"; };
+		4AE51E097CCEC881A09C8FD7 /* Pods_NostalgiAlbum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostalgiAlbum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B23A0A1E0683BE45CD5B518 /* Pods-NostalgiAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostalgiAlbum.release.xcconfig"; path = "Target Support Files/Pods-NostalgiAlbum/Pods-NostalgiAlbum.release.xcconfig"; sourceTree = "<group>"; };
 		4C8290A5F6ED840AD5B917C9 /* Pods-NostelgiAlbum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.debug.xcconfig"; sourceTree = "<group>"; };
 		6601033F99ABB4CE0338C61C /* Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6E5DCC93F7BDA1B362378A7C /* Pods-NostelgiAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbum.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum.release.xcconfig"; sourceTree = "<group>"; };
+		7350D3E3086DC72B7DADF7E8 /* Pods-NostalgiAlbum-NostalgiAlbumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostalgiAlbum-NostalgiAlbumUITests.debug.xcconfig"; path = "Target Support Files/Pods-NostalgiAlbum-NostalgiAlbumUITests/Pods-NostalgiAlbum-NostalgiAlbumUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		756025FD5F6A0E49D0B778FA /* Pods-NostalgiAlbumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostalgiAlbumTests.debug.xcconfig"; path = "Target Support Files/Pods-NostalgiAlbumTests/Pods-NostalgiAlbumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		75BD0ADD8586C2C1C06C8695 /* Pods_NostalgiAlbum_NostalgiAlbumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostalgiAlbum_NostalgiAlbumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8002F65228EE905B00E9913D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		8002F65428EE9D1800E9913D /* HomeScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		8006D02129ED528300389292 /* HomeiCloudSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeiCloudSettingViewController.swift; sourceTree = "<group>"; };
@@ -120,17 +126,17 @@
 		8080201129E3F4D300CECCB8 /* SetPictureDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPictureDescriptionViewController.swift; sourceTree = "<group>"; };
 		8092C3A2298CE6F0007FFEF3 /* HomeEditViewController+ButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeEditViewController+ButtonAction.swift"; sourceTree = "<group>"; };
 		8092C3A4298CF1AA007FFEF3 /* CollectionView+ButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+ButtonAction.swift"; sourceTree = "<group>"; };
-		8094CA2028EDC65500E70F76 /* NostelgiAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NostelgiAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8094CA2028EDC65500E70F76 /* NostalgiAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NostalgiAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8094CA2328EDC65500E70F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8094CA2A28EDC65500E70F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8094CA2C28EDC65900E70F76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8094CA2F28EDC65900E70F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8094CA3128EDC65900E70F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8094CA3628EDC65900E70F76 /* NostelgiAlbumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NostelgiAlbumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8094CA3A28EDC65900E70F76 /* NostelgiAlbumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumTests.swift; sourceTree = "<group>"; };
-		8094CA4028EDC65900E70F76 /* NostelgiAlbumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NostelgiAlbumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITests.swift; sourceTree = "<group>"; };
-		8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8094CA3628EDC65900E70F76 /* NostalgiAlbumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NostalgiAlbumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8094CA3A28EDC65900E70F76 /* NostalgiAlbumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostalgiAlbumTests.swift; sourceTree = "<group>"; };
+		8094CA4028EDC65900E70F76 /* NostalgiAlbumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NostalgiAlbumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8094CA4428EDC65900E70F76 /* NostalgiAlbumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostalgiAlbumUITests.swift; sourceTree = "<group>"; };
+		8094CA4628EDC65900E70F76 /* NostalgiAlbumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostalgiAlbumUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		80A6D644299A0BE600B2D657 /* ShareFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareFunc.swift; sourceTree = "<group>"; };
 		80A854932A24C29F005FB36F /* LaunchScreen_ver4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen_ver4.png; sourceTree = "<group>"; };
 		80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreenViewController+CollectionView.swift"; sourceTree = "<group>"; };
@@ -149,7 +155,7 @@
 		80D5811129FC37B600EF65C9 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
 		80D5811529FC37C000EF65C9 /* PyeongChangPeace-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PyeongChangPeace-Light.otf"; sourceTree = "<group>"; };
 		80D5811629FC37C000EF65C9 /* PyeongChangPeace-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PyeongChangPeace-Bold.otf"; sourceTree = "<group>"; };
-		80D80B5029ED78F7009612FA /* NostelgiAlbum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NostelgiAlbum.entitlements; sourceTree = "<group>"; };
+		80D80B5029ED78F7009612FA /* NostalgiAlbum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NostalgiAlbum.entitlements; sourceTree = "<group>"; };
 		80DF50AD290FBF80009EE336 /* AlbumScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		80DFA70E2A109BA100499061 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		80FE482629B0832000FD0D6A /* SetAlbumNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAlbumNameViewController.swift; sourceTree = "<group>"; };
@@ -170,10 +176,10 @@
 		83E5D2AF29E80410001C7DE0 /* ContentsCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsCells.swift; sourceTree = "<group>"; };
 		83E5D2B029E80410001C7DE0 /* PageSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageSearchViewController.swift; sourceTree = "<group>"; };
 		83E5D2B129E80410001C7DE0 /* PageCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCells.swift; sourceTree = "<group>"; };
-		9012CEB3A508CA15AB036C93 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbum_NostelgiAlbumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F58AEC0D6B332A167C129D /* Pods-NostelgiAlbumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbumTests.debug.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbumTests/Pods-NostelgiAlbumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BC4793515A18561DD092568D /* Pods-NostalgiAlbum-NostalgiAlbumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostalgiAlbum-NostalgiAlbumUITests.release.xcconfig"; path = "Target Support Files/Pods-NostalgiAlbum-NostalgiAlbumUITests/Pods-NostalgiAlbum-NostalgiAlbumUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CEF6EDAD41102EF034851F87 /* Pods_NostalgiAlbumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostalgiAlbumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8BEDED1B5046A84DA5ED8E9 /* Pods-NostelgiAlbumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NostelgiAlbumTests.release.xcconfig"; path = "Target Support Files/Pods-NostelgiAlbumTests/Pods-NostelgiAlbumTests.release.xcconfig"; sourceTree = "<group>"; };
-		DD45D2E351EE192C1D87DB8D /* Pods_NostelgiAlbumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NostelgiAlbumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C674A76DE71B2D6B321B1C1E /* Pods_NostelgiAlbum.framework in Frameworks */,
+				4D0641CF4859702478221EFB /* Pods_NostalgiAlbum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E40494444D284B57AB22A17 /* Pods_NostelgiAlbumTests.framework in Frameworks */,
+				935C4FF81EDBAF4F793120E2 /* Pods_NostalgiAlbumTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0F3ECE166A7DAA34C483BBF /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework in Frameworks */,
+				F5E670CE743A1E8DEDC3E8A6 /* Pods_NostalgiAlbum_NostalgiAlbumUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +219,12 @@
 				6601033F99ABB4CE0338C61C /* Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig */,
 				91F58AEC0D6B332A167C129D /* Pods-NostelgiAlbumTests.debug.xcconfig */,
 				D8BEDED1B5046A84DA5ED8E9 /* Pods-NostelgiAlbumTests.release.xcconfig */,
+				1DA53895188E8C3371CFB825 /* Pods-NostalgiAlbum.debug.xcconfig */,
+				4B23A0A1E0683BE45CD5B518 /* Pods-NostalgiAlbum.release.xcconfig */,
+				7350D3E3086DC72B7DADF7E8 /* Pods-NostalgiAlbum-NostalgiAlbumUITests.debug.xcconfig */,
+				BC4793515A18561DD092568D /* Pods-NostalgiAlbum-NostalgiAlbumUITests.release.xcconfig */,
+				756025FD5F6A0E49D0B778FA /* Pods-NostalgiAlbumTests.debug.xcconfig */,
+				2BF0A3D2A32A17D01406DF70 /* Pods-NostalgiAlbumTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -236,9 +248,9 @@
 		8094CA1728EDC65500E70F76 = {
 			isa = PBXGroup;
 			children = (
-				8094CA2228EDC65500E70F76 /* NostelgiAlbum */,
-				8094CA3928EDC65900E70F76 /* NostelgiAlbumTests */,
-				8094CA4328EDC65900E70F76 /* NostelgiAlbumUITests */,
+				8094CA2228EDC65500E70F76 /* NostalgiAlbum */,
+				8094CA3928EDC65900E70F76 /* NostalgiAlbumTests */,
+				8094CA4328EDC65900E70F76 /* NostalgiAlbumUITests */,
 				8094CA2128EDC65500E70F76 /* Products */,
 				6C221F8D594D7C5B1A9DAF84 /* Pods */,
 				FECECB9A8ECAB2BAC00F6319 /* Frameworks */,
@@ -248,14 +260,14 @@
 		8094CA2128EDC65500E70F76 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8094CA2028EDC65500E70F76 /* NostelgiAlbum.app */,
-				8094CA3628EDC65900E70F76 /* NostelgiAlbumTests.xctest */,
-				8094CA4028EDC65900E70F76 /* NostelgiAlbumUITests.xctest */,
+				8094CA2028EDC65500E70F76 /* NostalgiAlbum.app */,
+				8094CA3628EDC65900E70F76 /* NostalgiAlbumTests.xctest */,
+				8094CA4028EDC65900E70F76 /* NostalgiAlbumUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8094CA2228EDC65500E70F76 /* NostelgiAlbum */ = {
+		8094CA2228EDC65500E70F76 /* NostalgiAlbum */ = {
 			isa = PBXGroup;
 			children = (
 				831A051F297A9B6E009D26A0 /* Model */,
@@ -265,26 +277,26 @@
 				831A0522297A9BD7009D26A0 /* AlbumScreenViewController */,
 				80AE5D022A1769910066743D /* Function */,
 				8094CA3128EDC65900E70F76 /* Info.plist */,
-				80D80B5029ED78F7009612FA /* NostelgiAlbum.entitlements */,
+				80D80B5029ED78F7009612FA /* NostalgiAlbum.entitlements */,
 			);
-			path = NostelgiAlbum;
+			path = NostalgiAlbum;
 			sourceTree = "<group>";
 		};
-		8094CA3928EDC65900E70F76 /* NostelgiAlbumTests */ = {
+		8094CA3928EDC65900E70F76 /* NostalgiAlbumTests */ = {
 			isa = PBXGroup;
 			children = (
-				8094CA3A28EDC65900E70F76 /* NostelgiAlbumTests.swift */,
+				8094CA3A28EDC65900E70F76 /* NostalgiAlbumTests.swift */,
 			);
-			path = NostelgiAlbumTests;
+			path = NostalgiAlbumTests;
 			sourceTree = "<group>";
 		};
-		8094CA4328EDC65900E70F76 /* NostelgiAlbumUITests */ = {
+		8094CA4328EDC65900E70F76 /* NostalgiAlbumUITests */ = {
 			isa = PBXGroup;
 			children = (
-				8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */,
-				8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */,
+				8094CA4428EDC65900E70F76 /* NostalgiAlbumUITests.swift */,
+				8094CA4628EDC65900E70F76 /* NostalgiAlbumUITestsLaunchTests.swift */,
 			);
-			path = NostelgiAlbumUITests;
+			path = NostalgiAlbumUITests;
 			sourceTree = "<group>";
 		};
 		80AE5D002A17695C0066743D /* Share */ = {
@@ -498,9 +510,9 @@
 		FECECB9A8ECAB2BAC00F6319 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				333B1EB0131BF7D37399E3F7 /* Pods_NostelgiAlbum.framework */,
-				9012CEB3A508CA15AB036C93 /* Pods_NostelgiAlbum_NostelgiAlbumUITests.framework */,
-				DD45D2E351EE192C1D87DB8D /* Pods_NostelgiAlbumTests.framework */,
+				4AE51E097CCEC881A09C8FD7 /* Pods_NostalgiAlbum.framework */,
+				75BD0ADD8586C2C1C06C8695 /* Pods_NostalgiAlbum_NostalgiAlbumUITests.framework */,
+				CEF6EDAD41102EF034851F87 /* Pods_NostalgiAlbumTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -508,9 +520,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8094CA1F28EDC65500E70F76 /* NostelgiAlbum */ = {
+		8094CA1F28EDC65500E70F76 /* NostalgiAlbum */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8094CA4A28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostelgiAlbum" */;
+			buildConfigurationList = 8094CA4A28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostalgiAlbum" */;
 			buildPhases = (
 				E28A8C0DE1DF1C1F91F8B84A /* [CP] Check Pods Manifest.lock */,
 				8094CA1C28EDC65500E70F76 /* Sources */,
@@ -522,14 +534,14 @@
 			);
 			dependencies = (
 			);
-			name = NostelgiAlbum;
+			name = NostalgiAlbum;
 			productName = NostelgiAlbum;
-			productReference = 8094CA2028EDC65500E70F76 /* NostelgiAlbum.app */;
+			productReference = 8094CA2028EDC65500E70F76 /* NostalgiAlbum.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8094CA3528EDC65900E70F76 /* NostelgiAlbumTests */ = {
+		8094CA3528EDC65900E70F76 /* NostalgiAlbumTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8094CA4D28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostelgiAlbumTests" */;
+			buildConfigurationList = 8094CA4D28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostalgiAlbumTests" */;
 			buildPhases = (
 				A48282DD6F50277915745ADE /* [CP] Check Pods Manifest.lock */,
 				8094CA3228EDC65900E70F76 /* Sources */,
@@ -541,14 +553,14 @@
 			dependencies = (
 				8094CA3828EDC65900E70F76 /* PBXTargetDependency */,
 			);
-			name = NostelgiAlbumTests;
+			name = NostalgiAlbumTests;
 			productName = NostelgiAlbumTests;
-			productReference = 8094CA3628EDC65900E70F76 /* NostelgiAlbumTests.xctest */;
+			productReference = 8094CA3628EDC65900E70F76 /* NostalgiAlbumTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8094CA3F28EDC65900E70F76 /* NostelgiAlbumUITests */ = {
+		8094CA3F28EDC65900E70F76 /* NostalgiAlbumUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8094CA5028EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostelgiAlbumUITests" */;
+			buildConfigurationList = 8094CA5028EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostalgiAlbumUITests" */;
 			buildPhases = (
 				A52AF3AC3F19CDEA0795F10D /* [CP] Check Pods Manifest.lock */,
 				8094CA3C28EDC65900E70F76 /* Sources */,
@@ -561,9 +573,9 @@
 			dependencies = (
 				8094CA4228EDC65900E70F76 /* PBXTargetDependency */,
 			);
-			name = NostelgiAlbumUITests;
+			name = NostalgiAlbumUITests;
 			productName = NostelgiAlbumUITests;
-			productReference = 8094CA4028EDC65900E70F76 /* NostelgiAlbumUITests.xctest */;
+			productReference = 8094CA4028EDC65900E70F76 /* NostalgiAlbumUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -589,7 +601,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8094CA1B28EDC65500E70F76 /* Build configuration list for PBXProject "NostelgiAlbum" */;
+			buildConfigurationList = 8094CA1B28EDC65500E70F76 /* Build configuration list for PBXProject "NostalgiAlbum" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -602,9 +614,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8094CA1F28EDC65500E70F76 /* NostelgiAlbum */,
-				8094CA3528EDC65900E70F76 /* NostelgiAlbumTests */,
-				8094CA3F28EDC65900E70F76 /* NostelgiAlbumUITests */,
+				8094CA1F28EDC65500E70F76 /* NostalgiAlbum */,
+				8094CA3528EDC65900E70F76 /* NostalgiAlbumTests */,
+				8094CA3F28EDC65900E70F76 /* NostalgiAlbumUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -650,15 +662,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NostalgiAlbum/Pods-NostalgiAlbum-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NostalgiAlbum/Pods-NostalgiAlbum-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum/Pods-NostelgiAlbum-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NostalgiAlbum/Pods-NostalgiAlbum-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A48282DD6F50277915745ADE /* [CP] Check Pods Manifest.lock */ = {
@@ -676,7 +688,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NostelgiAlbumTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NostalgiAlbumTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -698,7 +710,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NostelgiAlbum-NostelgiAlbumUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NostalgiAlbum-NostalgiAlbumUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -720,7 +732,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NostelgiAlbum-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NostalgiAlbum-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -733,15 +745,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NostalgiAlbum-NostalgiAlbumUITests/Pods-NostalgiAlbum-NostalgiAlbumUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NostalgiAlbum-NostalgiAlbumUITests/Pods-NostalgiAlbum-NostalgiAlbumUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NostelgiAlbum-NostelgiAlbumUITests/Pods-NostelgiAlbum-NostelgiAlbumUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NostalgiAlbum-NostalgiAlbumUITests/Pods-NostalgiAlbum-NostalgiAlbumUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -810,7 +822,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8094CA3B28EDC65900E70F76 /* NostelgiAlbumTests.swift in Sources */,
+				8094CA3B28EDC65900E70F76 /* NostalgiAlbumTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,8 +830,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8094CA4528EDC65900E70F76 /* NostelgiAlbumUITests.swift in Sources */,
-				8094CA4728EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift in Sources */,
+				8094CA4528EDC65900E70F76 /* NostalgiAlbumUITests.swift in Sources */,
+				8094CA4728EDC65900E70F76 /* NostalgiAlbumUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,12 +840,12 @@
 /* Begin PBXTargetDependency section */
 		8094CA3828EDC65900E70F76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8094CA1F28EDC65500E70F76 /* NostelgiAlbum */;
+			target = 8094CA1F28EDC65500E70F76 /* NostalgiAlbum */;
 			targetProxy = 8094CA3728EDC65900E70F76 /* PBXContainerItemProxy */;
 		};
 		8094CA4228EDC65900E70F76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8094CA1F28EDC65500E70F76 /* NostelgiAlbum */;
+			target = 8094CA1F28EDC65500E70F76 /* NostalgiAlbum */;
 			targetProxy = 8094CA4128EDC65900E70F76 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -974,18 +986,18 @@
 		};
 		8094CA4B28EDC65900E70F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C8290A5F6ED840AD5B917C9 /* Pods-NostelgiAlbum.debug.xcconfig */;
+			baseConfigurationReference = 1DA53895188E8C3371CFB825 /* Pods-NostalgiAlbum.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = NostelgiAlbum/NostelgiAlbum.entitlements;
+				CODE_SIGN_ENTITLEMENTS = NostalgiAlbum/NostalgiAlbum.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
+				INFOPLIST_FILE = NostalgiAlbum/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NostalgiAlbum;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
@@ -1015,18 +1027,18 @@
 		};
 		8094CA4C28EDC65900E70F76 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E5DCC93F7BDA1B362378A7C /* Pods-NostelgiAlbum.release.xcconfig */;
+			baseConfigurationReference = 4B23A0A1E0683BE45CD5B518 /* Pods-NostalgiAlbum.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = NostelgiAlbum/NostelgiAlbum.entitlements;
+				CODE_SIGN_ENTITLEMENTS = NostalgiAlbum/NostalgiAlbum.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
+				INFOPLIST_FILE = NostalgiAlbum/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NostalgiAlbum;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
@@ -1056,7 +1068,7 @@
 		};
 		8094CA4E28EDC65900E70F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 91F58AEC0D6B332A167C129D /* Pods-NostelgiAlbumTests.debug.xcconfig */;
+			baseConfigurationReference = 756025FD5F6A0E49D0B778FA /* Pods-NostalgiAlbumTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1071,13 +1083,13 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NostelgiAlbum.app/NostelgiAlbum";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NostalgiAlbum.app/NostalgiAlbum";
 			};
 			name = Debug;
 		};
 		8094CA4F28EDC65900E70F76 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8BEDED1B5046A84DA5ED8E9 /* Pods-NostelgiAlbumTests.release.xcconfig */;
+			baseConfigurationReference = 2BF0A3D2A32A17D01406DF70 /* Pods-NostalgiAlbumTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1092,13 +1104,13 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NostelgiAlbum.app/NostelgiAlbum";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NostalgiAlbum.app/NostalgiAlbum";
 			};
 			name = Release;
 		};
 		8094CA5128EDC65900E70F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09E86ACB70C1454B76E222B5 /* Pods-NostelgiAlbum-NostelgiAlbumUITests.debug.xcconfig */;
+			baseConfigurationReference = 7350D3E3086DC72B7DADF7E8 /* Pods-NostalgiAlbum-NostalgiAlbumUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1117,7 +1129,7 @@
 		};
 		8094CA5228EDC65900E70F76 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6601033F99ABB4CE0338C61C /* Pods-NostelgiAlbum-NostelgiAlbumUITests.release.xcconfig */;
+			baseConfigurationReference = BC4793515A18561DD092568D /* Pods-NostalgiAlbum-NostalgiAlbumUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1137,7 +1149,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8094CA1B28EDC65500E70F76 /* Build configuration list for PBXProject "NostelgiAlbum" */ = {
+		8094CA1B28EDC65500E70F76 /* Build configuration list for PBXProject "NostalgiAlbum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8094CA4828EDC65900E70F76 /* Debug */,
@@ -1146,7 +1158,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8094CA4A28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostelgiAlbum" */ = {
+		8094CA4A28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostalgiAlbum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8094CA4B28EDC65900E70F76 /* Debug */,
@@ -1155,7 +1167,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8094CA4D28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostelgiAlbumTests" */ = {
+		8094CA4D28EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostalgiAlbumTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8094CA4E28EDC65900E70F76 /* Debug */,
@@ -1164,7 +1176,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8094CA5028EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostelgiAlbumUITests" */ = {
+		8094CA5028EDC65900E70F76 /* Build configuration list for PBXNativeTarget "NostalgiAlbumUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8094CA5128EDC65900E70F76 /* Debug */,
