@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen_ver3.png" translatesAutoresizingMaskIntoConstraints="NO" id="nJr-pd-tHj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen_ver4.png" translatesAutoresizingMaskIntoConstraints="NO" id="nJr-pd-tHj">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                             </imageView>
                         </subviews>
@@ -35,6 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen_ver3.png" width="414" height="896"/>
+        <image name="LaunchScreen_ver4.png" width="414" height="896"/>
     </resources>
 </document>

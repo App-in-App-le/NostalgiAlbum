@@ -18,7 +18,6 @@
 		80263E4E29FCCC6500C74F69 /* FirstPageSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80263E4D29FCCC6500C74F69 /* FirstPageSettingTableViewCell.swift */; };
 		8028413B2A0F9B9600E1CE29 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8028413A2A0F9B9600E1CE29 /* LoadingViewController.swift */; };
 		804C7E8E295835D200C63880 /* ImageFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C7E8D295835D200C63880 /* ImageFunc.swift */; };
-		804F7D672A12526B000E40B3 /* LaunchScreen_ver3.png in Resources */ = {isa = PBXBuildFile; fileRef = 804F7D662A12526B000E40B3 /* LaunchScreen_ver3.png */; };
 		80554C3029FD59D900F04AF1 /* ShadowFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80554C2F29FD59D900F04AF1 /* ShadowFunc.swift */; };
 		806A653E293873C80054FAEF /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A653D293873C80054FAEF /* HomeEditViewController.swift */; };
 		8075A0A92A0A21F60075B141 /* ErrorHandlingFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8075A0A82A0A21F60075B141 /* ErrorHandlingFunc.swift */; };
@@ -36,6 +35,7 @@
 		8094CA4528EDC65900E70F76 /* NostelgiAlbumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */; };
 		8094CA4728EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */; };
 		80A6D645299A0BE600B2D657 /* ShareFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A6D644299A0BE600B2D657 /* ShareFunc.swift */; };
+		80A854942A24C29F005FB36F /* LaunchScreen_ver4.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A854932A24C29F005FB36F /* LaunchScreen_ver4.png */; };
 		80C56D18298CE5360063688F /* HomeScreenViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */; };
 		80C8C86C29DE92C300A9F01F /* AlbumEditViewController+ButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C8C86B29DE92C300A9F01F /* AlbumEditViewController+ButtonAction.swift */; };
 		80C8C86E29DE935700A9F01F /* PickerImageController+CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C8C86D29DE935700A9F01F /* PickerImageController+CropViewController.swift */; };
@@ -110,7 +110,6 @@
 		80263E4D29FCCC6500C74F69 /* FirstPageSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageSettingTableViewCell.swift; sourceTree = "<group>"; };
 		8028413A2A0F9B9600E1CE29 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		804C7E8D295835D200C63880 /* ImageFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFunc.swift; sourceTree = "<group>"; };
-		804F7D662A12526B000E40B3 /* LaunchScreen_ver3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen_ver3.png; sourceTree = "<group>"; };
 		80554C2F29FD59D900F04AF1 /* ShadowFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowFunc.swift; sourceTree = "<group>"; };
 		806A653D293873C80054FAEF /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
 		8075A0A82A0A21F60075B141 /* ErrorHandlingFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingFunc.swift; sourceTree = "<group>"; };
@@ -133,6 +132,7 @@
 		8094CA4428EDC65900E70F76 /* NostelgiAlbumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITests.swift; sourceTree = "<group>"; };
 		8094CA4628EDC65900E70F76 /* NostelgiAlbumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NostelgiAlbumUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		80A6D644299A0BE600B2D657 /* ShareFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareFunc.swift; sourceTree = "<group>"; };
+		80A854932A24C29F005FB36F /* LaunchScreen_ver4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen_ver4.png; sourceTree = "<group>"; };
 		80C56D17298CE5360063688F /* HomeScreenViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreenViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		80C8C86B29DE92C300A9F01F /* AlbumEditViewController+ButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumEditViewController+ButtonAction.swift"; sourceTree = "<group>"; };
 		80C8C86D29DE935700A9F01F /* PickerImageController+CropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PickerImageController+CropViewController.swift"; sourceTree = "<group>"; };
@@ -322,7 +322,7 @@
 			children = (
 				8094CA2928EDC65500E70F76 /* Main.storyboard */,
 				8094CA2E28EDC65900E70F76 /* LaunchScreen.storyboard */,
-				804F7D662A12526B000E40B3 /* LaunchScreen_ver3.png */,
+				80A854932A24C29F005FB36F /* LaunchScreen_ver4.png */,
 				8094CA2328EDC65500E70F76 /* AppDelegate.swift */,
 				8094CA2C28EDC65900E70F76 /* Assets.xcassets */,
 				80D580F329FBFEDD00EF65C9 /* Fonts */,
@@ -616,8 +616,8 @@
 			files = (
 				8094CA3028EDC65900E70F76 /* LaunchScreen.storyboard in Resources */,
 				80D5811329FC37B600EF65C9 /* GmarketSansBold.otf in Resources */,
-				804F7D672A12526B000E40B3 /* LaunchScreen_ver3.png in Resources */,
 				80D5811229FC37B600EF65C9 /* GmarketSansLight.otf in Resources */,
+				80A854942A24C29F005FB36F /* LaunchScreen_ver4.png in Resources */,
 				80D5811829FC37C000EF65C9 /* PyeongChangPeace-Bold.otf in Resources */,
 				80D5810E29FC37AB00EF65C9 /* EF_watermelonSalad.otf in Resources */,
 				80D5811429FC37B600EF65C9 /* GmarketSansMedium.otf in Resources */,
@@ -986,7 +986,7 @@
 				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = NostelgiAlbum;
+				INFOPLIST_KEY_CFBundleDisplayName = NostalgiAlbum;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
@@ -1027,7 +1027,7 @@
 				DEVELOPMENT_TEAM = 8A6XY8WY2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NostelgiAlbum/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = NostelgiAlbum;
+				INFOPLIST_KEY_CFBundleDisplayName = NostalgiAlbum;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 접근 권한을 허용하여 앨범 표지 사진 추가 및 앨범 내의 새로운 사진 추가 기능을 사용하세요.";

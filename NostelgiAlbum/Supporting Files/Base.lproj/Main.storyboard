@@ -1179,7 +1179,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="NostelgiAlbum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6L9-YM-yUi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="NostalgiAlbum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6L9-YM-yUi">
                                 <rect key="frame" x="0.0" y="718" width="393" height="100"/>
                                 <color key="backgroundColor" red="0.2666666667" green="0.28627450980000002" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
