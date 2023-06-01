@@ -68,7 +68,7 @@ func NSErrorHandling_Alert(error: Error, vc: UIViewController) {
         
     case ErrorMessage.notNost:
         titleText = "잘못된 파일"
-        messageText = "잘못된 파일 형식입니다."
+        messageText = "잘못된 파일 형식입니다.\n 앱을 업데이트 후 다시 nost파일을 생성해주세요."
         
     case let nsError as NSError where nsError.domain == "io.realm":
         titleText = "데이터 베이스 오류"

@@ -42,7 +42,7 @@ func zipAlbumDirectory(AlbumCoverName: String) throws -> URL? {
             do {
                 //zip -> nost write
                 if var data = try? Data(contentsOf: zipFilePath) {
-                    let stringToCheck = "@"
+                    let stringToCheck = "$"
                     let checkData = stringToCheck.data(using: .utf8)
                     data.append(checkData!)
                     let newURL = URL(filePath: nostURL.path)
@@ -80,7 +80,7 @@ func exportAlbumInfo(coverData: String) throws {
     var arrImageName = [String]()
     var arrImageText = [String]()
     var arrAlbumInfo = [String]()
-    
+    var arrTextCount = [String]()
     // albumCoverData
     arrCoverInfo.append("\(albumCoverData.first!.id)")
     arrCoverInfo.append("\(albumCoverData.first!.coverImageName)")
@@ -91,6 +91,14 @@ func exportAlbumInfo(coverData: String) throws {
         arrImageText.append("\(album.ImageText)")
         arrImageName.append("\(album.ImageName)")
     }
+    for iText in arrImageText {
+        let count = iText.components(separatedBy: "\n")
+        if iText == "" {
+            arrTextCount.append(String(count.count - 1))
+        } else {
+            arrTextCount.append(String(count.count))
+        }
+    }
     
     // albumInfoData
     arrAlbumInfo.append("\(albumInfo.first!.id)")
@@ -98,6 +106,9 @@ func exportAlbumInfo(coverData: String) throws {
     arrAlbumInfo.append(albumInfo.first!.dateOfCreation)
     arrAlbumInfo.append(albumInfo.first!.font)
     arrAlbumInfo.append(String(albumInfo.first!.firstPageSetting))
+    
+    let imageTextTable = arrTextCount.joined(separator: " ")
+    arrImageText.insert(imageTextTable, at: 0)
     
     let albumCoverInfo = arrCoverInfo.joined(separator: "\n")
     let imageNameInfo = arrImageName.joined(separator: "\n")
@@ -161,7 +172,7 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL, deleteShare
         let data = try Data(contentsOf: shareFilePath)
         let checkByte = data.last
         if let checkByte = checkByte {
-            if checkByte == UInt8(ascii: "@") {
+            if checkByte == UInt8(ascii: "$") {
                 print("올바른 파일입니다.")
             } else {
                 throw ErrorMessage.notNost
@@ -221,9 +232,25 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) throws {
         for name in names {
             arrImageName.append("\(name)")
         }
-        for text in texts {
-            arrImageText.append("\(text)")
+        
+        var textCount = 1
+        let arr = texts.first!.split(separator: " ").map{ Int($0)! }
+        let strArr = texts.map{ String($0) }
+        for i in arr {
+            var str = ""
+            if i > 0 {
+                for check in 1...i {
+                    if check != i {
+                        str.append("\(strArr[textCount])\n")
+                    } else {
+                        str.append("\(strArr[textCount])")
+                    }
+                    textCount += 1
+                }
+            }
+            arrImageText.append("\(str)")
         }
+        
         for info in infos {
             arrAlbumInfo.append("\(info)")
         }

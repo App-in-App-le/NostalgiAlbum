@@ -53,25 +53,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSErrorHandling_Alert(error: error, vc: homeScreenViewController)
                 return false
             }
-            let extURL = documentDirectory.appendingPathComponent("extTemp")
-            let extfileURL = extURL.appendingPathComponent(url.lastPathComponent)
-            do {
-                if !FileManager.default.fileExists(atPath: extURL.path) {
-                    try FileManager.default.createDirectory(at: extURL, withIntermediateDirectories: true, attributes: nil)
-                }
+            var checkFileProvider = false
+            let checkPath = url.path.split(separator: "/")
+            if checkPath.contains("File Provider Storage") {
+                checkFileProvider = true
+            }
+            
+            if !checkFileProvider {
+                let extURL = documentDirectory.appendingPathComponent("extTemp")
+                let extfileURL = extURL.appendingPathComponent(url.lastPathComponent)
                 do {
-                    try FileManager.default.moveItem(at: url, to: extfileURL)
+                    if !FileManager.default.fileExists(atPath: extURL.path) {
+                        try FileManager.default.createDirectory(at: extURL, withIntermediateDirectories: true, attributes: nil)
+                    }
+                    do {
+                        try FileManager.default.moveItem(at: url, to: extfileURL)
+                    } catch let error {
+                        print("move error")
+                        print("error:\(error.localizedDescription)")
+                        NSErrorHandling_Alert(error: error, vc: homeScreenViewController)
+                    }
                 } catch let error {
-                    print("move error")
-                    print("error:\(error.localizedDescription)")
+                    print("create dir error")
                     NSErrorHandling_Alert(error: error, vc: homeScreenViewController)
                 }
-            } catch let error {
-                print("create dir error")
-                NSErrorHandling_Alert(error: error, vc: homeScreenViewController)
+                //HomeScreenViewController의 pushShareView 동작(파일 URL을 같이 넣어줌)
+                homeScreenViewController.pushShareView(path: extfileURL, deleteShareFile: !checkFileProvider)
             }
-            //HomeScreenViewController의 pushShareView 동작(파일 URL을 같이 넣어줌)
-            homeScreenViewController.pushShareView(path: extfileURL)
+            homeScreenViewController.pushShareView(path: url, deleteShareFile: !checkFileProvider)
         }
             return true
         }
