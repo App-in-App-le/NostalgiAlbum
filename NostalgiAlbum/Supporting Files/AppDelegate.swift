@@ -57,7 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let checkPath = url.path.split(separator: "/")
             if checkPath.contains("File Provider Storage") {
                 checkFileProvider = true
-                print("urlchopmojji")
             }
             
             if !checkFileProvider {
@@ -79,9 +78,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     NSErrorHandling_Alert(error: error, vc: homeScreenViewController)
                 }
                 //HomeScreenViewController의 pushShareView 동작(파일 URL을 같이 넣어줌)
-                homeScreenViewController.pushShareView(path: extfileURL, checkFileProvider: checkFileProvider)
+                homeScreenViewController.pushShareView(path: extfileURL, deleteShareFile: !checkFileProvider)
             }
-            homeScreenViewController.pushShareView(path: url, checkFileProvider: checkFileProvider)
+            homeScreenViewController.pushShareView(path: url, deleteShareFile: !checkFileProvider)
         }
             return true
         }

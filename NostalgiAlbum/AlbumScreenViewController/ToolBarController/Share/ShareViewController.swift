@@ -15,7 +15,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     var filePath: URL?
     var existedAlbum : Bool!
     var albumCoverName : String!
-    var checkFileProvider : Bool!
+    var deleteShareFile : Bool!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
         //.nost file URL에서 .nost앞 앨범 이름만 따옴
         if !existedAlbum {
             do {
-                try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: filePath!, checkFileProvider: checkFileProvider)
+                try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: filePath!, deleteShareFile: deleteShareFile)
             } catch let error {
                 NSErrorHandling_Alert(error: error, vc: self)
                 // MARK: - Document에 저장된 album Directory 삭제
@@ -129,7 +129,7 @@ class ShareViewController: UIViewController, UIDocumentPickerDelegate {
     }
     
     @IBAction func closeInButtonTapped(_ sender: Any) {
-        if !checkFileProvider {
+        if deleteShareFile {
             do{
                 try FileManager.default.removeItem(at: filePath!)
             } catch let error {
