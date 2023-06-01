@@ -15,6 +15,10 @@ class PageCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        button.isHidden = false
+        button.backgroundColor = UIColor.white
+    }
 }
 
 extension PageCell {

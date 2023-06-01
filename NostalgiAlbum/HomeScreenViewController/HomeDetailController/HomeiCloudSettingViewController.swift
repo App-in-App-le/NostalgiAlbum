@@ -412,7 +412,7 @@ class HomeiCloudSettingViewController: UIViewController {
                                         let shareFilePath = iCloudDocsURL.appendingPathComponent(content)
                                         do{
                                             // deleteShareFile: false -> 백업 파일은 성공 시 삭제
-                                            try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: shareFilePath, deleteShareFile: false)
+                                            try unzipAlbumDirectory(AlbumCoverName: albumCoverName, shareFilePath: shareFilePath, checkFileProvider: true)
                                         } catch let error {
                                             // 디비 정보, 사진 정보, 백업 파일 전부 백업했다가 실패 시 전체 복원
                                             do {

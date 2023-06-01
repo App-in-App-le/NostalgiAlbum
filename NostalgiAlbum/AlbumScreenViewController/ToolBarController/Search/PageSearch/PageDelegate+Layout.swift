@@ -187,17 +187,16 @@ extension PageSearchViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCell.reuseIdentifier, for: indexPath) as! PageCell
+        cell.button.isHidden = false
         cell.button.setTitle("\(indexPath.item - 1)", for: .normal)
         cell.button.titleLabel?.textColor = .white
         cell.button.pageNum = indexPath.item - 2
         cell.button.indexPath = indexPath
         cell.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         cell.index = index
-//        cell.button.layer.cornerRadius = collectionView.bounds.height/24.0
         cell.setFont()
         if indexPath.item < 2 || indexPath.item > pageCount + 2 {
             cell.button.isHidden = true
-            cell.layer.isHidden = true
         } else {
             pageButtonList.append(cell.button)
         }

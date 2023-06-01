@@ -66,7 +66,7 @@ class PageSearchViewController: UIViewController {
             previousButton = sender.pageNum
             loadPageInfo(btnPageNum: sender.pageNum)
             for i in 0...pageButtonList.count - 1 {
-                if (sender.pageNum ) == i {
+                if (sender.pageNum) == i {
                     setThemeColorButton(pageButtonList[i])
                 } else {
                     pageButtonList[i].backgroundColor = UIColor.white
