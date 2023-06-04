@@ -169,6 +169,12 @@ func unzipAlbumDirectory(AlbumCoverName: String, shareFilePath: URL, deleteShare
     let zipURL = documentDirectory.appendingPathComponent("\(AlbumCoverName).zip")
     // unzip한 파일들 저장할 디렉토리 생성
     do {
+        let didStartAccessing = shareFilePath.startAccessingSecurityScopedResource()
+        defer {
+            if didStartAccessing {
+                shareFilePath.stopAccessingSecurityScopedResource()
+            }
+        }
         let data = try Data(contentsOf: shareFilePath)
         let checkByte = data.last
         if let checkByte = checkByte {
@@ -223,7 +229,7 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) throws {
         
         let coverInfos = coverInfoContents.split(separator: "\n")
         let names = imageNameContents.split(separator: "\n")
-        let texts = textInfoContents.split(separator: "\n")
+        let texts = textInfoContents.components(separatedBy: .newlines)
         let infos = albumInfoContents.split(separator: "\n")
         
         for coverInfo in coverInfos {
@@ -245,10 +251,10 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) throws {
                     } else {
                         str.append("\(strArr[textCount])")
                     }
-                    textCount += 1
                 }
             }
             arrImageText.append("\(str)")
+            textCount += 1
         }
         
         for info in infos {

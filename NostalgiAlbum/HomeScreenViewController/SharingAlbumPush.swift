@@ -7,7 +7,7 @@ extension HomeScreenViewController {
         // 앨범을 공유 받은 경로 전달
         shareVC.filePath = path
         shareVC.collectionViewInHome = collectionView
-        shareVC.checkFileProvider = deleteShareFile
+        shareVC.deleteShareFile = deleteShareFile
         // 해당  shareVC를 Present
         shareVC.modalPresentationStyle = .overFullScreen
         self.present(shareVC, animated: false)
