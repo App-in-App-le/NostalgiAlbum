@@ -251,10 +251,12 @@ func importAlbumInfo(albumCoverName: String, useForShare: Bool) throws {
                     } else {
                         str.append("\(strArr[textCount])")
                     }
+                    textCount += 1
                 }
+            } else {
+                textCount += 1
             }
             arrImageText.append("\(str)")
-            textCount += 1
         }
         
         for info in infos {
