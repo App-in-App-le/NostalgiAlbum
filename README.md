@@ -14,3 +14,7 @@
         </td>
     </tr>
   </table>
+
+  ---
+[앱스토어 링크](https://apps.apple.com/kr/app/nostalgialbum/id6448299485)
+[앱 설명 링크(지원 URL)](https://app-in-app-le.github.io/nostalgialbum/NostalgiAlbum.html)
